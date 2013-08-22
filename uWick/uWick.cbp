@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="uWick" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="Windows\;Mac\;Linux\;All\;" />
+		<Build>
+			<Target title="WDebug">
+				<Option platforms="Windows;" />
+				<Option output="C:/Program Files/Wick SDK/Lib/WDuWick" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="WDebug/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="WRelease">
+				<Option platforms="Windows;" />
+				<Option output="C:/Program Files/Wick SDK/Lib/WRuWick" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="WRelease/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="URelease">
+				<Option platforms="Unix;" />
+				<Option output="C:/Program Files/Wick SDK/Lib/URuWick" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="URelease/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="MRelease">
+				<Option platforms="Mac;" />
+				<Option output="C:/Program Files/Wick SDK/Lib/MRuWick" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="MRelease/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="C:/Program Files/Wick SDK/Include" />
+		</Compiler>
+		<Unit filename="../../../../../../../Program Files/Wick SDK/Include/WWindow.h">
+			<Option virtualFolder="Windows/" />
+			<Option target="WDebug" />
+			<Option target="WRelease" />
+		</Unit>
+		<Unit filename="../../../../../../../Program Files/Wick SDK/Include/WickError.h">
+			<Option virtualFolder="All/" />
+		</Unit>
+		<Unit filename="../../../../../../../Program Files/Wick SDK/Include/Window.h">
+			<Option virtualFolder="All/" />
+		</Unit>
+		<Unit filename="../../../../../../../Program Files/Wick SDK/Include/uWick.h">
+			<Option virtualFolder="All/" />
+		</Unit>
+		<Unit filename="WWindow.cpp">
+			<Option virtualFolder="Windows/" />
+			<Option target="WDebug" />
+			<Option target="WRelease" />
+		</Unit>
+		<Unit filename="WickError.cpp">
+			<Option virtualFolder="All/" />
+		</Unit>
+		<Unit filename="Window.cpp">
+			<Option virtualFolder="All/" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

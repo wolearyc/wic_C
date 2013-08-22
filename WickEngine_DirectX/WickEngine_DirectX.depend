@@ -1,0 +1,295 @@
+# depslib dependency file v1.0
+1376967081 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\box.cpp
+	"Box.h"
+
+1376876734 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\box.h
+	"Pair.h"
+	"WickError.h"
+
+1376876897 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\pair.h
+	<math.h>
+
+1376968435 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\wickerror.h
+	<iostream>
+	<string>
+	<cstdlib>
+
+1376701643 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\button.cpp
+	"Button.h"
+
+1376876745 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\button.h
+	"Input.h"
+	"Image.h"
+	"Updateable.h"
+	"HitBox.h"
+
+1376876864 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\input.h
+	"Direct3D.h"
+	<time.h>
+	<vector>
+	<string>
+	"Pair.h"
+
+1376876772 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\direct3d.h
+	<windows.h>
+	<d3d9.h>
+	<d3dx9.h>
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3d9.h
+	<stdlib.h>
+	<objbase.h>
+	<windows.h>
+	"d3d9types.h"
+	"d3d9caps.h"
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3d9types.h
+	<float.h>
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3d9caps.h
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9.h
+	<limits.h>
+	"d3d9.h"
+	"d3dx9math.h"
+	"d3dx9core.h"
+	"d3dx9xof.h"
+	"d3dx9mesh.h"
+	"d3dx9shader.h"
+	"d3dx9effect.h"
+	"d3dx9tex.h"
+	"d3dx9shape.h"
+	"d3dx9anim.h"
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9math.h
+	"d3dx9.h"
+	<math.h>
+	"d3dx9math.inl"
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9math.inl
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9core.h
+	"d3dx9.h"
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9xof.h
+	"d3dx9.h"
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9mesh.h
+	"d3dx9.h"
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9shader.h
+	"d3dx9.h"
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9effect.h
+	"d3dx9.h"
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9tex.h
+	"d3dx9.h"
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9shape.h
+	"d3dx9.h"
+
+1274308617 c:\program files\microsoft directx sdk (june 2010)\include\d3dx9anim.h
+
+1376877817 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\image.h
+	<vector>
+	"Box.h"
+	"Direct3D.h"
+	"Graphics.h"
+	"Texture.h"
+	"Paintable.h"
+	"Pair.h"
+	"Releaseable.h"
+	"Rotateable.h"
+	"Scaleable.h"
+	"WickError.h"
+
+1376877110 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\graphics.h
+	<vector>
+	"WickError.h"
+	"Direct3D.h"
+
+1376877065 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\texture.h
+	<string>
+	"Direct3D.h"
+	"Graphics.h"
+	"Releaseable.h"
+	"WickError.h"
+
+1376876911 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\releaseable.h
+
+1376876878 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\paintable.h
+	"Pair.h"
+	"Graphics.h"
+
+1376877001 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\rotateable.h
+	"Pair.h"
+
+1376877013 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\scaleable.h
+	"Pair.h"
+	"WickError.h"
+
+1376877086 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\updateable.h
+	"Input.h"
+	"Graphics.h"
+
+1376876845 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\hitbox.h
+	"Box.h"
+
+1376714495 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\color.cpp
+	"Color.h"
+
+1376876755 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\color.h
+	"Direct3D.h"
+	"WickError.h"
+
+1376701626 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\defaultstate.cpp
+	"DefaultState.h"
+
+1376876763 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\defaultstate.h
+	"State.h"
+
+1376877033 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\state.h
+	"Paintable.h"
+	"Releaseable.h"
+	"Updateable.h"
+
+1376714495 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\fadetext.cpp
+	"FadeText.h"
+
+1376876801 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\fadetext.h
+	"Input.h"
+	"Text.h"
+	"Updateable.h"
+
+1376877882 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\text.h
+	<string>
+	"Color.h"
+	"Direct3D.h"
+	"Font.h"
+	"Paintable.h"
+	"Rotateable.h"
+	"Scaleable.h"
+
+1376877129 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\font.h
+	<string>
+	<vector>
+	"Direct3D.h"
+	"Graphics.h"
+	"Releaseable.h"
+	"WickError.h"
+
+1376714495 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\font.cpp
+	"Font.h"
+
+1376714495 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\graphics.cpp
+	"Graphics.h"
+
+1376701624 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\hitbox.cpp
+	"HitBox.h"
+
+1376877782 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\image.cpp
+	"Image.h"
+
+1376714495 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\imagegrid.cpp
+	"ImageGrid.h"
+
+1376876817 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\imagegrid.h
+	"Image.h"
+
+1376701622 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\input.cpp
+	"Input.h"
+
+1376701527 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\paintable.cpp
+	"Paintable.h"
+
+1376701527 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\pair.cpp
+	"Pair.h"
+
+1376701520 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\releaseable.cpp
+	"Releaseable.h"
+
+1376714495 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\scaleable.cpp
+	"Scaleable.h"
+
+1376701519 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\splashstate.cpp
+	"SplashState.h"
+
+1376877026 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\splashstate.h
+	"Wick.h"
+
+1376877101 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\wick.h
+	<string>
+	<vector>
+	"Box.h"
+	"Button.h"
+	"DefaultState.h"
+	"FadeText.h"
+	"Font.h"
+	"Graphics.h"
+	"HitBox.h"
+	"Image.h"
+	"ImageGrid.h"
+	"Input.h"
+	"Paintable.h"
+	"Pair.h"
+	"Releaseable.h"
+	"Rotateable.h"
+	"Scaleable.h"
+	"SplashState.h"
+	"State.h"
+	"Text.h"
+	"TextField.h"
+	"Texture.h"
+	"Toggle.h"
+	"Updateable.h"
+	"Window.h"
+
+1376877053 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\textfield.h
+	<string>
+	<sstream>
+	"Input.h"
+	"Text.h"
+	"Image.h"
+	"Updateable.h"
+	"HitBox.h"
+
+1376877074 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\toggle.h
+	"Button.h"
+
+1376877348 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\window.h
+	"Direct3D.h"
+	"DefaultState.h"
+	"Graphics.h"
+	"Image.h"
+	"Input.h"
+	"State.h"
+	"Text.h"
+	"WickError.h"
+
+1376701519 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\state.cpp
+	"State.h"
+
+1376877912 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\text.cpp
+	"Text.h"
+
+1376714495 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\textfield.cpp
+	"TextField.h"
+
+1376714495 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\texture.cpp
+	"Texture.h"
+
+1376701519 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\toggle.cpp
+	"Toggle.h"
+
+1376701518 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\updateable.cpp
+	"Updateable.h"
+
+1376968715 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\wickerror.cpp
+	"WickError.h"
+
+1376877817 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\rotateable.cpp
+	"Rotateable.h"
+
+1376968894 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_directx\window.cpp
+	"Window.h"
+
