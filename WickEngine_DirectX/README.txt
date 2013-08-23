@@ -14,6 +14,6 @@ WickEngine_DirectX has a variety of problems. In no particular order...
 4. It's too difficult to determine where errors happen.
 5. It duplicates some functionality already in the C++ language (aka the release() method replaces destructors).
 6. It has some unnessesary complexities. For example, the Graphics and Input classes could be combined into a "SystemInterface" class.
-7. Some classes really don't need to be classes. For example, Input does not necessarly need to be a class.
+7. Some classes really don't need to be classes. For example, Input does not necessarily need to be a class.
 
-I hope to fix all these problems, simplify, and add a lot of new, advanced functionality to my next project, WickEngine. 
+I hope to fix all these problems, simplify, and add a lot of new functionality to my next project, WickEngine. 
