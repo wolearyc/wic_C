@@ -10,6 +10,7 @@
 #define WICKERROR_H
 #include <iostream>
 #include <string>
+#include <cstdlib>
 using std::string;
 namespace wick
 {

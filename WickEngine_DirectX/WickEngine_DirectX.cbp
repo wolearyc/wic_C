@@ -9,7 +9,7 @@
 		<Build>
 			<Target title="Debug">
 				<Option platforms="Windows;" />
-				<Option output="Debug/wickdx9" prefix_auto="1" extension_auto="1" />
+				<Option output="../WickEngine_DirectX_SDK/lib/dwickdx9" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="Debug/" />
 				<Option type="2" />
@@ -25,7 +25,7 @@
 			</Target>
 			<Target title="Release">
 				<Option platforms="Windows;" />
-				<Option output="Release/wickdx9" prefix_auto="1" extension_auto="1" />
+				<Option output="../WickEngine_DirectX_SDK/lib/wickdx9" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="Release/" />
 				<Option type="2" />
@@ -46,6 +46,7 @@
 			<Add option="-D_WINDOWS" />
 			<Add option="-D_MBCS" />
 			<Add directory="$(#dx.include)" />
+			<Add directory="../WickEngine_DirectX_SDK/include" />
 		</Compiler>
 		<Linker>
 			<Add library="kernel32" />
@@ -63,58 +64,58 @@
 			<Add library="d3d9" />
 			<Add directory="$(#dx.lib)" />
 		</Linker>
+		<Unit filename="../WickEngine_DirectX_SDK/include/Box.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Button.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Color.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/DefaultState.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Direct3D.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/FadeText.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Font.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Graphics.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/HitBox.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Image.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/ImageGrid.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Input.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Paintable.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Pair.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Releaseable.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Rotateable.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Scaleable.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/SplashState.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/State.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Text.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/TextField.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Texture.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Toggle.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Updateable.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Wick.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/WickError.h" />
+		<Unit filename="../WickEngine_DirectX_SDK/include/Window.h" />
 		<Unit filename="Box.cpp" />
-		<Unit filename="Box.h" />
 		<Unit filename="Button.cpp" />
-		<Unit filename="Button.h" />
 		<Unit filename="Color.cpp" />
-		<Unit filename="Color.h" />
 		<Unit filename="DefaultState.cpp" />
-		<Unit filename="DefaultState.h" />
-		<Unit filename="Direct3D.h" />
 		<Unit filename="FadeText.cpp" />
-		<Unit filename="FadeText.h" />
 		<Unit filename="Font.cpp" />
-		<Unit filename="Font.h" />
 		<Unit filename="Graphics.cpp" />
-		<Unit filename="Graphics.h" />
 		<Unit filename="HitBox.cpp" />
-		<Unit filename="HitBox.h" />
 		<Unit filename="Image.cpp" />
-		<Unit filename="Image.h" />
 		<Unit filename="ImageGrid.cpp" />
-		<Unit filename="ImageGrid.h" />
 		<Unit filename="Input.cpp" />
-		<Unit filename="Input.h" />
 		<Unit filename="Paintable.cpp" />
-		<Unit filename="Paintable.h" />
 		<Unit filename="Pair.cpp" />
-		<Unit filename="Pair.h" />
 		<Unit filename="Releaseable.cpp" />
-		<Unit filename="Releaseable.h" />
 		<Unit filename="Rotateable.cpp" />
-		<Unit filename="Rotateable.h" />
 		<Unit filename="Scaleable.cpp" />
-		<Unit filename="Scaleable.h" />
 		<Unit filename="SplashState.cpp" />
-		<Unit filename="SplashState.h" />
 		<Unit filename="State.cpp" />
-		<Unit filename="State.h" />
 		<Unit filename="Text.cpp" />
-		<Unit filename="Text.h" />
 		<Unit filename="TextField.cpp" />
-		<Unit filename="TextField.h" />
 		<Unit filename="Texture.cpp" />
-		<Unit filename="Texture.h" />
 		<Unit filename="Toggle.cpp" />
-		<Unit filename="Toggle.h" />
 		<Unit filename="Updateable.cpp" />
-		<Unit filename="Updateable.h" />
-		<Unit filename="Wick.h" />
 		<Unit filename="WickError.cpp" />
-		<Unit filename="WickError.h" />
 		<Unit filename="Window.cpp" />
-		<Unit filename="Window.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

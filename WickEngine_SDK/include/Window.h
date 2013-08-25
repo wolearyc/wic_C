@@ -33,6 +33,6 @@ namespace wick
 		string title_;
 		int width_;
 		int height_;
-    }
+    };
 }
 #endif /* WINDOW_H */

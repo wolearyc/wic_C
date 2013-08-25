@@ -213,3 +213,11 @@
 
 1301111164 c:\mingw\include\gl\gl.h
 
+1373829953 source:c:\documents and settings\user\my documents\programming\c-c++\wick\uwick\wickerror.cpp
+	"WickError.h"
+
+1377393313 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\wickerror.h
+	<iostream>
+	<string>
+	<cstdlib>
+

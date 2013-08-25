@@ -20,7 +20,8 @@ FUTURE
 
 Directories
 ====
-WickEngine_DirectX -- Header and source files for WickEngine_DirectX.
-WickEngine	   -- Source files for WickEngine.
-uWick		   -- Source files for uWick.
-Include		   -- Header files for both WickEngine and uWick.
+WickEngine_DirectX     -- Source files for WickEngine_DirectX.
+WickEngine_DirectX_SDK -- WickEngine_DirectX libraries and header files (for developers)
+WickEngine	       -- Source files for WickEngine.
+uWick		       -- Source files for uWick.
+WickEngine_SDK         -- WickEngine and uWick libraries and header files (for developers)

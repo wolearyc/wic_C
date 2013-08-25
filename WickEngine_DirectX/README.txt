@@ -5,7 +5,6 @@ The Wick Engine library written for C++ and DirectX.
 
 WickEngine_DirectX was my first attempt at a game engine. 
 All the code is in the project's root directory. 
-A debug build can be found in Debug, and a release build can be found in Release. Builds are static libraries (.a files).
 
 WickEngine_DirectX has a variety of problems. In no particular order...
 1. It duplicates some functionality already in the C++ standard library.
