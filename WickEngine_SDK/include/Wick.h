@@ -1,17 +1,25 @@
 //-------------------------------------------------------------------------------------------------
 // File:		Wick.h
-// Description:		Wick.h gives the user access to Wick classes and methods, as well as
-//			std::vector, all within the wick namespace.
-// Version:
 // Author:		Will O'Leary
 // Documentation:
 //-------------------------------------------------------------------------------------------------
 
 #ifndef WICK_H
 #define WICK_H
-#include <string>
-#include "Window.h"
+
+#ifdef _WIN64
+    #include "WWindow.h"
+#elif _WIN32
+    #include "WWindow.h"
+#elif __APPLE__
+    #include "OWindow.h"
+#elif __linux
+    #include "LWindow.h"
+#endif
+
 #include "WickError.h"
+#include "Pair.h"
+#include <string>
 using std::string;
-#endif /* WICK_H */
+#endif
 

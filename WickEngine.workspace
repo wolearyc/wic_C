@@ -2,9 +2,8 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
 		<Project filename="WickTest/WickTest.cbp">
-			<Depends filename="uWick/uWick.cbp" />
+			<Depends filename="WickEngine/WickEngine.cbp" />
 		</Project>
-		<Project filename="uWick/uWick.cbp" />
 		<Project filename="WickEngine/WickEngine.cbp" />
 		<Project filename="WickEngine_DirectX/WickEngine_DirectX.cbp" />
 	</Workspace>

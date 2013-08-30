@@ -1,7 +1,5 @@
 // ------------------------------------------------------------------------------------------------
 // File:			WWindow.h
-// Description:		        Creates and manages the window for Microsoft Windows.
-// Version:
 // Author:			Will O'Leary
 // Documentation:
 //-------------------------------------------------------------------------------------------------
@@ -10,44 +8,58 @@
 #define WWINDOW_H
 #include <windows.h>
 #include <GL/gl.h>
+#include <iostream>
 #include <string>
+#include "WickError.h"
+#include "Pair.h"
+#include <time.h>
+#include "SOIL.h"
+#include <vector>
+using std::string;
+using std::vector;
 namespace wick
 {
-	class WWindow
+	class Window
 	{
 	public:
 
-		// Constructor.
-		WWindow(string title, int width, int height);
+		Window(string title, int width, int height);
 
-		// Starts and runs the window.
 		int start();
 
-		// Message handler.
 		LRESULT CALLBACK MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
+		Pair getDimensions();
+		Pair getCursorLocation();
+		bool keyDown(string key);
+		vector<string> getDownKeys();
+		bool keyPressed(string key);
+		vector<string> getPressedKeys();
+
+		long double time();
 
 	private:
 
-        // Windows variables.
 		HWND hWnd_;
 		HDC hdc_;
 		HINSTANCE hInstance_;
-
-		// OpenGL variables.
 		HGLRC hglrc_;
 
-		// Wick variables.
 		string title_;
-		int width_;
-		int height_;
+		Pair dimensions_;
 		bool initialized_;
+
+        Pair cursorLocation_;
+        string getWickName(WPARAM wParam, LPARAM lParam);
+        void keyUp(string key);
+        vector<string> downKeys_;
+        vector<string> pressedKeys_;
 
 	};
 
-	// Window procedure.
 	static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
-	// Handle.
+
 	static Window* ApplicationHandle = 0;
 
 }

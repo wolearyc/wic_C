@@ -1,8 +1,5 @@
 // ------------------------------------------------------------------------------------------------
-// File:		Main.cpp
-// Description:		The main method of any wick game. Must be included in any wick project.
-//                      Contains variables for setting up the window.
-// Version:
+// File:		main.cpp
 // Author:		Will O'Leary
 // ------------------------------------------------------------------------------------------------
 

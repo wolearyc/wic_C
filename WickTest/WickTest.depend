@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1373821201 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wicktest\main.cpp
+1377796951 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wicktest\main.cpp
 	"Wick.h"
 
 1373829218 c:\program files\wick sdk\include\wick.h
@@ -224,4 +224,49 @@
 	<iostream>
 	<string>
 	<cstdlib>
+
+1377626370 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\uwick.h
+	"WWindow.h"
+	"WWindow.h"
+	"OWindow.h"
+	"LWindow.h"
+	"WickError.h"
+	<string>
+
+1377815058 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\wwindow.h
+	<windows.h>
+	<GL/gl.h>
+	<iostream>
+	<string>
+	"WickError.h"
+	"Pair.h"
+	<time.h>
+	"SOIL.h"
+	<vector>
+
+1377625859 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\wickerror.h
+	<iostream>
+	<string>
+	<cstdlib>
+
+1377806289 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\wick.h
+	"WWindow.h"
+	"WWindow.h"
+	"OWindow.h"
+	"LWindow.h"
+	"WickError.h"
+	"Pair.h"
+	<string>
+
+1376876897 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\pair.h
+	<math.h>
+
+1341006774 c:\mingw\include\math.h
+	<_mingw.h>
+
+1341006777 c:\mingw\include\time.h
+	<_mingw.h>
+	<stddef.h>
+
+1215479580 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\soil.h
 
