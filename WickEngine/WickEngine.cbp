@@ -5,7 +5,7 @@
 		<Option title="WickEngine" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="Architecture\;Windows\;Utility\;State\;Image\;" />
+		<Option virtualFolders="Architecture\;Windows\;Utility\;State\;Image\;Polygon\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="../WickEngine_SDK/lib/dwick" prefix_auto="1" extension_auto="1" />
@@ -34,17 +34,23 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-Wall" />
+			<Add option="-std=c++11" />
 			<Add directory="../WickEngine_SDK/include" />
 		</Compiler>
 		<ExtraCommands>
 			<Add after="ar -r $(TARGET_OUTPUT_FILE) lib/image_DXT.o lib/image_helper.o lib/SOIL.o lib/stb_image_aug.o" />
 		</ExtraCommands>
+		<Unit filename="../WickEngine_SDK/include/Color.h">
+			<Option virtualFolder="Utility/" />
+		</Unit>
 		<Unit filename="../WickEngine_SDK/include/Image.h">
 			<Option virtualFolder="Image/" />
 		</Unit>
 		<Unit filename="../WickEngine_SDK/include/Pair.h">
 			<Option virtualFolder="Utility/" />
+		</Unit>
+		<Unit filename="../WickEngine_SDK/include/Polygon.h">
+			<Option virtualFolder="Polygon/" />
 		</Unit>
 		<Unit filename="../WickEngine_SDK/include/Texture.h">
 			<Option virtualFolder="Image/" />
@@ -58,11 +64,17 @@
 		<Unit filename="../WickEngine_SDK/include/WickError.h">
 			<Option virtualFolder="Architecture/" />
 		</Unit>
+		<Unit filename="Color.cpp">
+			<Option virtualFolder="Utility/" />
+		</Unit>
 		<Unit filename="Image.cpp">
 			<Option virtualFolder="Image/" />
 		</Unit>
 		<Unit filename="Pair.cpp">
 			<Option virtualFolder="Utility/" />
+		</Unit>
+		<Unit filename="Polygon.cpp">
+			<Option virtualFolder="Polygon/" />
 		</Unit>
 		<Unit filename="Texture.cpp">
 			<Option virtualFolder="Image/" />

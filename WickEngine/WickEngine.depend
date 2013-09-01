@@ -1,1 +1,13 @@
 # depslib dependency file v1.0
+1377989384 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine\color.cpp
+	"Color.h"
+
+1377989418 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\color.h
+	"GL/gl.h"
+	"WickError.h"
+
+1377625859 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\wickerror.h
+	<iostream>
+	<string>
+	<cstdlib>
+
