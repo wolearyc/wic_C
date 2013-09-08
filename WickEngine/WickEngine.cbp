@@ -52,6 +52,9 @@
 		<Unit filename="../WickEngine_SDK/include/Polygon.h">
 			<Option virtualFolder="Polygon/" />
 		</Unit>
+		<Unit filename="../WickEngine_SDK/include/State.h">
+			<Option virtualFolder="State/" />
+		</Unit>
 		<Unit filename="../WickEngine_SDK/include/Texture.h">
 			<Option virtualFolder="Image/" />
 		</Unit>
@@ -75,6 +78,9 @@
 		</Unit>
 		<Unit filename="Polygon.cpp">
 			<Option virtualFolder="Polygon/" />
+		</Unit>
+		<Unit filename="State.cpp">
+			<Option virtualFolder="State/" />
 		</Unit>
 		<Unit filename="Texture.cpp">
 			<Option virtualFolder="Image/" />

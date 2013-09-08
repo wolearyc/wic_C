@@ -69,7 +69,6 @@ namespace wick
 		return msg.wParam;
 	}
 
-	// Message handler.
 	LRESULT Window::MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		string key;
@@ -138,12 +137,12 @@ namespace wick
 			return DefWindowProc(hWnd, message, wParam, lParam);
 		}
 	}
+
 	Pair Window::getDimensions()
 	{
 	    return(dimensions_);
 	}
 
-	// Input
 	Pair Window::getCursorLocation()
 	{
 	    return(cursorLocation_);
@@ -285,13 +284,11 @@ namespace wick
 	{
 	    return(pressedKeys_);
 	}
-
-	long double Window::time()
+    long double Window::time()
 	{
         return((long double) clock()/CLOCKS_PER_SEC);
 	}
 
-	// Window procedure called by Windows.
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		return(ApplicationHandle->MessageHandler(hWnd, message, wParam, lParam));

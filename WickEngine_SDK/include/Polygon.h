@@ -9,6 +9,7 @@
 #include "GL/gl.h"
 #include "Pair.h"
 #include "Color.h"
+#include "WWindow.h"
 #include <vector>
 using std::vector;
 namespace wick
@@ -16,18 +17,17 @@ namespace wick
     class Polygon
     {
     public:
-        Polygon(Pair location, Color color,  Pair vertex, ...);
+        Polygon(Pair location, Color color,  vector<Pair> vertices);
         Polygon(const Polygon& other);
         Polygon();
-        ~Polygon();
 
-        void paint();
+        void paint(Window* window);
 
         Pair getLocation();
         void setLocation(Pair location);
 
         Color getColor();
-        void setColor();
+        void setColor(Color color);
 
         vector<Pair> getVertices();
         void setVertices(vector<Pair> vertices);
@@ -39,5 +39,4 @@ namespace wick
         vector<Pair> vertices_;
     };
 }
-
 #endif

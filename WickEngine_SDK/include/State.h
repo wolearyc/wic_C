@@ -1,30 +1,23 @@
 // ------------------------------------------------------------------------------------------------
-// File:			State.h
+// File:            State.h
 // Author:			Will O'Leary
-// Documentation:   https://github.com/wolearyc/wick/wiki/class-State
+// Documentation:
 //-------------------------------------------------------------------------------------------------
 
 #ifndef STATE_H
 #define STATE_H
-#include "Paintable.h"
-#include "Releaseable.h"
-#include "Updateable.h"
+#include "WWindow.h"
 namespace wick
 {
-	class Window;
-	class State : public Paintable, public Releaseable, public Updateable
-	{
-	public:
+    class State
+    {
+        public:
+            State();
+            virtual ~State() = 0;
 
-		// Constructor.
-		State();
+            virtual void initialize() = 0;
 
-		// Destructor.
-		~State();
-
-		// Loads resources.
-		virtual void initialize(Graphics* graphics) = 0;
-
-	};
+            virtual void paint(Window* window) = 0;
+    };
 }
-#endif
+#endi

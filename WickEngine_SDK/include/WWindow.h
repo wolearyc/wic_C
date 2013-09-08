@@ -30,13 +30,15 @@ namespace wick
 		LRESULT CALLBACK MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 		Pair getDimensions();
+
 		Pair getCursorLocation();
 		bool keyDown(string key);
 		vector<string> getDownKeys();
 		bool keyPressed(string key);
 		vector<string> getPressedKeys();
-
 		long double time();
+
+        void addState(
 
 	private:
 
