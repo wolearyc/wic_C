@@ -8,4 +8,7 @@ namespace wick
     State::State()
     {
     }
+    State::~State()
+    {
+    }
 }

@@ -5,12 +5,15 @@
 
 
 #include "Wick.h"
+#include "TestState.h"
 
 using namespace wick;
 
 int main()
 {
-	Window* window = new Window("Test", 1280, 720);
+	TestState* state = new TestState();
+	state -> initialize();
+	Window* window = new Window("Test", Pair(1280, 720), state);
 	window->start();
 	return(0);
 }

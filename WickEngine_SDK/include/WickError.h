@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------------------------
 // File:                WickError.h
 // Author:              Will O'Leary
-// Documentation:       https://github.com/wolearyc/wick/wiki/WickError
+// Documentation:
 // ------------------------------------------------------------------------------------------------
 
 #ifndef WICKERROR_H

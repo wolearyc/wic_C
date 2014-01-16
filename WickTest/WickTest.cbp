@@ -5,6 +5,7 @@
 		<Option title="WickTest" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="States\;" />
 		<Build>
 			<Target title="Release">
 				<Option output="Release/WickTest" prefix_auto="1" extension_auto="1" />
@@ -32,6 +33,7 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add directory="C:/MinGW/include" />
 			<Add directory="../WickEngine_SDK/include" />
 		</Compiler>
@@ -41,6 +43,12 @@
 			<Add directory="C:/MinGW/lib" />
 			<Add directory="../WickEngine_SDK/lib" />
 		</Linker>
+		<Unit filename="TestState.cpp">
+			<Option virtualFolder="States/" />
+		</Unit>
+		<Unit filename="TestState.h">
+			<Option virtualFolder="States/" />
+		</Unit>
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

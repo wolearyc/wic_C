@@ -5,14 +5,12 @@
 #include "WWindow.h"
 namespace wick
 {
-	// Constructor.
-	Window::Window(string title, Pair dimensions)
+	Window::Window(string title, Pair dimensions, State* state)
 	{
+        title_ = title;
         dimensions_ = dimensions;
-		height_ = height;
+		state_ = state;
 	}
-
-	// Starts and runs the window.
 	int Window::start()
 	{
         print("==== Starting " + title_ + "...");
@@ -75,12 +73,15 @@ namespace wick
 		switch(message)
 		{
         case WM_TIMER:
+            state_ -> update(this);
+            state_ -> paint(this);
             glFlush();
             SwapBuffers(hdc_);
             glClearColor(0.0, 0.0, 0.0, 0.0);
             glClear(GL_COLOR_BUFFER_BIT);
             return(0);
 		case WM_DESTROY:
+			delete(state_);
 			wglMakeCurrent(hdc_, NULL);
 			wglDeleteContext(hglrc_);
 			PostQuitMessage(0);
@@ -142,7 +143,6 @@ namespace wick
 	{
 	    return(dimensions_);
 	}
-
 	Pair Window::getCursorLocation()
 	{
 	    return(cursorLocation_);

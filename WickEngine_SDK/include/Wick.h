@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------------------------
-// File:		Wick.h
-// Author:		Will O'Leary
+// File:		    Wick.h
+// Author:		    Will O'Leary
 // Documentation:
 //-------------------------------------------------------------------------------------------------
 
@@ -19,6 +19,14 @@
 
 #include "WickError.h"
 #include "Pair.h"
+#include "Texture.h"
+#include "Rotateable.h"
+#include "Polygon.h"
+#include "State.h"
+#include "Color.h"
+#include "Paintable.h"
+#include "Scaleable.h"
+#include "Quad.h"
 #include <string>
 using std::string;
 #endif

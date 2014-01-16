@@ -6,10 +6,15 @@
 namespace wick
 {
 	// Constructors.
-	Pair::Pair(int x, int y)
-	{ 
+	Pair::Pair(double x, double y)
+	{
 		x_ = x;
 		y_ = y;
+	}
+	Pair::Pair(int x, int y)
+	{
+	    x_ = (double) x;
+	    y_ = (double) y;
 	}
 	Pair::Pair(const Pair& other)
 	{
@@ -18,22 +23,18 @@ namespace wick
 	}
 	Pair::Pair()
 	{
-		x_ = 0;
-		y_ = 0;
+		x_ = 0.0;
+		y_ = 0.0;
 	}
 
 	// Methods determining distance and angle.
 	double Pair::distance(const Pair& other)
 	{
-		return(sqrt(pow((double) (other.x_-x_),2.0) + pow((double) (other.y_-y_),2.0)));
+		return(sqrt(pow(other.x_-x_,2.0) + pow(other.y_-y_,2.0)));
 	}
 	double Pair::angle(const Pair& other)
 	{
-		return(atan((double) (other.y_-y_)/ ((double) (other.x_-x_))));
-	}
-	double Pair::angleInDegrees(const Pair& other)
-	{
-		return((angle(other) * 57.2958));
+		return(atan(other.y_-y_)/ (other.x_-x_));
 	}
 
 	// Operator overloads.
@@ -53,36 +54,30 @@ namespace wick
 	{
 		return(Pair(x_ / other.x_, y_ / other.y_));
 	}
-	Pair Pair::operator%(const Pair& other) const
+	bool Pair::operator==(const Pair& other)
 	{
-		return(Pair(x_ % other.x_, y_ % other.y_));
-	}
-	bool Pair::operator==(const Pair& other) 
-	{
-		return(x_ == other.x_ && y_ == other.y_);
+		return(fabs(x_ - other.x_) < 0.0000001 &&
+              (fabs(y_ - other.y_) < 0.0000001));
 	}
 	bool Pair::operator!=(const Pair& other) const
 	{
-		return(x_!=other.x_ || y_!=other.y_);
+		return(fabs(x_ - other.x_) >= 0.0000001 &&
+              (fabs(y_ - other.y_) >= 0.0000001));
 	}
-	Pair Pair::operator+(const int i) const
+	Pair Pair::operator+(const double i) const
 	{
 		return(Pair(x_ + i, y_ + i));
 	}
-	Pair Pair::operator-(const int i) const
+	Pair Pair::operator-(const double i) const
 	{
 		return(Pair(x_ - i, y_ - i));
 	}
-	Pair Pair::operator*(const int i) const
+	Pair Pair::operator*(const double i) const
 	{
 		return(Pair(x_ * i, y_ * i));
 	}
-	Pair Pair::operator/(const int i) const
+	Pair Pair::operator/(const double i) const
 	{
 		return(Pair(x_ / i, y_ / i));
-	}
-	Pair Pair::operator%(const int i) const
-	{
-		return(Pair(x_ % i, y_ % i));
 	}
 }

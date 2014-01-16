@@ -6,18 +6,20 @@
 
 #ifndef STATE_H
 #define STATE_H
-#include "WWindow.h"
 namespace wick
 {
+    class Window;
     class State
     {
         public:
             State();
-            virtual ~State() = 0;
+            ~State();
 
             virtual void initialize() = 0;
+
+            virtual void update(Window* window) = 0;
 
             virtual void paint(Window* window) = 0;
     };
 }
-#endi
+#endif

@@ -15,6 +15,7 @@
 #include <time.h>
 #include "SOIL.h"
 #include <vector>
+#include "State.h"
 using std::string;
 using std::vector;
 namespace wick
@@ -22,15 +23,12 @@ namespace wick
 	class Window
 	{
 	public:
-
-		Window(string title, int width, int height);
+        Window(string title, Pair dimensions, State* state);
 
 		int start();
-
-		LRESULT CALLBACK MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+        LRESULT CALLBACK MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 		Pair getDimensions();
-
 		Pair getCursorLocation();
 		bool keyDown(string key);
 		vector<string> getDownKeys();
@@ -38,18 +36,15 @@ namespace wick
 		vector<string> getPressedKeys();
 		long double time();
 
-        void addState(
-
 	private:
+
+		string title_;
+		Pair dimensions_;
 
 		HWND hWnd_;
 		HDC hdc_;
 		HINSTANCE hInstance_;
 		HGLRC hglrc_;
-
-		string title_;
-		Pair dimensions_;
-		bool initialized_;
 
         Pair cursorLocation_;
         string getWickName(WPARAM wParam, LPARAM lParam);
@@ -57,10 +52,11 @@ namespace wick
         vector<string> downKeys_;
         vector<string> pressedKeys_;
 
+        State* state_;
+
 	};
 
 	static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
-
 
 	static Window* ApplicationHandle = 0;
 
