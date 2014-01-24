@@ -27,8 +27,7 @@ namespace wick
             man_.translate(Pair(-1,0));
         if(window->keyDown("d"))
             man_.translate(Pair(1,0));
-        if(window->keyDown(" "))
-            man_.setColor(Color(255,255,255,128));
+        man_.setRotation(man_.getLocation().angle(window->getCursorLocation()));
     }
     void TestState::paint(Window* window)
     {
