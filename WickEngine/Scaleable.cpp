@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------------------------
-// File:			Scaleable.cpp
+// File:            Scaleable.cpp
 // ------------------------------------------------------------------------------------------------
 
 #include "Scaleable.h"
@@ -25,5 +25,9 @@ namespace wick
     void Scaleable::setScale(Pair scale)
     {
         scale_ = scale;
+    }
+    void Scaleable::scale(Pair scale)
+    {
+        setScale(scale_ + scale);
     }
 }

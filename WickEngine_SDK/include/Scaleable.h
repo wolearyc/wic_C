@@ -19,6 +19,7 @@ namespace wick
 
         Pair getScale();
         void setScale(Pair scale);
+        void scale(Pair scale);
 
     protected:
         Pair scale_;

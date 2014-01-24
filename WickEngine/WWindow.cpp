@@ -13,7 +13,7 @@ namespace wick
 	}
 	int Window::start()
 	{
-        print("==== Starting " + title_ + "...");
+        print("Wick Engine version " + wickVersion_ + "\n");
 		ApplicationHandle = this;
 		hInstance_ = GetModuleHandle(NULL);
 
@@ -42,7 +42,7 @@ namespace wick
 		hdc_ = GetDC(hWnd_);
 		int pixelFormat = ChoosePixelFormat(hdc_, &pfd);
 		if(pixelFormat == 0)
-            throwError("Unable to find compatible pixel format");
+            throwError("[Window] Unable to find compatible pixel format");
 		SetPixelFormat(hdc_, pixelFormat, &pfd);
 		hglrc_ = wglCreateContext(hdc_);
 		wglMakeCurrent(hdc_, hglrc_);
@@ -57,7 +57,9 @@ namespace wick
 		MSG msg;
 		ZeroMemory(&msg, sizeof(MSG));
 
-
+        state_->initialize();
+        glEnable (GL_BLEND);
+        glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		while(GetMessage(&msg, NULL, 0, 0))
 		{
 			TranslateMessage(&msg);
@@ -74,18 +76,19 @@ namespace wick
 		{
         case WM_TIMER:
             state_ -> update(this);
-            state_ -> paint(this);
             glFlush();
+            glClearColor(0.0,0.0,0.0,1.0);
+            glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            glLoadIdentity();
+            state_ -> paint(this);
             SwapBuffers(hdc_);
-            glClearColor(0.0, 0.0, 0.0, 0.0);
-            glClear(GL_COLOR_BUFFER_BIT);
             return(0);
 		case WM_DESTROY:
 			delete(state_);
 			wglMakeCurrent(hdc_, NULL);
 			wglDeleteContext(hglrc_);
 			PostQuitMessage(0);
-			print("==== " + title_ + " terminated (0).");
+			print("\nTerminated (0).");
 			return(0);
 		case WM_MOUSEMOVE:
             POINT point;

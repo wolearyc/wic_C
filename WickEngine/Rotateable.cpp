@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------------------------
-// File:			Rotateable.cpp
+// File:	        Rotateable.cpp
 // ------------------------------------------------------------------------------------------------
 
 #include "Rotateable.h"
@@ -41,6 +41,10 @@ namespace wick
     void Rotateable::setRotation(float rotation)
     {
         rotation_ = rotation;
+    }
+    void Rotateable::rotate(float rotation)
+    {
+        setRotation(rotation_ + rotation);
     }
 
 }

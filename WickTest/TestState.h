@@ -12,7 +12,10 @@ namespace wick
             void update(Window* window);
             void paint(Window* window);
         private:
+            Texture* manTex_;
+            Image man_;
             Quad quad_;
+            Polygon poly_;
     };
 }
 #endif

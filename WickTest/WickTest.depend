@@ -251,7 +251,7 @@
 	<string>
 	<cstdlib>
 
-1389840568 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\wick.h
+1389918874 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\wick.h
 	"WWindow.h"
 	"WWindow.h"
 	"OWindow.h"
@@ -265,6 +265,7 @@
 	"Color.h"
 	"Paintable.h"
 	"Scaleable.h"
+	"Image.h"
 	"Quad.h"
 	<string>
 
@@ -282,9 +283,9 @@
 
 1383621345 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\state.h
 
-1383515594 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\image.h
+1389918414 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\image.h
+	"Quad.h"
 	"Texture.h"
-	"WWindow.h"
 
 1377824396 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\texture.h
 	"Pair.h"
@@ -304,10 +305,10 @@
 	"GL/gl.h"
 	"WickError.h"
 
-1389839670 c:\documents and settings\user\my documents\programming\c-c++\wick\wicktest\teststate.h
+1389919112 c:\documents and settings\user\my documents\programming\c-c++\wick\wicktest\teststate.h
 	"Wick.h"
 
-1389839924 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wicktest\teststate.cpp
+1389920408 source:c:\documents and settings\user\my documents\programming\c-c++\wick\wicktest\teststate.cpp
 	"TestState.h"
 
 1383620364 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\paintable.h
@@ -326,6 +327,6 @@
 1389579164 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\pairf.h
 	<math.h>
 
-1389839855 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\quad.h
+1389917626 c:\documents and settings\user\my documents\programming\c-c++\wick\wickengine_sdk\include\quad.h
 	"Polygon.h"
 

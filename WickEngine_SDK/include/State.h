@@ -13,7 +13,7 @@ namespace wick
     {
         public:
             State();
-            ~State();
+            virtual ~State();
 
             virtual void initialize() = 0;
 

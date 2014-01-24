@@ -10,6 +10,8 @@
 #include <string>
 #include "SOIL.h"
 #include "GL/gl.h"
+#include <iostream>
+#include "WickError.h"
 using std::string;
 namespace wick
 {

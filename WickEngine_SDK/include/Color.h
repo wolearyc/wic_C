@@ -31,31 +31,31 @@ namespace wick
 		static Color Fuchsia;
 		static Color Purple;
 
-		Color(unsigned short red, unsigned short green, unsigned short blue);
-		Color(unsigned short red, unsigned short green, unsigned short blue, unsigned short alpha);
+		Color(unsigned char red, unsigned char green, unsigned char blue);
+		Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha);
 		Color(const Color& other);
 		Color();
 
-		unsigned short getRed();
-		void setRed(unsigned short red);
-		unsigned short getGreen();
-		void setGreen(unsigned short green);
-		unsigned short getBlue();
-		void setBlue(unsigned short blue);
-		unsigned short getAlpha();
-		void setAlpha(unsigned short alpha);
+		unsigned char getRed();
+		void setRed(unsigned char red);
+		unsigned char getGreen();
+		void setGreen(unsigned char green);
+		unsigned char getBlue();
+		void setBlue(unsigned char blue);
+		unsigned char getAlpha();
+		void setAlpha(unsigned char alpha);
 
 		void select();
 
 	protected:
 
-		unsigned short red_;
+		unsigned char red_;
 		float glRed_;
-		unsigned short green_;
+		unsigned char green_;
 		float glGreen_;
-		unsigned short blue_;
+		unsigned char blue_;
 		float glBlue_;
-		unsigned short alpha_;
+		unsigned char alpha_;
 		float glAlpha_;
 
 	};

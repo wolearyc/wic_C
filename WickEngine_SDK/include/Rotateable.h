@@ -22,6 +22,7 @@ namespace wick
         void setCenter(Pair center);
         float getRotation();
         void setRotation(float rotation);
+        void rotate(float rotation);
 
     protected:
         Pair center_;

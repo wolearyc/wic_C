@@ -23,14 +23,14 @@ namespace wick
 	Color Color::Purple  = Color(128,0,128);
 
 	// Constructors.
-	Color::Color(unsigned short red, unsigned short green, unsigned short blue)
+	Color::Color(unsigned char red, unsigned char green, unsigned char blue)
 	{
 		setRed(red);
 		setGreen(green);
 		setBlue(blue);
 		setAlpha(255);
 	}
-	Color::Color(unsigned short red, unsigned short green, unsigned short blue, unsigned short alpha)
+	Color::Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha)
           :Color(red, green, blue)
 	{
 		setAlpha(alpha);
@@ -51,65 +51,60 @@ namespace wick
 	{
 	}
 
-	// Red methods.
-	unsigned short Color::getRed()
+	unsigned char Color::getRed()
 	{
 		return(red_);
 	}
-	void Color::setRed(unsigned short red)
+	void Color::setRed(unsigned char red)
 	{
 		red_ = red;
-		if(red_ < 0 || red_ > 255)
+		if(red_ > 255)
 		{
 			throwWarning("Invalid red value");
 			red_ = 255;
 		}
-		glRed_ = red_ / 255.f;
+		glRed_ = red_ / 255.0;
 	}
-
-	// Green methods.
-	unsigned short Color::getGreen()
+	unsigned char Color::getGreen()
 	{
 		return(green_);
 	}
-	void Color::setGreen(unsigned short green)
+	void Color::setGreen(unsigned char green)
 	{
 		green_ = green;
-		if(green_ < 0 || green_ > 255)
+		if(green_ > 255)
 		{
 			throwWarning("Invalid green value");
 		}
-		glGreen_ = green_ / 255.f;
+		glGreen_ = green_ / 255.0;
 	}
-
-	// Blue methods.
-	unsigned short Color::getBlue()
+	unsigned char Color::getBlue()
 	{
 		return(blue_);
 	}
-	void Color::setBlue(unsigned short blue)
+	void Color::setBlue(unsigned char blue)
 	{
 		blue_ = blue;
-		if(blue_ < 0 || blue_ > 255)
+		if(blue_ > 255)
 		{
 			throwWarning("Invalid blue value");
 		}
-		glBlue_ = blue_ / 255.f;
+		glBlue_ = blue_ / 255.0;
 	}
 
-	unsigned short Color::getAlpha()
+	unsigned char Color::getAlpha()
 	{
 		return(alpha_);
 	}
-	void Color::setAlpha(unsigned short alpha)
+	void Color::setAlpha(unsigned char alpha)
 	{
 		alpha_ = alpha;
-		if(alpha_ < 0 || alpha_ > 255)
+		if(alpha_ > 255)
 		{
 			throwWarning("Invalid alpha value");
 			alpha_ = 255;
 		}
-		glAlpha_ = alpha_ / 255.f;
+		glAlpha_ = alpha_ / 255.0;
 	}
 
 	void Color::select()

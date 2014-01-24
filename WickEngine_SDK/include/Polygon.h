@@ -11,6 +11,7 @@
 #include "Rotateable.h"
 #include "Scaleable.h"
 #include "Color.h"
+#include <initializer_list>
 #include <vector>
 using std::vector;
 namespace wick
@@ -18,7 +19,7 @@ namespace wick
     class Polygon : public Paintable, public Rotateable, public Scaleable
     {
     public:
-        Polygon(Pair location, Color color,  vector<Pair> baseVertices);
+        Polygon(Pair location, Color color, std::initializer_list<Pair> baseVertices);
         Polygon(const Polygon& other);
         Polygon();
 
@@ -28,7 +29,7 @@ namespace wick
         void setColor(Color color);
 
         vector<Pair> getBaseVertices();
-        void setVertices(vector<Pair> vertices);
+        void setBaseVertices(std::initializer_list<Pair> baseVertices);
 
     protected:
 

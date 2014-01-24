@@ -5,11 +5,12 @@
 #include "Polygon.h"
 namespace wick
 {
-    Polygon::Polygon(Pair location, Color color, vector<Pair> baseVertices)
+    Polygon::Polygon(Pair location, Color color, std::initializer_list<Pair> baseVertices)
             :Paintable(location), Rotateable()
     {
         color_ = color;
         baseVertices_ = baseVertices;
+        vertices_ = vector<Pair>(baseVertices_.size(),Pair());
     }
     Polygon::Polygon(const Polygon& other)
             :Paintable(other), Rotateable(other)
@@ -30,7 +31,7 @@ namespace wick
         Pair dimensions = window->getDimensions();
         color_.select();
         glBegin(GL_POLYGON);
-            for(unsigned int i = 0; i < vertices_.size(); i++)
+            for(unsigned int i = 0; i < baseVertices_.size(); i++)
             {
                 Pair vertex = vertices_[i];
                 glVertex2d(convertCoordinate(vertex.x_ + location_.x_, dimensions.x_),
@@ -52,14 +53,15 @@ namespace wick
     {
         return(baseVertices_);
     }
-    void Polygon::setVertices(vector<Pair> baseVertices)
+    void Polygon::setBaseVertices(std::initializer_list<Pair> baseVertices)
     {
         baseVertices_ = baseVertices;
+        vertices_.clear();
+        vertices_ = vector<Pair>(baseVertices_.size(),Pair());
     }
 
     void Polygon::updateVertices()
     {
-        vertices_.clear();
         for(unsigned int i = 0; i < baseVertices_.size(); i++)
         {
             Pair vertex = baseVertices_[i];
@@ -70,7 +72,7 @@ namespace wick
                           (vertex.y_ - center_.y_) * sin(rotation_),
                           (vertex.x_ - center_.x_) * sin(rotation_) +
                           (vertex.y_ - center_.y_) * cos(rotation_));
-            vertices_.push_back(vertex);
+            vertices_[i] = vertex;
         }
     }
 }

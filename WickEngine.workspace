@@ -5,6 +5,5 @@
 			<Depends filename="WickEngine/WickEngine.cbp" />
 		</Project>
 		<Project filename="WickEngine/WickEngine.cbp" />
-		<Project filename="WickEngine_DirectX/WickEngine_DirectX.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

@@ -22,6 +22,7 @@ namespace wick
 
         Pair getLocation();
         void setLocation(Pair location);
+        void translate(Pair translation);
 
     protected:
         Pair location_;

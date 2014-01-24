@@ -6,8 +6,7 @@
 namespace wick
 {
     Quad::Quad(Pair location, Color color, Pair dimensions)
-         :Polygon(location, color, vector<Pair> {Pair(), Pair(dimensions.x_,0.0),
-                                                 dimensions, Pair(0.0, dimensions.y_)})
+         :Polygon(location, color, {Pair(), Pair(dimensions.x_,0.0),dimensions, Pair(0.0, dimensions.y_)})
     {
         dimensions_ = dimensions;
     }
@@ -29,8 +28,6 @@ namespace wick
     void Quad::setDimensions(Pair dimensions)
     {
         dimensions_ = dimensions;
-        vector<Pair> vertices {Pair(), Pair(dimensions.x_,0.0),
-                               dimensions, Pair(0.0, dimensions.y_)};
-        baseVertices_ = vertices;
+        setBaseVertices({Pair(), Pair(dimensions.x_,0.0),dimensions, Pair(0.0, dimensions.y_)});
     }
 }

@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------------------------
-// File:			Paintable.cpp
+// File:            Paintable.cpp
 // ------------------------------------------------------------------------------------------------
 
 #include "Paintable.h"
@@ -25,6 +25,10 @@ namespace wick
     void Paintable::setLocation(Pair location)
     {
         location_ = location;
+    }
+    void Paintable::translate(Pair translation)
+    {
+        setLocation(location_ + translation);
     }
 
     GLdouble Paintable::convertCoordinate(int coordinate, int dimension)

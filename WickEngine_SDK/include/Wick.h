@@ -26,8 +26,11 @@
 #include "Color.h"
 #include "Paintable.h"
 #include "Scaleable.h"
+#include "Image.h"
 #include "Quad.h"
+#include "Bounds.h"
 #include <string>
 using std::string;
+
 #endif
 
