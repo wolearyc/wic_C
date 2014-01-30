@@ -28,6 +28,7 @@
 #include "Scaleable.h"
 #include "Image.h"
 #include "Quad.h"
+#include "Font.h"
 #include "Bounds.h"
 #include <string>
 using std::string;
