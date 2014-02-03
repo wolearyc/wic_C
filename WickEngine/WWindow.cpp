@@ -1,6 +1,22 @@
-// ------------------------------------------------------------------------------------------------
-// File:			WWindow.cpp
-// ------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// Copyright (C) 2013-2014  Will O'Leary
+//
+// This program is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+//
+// You should have received a copy of the GNU General Public License along with
+// this program.  If not, see <http://www.gnu.org/licenses/>.
+// ----------------------------------------------------------------------------
+// File:    WWindow.cpp
+// ----------------------------------------------------------------------------
 
 #include "WWindow.h"
 namespace wick
@@ -13,7 +29,7 @@ namespace wick
 	}
 	int Window::start()
 	{
-        print("Wick Engine version " + wickVersion_ + "\n");
+        print("Wick Engine version " + wickVersion_ + " Copyright (C) 2013-2014  Will O'Leary\n");
 		ApplicationHandle = this;
 		hInstance_ = GetModuleHandle(NULL);
 
@@ -42,7 +58,7 @@ namespace wick
 		hdc_ = GetDC(hWnd_);
 		int pixelFormat = ChoosePixelFormat(hdc_, &pfd);
 		if(pixelFormat == 0)
-            throwError("[Window] Unable to find compatible pixel format");
+            throwError(W_WWINDOW, "Unable to find compatible pixel format");
 		SetPixelFormat(hdc_, pixelFormat, &pfd);
 		hglrc_ = wglCreateContext(hdc_);
 		wglMakeCurrent(hdc_, hglrc_);
@@ -60,6 +76,8 @@ namespace wick
         state_->initialize();
         glEnable (GL_BLEND);
         glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
+        glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
 		while(GetMessage(&msg, NULL, 0, 0))
 		{
 			TranslateMessage(&msg);
@@ -88,7 +106,7 @@ namespace wick
 			wglMakeCurrent(hdc_, NULL);
 			wglDeleteContext(hglrc_);
 			PostQuitMessage(0);
-			print("\nTerminated (0).");
+			print("\nTerminated");
 			return(0);
 		case WM_MOUSEMOVE:
             POINT point;

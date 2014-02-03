@@ -1,14 +1,29 @@
-// ------------------------------------------------------------------------------------------------
-// File:            Bounds.cpp
-// ------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// Copyright (C) 2013-2014  Will O'Leary
+//
+// This program is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+//
+// You should have received a copy of the GNU General Public License along with
+// this program.  If not, see <http://www.gnu.org/licenses/>.
+// ----------------------------------------------------------------------------
+// File:    Bounds.cpp
+// ----------------------------------------------------------------------------
 
 #include "Bounds.h"
 namespace wick
 {
     Bounds::Bounds(Pair lowerLeft, Pair upperRight)
     {
-        lowerLeft_ = lowerLeft;
-        upperRight_ = upperRight;
+        setLowerLeftAndUpperRight(lowerLeft, upperRight);
     }
     Bounds::Bounds(int lowerLeftX, int lowerLeftY, int upperRightX, int upperRightY)
            :Bounds(Pair(lowerLeftX, lowerLeftY), Pair(upperRightX, upperRightY))
@@ -24,9 +39,8 @@ namespace wick
         upperRight_ = other.upperRight_;
     }
     Bounds::Bounds()
+           :Bounds(Pair(), Pair(64,64))
     {
-        lowerLeft_ = Pair();
-        upperRight_ = Pair(64,64);
     }
 
     Pair Bounds::getLowerLeft()
@@ -36,6 +50,12 @@ namespace wick
     void Bounds::setLowerLeft(Pair lowerLeft)
     {
         lowerLeft_ = lowerLeft;
+        verify();
+    }
+    void Bounds::translateLowerLeft(Pair translation)
+    {
+        lowerLeft_ += translation;
+        verify();
     }
     Pair Bounds::getUpperRight()
     {
@@ -44,5 +64,26 @@ namespace wick
     void Bounds::setUpperRight(Pair upperRight)
     {
         upperRight_ = upperRight;
+        verify();
+    }
+    void Bounds::translateUpperRight(Pair translation)
+    {
+        upperRight_ += translation;
+        verify();
+    }
+    void Bounds::setLowerLeftAndUpperRight(Pair lowerLeft, Pair upperRight)
+    {
+        lowerLeft_ = lowerLeft;
+        upperRight_ = upperRight;
+        verify();
+    }
+
+    void Bounds::verify()
+    {
+        Pair temp = upperRight_ - lowerLeft_;
+        if(temp.x_ == 0)
+            throwWarning(W_BOUNDS, "Width is 0");
+        if(temp.y_ == 0)
+            throwWarning(W_BOUNDS, "Height is 0");
     }
 }

@@ -1,6 +1,22 @@
-// ------------------------------------------------------------------------------------------------
-// File:			Image.cpp
-// ------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// Copyright (C) 2013-2014  Will O'Leary
+//
+// This program is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+//
+// You should have received a copy of the GNU General Public License along with
+// this program.  If not, see <http://www.gnu.org/licenses/>.
+// ----------------------------------------------------------------------------
+// File:    Image.cpp
+// ----------------------------------------------------------------------------
 
 #include "Image.h"
 namespace wick
@@ -9,7 +25,7 @@ namespace wick
           :Quad(location, Color(255,255,255,255), texture->getDimensions())
     {
         texture_ = texture;
-        bounds_ = Bounds(Pair(),texture->getDimensions());
+        bounds_ = Bounds(Pair(), texture->getDimensions());
     }
     Image::Image(const Image& other)
           :Quad(other)
@@ -35,20 +51,20 @@ namespace wick
         glBegin(GL_QUADS);
             Pair vertex = vertices_[0];
             glTexCoord2f (bounds_.getLowerLeft().x_ / tDimensions.x_, -bounds_.getLowerLeft().y_ / tDimensions.y_);
-            glVertex2d(convertCoordinate(vertex.x_ + location_.x_, wDimensions.x_),
-                       convertCoordinate(vertex.y_ + location_.y_, wDimensions.y_));
+            vertex = convertCoordinates(vertex + location_, wDimensions);
+            glVertex2d(vertex.x_, vertex.y_);
             vertex = vertices_[1];
             glTexCoord2f (bounds_.getUpperRight().x_ / tDimensions.x_, -bounds_.getLowerLeft().y_ / tDimensions.y_);
-            glVertex2d(convertCoordinate(vertex.x_ + location_.x_, wDimensions.x_),
-                       convertCoordinate(vertex.y_ + location_.y_, wDimensions.y_));
+            vertex = convertCoordinates(vertex + location_, wDimensions);
+            glVertex2d(vertex.x_, vertex.y_);
             vertex = vertices_[2];
             glTexCoord2f (bounds_.getUpperRight().x_ / tDimensions.x_, -bounds_.getUpperRight().y_ / tDimensions.y_);
-            glVertex2d(convertCoordinate(vertex.x_ + location_.x_, wDimensions.x_),
-                       convertCoordinate(vertex.y_ + location_.y_, wDimensions.y_));
+            vertex = convertCoordinates(vertex + location_, wDimensions);
+            glVertex2d(vertex.x_, vertex.y_);
             vertex = vertices_[3];
             glTexCoord2f (bounds_.getLowerLeft().x_ / tDimensions.x_, -bounds_.getUpperRight().y_ / tDimensions.y_);
-            glVertex2d(convertCoordinate(vertex.x_ + location_.x_, wDimensions.x_),
-                       convertCoordinate(vertex.y_ + location_.y_, wDimensions.y_));
+            vertex = convertCoordinates(vertex + location_, wDimensions);
+            glVertex2d(vertex.x_, vertex.y_);
         glEnd();
         glDisable(GL_TEXTURE_2D);
     }

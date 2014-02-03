@@ -1,6 +1,22 @@
-// ------------------------------------------------------------------------------------------------
-// File:			Color.cpp
-//-------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// Copyright (C) 2013-2014  Will O'Leary
+//
+// This program is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+//
+// You should have received a copy of the GNU General Public License along with
+// this program.  If not, see <http://www.gnu.org/licenses/>.
+// ----------------------------------------------------------------------------
+// File:    Color.cpp
+// ----------------------------------------------------------------------------
 
 #include "Color.h"
 namespace wick
@@ -12,6 +28,7 @@ namespace wick
 	Color Color::Red     = Color(255,0,0);
 	Color Color::Maroon  = Color(128,0,0);
 	Color Color::Yellow  = Color(255,255,0);
+	Color Color::Orange  = Color(255,165,0);
 	Color Color::Olive   = Color(128,128,0);
 	Color Color::Lime    = Color(0,255,0);
 	Color Color::Green   = Color(0,128,0);
@@ -38,16 +55,12 @@ namespace wick
 	Color::Color(const Color &other)
 	{
 		red_     = other.red_;
-		glRed_   = other.glRed_;
 		green_   = other.green_;
-		glGreen_ = other.glGreen_;
 		blue_    = other.blue_;
-		glBlue_  = other.glBlue_;
 		alpha_   = other.alpha_;
-		glAlpha_ = other.glAlpha_;
 	}
 	Color::Color()
-	      :Color(0,0,0,255)
+	      :Color(255,255,255,255)
 	{
 	}
 
@@ -60,10 +73,9 @@ namespace wick
 		red_ = red;
 		if(red_ > 255)
 		{
-			throwWarning("Invalid red value");
+			throwWarning(W_COLOR, "Invalid red value");
 			red_ = 255;
 		}
-		glRed_ = red_ / 255.0;
 	}
 	unsigned char Color::getGreen()
 	{
@@ -74,9 +86,9 @@ namespace wick
 		green_ = green;
 		if(green_ > 255)
 		{
-			throwWarning("Invalid green value");
+			throwWarning(W_COLOR, "Invalid green value");
+			green_ = 255;
 		}
-		glGreen_ = green_ / 255.0;
 	}
 	unsigned char Color::getBlue()
 	{
@@ -87,9 +99,9 @@ namespace wick
 		blue_ = blue;
 		if(blue_ > 255)
 		{
-			throwWarning("Invalid blue value");
+			throwWarning(W_COLOR, "Invalid blue value");
+			blue_ = 255;
 		}
-		glBlue_ = blue_ / 255.0;
 	}
 
 	unsigned char Color::getAlpha()
@@ -101,14 +113,13 @@ namespace wick
 		alpha_ = alpha;
 		if(alpha_ > 255)
 		{
-			throwWarning("Invalid alpha value");
+			throwWarning(W_COLOR, "Invalid alpha value");
 			alpha_ = 255;
 		}
-		glAlpha_ = alpha_ / 255.0;
 	}
 
 	void Color::select()
 	{
-	    glColor4f(glRed_, glGreen_, glBlue_, glAlpha_);
+	    glColor4ub(red_, green_, blue_, alpha_);
 	}
 }

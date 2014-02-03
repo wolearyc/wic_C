@@ -9,7 +9,11 @@ WICK ENGINE README
 4. Credits
 
 ~ Summary ~
-The Wick Engine is a simple, object-oriented 2D game engine written in C++ and distributed as a standalone static library. It is currently under development by Will O'Leary. You can download files, read documentation, and submit bug reports at the Wick Engine's github repository https://github.com/wolearyc/wick). Enjoy!
+The Wick Engine is a simple, object-oriented 2D game engine written in C++ and
+distributed as a standalone static library. It is currently under development 
+by Will O'Leary. You can download files, read documentation, and submit bug 
+reports at the Wick Engine's github repository 
+(https://github.com/wolearyc/wick). Enjoy!
 
 ~ Directories and Files ~
 Resources/      ---------- Various developer goodies
@@ -22,9 +26,13 @@ WickEngine_SDK/ ---------- Developer Kit
    lib/		    ------ Static debug and release libraries
 
 ~ Licensing and Distribution ~
-The Wick Engine is distrubuted under the GNU Lesser General Public License, Version 3. You must include this license file in all projects which use the entirety or sections of The Wick Engine.
+The Wick Engine is distrubuted under the GNU Lesser General Public License, 
+Version 3. You must include this license file in all projects which use the 
+entirety or sections of The Wick Engine.
 
 ~ Credits ~
-Portions of this software are copyright © 2013 The FreeType Project (www.freetype.org).  All rights reserved.
+Portions of this software are copyright © 2013 The FreeType Project 
+(www.freetype.org).  All rights reserved.
 
-Portions of this software use the Simple OpenGL Image Library (http://www.lonesock.net/soil.html), which is in the public domain.
+Portions of this software use the Simple OpenGL Image Library 
+(http://www.lonesock.net/soil.html), which is in the public domain.

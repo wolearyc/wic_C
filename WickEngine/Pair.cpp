@@ -1,20 +1,34 @@
-// ------------------------------------------------------------------------------------------------
-// File:			Pair.cpp
-//-------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// Copyright (C) 2013-2014  Will O'Leary
+//
+// This program is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+//
+// You should have received a copy of the GNU General Public License along with
+// this program.  If not, see <http://www.gnu.org/licenses/>.
+// ----------------------------------------------------------------------------
+// File:    Pair.cpp
+// ----------------------------------------------------------------------------
 
 #include "Pair.h"
 namespace wick
 {
-	// Constructors.
 	Pair::Pair(double x, double y)
 	{
 		x_ = x;
 		y_ = y;
 	}
 	Pair::Pair(int x, int y)
+	     :Pair((double) x, (double) y)
 	{
-	    x_ = (double) x;
-	    y_ = (double) y;
 	}
 	Pair::Pair(const Pair& other)
 	{
@@ -22,22 +36,19 @@ namespace wick
 		y_ = other.y_;
 	}
 	Pair::Pair()
+	     :Pair(0.0,0.0)
 	{
-		x_ = 0.0;
-		y_ = 0.0;
 	}
 
-	// Methods determining distance and angle.
 	double Pair::distance(const Pair& other)
 	{
-		return(sqrt(pow(other.x_-x_,2.0) + pow(other.y_-y_,2.0)));
+		return(sqrt(pow(other.x_ - x_, 2.0) + pow(other.y_ - y_, 2.0)));
 	}
 	double Pair::angle(const Pair& other)
 	{
-		return(atan(other.y_-y_)/ (other.x_-x_));
+		return(atan(other.y_ - y_) / (other.x_ - x_));
 	}
 
-	// Operator overloads.
 	Pair Pair::operator+(const Pair& other) const
 	{
 		return(Pair(x_ + other.x_, y_ + other.y_));
@@ -53,6 +64,30 @@ namespace wick
 	Pair Pair::operator/(const Pair& other) const
 	{
 		return(Pair(x_ / other.x_, y_ / other.y_));
+	}
+	Pair Pair::operator+=(const Pair& other)
+	{
+	    x_ += other.x_;
+	    y_ += other.y_;
+	    return(Pair(x_, y_));
+	}
+    Pair Pair::operator-=(const Pair& other)
+    {
+        x_ -= other.x_;
+	    y_ -= other.y_;
+	    return(Pair(x_, y_));
+    }
+	Pair Pair::operator*=(const Pair& other)
+	{
+	    x_ *= other.x_;
+	    y_ *= other.y_;
+	    return(Pair(x_, y_));
+	}
+	Pair Pair::operator/=(const Pair& other)
+	{
+	    x_ /= other.x_;
+	    y_ /= other.y_;
+	    return(Pair(x_, y_));
 	}
 	bool Pair::operator==(const Pair& other)
 	{
@@ -80,4 +115,28 @@ namespace wick
 	{
 		return(Pair(x_ / i, y_ / i));
 	}
+	Pair Pair::operator+=(const double i)
+	{
+	    x_ += i;
+	    y_ += i;
+	    return(Pair(x_, y_));
+	}
+    Pair Pair::operator-=(const double i)
+    {
+        x_ -= i;
+	    y_ -= i;
+	    return(Pair(x_, y_));
+    }
+    Pair Pair::operator*=(const double i)
+    {
+        x_ *= i;
+	    y_ *= i;
+	    return(Pair(x_, y_));
+    }
+    Pair Pair::operator/=(const double i)
+    {
+        x_ /= i;
+	    y_ /= i;
+	    return(Pair(x_, y_));
+    }
 }

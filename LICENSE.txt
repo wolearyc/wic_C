@@ -9,10 +9,12 @@ WICK ENGINE LICENSE
 
 
 ~ SUMMARY ~
-The Wick Engine is distrubuted under the GNU Lesser General Public License, Version 3. You must include this license file in all projects which use the entirety or sections of The Wick Engine.
+The Wick Engine is distrubuted under the GNU Lesser General Public License, 
+Version 3. You must include this license file in all projects which use the 
+entirety or sections of The Wick Engine.
 
 ~ License ~
-		   GNU LESSER GENERAL PUBLIC LICENSE
+                  GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
@@ -179,6 +181,8 @@ permanent authorization for you to choose that version for the
 Library.
 
 ~ CREDITS ~
-Portions of this software are copyright © 2013 The FreeType Project (www.freetype.org).  All rights reserved.
+Portions of this software are copyright © 2013 The FreeType Project 
+(www.freetype.org).  All rights reserved.
 
-Portions of this software use the Simple OpenGL Image Library (http://www.lonesock.net/soil.html), which is in the public domain.
+Portions of this software use the Simple OpenGL Image Library 
+(http://www.lonesock.net/soil.html), which is in the public domain.

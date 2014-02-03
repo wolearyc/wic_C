@@ -1,26 +1,42 @@
-// ------------------------------------------------------------------------------------------------
-// File:			Polygon.cpp
-// ------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// Copyright (C) 2013-2014  Will O'Leary
+//
+// This program is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+//
+// You should have received a copy of the GNU General Public License along with
+// this program.  If not, see <http://www.gnu.org/licenses/>.
+// ----------------------------------------------------------------------------
+// File:    Polygon.cpp
+// ----------------------------------------------------------------------------
 
 #include "Polygon.h"
 namespace wick
 {
-    Polygon::Polygon(Pair location, Color color, std::initializer_list<Pair> baseVertices)
-            :Paintable(location), Rotateable()
+    Polygon::Polygon(Pair location, Color color,
+                     initializer_list<Pair> baseVertices)
+            :Paintable(location), Rotateable(), Scaleable()
     {
-        color_ = color;
-        baseVertices_ = baseVertices;
-        vertices_ = vector<Pair>(baseVertices_.size(),Pair());
+        setColor(color);
+        setBaseVertices(baseVertices);
     }
     Polygon::Polygon(const Polygon& other)
-            :Paintable(other), Rotateable(other)
+            :Paintable(other), Rotateable(other), Scaleable(other)
     {
-        color_    = other.color_;
+        color_        = other.color_;
         baseVertices_ = other.baseVertices_;
-        vertices_ = other.vertices_;
+        vertices_     = other.vertices_;
     }
     Polygon::Polygon()
-            :Paintable(), Rotateable()
+            :Paintable(), Rotateable(), Scaleable()
     {
         color_ = Color();
     }
@@ -34,8 +50,8 @@ namespace wick
             for(unsigned int i = 0; i < baseVertices_.size(); i++)
             {
                 Pair vertex = vertices_[i];
-                glVertex2d(convertCoordinate(vertex.x_ + location_.x_, dimensions.x_),
-                           convertCoordinate(vertex.y_ + location_.y_, dimensions.y_));
+                vertex = convertCoordinates(vertex + location_, dimensions);
+                glVertex2d(vertex.x_, vertex.y_);
             }
         glEnd();
     }
@@ -53,11 +69,14 @@ namespace wick
     {
         return(baseVertices_);
     }
-    void Polygon::setBaseVertices(std::initializer_list<Pair> baseVertices)
+    void Polygon::setBaseVertices(initializer_list<Pair> baseVertices)
     {
+        baseVertices_.clear();
         baseVertices_ = baseVertices;
+        if(baseVertices_.size() == 0)
+            throwWarning(W_POLYGON, "No vertices supplied");
         vertices_.clear();
-        vertices_ = vector<Pair>(baseVertices_.size(),Pair());
+        vertices_ = vector<Pair>(baseVertices_.size(), Pair());
     }
 
     void Polygon::updateVertices()
@@ -65,14 +84,19 @@ namespace wick
         for(unsigned int i = 0; i < baseVertices_.size(); i++)
         {
             Pair vertex = baseVertices_[i];
-            // Scaling.
-            vertex = center_ + (Pair) ((vertex - center_) * scale_);
-            // Rotation.
-            vertex = Pair((vertex.x_ - center_.x_) * cos(rotation_) -
-                          (vertex.y_ - center_.y_) * sin(rotation_),
-                          (vertex.x_ - center_.x_) * sin(rotation_) +
-                          (vertex.y_ - center_.y_) * cos(rotation_));
-            vertices_[i] = vertex;
+
+            vertex -= scaleCenter_;
+            vertex = vertex * scale_;
+            vertex += scaleCenter_;
+
+            double cosine = cos(rotation_);
+            double sine = sin(rotation_);
+            vertex -= rotateCenter_;
+            vertex = Pair(vertex.x_ * cosine - vertex.y_ * sine,
+                          vertex.x_ * sine + vertex.y_ * cosine);
+            vertex += rotateCenter_;
+
+            vertices_[i] = vertex - paintCenter_;
         }
     }
 }
