@@ -17,7 +17,6 @@
 // ----------------------------------------------------------------------------
 // File:    State.h
 // ----------------------------------------------------------------------------
-
 #ifndef STATE_H
 #define STATE_H
 namespace wick
@@ -25,15 +24,12 @@ namespace wick
     class Window;
     class State
     {
-        public:
-            State();
-            virtual ~State();
-
-            virtual void initialize() = 0;
-
-            virtual void update(Window* window) = 0;
-
-            virtual void paint(Window* window) = 0;
+    public:
+        State();
+        virtual ~State();
+        virtual void initialize() = 0;
+        virtual void update(Window* window) = 0;
+        virtual void paint(Window* window) = 0;
     };
 }
 #endif

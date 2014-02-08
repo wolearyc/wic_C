@@ -17,7 +17,6 @@
 // ----------------------------------------------------------------------------
 // File:    Polygon.h
 // ----------------------------------------------------------------------------
-
 #ifndef POLYGON_H
 #define POLYGON_H
 #include "Color.h"
@@ -34,24 +33,23 @@ namespace wick
     class Polygon : public Paintable, public Rotateable, public Scaleable
     {
     public:
-        Polygon(Pair location, Color color,
-                initializer_list<Pair> baseVertices);
-        Polygon(const Polygon& other);
+
+
+        Polygon(Pair location, vector<Pair> baseVertices, Color color);
+        Polygon(Pair location, initializer_list<Pair> baseVertices,
+                Color color);
         Polygon();
-
+        Polygon(const Polygon& other);
         void paint(Window* window);
-
+        vector<Pair> getBaseVertices();
+        void setBaseVertices(vector<Pair> baseVertices);
+        void setBaseVertices(initializer_list<Pair> baseVertices);
         Color getColor();
         void setColor(Color color);
-
-        vector<Pair> getBaseVertices();
-        void setBaseVertices(initializer_list<Pair> baseVertices);
-
     protected:
-        Color color_;
         vector<Pair> baseVertices_;
         vector<Pair> vertices_;
-
+        Color color_;
         void updateVertices();
     };
 }

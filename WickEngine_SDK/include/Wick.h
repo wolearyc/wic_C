@@ -17,23 +17,10 @@
 // ----------------------------------------------------------------------------
 // File:    Wick.h
 // ----------------------------------------------------------------------------
-
 #ifndef WICK_H
 #define WICK_H
-
-#ifdef _WIN64
-    #include "WWindow.h"
-#elif _WIN32
-    #include "WWindow.h"
-#elif __APPLE__
-    #include "OWindow.h"
-#elif __linux
-    #include "LWindow.h"
-#endif
-
 #include "Bounds.h"
 #include "Color.h"
-#include "Constants.h"
 #include "Font.h"
 #include "Image.h"
 #include "Paintable.h"
@@ -46,11 +33,10 @@
 #include "Text.h"
 #include "Texture.h"
 #include "WickError.h"
-
+#include "Window.h"
 #include <string>
 using std::string;
 #include <vector>
 using std::vector;
-
 #endif
 

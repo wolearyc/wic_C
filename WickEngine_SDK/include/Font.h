@@ -17,37 +17,34 @@
 // ----------------------------------------------------------------------------
 // File:    Font.h
 // ----------------------------------------------------------------------------
-
 #ifndef FONT_H
 #define FONT_H
-#include <ft2build.h>
-#include <algorithm>
+#include "Image.h"
+#include "WickError.h"
+#include "FreeType/ft2build.h"
 #include FT_FREETYPE_H
 #include <string>
-#include <vector>
-#include "WickError.h"
-#include "Image.h"
-using std::vector;
 using std::string;
+#include <vector>
+using std::vector;
 namespace wick
 {
     class Font
     {
     public:
+        Font(string filePath, unsigned short point, bool antialias);
         Font(string filePath, unsigned short point);
-        Font(const Font& other);
         Font();
+        Font(const Font& other);
         ~Font();
-
         unsigned short getPoint();
         void setPoint(unsigned short point);
-
         vector<Image> getImages(string message);
-
-    protected:
+    private:
         FT_Library library_;
         FT_Face face_;
         unsigned short point_;
+        bool antialias_;
         Texture* textures_[256];
     };
 }

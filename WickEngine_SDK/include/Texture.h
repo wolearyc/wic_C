@@ -17,37 +17,41 @@
 // ----------------------------------------------------------------------------
 // File:    Texture.h
 // ----------------------------------------------------------------------------
-
 #ifndef TEXTURE_H
 #define TEXTURE_H
-#include "Constants.h"
 #include "Pair.h"
 #include "WickError.h"
-#include "SOIL.h"
+#include "SOIL/SOIL.h"
 #include "GL/gl.h"
 #include <string>
 using std::string;
 namespace wick
 {
+    enum WickFilter
+    {
+        W_NEAREST = GL_NEAREST, W_LINEAR = GL_LINEAR
+    };
+    enum WickFormat
+    {
+        W_GREYSCALE = 1, W_RGB = 3, W_RGBA = 4
+    };
     class Texture
     {
     public:
-        Texture(string filePath, int wrap, int filter);
+        Texture(string filePath, enum WickFilter filter);
         Texture(string filePath);
-        Texture(unsigned char* buffer, Pair dimensions, unsigned short bytes,
-                int wrap, int filter);
-        Texture(unsigned char* buffer, Pair dimensions, unsigned short bytes);
-        Texture(const Texture& other);
+        Texture(unsigned char* buffer, Pair dimensions, enum WickFormat format,
+                enum WickFilter filter);
+        Texture(unsigned char* buffer, Pair dimensions,
+                enum WickFormat format);
         Texture();
+        Texture(const Texture& other);
         ~Texture();
-
         Pair getDimensions();
-
         void select();
-
-    protected:
+    private:
+        unsigned int data_;
         Pair dimensions_;
-        GLuint data_;
     };
 }
 #endif

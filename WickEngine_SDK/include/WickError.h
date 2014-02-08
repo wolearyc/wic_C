@@ -17,27 +17,24 @@
 // ----------------------------------------------------------------------------
 // File:    WickError.h
 // ----------------------------------------------------------------------------
-
 #ifndef WICKERROR_H
 #define WICKERROR_H
-#include "Constants.h"
 #include <cstdlib>
 #include <iostream>
 #include <string>
 using std::string;
 namespace wick
 {
+        enum WickLocation
+        {
+            W_WICKERROR, W_PAINTABLE, W_ROTATEABLE, W_SCALEABLE, W_IMAGE,
+            W_TEXTURE, W_POLYGON, W_QUAD, W_STATE, W_FONT, W_TEXT, W_BOUNDS,
+            W_COLOR, W_PAIR, W_WINDOW
+        };
         extern string wickVersion_;
-
         void print(string message);
-
-        void throwWarning(unsigned short location, string message);
-
-        void throwError(unsigned short location, string message);
-
-        void printSeparator();
-
-        string getName(unsigned short location);
-
+        void throwWarning(enum WickLocation location, string message);
+        void throwError(enum WickLocation location, string message);
+        string getName(enum WickLocation location);
 }
 #endif

@@ -17,11 +17,10 @@
 // ----------------------------------------------------------------------------
 // File:    Paintable.h
 // ----------------------------------------------------------------------------
-
 #ifndef PAINTABLE_H
 #define PAINTABLE_H
 #include "Pair.h"
-#include "WWindow.h"
+#include "Window.h"
 #include "GL/gl.h"
 namespace wick
 {
@@ -29,22 +28,22 @@ namespace wick
     {
     public:
         Paintable(Pair location);
-        Paintable(const Paintable& other);
         Paintable();
-
-        virtual void paint(Window* window) = 0;
-
+        Paintable(const Paintable& other);
         Pair getLocation();
         void setLocation(Pair location);
         void translate(Pair translation);
-
-        Pair getPaintCenter();
-        void setPaintCenter(Pair paintCenter);
-
+        Pair getCenter();
+        void setCenter(Pair center);
+        bool isPaintedCentered();
+        void paintCentered(bool paintCentered);
+        Pair getGeometricCenter();
+        virtual void paint(Window* window) = 0;
     protected:
         Pair location_;
-        Pair paintCenter_;
-
+        Pair center_;
+        bool paintCentered_;
+        Pair geometricCenter_;
         Pair convertCoordinates(Pair coordinates, Pair dimensions);
     };
 }

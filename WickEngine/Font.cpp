@@ -17,42 +17,36 @@
 // ----------------------------------------------------------------------------
 // File:    Font.cpp
 // ----------------------------------------------------------------------------
-
 #include "Font.h"
 namespace wick
 {
-    Font::Font(string filePath, unsigned short point)
+    Font::Font(string filePath, unsigned short point, bool antialias)
+         :point_(point), antialias_(antialias)
     {
         FT_Init_FreeType(&library_);
         int error = FT_New_Face(library_, filePath.c_str(), 0, &face_);
         if(error != 0)
-            throwError(W_FONT, "Could not load font file " + filePath);
+            throwError(W_FONT, "Could not load font " + filePath);
         FT_Set_Char_Size(face_, 0, point*64, 0, 0);
-        point_ = point;
         for(unsigned int i = 0; i < 256; i++)
-        {
-            textures_[i] = NULL;
-        }
+            textures_[i] = 0;
     }
-    Font::Font(const Font& other)
+    Font::Font(string filePath, unsigned short point)
+         :Font(filePath, point, true)
     {
-        library_ = other.library_;
-        face_ = other.face_;
-        point_ = other.point_;
-        for(unsigned int i = 0; i < 256; i++)
-        {
-            textures_[i] = NULL;
-        }
     }
     Font::Font()
+         :library_(0), face_(0), point_(12), antialias_(true)
     {
-        library_ = NULL;
-        face_ = NULL;
-        point_ = 12;
         for(unsigned int i = 0; i < 256; i++)
-        {
-            textures_[i] = NULL;
-        }
+            textures_[i] = 0;
+    }
+    Font::Font(const Font& other)
+         :library_(other.library_), face_(other.face_), point_(other.point_),
+          antialias_(other.antialias_)
+    {
+        for(unsigned int i = 0; i < 256; i++)
+            textures_[i] = 0;
     }
     Font::~Font()
     {
@@ -60,14 +54,13 @@ namespace wick
         FT_Done_FreeType(library_);
         for(unsigned int i = 0; i < 256; i++)
         {
-            if(textures_[i] != NULL)
+            if(textures_[i] != 0)
             {
                 delete(textures_[i]);
-                textures_[i] = NULL;
+                textures_[i] = 0;
             }
         }
     }
-
     unsigned short Font::getPoint()
     {
         return(point_);
@@ -75,17 +68,16 @@ namespace wick
     void Font::setPoint(unsigned short point)
     {
         point_ = point;
-        FT_Set_Char_Size(face_, 0, point*64, 0, 0);
+        FT_Set_Char_Size(face_, 0, point_*64, 0, 0);
         for(unsigned int i = 0; i < 256; i++)
         {
-            if(textures_[i] != NULL)
+            if(textures_[i] != 0)
             {
                 delete(textures_[i]);
-                textures_[i] = NULL;
+                textures_[i] = 0;
             }
         }
     }
-
     vector<Image> Font::getImages(string message)
     {
         vector<Image> images;
@@ -94,22 +86,26 @@ namespace wick
         {
             Texture* texture;
             char character = message[i];
-            if(textures_[character] == NULL)
+            if(textures_[character] == 0)
             {
                 int glyphIndex = FT_Get_Char_Index(face_, character);
                 FT_Load_Glyph(face_, glyphIndex, 0);
-                if(face_->glyph->format != FT_GLYPH_FORMAT_BITMAP)
+                if(antialias_)
                     FT_Render_Glyph(face_->glyph, FT_RENDER_MODE_NORMAL);
-                Pair dimensions = Pair(face_->glyph->bitmap.width, face_->glyph->bitmap.rows);
-                texture = new Texture(face_->glyph->bitmap.buffer, dimensions, 1);
+                else
+                    FT_Render_Glyph(face_->glyph, FT_RENDER_MODE_MONO);
+                Pair dimensions = Pair(face_->glyph->bitmap.width,
+                                       face_->glyph->bitmap.rows);
+                texture = new Texture(face_->glyph->bitmap.buffer, dimensions,
+                                      W_GREYSCALE);
                 textures_[character] = texture;
-                images.push_back(Image(texture,
-                                 Pair(xPen, (face_->glyph->metrics.height - face_->glyph->metrics.horiBearingY) / 64)));
-                xPen += (face_->glyph->metrics.horiAdvance / 64);
             }
-
+            texture = textures_[character];
+            Image image = Image(Pair(xPen, face_->glyph->metrics.height -
+                                face_->glyph->metrics.horiBearingY), texture);
+            images.push_back(image);
+            xPen += (face_->glyph->metrics.horiAdvance / 64);
         }
-
         return(images);
     }
 }

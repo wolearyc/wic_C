@@ -17,36 +17,50 @@
 // ----------------------------------------------------------------------------
 // File:    Text.cpp
 // ----------------------------------------------------------------------------
-
 #include "Text.h"
 namespace wick
 {
-    Text::Text(string message, Pair location, Font* font)
-         :Paintable(location), Rotateable(), Scaleable()
+    Text::Text(Pair location, string message, Font* font, vector<Color> colors)
+         :Paintable(location), Rotateable(), Scaleable(),
+          message_(message), font_(font), colors_(colors)
     {
-        oldLocation_ = Pair();
-        font_ = font;
-        message_ = message;
-        setMessage(message_);
+        setMessage(message);
+    }
+    Text::Text(Pair location, string message, Font* font,
+               initializer_list<Color> colors)
+         :Text(location, message, font, (vector<Color>) colors)
+    {
+    }
+    Text::Text(Pair location, string message, Font* font, Color color)
+         :Text(location, message, font, {color})
+    {
     }
     Text::Text(const Text& other)
+         :Paintable(other), Rotateable(other), Scaleable(other),
+          message_(other.message_), font_(other.font_), images_(other.images_),
+          colors_(other.colors_)
     {
-        message_ = other.message_;
-        font_ = other.font_;
-        images_ = other.images_;
     }
     Text::Text()
+         :Paintable(), Rotateable(), Scaleable(), message_(""), font_(0)
     {
-        message_ = "";
-        font_ = new Font();
     }
-
     void Text::paint(Window* window)
     {
-        for(unsigned int i = 0; i < images_.size(); i++)
+        unsigned int length = images_.size();
+        for(unsigned int i = 0; i < length; i++)
+        {
+            Pair offset = offsets_[i];
+            images_[i].setCenter(center_ - offset);
+            Pair location = location_;
+            if(!paintCentered_)
+                location += center_;
+            images_[i].setLocation(location);
+            images_[i].setScale(scale_);
+            images_[i].setRotation(rotation_);
             images_[i].paint(window);
+        }
     }
-
     string Text::getMessage()
     {
         return(message_);
@@ -54,44 +68,48 @@ namespace wick
     void Text::setMessage(string message)
     {
         message_ = message;
-        images_.clear();
-        images_ = font_->getImages(message);
-        setLocation(location_);
-        //setCenter(center_);
-    }
-
-    void Text::setLocation(Pair location)
-    {
-        Pair temp = location_;
-        Paintable::setLocation(location);
-        Pair translation = location - oldLocation_;
-        for(unsigned int i = 0; i < images_.size(); i++)
-            images_[i].translate(translation);
-        oldLocation_ = temp;
-    }
-    void Text::setCenter(Pair center)
-    {
-        //Rotateable::setCenter(center);
-        //for(unsigned int i = 0; i < images_.size(); i++)
-        //{
-            //Pair imageCenter = center_ - images_[i].getLocation() + location_;
-            //images_[i].setCenter(imageCenter);
-        //}
-    }
-    void Text::setRotation(float rotation)
-    {
-        Rotateable::setRotation(rotation);
-        for(unsigned int i = 0; i < images_.size(); i++)
+        images_ = font_->getImages(message_);
+        offsets_.clear();
+        unsigned int length = images_.size();
+        for(unsigned int i = 0; i < length; i++)
         {
-            images_[i].setRotation(rotation_);
+            images_[i].paintCentered(true);
+            offsets_.push_back(images_[i].getLocation());
+        }
+        if(length != 0)
+        {
+            geometricCenter_ = (offsets_[length-1] +
+                                images_[length-1].getDimensions()) / 2.0;
+        }
+        setColors(colors_);
+    }
+    vector<Color> Text::getColors()
+    {
+        return(colors_);
+    }
+    void Text::setColors(vector<Color> colors)
+    {
+        colors_ = colors;
+        int colorIndex = 0;
+        unsigned int length = message_.length();
+        for(unsigned int i = 0; i < length; i++)
+        {
+            if(colorIndex >= colors_.size())
+                colorIndex = 0;
+            if(message_[i] != 32)
+            {
+                images_[i].setColor(colors_[colorIndex]);
+                colorIndex++;
+            }
         }
     }
-    void Text::setScale(Pair scale)
+    void Text::setColors(initializer_list<Color> colors)
     {
-        Scaleable::setScale(scale);
-        for(unsigned int i = 0; i < images_.size(); i++)
-        {
-            images_[i].setScale(scale);
-        }
+        setColors((vector<Color>) colors);
+    }
+    void Text::setColor(Color color)
+    {
+        setColors({color});
     }
 }
+

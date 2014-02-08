@@ -17,13 +17,12 @@
 // ----------------------------------------------------------------------------
 // File:    Bounds.cpp
 // ----------------------------------------------------------------------------
-
 #include "Bounds.h"
 namespace wick
 {
     Bounds::Bounds(Pair lowerLeft, Pair upperRight)
+           :lowerLeft_(lowerLeft), upperRight_(upperRight)
     {
-        setLowerLeftAndUpperRight(lowerLeft, upperRight);
     }
     Bounds::Bounds(int lowerLeftX, int lowerLeftY, int upperRightX, int upperRightY)
            :Bounds(Pair(lowerLeftX, lowerLeftY), Pair(upperRightX, upperRightY))
@@ -34,15 +33,13 @@ namespace wick
     {
     }
     Bounds::Bounds(const Bounds& other)
+           :Bounds(other.lowerLeft_, other.upperRight_)
     {
-        lowerLeft_ = other.lowerLeft_;
-        upperRight_ = other.upperRight_;
     }
     Bounds::Bounds()
-           :Bounds(Pair(), Pair(64,64))
+           :Bounds(Pair(), Pair(32,32))
     {
     }
-
     Pair Bounds::getLowerLeft()
     {
         return(lowerLeft_);
@@ -50,12 +47,10 @@ namespace wick
     void Bounds::setLowerLeft(Pair lowerLeft)
     {
         lowerLeft_ = lowerLeft;
-        verify();
     }
     void Bounds::translateLowerLeft(Pair translation)
     {
         lowerLeft_ += translation;
-        verify();
     }
     Pair Bounds::getUpperRight()
     {
@@ -64,26 +59,14 @@ namespace wick
     void Bounds::setUpperRight(Pair upperRight)
     {
         upperRight_ = upperRight;
-        verify();
     }
     void Bounds::translateUpperRight(Pair translation)
     {
         upperRight_ += translation;
-        verify();
     }
     void Bounds::setLowerLeftAndUpperRight(Pair lowerLeft, Pair upperRight)
     {
         lowerLeft_ = lowerLeft;
         upperRight_ = upperRight;
-        verify();
-    }
-
-    void Bounds::verify()
-    {
-        Pair temp = upperRight_ - lowerLeft_;
-        if(temp.x_ == 0)
-            throwWarning(W_BOUNDS, "Width is 0");
-        if(temp.y_ == 0)
-            throwWarning(W_BOUNDS, "Height is 0");
     }
 }

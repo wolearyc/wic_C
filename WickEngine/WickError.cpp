@@ -17,72 +17,63 @@
 // ----------------------------------------------------------------------------
 // File:    WickError.cpp
 // ----------------------------------------------------------------------------
-
 #include "WickError.h"
 namespace wick
 {
-        string wickVersion_ = "0.1.1";
-
-        void print(string message)
+    string wickVersion_ = "0.1.2";
+    void print(string message)
+    {
+            std::cout << message + "\n";
+    }
+    void throwWarning(enum WickLocation location, string message)
+    {
+            std::cerr << "WARNING - " + getName(location) + " : " + message
+                         + "\n";
+    }
+    void throwError(enum WickLocation location, string message)
+    {
+            std::cerr << "ERROR --- " + getName(location) + " : " + message
+                         + "\n";
+            print("\nTerminated");
+            std::exit(1);
+    }
+    string getName(enum WickLocation location)
+    {
+        switch(location)
         {
-                std::cout<< message + "\n";
-        }
-        void throwWarning(unsigned short location, string message)
-        {
-                std::cerr << "WARNING - " + getName(location) + " : " + message
-                             + "\n";
-        }
-
-        void throwError(unsigned short location, string message)
-        {
-                std::cerr << "ERROR --- " + getName(location) + " : " + message +
-                             "\n";
-                print("\nTerminated");
-                std::exit(1);
-        }
-
-        void printSeparator()
-        {
-            print("====================");
-        }
-
-        string getName(unsigned short location)
-        {
-            switch(location)
-            {
-            case W_WICKERROR:
-                return("WickError ");
-            case W_PAINTABLE:
-                return("Paintable ");
-            case W_ROTATEABLE:
-                return("Rotateable");
-            case W_SCALEABLE:
-                return("Scaleable ");
-            case W_IMAGE:
-                return("Image     ");
-            case W_TEXTURE:
-                return("Texture   ");
-            case W_POLYGON:
-                return("Polygon   ");
-            case W_QUAD:
-                return("Quad      ");
-            case W_STATE:
-                return("State     ");
-            case W_FONT:
-                return("Font      ");
-            case W_TEXT:
-                return("Text      ");
-            case W_BOUNDS:
-                return("Bounds    ");
-            case W_COLOR:
-                return("Color     ");
-            case W_PAIR:
-                return("Pair      ");
-            case W_WWINDOW:
-                return("WWindow   ");
-            default:
-                return("Unknown   ");
-            }
+        case W_WICKERROR:
+            return("WickError ");
+        case W_PAINTABLE:
+            return("Paintable ");
+        case W_ROTATEABLE:
+            return("Rotateable");
+        case W_SCALEABLE:
+            return("Scaleable ");
+        case W_IMAGE:
+            return("Image     ");
+        case W_TEXTURE:
+            return("Texture   ");
+        case W_POLYGON:
+            return("Polygon   ");
+        case W_QUAD:
+            return("Quad      ");
+        case W_STATE:
+            return("State     ");
+        case W_FONT:
+            return("Font      ");
+        case W_TEXT:
+            return("Text      ");
+        case W_BOUNDS:
+            return("Bounds    ");
+        case W_COLOR:
+            return("Color     ");
+        case W_PAIR:
+            return("Pair      ");
+        case W_WINDOW:
+            return("WWindow   ");
+        default:
             return("Unknown   ");
         }
+        return("Unknown   ");
+    }
 }

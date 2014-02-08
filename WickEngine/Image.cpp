@@ -17,29 +17,22 @@
 // ----------------------------------------------------------------------------
 // File:    Image.cpp
 // ----------------------------------------------------------------------------
-
 #include "Image.h"
 namespace wick
 {
-    Image::Image(Texture* texture, Pair location)
-          :Quad(location, Color(255,255,255,255), texture->getDimensions())
+    Image::Image(Pair location, Texture* texture)
+          :Quad(location, texture->getDimensions(), Color::White),
+           texture_(texture), bounds_(Bounds(Pair(), texture->getDimensions()))
     {
-        texture_ = texture;
-        bounds_ = Bounds(Pair(), texture->getDimensions());
-    }
-    Image::Image(const Image& other)
-          :Quad(other)
-    {
-        texture_ = other.texture_;
-        bounds_ = other.bounds_;
     }
     Image::Image()
-          :Quad()
+          :Quad(), texture_(0), bounds_(Bounds())
     {
-        texture_ = new Texture();
-        bounds_ = Bounds();
     }
-
+    Image::Image(const Image& other)
+          :Quad(other), texture_(other.texture_), bounds_(other.bounds_)
+    {
+    }
     void Image::paint(Window* window)
     {
         updateVertices();
@@ -68,16 +61,16 @@ namespace wick
         glEnd();
         glDisable(GL_TEXTURE_2D);
     }
-
     Texture* Image::getTexture()
     {
         return(texture_);
     }
     void Image::setTexture(Texture* texture)
     {
+        setDimensions(texture->getDimensions());
+        bounds_ = Bounds(Pair(), getDimensions());
         texture_ = texture;
     }
-
     Bounds Image::getBounds()
     {
         return(bounds_);
@@ -88,3 +81,4 @@ namespace wick
         setDimensions(bounds_.getUpperRight() - bounds_.getLowerLeft());
     }
 }
+

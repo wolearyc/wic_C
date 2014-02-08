@@ -17,25 +17,21 @@
 // ----------------------------------------------------------------------------
 // File:    Rotateable.cpp
 // ----------------------------------------------------------------------------
-
 #include "Rotateable.h"
 namespace wick
 {
     Rotateable::Rotateable(double rotation)
+               :rotation_(rotation)
     {
-        rotation_     = rotation;
-        rotateCenter_ = Pair();
-    }
-    Rotateable::Rotateable(const Rotateable& other)
-    {
-        rotation_     = other.rotation_;
-        rotateCenter_ = other.rotateCenter_;
     }
     Rotateable::Rotateable()
                :Rotateable(0.0)
     {
     }
-
+    Rotateable::Rotateable(const Rotateable& other)
+               :Rotateable(other.rotation_)
+    {
+    }
     double Rotateable::getRotation()
     {
         return(rotation_);
@@ -47,14 +43,5 @@ namespace wick
     void Rotateable::rotate(double rotation)
     {
         setRotation(rotation_ + rotation);
-    }
-
-     Pair Rotateable::getRotateCenter()
-    {
-        return(rotateCenter_);
-    }
-    void Rotateable::setRotateCenter(Pair rotateCenter)
-    {
-        rotateCenter_ = rotateCenter;
     }
 }

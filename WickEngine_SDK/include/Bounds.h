@@ -17,7 +17,6 @@
 // ----------------------------------------------------------------------------
 // File:    Bounds.h
 // ----------------------------------------------------------------------------
-
 #ifndef BOUNDS_H
 #define BOUNDS_H
 #include "Pair.h"
@@ -30,9 +29,8 @@ namespace wick
         Bounds(Pair lowerLeft, Pair upperRight);
         Bounds(int lowerLeftX, int lowerLeftY, int upperRightX, int upperRightY);
         Bounds(Pair location, int xDimension, int yDimension);
-        Bounds(const Bounds& other);
         Bounds();
-
+        Bounds(const Bounds& other);
         Pair getLowerLeft();
         void setLowerLeft(Pair lowerLeft);
         void translateLowerLeft(Pair translation);
@@ -40,12 +38,9 @@ namespace wick
         void setUpperRight(Pair upperRight);
         void translateUpperRight(Pair translation);
         void setLowerLeftAndUpperRight(Pair lowerLeft, Pair upperRight);
-
     protected:
         Pair lowerLeft_;
         Pair upperRight_;
-
-        void verify();
     };
 }
 

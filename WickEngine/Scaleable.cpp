@@ -17,25 +17,21 @@
 // ----------------------------------------------------------------------------
 // File:    Scaleable.cpp
 // ----------------------------------------------------------------------------
-
 #include "Scaleable.h"
 namespace wick
 {
     Scaleable::Scaleable(Pair scale)
+              :scale_(scale)
     {
-        scale_       = scale;
-        scaleCenter_ = Pair();
-    }
-    Scaleable::Scaleable(const Scaleable& other)
-    {
-        scale_       = other.scale_;
-        scaleCenter_ = other.scaleCenter_;
     }
     Scaleable::Scaleable()
               :Scaleable(Pair(1,1))
     {
     }
-
+    Scaleable::Scaleable(const Scaleable& other)
+              :Scaleable(other.scale_)
+    {
+    }
     Pair Scaleable::getScale()
     {
         return(scale_);
@@ -47,14 +43,5 @@ namespace wick
     void Scaleable::scale(Pair scale)
     {
         setScale(scale_ + scale);
-    }
-
-    Pair Scaleable::getScaleCenter()
-    {
-        return(scaleCenter_);
-    }
-    void Scaleable::setScaleCenter(Pair scaleCenter)
-    {
-        scaleCenter_ = scaleCenter;
     }
 }

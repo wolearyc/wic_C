@@ -17,7 +17,6 @@
 // ----------------------------------------------------------------------------
 // File:    Rotateable.h
 // ----------------------------------------------------------------------------
-
 #ifndef ROTATEABLE_H
 #define ROTATEABLE_H
 #include "Pair.h"
@@ -27,20 +26,13 @@ namespace wick
     {
     public:
         Rotateable(double rotation);
-        Rotateable(const Rotateable& other);
         Rotateable();
-
+        Rotateable(const Rotateable& other);
         double getRotation();
         void setRotation(double rotation);
         void rotate(double rotation);
-        Pair getRotateCenter();
-        void setRotateCenter(Pair rotateCenter);
-
     protected:
         double rotation_;
-        Pair rotateCenter_;
-
-
     };
 }
 #endif

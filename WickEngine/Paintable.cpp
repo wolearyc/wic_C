@@ -17,25 +17,24 @@
 // ----------------------------------------------------------------------------
 // File:    Paintable.cpp
 // ----------------------------------------------------------------------------
-
 #include "Paintable.h"
 namespace wick
 {
     Paintable::Paintable(Pair location)
+              :location_(location), center_(Pair()),
+               paintCentered_(false), geometricCenter_(Pair())
     {
-        location_     = location;
-        paintCenter_  = Pair();
-    }
-    Paintable::Paintable(const Paintable& other)
-    {
-        location_    = other.location_;
-        paintCenter_ = other.paintCenter_;
     }
     Paintable::Paintable()
               :Paintable(Pair())
     {
     }
-
+    Paintable::Paintable(const Paintable& other)
+              :location_(other.location_), center_(other.center_),
+               paintCentered_(other.paintCentered_),
+               geometricCenter_(other.geometricCenter_)
+    {
+    }
     Pair Paintable::getLocation()
     {
         return(location_);
@@ -48,18 +47,29 @@ namespace wick
     {
         setLocation(location_ + translation);
     }
-
-    Pair Paintable::getPaintCenter()
+    Pair Paintable::getCenter()
     {
-        return(paintCenter_);
+        return(center_);
     }
-    void Paintable::setPaintCenter(Pair paintCenter)
+    void Paintable::setCenter(Pair center)
     {
-        paintCenter_ = paintCenter;
+        center_ = center;
     }
-
+    bool Paintable::isPaintedCentered()
+    {
+        return(paintCentered_);
+    }
+    void Paintable::paintCentered(bool paintCentered)
+    {
+        paintCentered_ = paintCentered;
+    }
+    Pair Paintable::getGeometricCenter()
+    {
+        return(geometricCenter_);
+    }
     Pair Paintable::convertCoordinates(Pair coordinates, Pair dimensions)
     {
-        return(coordinates / dimensions * 2.0 - 1);
+        return(coordinates * 2.0 / dimensions - 1);
     }
 }
+

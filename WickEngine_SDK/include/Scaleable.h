@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU General Public License along with
 // this program.  If not, see <http://www.gnu.org/licenses/>.
 // ----------------------------------------------------------------------------
-// File:    Scaleable.h
+// File:    Polygon.h
 // ----------------------------------------------------------------------------
-
 #ifndef SCALEABLE_H
 #define SCALEABLE_H
 #include "Pair.h"
@@ -27,20 +26,13 @@ namespace wick
     {
     public:
         Scaleable(Pair scale);
-        Scaleable(const Scaleable& other);
         Scaleable();
-
+        Scaleable(const Scaleable& other);
         Pair getScale();
         void setScale(Pair scale);
         void scale(Pair scale);
-
-        Pair getScaleCenter();
-        void setScaleCenter(Pair scaleCenter);
-
     protected:
         Pair scale_;
-        Pair scaleCenter_;
-
     };
 }
 #endif

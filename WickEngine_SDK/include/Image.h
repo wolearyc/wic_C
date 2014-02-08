@@ -17,29 +17,24 @@
 // ----------------------------------------------------------------------------
 // File:    Image.h
 // ----------------------------------------------------------------------------
-
 #ifndef IMAGE_H
 #define IMAGE_H
 #include "Bounds.h"
-#include "Texture.h"
 #include "Quad.h"
+#include "Texture.h"
 namespace wick
 {
     class Image : public Quad
     {
     public:
-        Image(Texture* texture, Pair location);
-        Image(const Image& other);
+        Image(Pair location, Texture* texture);
         Image();
-
+        Image(const Image& other);
         void paint(Window* window);
-
         Texture* getTexture();
         void setTexture(Texture* texture);
-
         Bounds getBounds();
         void setBounds(Bounds bounds);
-
     protected:
         Texture* texture_;
         Bounds bounds_;

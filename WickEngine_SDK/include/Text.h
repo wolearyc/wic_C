@@ -17,38 +17,40 @@
 // ----------------------------------------------------------------------------
 // File:    Text.h
 // ----------------------------------------------------------------------------
-
 #ifndef TEXT_H
 #define TEXT_H
+#include "Color.h"
 #include "Font.h"
+#include <initializer_list>
+using std::initializer_list;
 #include <string>
-#include <vector>
 using std::string;
+#include <vector>
 using std::vector;
 namespace wick
 {
     class Text : public Paintable, public Rotateable, public Scaleable
     {
     public:
-        Text(string message, Pair location, Font* font);
-        Text(const Text& other);
+        Text(Pair location, string message, Font* font, vector<Color> colors);
+        Text(Pair location, string message, Font* font,
+             initializer_list<Color> colors);
+        Text(Pair location, string message, Font* font, Color color);
         Text();
-
+        Text(const Text& other);
         void paint(Window* window);
-
         string getMessage();
         void setMessage(string message);
-
-        void setLocation(Pair location);
-        void setCenter(Pair center);
-        void setRotation(float rotation);
-        void setScale(Pair scale);
-
+        vector<Color> getColors();
+        void setColors(vector<Color> colors);
+        void setColors(initializer_list<Color> colors);
+        void setColor(Color color);
     protected:
         string message_;
         Font* font_;
         vector<Image> images_;
-        Pair oldLocation_;
+        vector<Pair> offsets_;
+        vector<Color> colors_;
     };
 }
 #endif

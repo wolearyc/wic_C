@@ -17,37 +17,42 @@
 // ----------------------------------------------------------------------------
 // File:    Polygon.cpp
 // ----------------------------------------------------------------------------
-
 #include "Polygon.h"
 namespace wick
 {
-    Polygon::Polygon(Pair location, Color color,
-                     initializer_list<Pair> baseVertices)
-            :Paintable(location), Rotateable(), Scaleable()
+    Polygon::Polygon(Pair location, vector<Pair> baseVertices, Color color)
+            :Paintable(location), Rotateable(), Scaleable(),
+             baseVertices_(baseVertices), color_(color)
     {
-        setColor(color);
-        setBaseVertices(baseVertices);
+        unsigned int length = baseVertices.size();
+        for(unsigned int i = 0; i < length; i++)
+            geometricCenter_ += baseVertices_[i];
+        geometricCenter_ /= (double) length;
+        vertices_ = vector<Pair>(length, Pair());
     }
-    Polygon::Polygon(const Polygon& other)
-            :Paintable(other), Rotateable(other), Scaleable(other)
+    Polygon::Polygon(Pair location, initializer_list<Pair> baseVertices,
+                     Color color)
+            :Polygon(location, (vector<Pair>) baseVertices, color)
     {
-        color_        = other.color_;
-        baseVertices_ = other.baseVertices_;
-        vertices_     = other.vertices_;
     }
     Polygon::Polygon()
-            :Paintable(), Rotateable(), Scaleable()
+            :Paintable(), Rotateable(), Scaleable(), color_(Color())
     {
-        color_ = Color();
     }
-
+    Polygon::Polygon(const Polygon& other)
+            :Paintable(other), Rotateable(other), Scaleable(other),
+             color_(other.color_), baseVertices_(other.baseVertices_),
+             vertices_(other.vertices_)
+    {
+    }
     void Polygon::paint(Window* window)
     {
         updateVertices();
         Pair dimensions = window->getDimensions();
+        unsigned int length = vertices_.size();
         color_.select();
         glBegin(GL_POLYGON);
-            for(unsigned int i = 0; i < baseVertices_.size(); i++)
+            for(unsigned int i = 0; i < length; i++)
             {
                 Pair vertex = vertices_[i];
                 vertex = convertCoordinates(vertex + location_, dimensions);
@@ -55,7 +60,45 @@ namespace wick
             }
         glEnd();
     }
-
+    void Polygon::updateVertices()
+    {
+        double cosine = cos(rotation_);
+        double sine = sin(rotation_);
+        unsigned int length = baseVertices_.size();
+        for(unsigned int i = 0; i < length; i++)
+        {
+            Pair vertex = baseVertices_[i];
+            vertex -= (center_);
+            vertex *= scale_;
+            vertex = Pair(vertex.x_ * cosine - vertex.y_ * sine,
+                          vertex.x_ * sine + vertex.y_ * cosine);
+            if(!paintCentered_)
+                vertex += center_;
+            vertices_[i] = vertex;
+        }
+    }
+    vector<Pair> Polygon::getBaseVertices()
+    {
+        return(baseVertices_);
+    }
+    void Polygon::setBaseVertices(vector<Pair> baseVertices)
+    {
+        baseVertices_.clear();
+        baseVertices_ = baseVertices;
+        unsigned int length = baseVertices_.size();
+        if(length == 0)
+            throwWarning(W_POLYGON, "No vertices supplied");
+        geometricCenter_ = Pair();
+        for(unsigned int i = 0; i < length; i++)
+            geometricCenter_ += baseVertices_[i];
+        geometricCenter_ /= (double) length;
+        vertices_.clear();
+        vertices_ = vector<Pair>(length, Pair());
+    }
+    void Polygon::setBaseVertices(initializer_list<Pair> baseVertices)
+    {
+        setBaseVertices((vector<Pair>) baseVertices);
+    }
     Color Polygon::getColor()
     {
         return(color_);
@@ -64,39 +107,5 @@ namespace wick
     {
         color_ = color;
     }
-
-    vector<Pair> Polygon::getBaseVertices()
-    {
-        return(baseVertices_);
-    }
-    void Polygon::setBaseVertices(initializer_list<Pair> baseVertices)
-    {
-        baseVertices_.clear();
-        baseVertices_ = baseVertices;
-        if(baseVertices_.size() == 0)
-            throwWarning(W_POLYGON, "No vertices supplied");
-        vertices_.clear();
-        vertices_ = vector<Pair>(baseVertices_.size(), Pair());
-    }
-
-    void Polygon::updateVertices()
-    {
-        for(unsigned int i = 0; i < baseVertices_.size(); i++)
-        {
-            Pair vertex = baseVertices_[i];
-
-            vertex -= scaleCenter_;
-            vertex = vertex * scale_;
-            vertex += scaleCenter_;
-
-            double cosine = cos(rotation_);
-            double sine = sin(rotation_);
-            vertex -= rotateCenter_;
-            vertex = Pair(vertex.x_ * cosine - vertex.y_ * sine,
-                          vertex.x_ * sine + vertex.y_ * cosine);
-            vertex += rotateCenter_;
-
-            vertices_[i] = vertex - paintCenter_;
-        }
-    }
 }
+

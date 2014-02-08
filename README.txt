@@ -1,6 +1,6 @@
 WICK ENGINE README
 ==================
-2014 January 9
+2014 Feburary 07
 
 ~ Table of Contents ~
 1. Summary
@@ -27,12 +27,15 @@ WickEngine_SDK/ ---------- Developer Kit
 
 ~ Licensing and Distribution ~
 The Wick Engine is distrubuted under the GNU Lesser General Public License, 
-Version 3. You must include this license file in all projects which use the 
-entirety or sections of The Wick Engine.
+Version 3. You must include LICENSE.txt in all projects which use the 
+entirety or sections of The Wick Engine. 
 
-~ Credits ~
+~ CREDITS ~
 Portions of this software are copyright © 2013 The FreeType Project 
 (www.freetype.org).  All rights reserved.
+
+Portions of this software use GLFW (http://www.glfw.org/index.html), 
+Copyright © 2002-2006 Marcus Geelnard and Copyright © 2006-2011 Camilla Berglund
 
 Portions of this software use the Simple OpenGL Image Library 
 (http://www.lonesock.net/soil.html), which is in the public domain.

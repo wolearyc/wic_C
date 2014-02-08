@@ -38,32 +38,24 @@ namespace wick
 	Color Color::Navy    = Color(0,0,128);
 	Color Color::Fuchsia = Color(255,0,255);
 	Color Color::Purple  = Color(128,0,128);
-
-	// Constructors.
-	Color::Color(unsigned char red, unsigned char green, unsigned char blue)
-	{
-		setRed(red);
-		setGreen(green);
-		setBlue(blue);
-		setAlpha(255);
-	}
 	Color::Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha)
-          :Color(red, green, blue)
+          :red_(red), green_(green), blue_(blue), alpha_(alpha)
 	{
-		setAlpha(alpha);
 	}
-	Color::Color(const Color &other)
+	Color::Color(unsigned char red, unsigned char green, unsigned char blue)
+          :Color(red, green, blue, 255)
 	{
-		red_     = other.red_;
-		green_   = other.green_;
-		blue_    = other.blue_;
-		alpha_   = other.alpha_;
+	}
+
+	Color::Color(const Color &other)
+          :red_(other.red_), green_(other.green_), blue_(other.blue_),
+           alpha_(other.alpha_)
+	{
 	}
 	Color::Color()
-	      :Color(255,255,255,255)
+	      :Color(255,255,255)
 	{
 	}
-
 	unsigned char Color::getRed()
 	{
 		return(red_);
@@ -103,7 +95,6 @@ namespace wick
 			blue_ = 255;
 		}
 	}
-
 	unsigned char Color::getAlpha()
 	{
 		return(alpha_);
@@ -117,7 +108,6 @@ namespace wick
 			alpha_ = 255;
 		}
 	}
-
 	void Color::select()
 	{
 	    glColor4ub(red_, green_, blue_, alpha_);

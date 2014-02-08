@@ -17,111 +17,86 @@
 // ----------------------------------------------------------------------------
 // File:    Texture.cpp
 // ----------------------------------------------------------------------------
-
 #include "Texture.h"
 namespace wick
 {
-    Texture::Texture(string filePath, int wrap, int filter)
+    Texture::Texture(string filePath, enum WickFilter filter)
     {
         glGenTextures(1, &data_);
         glBindTexture(GL_TEXTURE_2D, data_);
-        if(wrap != W_REPEAT && wrap != W_MIRRORED_REPEAT &&
-           wrap != W_CLAMP_TO_EDGE)
-        {
-            throwWarning(W_TEXTURE, "Invalid wrap value");
-            wrap = W_REPEAT;
-        }
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrap);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrap);
-        if(filter != W_NEAREST && filter != W_LINEAR)
-        {
-            throwWarning(W_TEXTURE, "Invalid filter value");
-            filter = W_NEAREST;
-        }
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
-
         unsigned char* buffer = 0;
         int x = 0;
         int y = 0;
         buffer = SOIL_load_image(filePath.c_str(), &x, &y, 0, SOIL_LOAD_RGBA);
         dimensions_ = Pair(x,y);
-
         if(buffer == 0)
-            throwError(W_TEXTURE, "Loading failed (" + filePath + ")");
+            throwError(W_TEXTURE, "Could not load texture " + filePath);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, x, y, 0, GL_RGBA,
                      GL_UNSIGNED_BYTE, buffer);
         SOIL_free_image_data(buffer);
     }
-
     Texture::Texture(string filePath)
-            :Texture(filePath, W_REPEAT, W_NEAREST)
+            :Texture(filePath, W_NEAREST)
     {
     }
     Texture::Texture(unsigned char* buffer, Pair dimensions,
-                     unsigned short bytes, int wrap, int filter)
+                     enum WickFormat format, enum WickFilter filter)
+            :dimensions_(dimensions)
     {
-        glGenTextures(1, &data_);
-        glBindTexture(GL_TEXTURE_2D, data_);
-        if(wrap != W_REPEAT && wrap != W_MIRRORED_REPEAT &&
-           wrap != W_CLAMP_TO_EDGE)
-        {
-            throwWarning(W_TEXTURE, "Invalid wrap value");
-            wrap = W_REPEAT;
-        }
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrap);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrap);
-        if(filter != W_NEAREST && filter != W_LINEAR)
-        {
-            throwWarning(W_TEXTURE, "Invalid filter value");
-            filter = W_NEAREST;
-        }
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
-
-
-        dimensions_ = dimensions;
         unsigned char rgbaBuffer[(int) (dimensions.x_ * dimensions.y_) * 4];
-        for(unsigned int i = 0; i < sizeof(rgbaBuffer); i+=4)
+        unsigned int length = sizeof(rgbaBuffer);
+        for(unsigned int i = 0; i < length; i+=4)
         {
-            if(bytes == W_GREYSCALE)
+            if(format == W_GREYSCALE)
             {
                 rgbaBuffer[i] = 255;
                 rgbaBuffer[i+1] = 255;
                 rgbaBuffer[i+2] = 255;
                 rgbaBuffer[i+3] = buffer[i/4];
             }
-            else if(bytes == W_RGB)
+            else if(format == W_RGB)
             {
                 rgbaBuffer[i] = buffer[i/4];
                 rgbaBuffer[i+1] = buffer[i/4+1];
                 rgbaBuffer[i+2] = buffer[i/4+2];
                 rgbaBuffer[i+3] = 255;
             }
-            else if(bytes != W_RGBA)
+            else if(format == W_RGBA)
+                rgbaBuffer[i] = buffer[i];
+            else if(format != W_RGBA)
                 throwError(W_TEXTURE, "Invalid bytes");
         }
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions.x_, dimensions.y_, 0, GL_RGBA, GL_UNSIGNED_BYTE, &rgbaBuffer[0]);
+        glGenTextures(1, &data_);
+        glBindTexture(GL_TEXTURE_2D, data_);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions.x_, dimensions.y_,
+                     0, GL_RGBA, GL_UNSIGNED_BYTE, &rgbaBuffer[0]);
     }
-    Texture::Texture(unsigned char* buffer, Pair dimensions, unsigned short bytes)
-            :Texture(buffer, dimensions, bytes, W_REPEAT, W_NEAREST)
+    Texture::Texture(unsigned char* buffer, Pair dimensions,
+                     enum WickFormat format)
+            :Texture(buffer, dimensions, format, W_NEAREST)
+    {
+    }
+    Texture::Texture()
+            :data_(0), dimensions_(Pair())
     {
     }
     Texture::Texture(const Texture& other)
+            :data_(other.data_), dimensions_(other.dimensions_)
     {
-        data_       = other.data_;
-        dimensions_ = other.dimensions_;
-    }
-    Texture::Texture()
-    {
-        data_       = 0;
-        dimensions_ = Pair();
     }
     Texture::~Texture()
     {
         glDeleteTextures(1, &data_);
+        data_ = 0;
     }
-
     Pair Texture::getDimensions()
     {
         return(dimensions_);

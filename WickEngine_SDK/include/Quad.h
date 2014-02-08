@@ -17,7 +17,6 @@
 // ----------------------------------------------------------------------------
 // File:    Quad.h
 // ----------------------------------------------------------------------------
-
 #ifndef QUAD_H
 #define QUAD_H
 #include "Polygon.h"
@@ -26,13 +25,11 @@ namespace wick
     class Quad : public Polygon
     {
     public:
-        Quad(Pair location, Color color, Pair dimensions);
-        Quad(const Quad& other);
+        Quad(Pair location, Pair dimensions, Color color);
         Quad();
-
+        Quad(const Quad& other);
         Pair getDimensions();
         void setDimensions(Pair dimensions);
-
     protected:
         Pair dimensions_;
     };
