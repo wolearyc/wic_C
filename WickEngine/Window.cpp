@@ -26,20 +26,42 @@ namespace wick
             resizeable_(resizeable), fullscreen_(fullscreen),
             samples_(samples), currentState_(0)
 	{
-	    print("Wick Engine version " + wickVersion_ + " Copyright (C)" +
-              " 2013-2014 Will O'Leary\n");
+	    std::cout << "Wick Engine version " + wickVersion_ + " Copyright (C)" +
+                     " 2013-2014 Will O'Leary\n\n";
+        if(title_ == "")
+        {
+            title_ = "Wick Game";
+            throw(WickException(W_WINDOW, 0));
+        }
+        if(dimensions_.x_ <= 0)
+        {
+            dimensions_.x_ = 500;
+            throw(WickException(W_WINDOW, 1));
+        }
+        if(dimensions_.y_ <= 0)
+        {
+            dimensions_.y_ = 500;
+            throw(WickException(W_WINDOW, 2));
+        }
         if(!glfwInit())
-            throwError(W_WINDOW, "GLFW failed to initialize");
+            throw(WickException(W_WINDOW, 3));
         glfwWindowHint(GLFW_REFRESH_RATE, 1.0 / spf_);
         glfwWindowHint(GLFW_SAMPLES, samples_);
         glfwWindowHint(GLFW_RESIZABLE, resizeable_);
-        GLFWmonitor* monitor = 0;
+        GLFWmonitor* monitor = glfwGetPrimaryMonitor();
         if(fullscreen_)
-            monitor = glfwGetPrimaryMonitor();
-        window_ = glfwCreateWindow(dimensions_.x_, dimensions_.y_,
-                                              title_.c_str(), monitor, 0);
+            window_ = glfwCreateWindow(dimensions_.x_, dimensions_.y_,
+                                       title_.c_str(), monitor, 0);
+        else
+            window_ = glfwCreateWindow(dimensions_.x_, dimensions_.y_,
+                                       title_.c_str(), 0, 0);
         if(window_ == 0)
-            throwError(W_WINDOW, "Window creation failed");
+            throw(WickException(W_WINDOW, 4));
+        int width; int height;
+        glfwGetMonitorPhysicalSize(monitor, &width, &height);
+        const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+        deviceResolution_ = Pair(mode->width / (width * 0.0393701),
+                                 mode->height / (height * 0.0393701));
         glfwSetErrorCallback(ErrorCallback);
         glfwSetWindowFocusCallback(window_, FocusCallback);
         glfwSetKeyCallback(window_, KeyCallback);
@@ -49,9 +71,10 @@ namespace wick
         glfwMakeContextCurrent(window_);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glDisable(GL_DEPTH_TEST);
 	}
     Window::Window(string title, Pair dimensions)
-           :Window(title, dimensions, 60, false, false, 0)
+           :Window(title, dimensions, 60, false, false, 3)
     {
     }
 	Window::~Window()
@@ -66,31 +89,40 @@ namespace wick
 	void Window::execute()
 	{
         glfwSetTime(0.0);
-        double firstTime;
+        unsigned short updates = 0;
+        double lastSecondTime = 0.0;
         while (!glfwWindowShouldClose(window_))
         {
-            firstTime = glfwGetTime();
+            double lastUpdateTime = glfwGetTime();
+            glfwPollEvents();
             currentState_->update(this);
             resetInput();
-            do
+            while(glfwGetTime() - lastUpdateTime < spf_)
             {
-                // Do nothing.
             }
-            while(glfwGetTime() - firstTime < spf_);
             glFlush();
             glClearColor(0.0,0.0,0.0,1.0);
             glClear(GL_COLOR_BUFFER_BIT);
             glLoadIdentity();
             currentState_->paint(this);
             glfwSwapBuffers(window_);
-            glfwPollEvents();
+            updates++;
+            if(glfwGetTime() - lastSecondTime >= 1.0)
+            {
+                updates = 0;
+                lastSecondTime = glfwGetTime();
+            }
         }
-        print("\nTerminated.\n");
+        std::cout << "\nTerminated.\n";
         glfwDestroyWindow(window_);
 	}
 	Pair Window::getDimensions()
 	{
 	    return(dimensions_);
+	}
+	Pair Window::getDeviceResolution()
+	{
+	    return(deviceResolution_);
 	}
 	void Window::addState(State* state, unsigned short id)
 	{
@@ -98,14 +130,14 @@ namespace wick
 	    for(unsigned int i = 0; i < length; i++)
         {
             if(ids_[i] == id)
-                throwError(W_WINDOW, "ID already in use.");
+                throw(WickException(W_WINDOW, 5, toString(id)));
         }
         states_.push_back(state);
         ids_.push_back(id);
 	}
     void Window::initializeState(unsigned short id)
     {
-        findState(id)->initialize();
+        findState(id)->initialize(this);
     }
     void Window::addAndInitializeState(State* state, unsigned short id)
     {
@@ -116,9 +148,12 @@ namespace wick
     {
         State* state = findState(id);
         if(state == currentState_)
-            throwError(W_WINDOW, "Cannot release current state");
-        delete(state);
-        state = 0;
+            throw(WickException(W_WINDOW, 7, toString(id)));
+        else
+        {
+            delete(state);
+            state = 0;
+        }
     }
 	void Window::removeState(unsigned short id)
 	{
@@ -128,9 +163,12 @@ namespace wick
             if(ids_[i] = id)
             {
                 if(findState(id) == currentState_)
-                    throwError(W_WINDOW, "Cannot remove current state");
-                states_.erase(states_.begin() + i);
-                ids_.erase(ids_.begin() + i);
+                    throw(WickException(W_WINDOW, 7, toString(id)));
+                else
+                {
+                    states_.erase(states_.begin() + i);
+                    ids_.erase(ids_.begin() + i);
+                }
                 break;
             }
         }
@@ -152,7 +190,7 @@ namespace wick
             if(ids_[i] == id)
                 return(states_[i]);
         }
-        throwError(W_WINDOW, "State could not be found");
+        throw(WickException(W_WINDOW, 8, toString(id)));
 	}
 	bool Window::isKeyDown(enum WickKey key)
 	{
@@ -186,6 +224,7 @@ namespace wick
 	{
 	    return(glfwGetTime());
 	}
+	string Window::wickVersion_ = "0.1.3";
 	bool Window::focus_ = true;
 	bool Window::downKeys_[360];
 	vector<short> Window::pressedKeys_;
@@ -200,7 +239,7 @@ namespace wick
 	}
 	void Window::ErrorCallback(int error, const char* description)
 	{
-	    throwError(W_WINDOW, "GLFW error");
+	    throw(WickException(W_WINDOW, 9, string(description)));
 	}
 	void Window::FocusCallback(GLFWwindow* window, int n)
     {

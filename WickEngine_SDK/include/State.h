@@ -27,7 +27,7 @@ namespace wick
     public:
         State();
         virtual ~State();
-        virtual void initialize() = 0;
+        virtual void initialize(Window* window) = 0;
         virtual void update(Window* window) = 0;
         virtual void paint(Window* window) = 0;
     };

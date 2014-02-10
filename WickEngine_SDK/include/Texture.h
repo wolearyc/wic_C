@@ -20,9 +20,10 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 #include "Pair.h"
-#include "WickError.h"
-#include "SOIL/SOIL.h"
+#include "WickException.h"
+#include "Dependencies/SOIL/SOIL.h"
 #include "GL/gl.h"
+#include <iostream>
 #include <string>
 using std::string;
 namespace wick
@@ -33,17 +34,17 @@ namespace wick
     };
     enum WickFormat
     {
-        W_GREYSCALE = 1, W_RGB = 3, W_RGBA = 4
+        W_MONO, W_GREYSCALE, W_RGB, W_RGBA
     };
     class Texture
     {
     public:
-        Texture(string filePath, enum WickFilter filter);
-        Texture(string filePath);
         Texture(unsigned char* buffer, Pair dimensions, enum WickFormat format,
                 enum WickFilter filter);
         Texture(unsigned char* buffer, Pair dimensions,
                 enum WickFormat format);
+        Texture(string filePath, enum WickFilter filter);
+        Texture(string filePath);
         Texture();
         Texture(const Texture& other);
         ~Texture();
@@ -52,6 +53,7 @@ namespace wick
     private:
         unsigned int data_;
         Pair dimensions_;
+        unsigned char* formatBuffer(unsigned char* buffer, enum WickFormat format);
     };
 }
 #endif

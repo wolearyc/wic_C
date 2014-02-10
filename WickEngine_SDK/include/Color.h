@@ -20,7 +20,7 @@
 #ifndef COLOR_H
 #define COLOR_H
 #include "GL/gl.h"
-#include "WickError.h"
+#include "WickException.h"
 namespace wick
 {
 	class Color
@@ -56,7 +56,7 @@ namespace wick
 		unsigned char getAlpha();
 		void setAlpha(unsigned char alpha);
 		void select();
-	protected:
+	private:
 		unsigned char red_;
 		unsigned char green_;
 		unsigned char blue_;

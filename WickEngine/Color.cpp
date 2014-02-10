@@ -41,6 +41,26 @@ namespace wick
 	Color::Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha)
           :red_(red), green_(green), blue_(blue), alpha_(alpha)
 	{
+		if(red_ > 255)
+		{
+			throw(WickException(W_COLOR, 14));
+			red_ = 255;
+		}
+		if(green_ > 255)
+		{
+			throw(WickException(W_COLOR, 15));
+			green_ = 255;
+		}
+		if(blue_ > 255)
+		{
+			throw(WickException(W_COLOR, 16));
+			blue_ = 255;
+		}
+	    if(alpha_ > 255)
+		{
+			throw(WickException(W_COLOR, 17));
+			alpha_ = 255;
+		}
 	}
 	Color::Color(unsigned char red, unsigned char green, unsigned char blue)
           :Color(red, green, blue, 255)
@@ -65,7 +85,7 @@ namespace wick
 		red_ = red;
 		if(red_ > 255)
 		{
-			throwWarning(W_COLOR, "Invalid red value");
+			throw(WickException(W_COLOR, 14));
 			red_ = 255;
 		}
 	}
@@ -78,7 +98,7 @@ namespace wick
 		green_ = green;
 		if(green_ > 255)
 		{
-			throwWarning(W_COLOR, "Invalid green value");
+			throw(WickException(W_COLOR, 15));
 			green_ = 255;
 		}
 	}
@@ -91,7 +111,7 @@ namespace wick
 		blue_ = blue;
 		if(blue_ > 255)
 		{
-			throwWarning(W_COLOR, "Invalid blue value");
+			throw(WickException(W_COLOR, 16));
 			blue_ = 255;
 		}
 	}
@@ -104,7 +124,7 @@ namespace wick
 		alpha_ = alpha;
 		if(alpha_ > 255)
 		{
-			throwWarning(W_COLOR, "Invalid alpha value");
+			throw(WickException(W_COLOR, 17));
 			alpha_ = 255;
 		}
 	}

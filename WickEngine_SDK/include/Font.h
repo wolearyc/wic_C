@@ -19,10 +19,24 @@
 // ----------------------------------------------------------------------------
 #ifndef FONT_H
 #define FONT_H
+#ifdef _WIN64
+    #define FONT_PATH_1 "C:/WINDOWS/Fonts/"
+    #define FONT_PATH_2 "C:/WINDOWS/Fonts/"
+#elif _WIN32
+    #define FONT_PATH_1 "C:/WINDOWS/Fonts/"
+    #define FONT_PATH_2 "C:/WINDOWS/Fonts/"
+#elif __APPLE__
+    #define FONT_PATH_1 "/Library/Fonts/"
+    #define FONT_PATH_2 "/System/Library/Fonts/"
+#elif __linux
+    #define FONT_PATH_1 "/usr/share/fonts/"
+    #define FONT_PATH_2 "/usr/local/share/fonts/"
+#endif
 #include "Image.h"
-#include "WickError.h"
-#include "FreeType/ft2build.h"
+#include "WickException.h"
+#include "Dependencies/FreeType/ft2build.h"
 #include FT_FREETYPE_H
+#include FT_BITMAP_H
 #include <string>
 using std::string;
 #include <vector>
@@ -32,8 +46,8 @@ namespace wick
     class Font
     {
     public:
-        Font(string filePath, unsigned short point, bool antialias);
-        Font(string filePath, unsigned short point);
+        Font(string filePath, unsigned short point, Window* window, bool antialias);
+        Font(string filePath, unsigned short point, Window* window);
         Font();
         Font(const Font& other);
         ~Font();

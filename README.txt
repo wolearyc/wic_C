@@ -1,6 +1,6 @@
 WICK ENGINE README
 ==================
-2014 Feburary 07
+2014 Feburary 10
 
 ~ Table of Contents ~
 1. Summary
@@ -18,11 +18,12 @@ reports at the Wick Engine's github repository
 ~ Directories and Files ~
 Resources/      ---------- Various developer goodies
 WickEngine/     ---------- Source and project files
-   lib/		    ------ Object files for SOIL and FreeType libraries
+   lib/		    ------ Object files for dependency libraries
    Debug/	    ------ Debug object files
    Release/ 	    ------ Release object files
 WickEngine_SDK/ ---------- Developer Kit
    include/         ------ Header files
+      Dependencies     --- Header files for dependencies.
    lib/		    ------ Static debug and release libraries
 
 ~ Licensing and Distribution ~

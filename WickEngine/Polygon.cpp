@@ -86,8 +86,6 @@ namespace wick
         baseVertices_.clear();
         baseVertices_ = baseVertices;
         unsigned int length = baseVertices_.size();
-        if(length == 0)
-            throwWarning(W_POLYGON, "No vertices supplied");
         geometricCenter_ = Pair();
         for(unsigned int i = 0; i < length; i++)
             geometricCenter_ += baseVertices_[i];

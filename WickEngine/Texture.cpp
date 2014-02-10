@@ -20,68 +20,55 @@
 #include "Texture.h"
 namespace wick
 {
-    Texture::Texture(string filePath, enum WickFilter filter)
+    Texture::Texture(unsigned char* buffer, Pair dimensions,
+                     enum WickFormat format, enum WickFilter filter)
+            :dimensions_(dimensions)
     {
+        if(dimensions.x_ <= 0)
+            throw(WickException(W_TEXTURE, 11));
+        if(dimensions.y_ <= 0)
+            throw(WickException(W_TEXTURE, 12));
+        unsigned char* formattedBuffer = formatBuffer(buffer, format);
         glGenTextures(1, &data_);
         glBindTexture(GL_TEXTURE_2D, data_);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions_.x_ + 2,
+                     dimensions_.y_ + 2, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+                     formattedBuffer);
+        delete[] formattedBuffer;
+    }
+    Texture::Texture(unsigned char* buffer, Pair dimensions,
+                     enum WickFormat format)
+            :Texture(buffer, dimensions, format, W_NEAREST)
+    {
+    }
+    Texture::Texture(string filePath, enum WickFilter filter)
+    {
         unsigned char* buffer = 0;
         int x = 0;
         int y = 0;
         buffer = SOIL_load_image(filePath.c_str(), &x, &y, 0, SOIL_LOAD_RGBA);
         dimensions_ = Pair(x,y);
         if(buffer == 0)
-            throwError(W_TEXTURE, "Could not load texture " + filePath);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, x, y, 0, GL_RGBA,
-                     GL_UNSIGNED_BYTE, buffer);
-        SOIL_free_image_data(buffer);
-    }
-    Texture::Texture(string filePath)
-            :Texture(filePath, W_NEAREST)
-    {
-    }
-    Texture::Texture(unsigned char* buffer, Pair dimensions,
-                     enum WickFormat format, enum WickFilter filter)
-            :dimensions_(dimensions)
-    {
-        unsigned char rgbaBuffer[(int) (dimensions.x_ * dimensions.y_) * 4];
-        unsigned int length = sizeof(rgbaBuffer);
-        for(unsigned int i = 0; i < length; i+=4)
-        {
-            if(format == W_GREYSCALE)
-            {
-                rgbaBuffer[i] = 255;
-                rgbaBuffer[i+1] = 255;
-                rgbaBuffer[i+2] = 255;
-                rgbaBuffer[i+3] = buffer[i/4];
-            }
-            else if(format == W_RGB)
-            {
-                rgbaBuffer[i] = buffer[i/4];
-                rgbaBuffer[i+1] = buffer[i/4+1];
-                rgbaBuffer[i+2] = buffer[i/4+2];
-                rgbaBuffer[i+3] = 255;
-            }
-            else if(format == W_RGBA)
-                rgbaBuffer[i] = buffer[i];
-            else if(format != W_RGBA)
-                throwError(W_TEXTURE, "Invalid bytes");
-        }
+            throw(WickException(W_TEXTURE, 10, filePath));
+        unsigned char* formattedBuffer = formatBuffer(buffer, W_RGBA);
         glGenTextures(1, &data_);
         glBindTexture(GL_TEXTURE_2D, data_);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions.x_, dimensions.y_,
-                     0, GL_RGBA, GL_UNSIGNED_BYTE, &rgbaBuffer[0]);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions_.x_ + 2,
+                     dimensions_.y_ + 2, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+                     formattedBuffer);
+        SOIL_free_image_data(buffer);
+        delete[] formattedBuffer;
     }
-    Texture::Texture(unsigned char* buffer, Pair dimensions,
-                     enum WickFormat format)
-            :Texture(buffer, dimensions, format, W_NEAREST)
+    Texture::Texture(string filePath)
+            :Texture(filePath, W_NEAREST)
     {
     }
     Texture::Texture()
@@ -101,9 +88,80 @@ namespace wick
     {
         return(dimensions_);
     }
-
     void Texture::select()
     {
         glBindTexture(GL_TEXTURE_2D, data_);
+    }
+    unsigned char* Texture::formatBuffer(unsigned char* buffer,
+                                         enum WickFormat format)
+    {
+        int xDimension = (int) (dimensions_.x_ + 2) * 4;
+        int yDimension = (int) dimensions_.y_ + 2;
+        unsigned char temp[xDimension][yDimension];
+        for(unsigned int y = 0; y < yDimension; y++)
+        {
+            for(unsigned int x = 0; x < xDimension; x+=4)
+            {
+                temp[x][y] = 255;
+                temp[x+1][y] = 255;
+                temp[x+2][y] = 255;
+                temp[x+3][y] = 0;
+            }
+        }
+        int bufferIndex = 0;
+        for(unsigned int y = 1; y < yDimension - 1; y++)
+        {
+            for(unsigned int x = 4; x < xDimension - 4; x+=4)
+            {
+                if(format == W_MONO)
+                {
+                    temp[x][y] = 255;
+                    temp[x+1][y] = 255;
+                    temp[x+2][y] = 255;
+                    unsigned char character = buffer[bufferIndex];
+                    if(character == 0)
+                        temp[x+3][y] = 0;
+                    else
+                        temp[x+3][y] = 255;
+                    bufferIndex++;
+                }
+                else if(format == W_GREYSCALE)
+                {
+                    temp[x][y] = 255;
+                    temp[x+1][y] = 255;
+                    temp[x+2][y] = 255;
+                    temp[x+3][y] = buffer[bufferIndex];
+                    bufferIndex++;
+                }
+                else if(format == W_RGB)
+                {
+                    temp[x][y] = buffer[bufferIndex];
+                    temp[x+1][y] = buffer[bufferIndex+1];
+                    temp[x+2][y] = buffer[bufferIndex+2];
+                    temp[x+3][y] = 255;
+                    bufferIndex += 3;
+                }
+                else if(format == W_RGBA)
+                {
+                    temp[x][y] = buffer[bufferIndex];
+                    temp[x+1][y] = buffer[bufferIndex+1];
+                    temp[x+2][y] = buffer[bufferIndex+2];
+                    temp[x+3][y] = buffer[bufferIndex+3];
+                    bufferIndex+=4;
+                }
+            }
+        }
+        unsigned char* formattedBuffer = new unsigned char [xDimension *
+                                                            yDimension];
+        int formattedBufferIndex = 0;
+        for(unsigned int y = 0; y < yDimension; y++)
+        {
+            for(unsigned int x = 0; x < xDimension; x++)
+            {
+                formattedBuffer[formattedBufferIndex] = temp[x][y];
+                formattedBufferIndex++;
+            }
+        }
+        return(formattedBuffer);
     }
 }

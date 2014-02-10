@@ -43,19 +43,23 @@ namespace wick
         glEnable(GL_TEXTURE_2D);
         glBegin(GL_QUADS);
             Pair vertex = vertices_[0];
-            glTexCoord2f (bounds_.getLowerLeft().x_ / tDimensions.x_, -bounds_.getLowerLeft().y_ / tDimensions.y_);
+            glTexCoord2f ((bounds_.getLowerLeft().x_ + 1) / tDimensions.x_,
+                          (-bounds_.getLowerLeft().y_ - 1) / tDimensions.y_);
             vertex = convertCoordinates(vertex + location_, wDimensions);
             glVertex2d(vertex.x_, vertex.y_);
             vertex = vertices_[1];
-            glTexCoord2f (bounds_.getUpperRight().x_ / tDimensions.x_, -bounds_.getLowerLeft().y_ / tDimensions.y_);
+            glTexCoord2f ((bounds_.getUpperRight().x_ - 1) / tDimensions.x_,
+                          (-bounds_.getLowerLeft().y_ - 1) / tDimensions.y_);
             vertex = convertCoordinates(vertex + location_, wDimensions);
             glVertex2d(vertex.x_, vertex.y_);
             vertex = vertices_[2];
-            glTexCoord2f (bounds_.getUpperRight().x_ / tDimensions.x_, -bounds_.getUpperRight().y_ / tDimensions.y_);
+            glTexCoord2f ((bounds_.getUpperRight().x_ - 1) / tDimensions.x_,
+                          (-bounds_.getUpperRight().y_ + 1) / tDimensions.y_);
             vertex = convertCoordinates(vertex + location_, wDimensions);
             glVertex2d(vertex.x_, vertex.y_);
             vertex = vertices_[3];
-            glTexCoord2f (bounds_.getLowerLeft().x_ / tDimensions.x_, -bounds_.getUpperRight().y_ / tDimensions.y_);
+            glTexCoord2f ((bounds_.getLowerLeft().x_ + 1) / tDimensions.x_,
+                          (-bounds_.getUpperRight().y_ + 1) / tDimensions.y_);
             vertex = convertCoordinates(vertex + location_, wDimensions);
             glVertex2d(vertex.x_, vertex.y_);
         glEnd();
@@ -77,6 +81,11 @@ namespace wick
     }
     void Image::setBounds(Bounds bounds)
     {
+        if(bounds.getLowerLeft() < Pair() || bounds.getUpperRight() >
+           texture_->getDimensions())
+        {
+            throw(WickException(W_IMAGE, 13));
+        }
         bounds_ = bounds;
         setDimensions(bounds_.getUpperRight() - bounds_.getLowerLeft());
     }

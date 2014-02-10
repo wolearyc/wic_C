@@ -32,11 +32,13 @@
 #include "State.h"
 #include "Text.h"
 #include "Texture.h"
-#include "WickError.h"
+#include "WickException.h"
+#include "WickUtility.h"
 #include "Window.h"
 #include <string>
 using std::string;
 #include <vector>
 using std::vector;
+#include <sstream>
 #endif
 

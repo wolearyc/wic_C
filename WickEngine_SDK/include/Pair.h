@@ -17,7 +17,6 @@
 // ----------------------------------------------------------------------------
 // File:    Pair.h
 // ----------------------------------------------------------------------------
-
 #ifndef PAIR_H
 #define PAIR_H
 #include <math.h>
@@ -26,18 +25,14 @@ namespace wick
 	class Pair
 	{
 	public:
-
 		double x_;
 		double y_;
-
 		Pair(double x, double y);
 		Pair(int x, int y);
 		Pair(const Pair& other);
 		Pair();
-
 		double distance(const Pair& other);
 		double angle(const Pair& other);
-
 		Pair operator+(const Pair& other) const;
 		Pair operator-(const Pair& other) const;
 		Pair operator*(const Pair& other) const;
@@ -48,6 +43,10 @@ namespace wick
 		Pair operator/=(const Pair& other);
 		bool operator==(const Pair& other);
 		bool operator!=(const Pair& other) const;
+		bool operator>=(const Pair& other);
+		bool operator>(const Pair& other);
+		bool operator<=(const Pair& other);
+		bool operator<(const Pair& other);
 		Pair operator+(const double i) const;
 		Pair operator-(const double i) const;
 		Pair operator*(const double i) const;

@@ -20,19 +20,33 @@
 #include "Font.h"
 namespace wick
 {
-    Font::Font(string filePath, unsigned short point, bool antialias)
+    Font::Font(string filePath, unsigned short point, Window* window, bool antialias)
          :point_(point), antialias_(antialias)
     {
         FT_Init_FreeType(&library_);
         int error = FT_New_Face(library_, filePath.c_str(), 0, &face_);
         if(error != 0)
-            throwError(W_FONT, "Could not load font " + filePath);
-        FT_Set_Char_Size(face_, 0, point*64, 0, 0);
+        {
+            error = FT_New_Face(library_,
+                                (string(FONT_PATH_1) + filePath).c_str(), 0,
+                                &face_);
+        }
+        if(error != 0)
+        {
+            error = FT_New_Face(library_,
+                                (string(FONT_PATH_2) + filePath).c_str(), 0,
+                                &face_);
+        }
+        if(error != 0)
+            throw(WickException(W_FONT, 18, filePath));
+        Pair deviceResolution = window->getDeviceResolution();
+        FT_Set_Char_Size(face_, 0, point*64, deviceResolution.x_,
+                         deviceResolution.y_);
         for(unsigned int i = 0; i < 256; i++)
             textures_[i] = 0;
     }
-    Font::Font(string filePath, unsigned short point)
-         :Font(filePath, point, true)
+    Font::Font(string filePath, unsigned short point, Window* window)
+         :Font(filePath, point, window, true)
     {
     }
     Font::Font()
@@ -81,30 +95,54 @@ namespace wick
     vector<Image> Font::getImages(string message)
     {
         vector<Image> images;
-        int xPen = 0;
+        int penX = 0;
+        int previousGlyphIndex = 0;
+        bool hasKerning = FT_HAS_KERNING(face_);
         for(unsigned int i = 0; i < message.length(); i++)
         {
             Texture* texture;
             char character = message[i];
+            int glyphIndex = FT_Get_Char_Index(face_, character);
+            if(antialias_)
+                FT_Load_Glyph(face_, glyphIndex, FT_LOAD_FORCE_AUTOHINT);
+            else
+                FT_Load_Glyph(face_, glyphIndex, 0);
             if(textures_[character] == 0)
             {
-                int glyphIndex = FT_Get_Char_Index(face_, character);
-                FT_Load_Glyph(face_, glyphIndex, 0);
                 if(antialias_)
+                {
                     FT_Render_Glyph(face_->glyph, FT_RENDER_MODE_NORMAL);
+                    Pair dimensions = Pair(face_->glyph->bitmap.width,
+                                           face_->glyph->bitmap.rows);
+                    texture = new Texture(face_->glyph->bitmap.buffer,
+                                          dimensions, W_GREYSCALE);
+                    textures_[character] = texture;
+                }
                 else
+                {
                     FT_Render_Glyph(face_->glyph, FT_RENDER_MODE_MONO);
-                Pair dimensions = Pair(face_->glyph->bitmap.width,
-                                       face_->glyph->bitmap.rows);
-                texture = new Texture(face_->glyph->bitmap.buffer, dimensions,
-                                      W_GREYSCALE);
-                textures_[character] = texture;
+                    FT_Bitmap target;
+                    FT_Bitmap_New(&target);
+                    int error = FT_Bitmap_Convert(library_, &(face_->glyph->bitmap), &target, 1);
+                    Pair dimensions = Pair(target.width, target.rows);
+                    texture = new Texture(target.buffer, dimensions, W_MONO);
+                    FT_Bitmap_Done(library_, &target);
+                    Texture* pointer = textures_[character];
+                    textures_[character] = texture;
+                }
             }
             texture = textures_[character];
-            Image image = Image(Pair(xPen, face_->glyph->metrics.height -
-                                face_->glyph->metrics.horiBearingY), texture);
+            if(hasKerning && previousGlyphIndex != 0)
+            {
+                FT_Vector delta;
+                FT_Get_Kerning(face_, previousGlyphIndex, glyphIndex,
+                               FT_KERNING_DEFAULT, &delta);
+                penX += delta.x / 64;
+            }
+            previousGlyphIndex = glyphIndex;
+            Image image = Image(Pair(penX, (face_->glyph->metrics.horiBearingY - face_->glyph->metrics.height)/64), texture);
             images.push_back(image);
-            xPen += (face_->glyph->metrics.horiAdvance / 64);
+            penX += face_->glyph->advance.x / 64;
         }
         return(images);
     }

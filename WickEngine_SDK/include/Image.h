@@ -22,6 +22,7 @@
 #include "Bounds.h"
 #include "Quad.h"
 #include "Texture.h"
+#include "WickException.h"
 namespace wick
 {
     class Image : public Quad

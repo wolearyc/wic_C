@@ -17,7 +17,6 @@
 // ----------------------------------------------------------------------------
 // File:    Pair.cpp
 // ----------------------------------------------------------------------------
-
 #include "Pair.h"
 namespace wick
 {
@@ -31,24 +30,21 @@ namespace wick
 	{
 	}
 	Pair::Pair(const Pair& other)
+         :Pair(other.x_, other.y_)
 	{
-		x_ = other.x_;
-		y_ = other.y_;
 	}
 	Pair::Pair()
 	     :Pair(0.0,0.0)
 	{
 	}
-
 	double Pair::distance(const Pair& other)
 	{
 		return(sqrt(pow(other.x_ - x_, 2.0) + pow(other.y_ - y_, 2.0)));
 	}
 	double Pair::angle(const Pair& other)
 	{
-		return(atan(other.y_ - y_) / (other.x_ - x_));
+		return(atan2(other.y_ - y_, other.x_ - x_));
 	}
-
 	Pair Pair::operator+(const Pair& other) const
 	{
 		return(Pair(x_ + other.x_, y_ + other.y_));
@@ -98,6 +94,26 @@ namespace wick
 	{
 		return(fabs(x_ - other.x_) >= 0.0000001 &&
               (fabs(y_ - other.y_) >= 0.0000001));
+	}
+	bool Pair::operator>=(const Pair& other)
+	{
+	    return(x_ - other.x_ >= 0.0000001 &&
+              (y_ - other.y_ >= 0.0000001));
+	}
+    bool Pair::operator>(const Pair& other)
+    {
+        return(x_ - other.x_ > 0.0000001 &&
+              (y_ - other.y_ > 0.0000001));
+    }
+    bool Pair::operator<=(const Pair& other)
+    {
+        return(x_ - other.x_ <= 0.0000001 &&
+              (y_ - other.y_ <= 0.0000001));
+    }
+	bool Pair::operator<(const Pair& other)
+	{
+	    return(x_ - other.x_ < 0.0000001 &&
+              (y_ - other.y_ < 0.0000001));
 	}
 	Pair Pair::operator+(const double i) const
 	{

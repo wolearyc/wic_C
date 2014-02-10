@@ -20,7 +20,6 @@
 #ifndef BOUNDS_H
 #define BOUNDS_H
 #include "Pair.h"
-#include "WickError.h"
 namespace wick
 {
     class Bounds
@@ -43,5 +42,4 @@ namespace wick
         Pair upperRight_;
     };
 }
-
 #endif
