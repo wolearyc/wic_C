@@ -38,7 +38,7 @@ namespace wick
         Text(Pair location, string message, Font* font, Color color);
         Text();
         Text(const Text& other);
-        void paint(Window* window);
+        void paint(Game* game);
         string getMessage();
         void setMessage(string message);
         vector<Color> getColors();

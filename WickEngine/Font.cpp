@@ -20,7 +20,7 @@
 #include "Font.h"
 namespace wick
 {
-    Font::Font(string filePath, unsigned short point, Window* window, bool antialias)
+    Font::Font(string filePath, unsigned short point, Game* game, bool antialias)
          :point_(point), antialias_(antialias)
     {
         FT_Init_FreeType(&library_);
@@ -39,14 +39,14 @@ namespace wick
         }
         if(error != 0)
             throw(WickException(W_FONT, 18, filePath));
-        Pair deviceResolution = window->getDeviceResolution();
+        Pair deviceResolution = game->getDeviceResolution();
         FT_Set_Char_Size(face_, 0, point*64, deviceResolution.x_,
                          deviceResolution.y_);
         for(unsigned int i = 0; i < 256; i++)
             textures_[i] = 0;
     }
-    Font::Font(string filePath, unsigned short point, Window* window)
-         :Font(filePath, point, window, true)
+    Font::Font(string filePath, unsigned short point, Game* game)
+         :Font(filePath, point, game, true)
     {
     }
     Font::Font()

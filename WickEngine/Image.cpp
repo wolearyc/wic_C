@@ -33,10 +33,10 @@ namespace wick
           :Quad(other), texture_(other.texture_), bounds_(other.bounds_)
     {
     }
-    void Image::paint(Window* window)
+    void Image::paint(Game* game)
     {
         updateVertices();
-        Pair wDimensions = window->getDimensions();
+        Pair wDimensions = game->getDimensions();
         Pair tDimensions = texture_->getDimensions();
         texture_->select();
         color_.select();

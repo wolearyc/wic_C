@@ -22,6 +22,7 @@
 #include "Bounds.h"
 #include "Color.h"
 #include "Font.h"
+#include "Game.h"
 #include "Image.h"
 #include "Paintable.h"
 #include "Pair.h"
@@ -34,7 +35,6 @@
 #include "Texture.h"
 #include "WickException.h"
 #include "WickUtility.h"
-#include "Window.h"
 #include <string>
 using std::string;
 #include <vector>

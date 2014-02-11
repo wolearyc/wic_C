@@ -40,55 +40,57 @@ namespace wick
         switch(location_)
         {
         case W_UNKNOWN:
-            message_ += "Unknown   ";
+            message_ += "Unknown    ";
             break;
         case W_WICKEXCEPTION:
-            message_ += "WickError ";
+            message_ += "WickError  ";
             break;
         case W_PAINTABLE:
-            message_ += "Paintable ";
+            message_ += "Paintable  ";
             break;
         case W_ROTATEABLE:
-            message_ += "Rotateable";
+            message_ += "Rotateable ";
             break;
         case W_SCALEABLE:
-            message_ += "Scaleable ";
+            message_ += "Scaleable  ";
             break;
         case W_IMAGE:
-            message_ += "Image     ";
+            message_ += "Image      ";
             break;
         case W_TEXTURE:
-            message_ += "Texture   ";
+            message_ += "Texture    ";
             break;
         case W_POLYGON:
-            message_ += "Polygon   ";
+            message_ += "Polygon    ";
             break;
         case W_QUAD:
-            message_ += "Quad      ";
+            message_ += "Quad       ";
             break;
         case W_STATE:
-            message_ += "State     ";
+            message_ += "State      ";
             break;
         case W_FONT:
-            message_ += "Font      ";
+            message_ += "Font       ";
             break;
         case W_TEXT:
-            message_ += "Text      ";
+            message_ += "Text       ";
             break;
         case W_BOUNDS:
-            message_ += "Bounds    ";
+            message_ += "Bounds     ";
             break;
         case W_COLOR:
-            message_ += "Color     ";
+            message_ += "Color      ";
             break;
         case W_PAIR:
-            message_ += "Pair      ";
+            message_ += "Pair       ";
             break;
-        case W_WINDOW:
-            message_ += "WWindow   ";
+        case W_GAME:
+            message_ += "Game       ";
             break;
+        case W_WICKUTILITY:
+            message_ += "WickUtility";
         default:
-            message_ += "Unknown   ";
+            message_ += "Unknown    ";
             break;
         }
         message_ += " : ";
@@ -113,7 +115,7 @@ namespace wick
             break;
         case 5:
             message_ += "State ID " + information_ + " is already in use";
-            fatal_ = true;
+            fatal_ = false;
             break;
         case 6:
             message_ += "The State with ID " + information_ + " is the selected state, and thus cannot be deallocated";

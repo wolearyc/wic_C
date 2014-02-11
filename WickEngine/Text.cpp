@@ -45,7 +45,7 @@ namespace wick
          :Paintable(), Rotateable(), Scaleable(), message_(""), font_(0)
     {
     }
-    void Text::paint(Window* window)
+    void Text::paint(Game* game)
     {
         unsigned int length = images_.size();
         for(unsigned int i = 0; i < length; i++)
@@ -58,7 +58,7 @@ namespace wick
             images_[i].setLocation(location);
             images_[i].setScale(scale_);
             images_[i].setRotation(rotation_);
-            images_[i].paint(window);
+            images_[i].paint(game);
         }
     }
     string Text::getMessage()

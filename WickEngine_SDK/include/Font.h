@@ -46,8 +46,8 @@ namespace wick
     class Font
     {
     public:
-        Font(string filePath, unsigned short point, Window* window, bool antialias);
-        Font(string filePath, unsigned short point, Window* window);
+        Font(string filePath, unsigned short point, Game* game, bool antialias);
+        Font(string filePath, unsigned short point, Game* game);
         Font();
         Font(const Font& other);
         ~Font();

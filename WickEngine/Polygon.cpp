@@ -45,10 +45,10 @@ namespace wick
              vertices_(other.vertices_)
     {
     }
-    void Polygon::paint(Window* window)
+    void Polygon::paint(Game* game)
     {
         updateVertices();
-        Pair dimensions = window->getDimensions();
+        Pair dimensions = game->getDimensions();
         unsigned int length = vertices_.size();
         color_.select();
         glBegin(GL_POLYGON);

@@ -20,7 +20,7 @@
 #ifndef PAINTABLE_H
 #define PAINTABLE_H
 #include "Pair.h"
-#include "Window.h"
+#include "Game.h"
 #include "GL/gl.h"
 namespace wick
 {
@@ -38,7 +38,7 @@ namespace wick
         bool isPaintedCentered();
         void paintCentered(bool paintCentered);
         Pair getGeometricCenter();
-        virtual void paint(Window* window) = 0;
+        virtual void paint(Game* game) = 0;
     protected:
         Pair location_;
         Pair center_;

@@ -40,7 +40,7 @@ namespace wick
                 Color color);
         Polygon();
         Polygon(const Polygon& other);
-        void paint(Window* window);
+        void paint(Game* game);
         vector<Pair> getBaseVertices();
         void setBaseVertices(vector<Pair> baseVertices);
         void setBaseVertices(initializer_list<Pair> baseVertices);

@@ -31,7 +31,7 @@ namespace wick
         Image(Pair location, Texture* texture);
         Image();
         Image(const Image& other);
-        void paint(Window* window);
+        void paint(Game* game);
         Texture* getTexture();
         void setTexture(Texture* texture);
         Bounds getBounds();

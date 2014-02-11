@@ -21,15 +21,15 @@
 #define STATE_H
 namespace wick
 {
-    class Window;
+    class Game;
     class State
     {
     public:
         State();
         virtual ~State();
-        virtual void initialize(Window* window) = 0;
-        virtual void update(Window* window) = 0;
-        virtual void paint(Window* window) = 0;
+        virtual void initialize(Game* game) = 0;
+        virtual void update(Game* game) = 0;
+        virtual void paint(Game* game) = 0;
     };
 }
 #endif
