@@ -61,7 +61,9 @@ namespace wick
     public:
         /// \brief A constructor.
         ///
-        /// \param filePath absolute or relative filepath to the font file
+        /// \param filePath absolute or relative filepath to the font file (only 
+        ///        the name of the font file is required when the font is installed
+        ///        on the system)
         /// \param point size of the font in font points
         /// \param game the game (necessary in order to define screen resolution)
         /// \param antialias whether or not the font should be antialiased
@@ -71,7 +73,9 @@ namespace wick
         Font(string filePath, unsigned short point, Game* game, bool antialias);
         /// \brief A constructor defining an antialiased font.
         ///
-        /// \param filePath absolute or relative filepath to the font file
+        /// \param filePath absolute or relative filepath to the font file (only 
+        ///        the name of the font file is required when the font is installed
+        ///        on the system)
         /// \param point size of the font in font points
         /// \param game the game (necessary in order to define screen resolution)
         /// \exception WickException fatal exception when the font file existing
