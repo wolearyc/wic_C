@@ -22,14 +22,35 @@
 #include "Pair.h"
 namespace wick
 {
+    /// \brief An architectural superclass that should be inherited by any
+    ///        class that is "rotateable".
+    /// 
+    /// Any class that inherits from Rotateable has a rotation. The object is
+    /// rotated around a center, defined in Paintable.
     class Rotateable
     {
     public:
+        /// \brief A constructor.
+        ///
+        /// \param rotation the rotation in radians
         Rotateable(double rotation);
+        /// \brief Default constructor.
+        ///
+        /// Constructs an object with 0 radians of rotation.
         Rotateable();
+        /// \brief Copy constructor.
         Rotateable(const Rotateable& other);
+        /// \brief Gets the rotation.
+        ///
+        /// \return the rotation in radians
         double getRotation();
+        /// \brief Modifies the rotation.
+        ///
+        /// \param rotation the new rotation in radians
         void setRotation(double rotation);
+        /// \brief Rotates the object
+        /// 
+        /// \param rotation the amount to rotate by in radians
         void rotate(double rotation);
     protected:
         double rotation_;
