@@ -22,13 +22,32 @@
 #include "Polygon.h"
 namespace wick
 {
+    /// \brief A rectangle that can be painted to the screen.
+    /// 
+    /// A Quad can be painted, rotated, and scaled. A quad acts just like a 
+    /// polygon.
     class Quad : public Polygon
     {
     public:
+        /// \brief A constructor.
+        ///
+        /// \param location the screen location
+        /// \param dimensions the dimensions
+        /// \param color the color
         Quad(Pair location, Pair dimensions, Color color);
+        /// \brief Default constructor.
+        ///
+        /// Constructs a 32x32 white Quad located at (0,0).
         Quad();
+        /// \brief Copy constructor.
         Quad(const Quad& other);
+        /// \brief Gets the dimensions.
+        ///
+        /// \return the dimensions
         Pair getDimensions();
+        /// \brief Modifies the dimensions.
+        ///
+        /// \param dimensions the desired dimensions
         void setDimensions(Pair dimensions);
     protected:
         Pair dimensions_;
