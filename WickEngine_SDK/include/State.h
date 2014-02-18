@@ -22,13 +22,37 @@
 namespace wick
 {
     class Game;
+    /// \brief A game state that can be initialized, updated, and painted.
+    ///
+    /// State objects are the building blocks of Wick. A State represents and
+    /// executes a single "game state". A State could represent the main menu
+    /// or a single level of a game. The programmer should write their own
+    /// classes that inherit from State. These programmer-defined States 
+    /// must define a destructor, initialize method, update method, and 
+    /// paint method.
     class State
     {
     public:
+        /// \brief Default constructor.
         State();
+        /// \brief Destructor.
+        ///
+        /// The destructor should contain code to deallocate objects.
         virtual ~State();
+        /// \brief Initializes the State.
+        ///
+        /// This method is called once before the State is run. Typically,
+        /// game objects are constructed here.
         virtual void initialize(Game* game) = 0;
+        /// \brief Updates the game.
+        ///
+        /// This method called once before paint is called every time. 
+        /// Typically, user input is polled here.
         virtual void update(Game* game) = 0;
+        /// \brief Paints the state to the screen.
+        ///
+        /// This method is called once for every frame. Typically, 
+        /// Paintable objects are painted here.
         virtual void paint(Game* game) = 0;
     };
 }
