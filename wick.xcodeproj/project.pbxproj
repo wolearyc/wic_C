@@ -1,0 +1,353 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		1A9A09EB18D56574002EABFD /* Bounds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bounds.cpp; path = src/Bounds.cpp; sourceTree = "<group>"; };
+		1A9A09EC18D56574002EABFD /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Color.cpp; path = src/Color.cpp; sourceTree = "<group>"; };
+		1A9A09ED18D56574002EABFD /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = src/Font.cpp; sourceTree = "<group>"; };
+		1A9A09EE18D56574002EABFD /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = src/Game.cpp; sourceTree = "<group>"; };
+		1A9A09EF18D56574002EABFD /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Image.cpp; path = src/Image.cpp; sourceTree = "<group>"; };
+		1A9A09F018D56574002EABFD /* Paintable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Paintable.cpp; path = src/Paintable.cpp; sourceTree = "<group>"; };
+		1A9A09F118D56574002EABFD /* Pair.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Pair.cpp; path = src/Pair.cpp; sourceTree = "<group>"; };
+		1A9A09F218D56574002EABFD /* Polygon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Polygon.cpp; path = src/Polygon.cpp; sourceTree = "<group>"; };
+		1A9A09F318D56574002EABFD /* Quad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Quad.cpp; path = src/Quad.cpp; sourceTree = "<group>"; };
+		1A9A09F418D56574002EABFD /* Rotateable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rotateable.cpp; path = src/Rotateable.cpp; sourceTree = "<group>"; };
+		1A9A09F518D56574002EABFD /* Scaleable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scaleable.cpp; path = src/Scaleable.cpp; sourceTree = "<group>"; };
+		1A9A09F618D56574002EABFD /* State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = State.cpp; path = src/State.cpp; sourceTree = "<group>"; };
+		1A9A09F718D56574002EABFD /* Text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Text.cpp; path = src/Text.cpp; sourceTree = "<group>"; };
+		1A9A09F818D56574002EABFD /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = src/Texture.cpp; sourceTree = "<group>"; };
+		1A9A09F918D56574002EABFD /* WickException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WickException.cpp; path = src/WickException.cpp; sourceTree = "<group>"; };
+		1A9A09FA18D56574002EABFD /* WickUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WickUtility.cpp; path = src/WickUtility.cpp; sourceTree = "<group>"; };
+		1A9A09FC18D56584002EABFD /* Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bounds.h; path = include/Bounds.h; sourceTree = "<group>"; };
+		1A9A09FD18D56584002EABFD /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = include/Color.h; sourceTree = "<group>"; };
+		1A9A0A6018D56584002EABFD /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font.h; path = include/Font.h; sourceTree = "<group>"; };
+		1A9A0A6118D56584002EABFD /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = include/Game.h; sourceTree = "<group>"; };
+		1A9A0A6218D56584002EABFD /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = include/Image.h; sourceTree = "<group>"; };
+		1A9A0A6318D56584002EABFD /* Paintable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Paintable.h; path = include/Paintable.h; sourceTree = "<group>"; };
+		1A9A0A6418D56584002EABFD /* Pair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pair.h; path = include/Pair.h; sourceTree = "<group>"; };
+		1A9A0A6518D56584002EABFD /* Polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Polygon.h; path = include/Polygon.h; sourceTree = "<group>"; };
+		1A9A0A6618D56584002EABFD /* Quad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Quad.h; path = include/Quad.h; sourceTree = "<group>"; };
+		1A9A0A6718D56584002EABFD /* Rotateable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rotateable.h; path = include/Rotateable.h; sourceTree = "<group>"; };
+		1A9A0A6818D56584002EABFD /* Scaleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scaleable.h; path = include/Scaleable.h; sourceTree = "<group>"; };
+		1A9A0A6918D56584002EABFD /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = State.h; path = include/State.h; sourceTree = "<group>"; };
+		1A9A0A6A18D56584002EABFD /* Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Text.h; path = include/Text.h; sourceTree = "<group>"; };
+		1A9A0A6B18D56584002EABFD /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = include/Texture.h; sourceTree = "<group>"; };
+		1A9A0A6C18D56584002EABFD /* Wick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wick.h; path = include/Wick.h; sourceTree = "<group>"; };
+		1A9A0A6D18D56584002EABFD /* WickException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WickException.h; path = include/WickException.h; sourceTree = "<group>"; };
+		1A9A0A6E18D56584002EABFD /* WickUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WickUtility.h; path = include/WickUtility.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1A29DE4918DE5288004A3EB4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A79621F18D5674D00951BF2 /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				1A9A09EE18D56574002EABFD /* Game.cpp */,
+				1A9A0A6118D56584002EABFD /* Game.h */,
+				1A9A09F018D56574002EABFD /* Paintable.cpp */,
+				1A9A0A6318D56584002EABFD /* Paintable.h */,
+				1A9A09F418D56574002EABFD /* Rotateable.cpp */,
+				1A9A0A6718D56584002EABFD /* Rotateable.h */,
+				1A9A09F518D56574002EABFD /* Scaleable.cpp */,
+				1A9A0A6818D56584002EABFD /* Scaleable.h */,
+				1A9A0A6C18D56584002EABFD /* Wick.h */,
+				1A9A09F918D56574002EABFD /* WickException.cpp */,
+				1A9A0A6D18D56584002EABFD /* WickException.h */,
+			);
+			name = Architecture;
+			sourceTree = "<group>";
+		};
+		1A79622018D5675700951BF2 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				1A9A09EF18D56574002EABFD /* Image.cpp */,
+				1A9A09F818D56574002EABFD /* Texture.cpp */,
+				1A9A0A6B18D56584002EABFD /* Texture.h */,
+				1A9A0A6218D56584002EABFD /* Image.h */,
+			);
+			name = Image;
+			sourceTree = "<group>";
+		};
+		1A79622118D5675F00951BF2 /* Polygon */ = {
+			isa = PBXGroup;
+			children = (
+				1A9A09F218D56574002EABFD /* Polygon.cpp */,
+				1A9A09F318D56574002EABFD /* Quad.cpp */,
+				1A9A0A6618D56584002EABFD /* Quad.h */,
+				1A9A0A6518D56584002EABFD /* Polygon.h */,
+			);
+			name = Polygon;
+			sourceTree = "<group>";
+		};
+		1A79622218D5676600951BF2 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				1A9A09F618D56574002EABFD /* State.cpp */,
+				1A9A0A6918D56584002EABFD /* State.h */,
+			);
+			name = State;
+			sourceTree = "<group>";
+		};
+		1A79622318D5676B00951BF2 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				1A9A09ED18D56574002EABFD /* Font.cpp */,
+				1A9A09F718D56574002EABFD /* Text.cpp */,
+				1A9A0A6A18D56584002EABFD /* Text.h */,
+				1A9A0A6018D56584002EABFD /* Font.h */,
+			);
+			name = Text;
+			sourceTree = "<group>";
+		};
+		1A79622418D5677900951BF2 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1A9A09EB18D56574002EABFD /* Bounds.cpp */,
+				1A9A09EC18D56574002EABFD /* Color.cpp */,
+				1A9A09F118D56574002EABFD /* Pair.cpp */,
+				1A9A09FA18D56574002EABFD /* WickUtility.cpp */,
+				1A9A0A6E18D56584002EABFD /* WickUtility.h */,
+				1A9A0A6418D56584002EABFD /* Pair.h */,
+				1A9A09FC18D56584002EABFD /* Bounds.h */,
+				1A9A09FD18D56584002EABFD /* Color.h */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		1A9A09DF18D564F2002EABFD = {
+			isa = PBXGroup;
+			children = (
+				1A79621F18D5674D00951BF2 /* Architecture */,
+				1A79622018D5675700951BF2 /* Image */,
+				1A79622118D5675F00951BF2 /* Polygon */,
+				1A29DE4918DE5288004A3EB4 /* Products */,
+				1A79622218D5676600951BF2 /* State */,
+				1A79622318D5676B00951BF2 /* Text */,
+				1A79622418D5677900951BF2 /* Utility */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		1A29DE5118DE5553004A3EB4 /* debug */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = debug;
+			buildConfigurationList = 1A29DE5218DE5553004A3EB4 /* Build configuration list for PBXLegacyTarget "debug" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Users/willis/Documents/Programming/C++/wick";
+			dependencies = (
+			);
+			name = debug;
+			passBuildSettingsInEnvironment = 1;
+			productName = debug;
+		};
+		1A29DE5518DE55CA004A3EB4 /* release */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = release;
+			buildConfigurationList = 1A29DE5618DE55CA004A3EB4 /* Build configuration list for PBXLegacyTarget "release" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Users/willis/Documents/Programming/C++/wick";
+			dependencies = (
+			);
+			name = release;
+			passBuildSettingsInEnvironment = 1;
+			productName = release;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		1A9A09E018D564F2002EABFD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Will O'Leary";
+			};
+			buildConfigurationList = 1A9A09E318D564F2002EABFD /* Build configuration list for PBXProject "wick" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1A9A09DF18D564F2002EABFD;
+			productRefGroup = 1A29DE4918DE5288004A3EB4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A29DE5118DE5553004A3EB4 /* debug */,
+				1A29DE5518DE55CA004A3EB4 /* release */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		1A29DE5318DE5553004A3EB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1A29DE5418DE5553004A3EB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		1A29DE5718DE55CA004A3EB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1A29DE5818DE55CA004A3EB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		1A9A09E518D564F2002EABFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1A9A09E618D564F2002EABFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A29DE5218DE5553004A3EB4 /* Build configuration list for PBXLegacyTarget "debug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A29DE5318DE5553004A3EB4 /* Debug */,
+				1A29DE5418DE5553004A3EB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A29DE5618DE55CA004A3EB4 /* Build configuration list for PBXLegacyTarget "release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A29DE5718DE55CA004A3EB4 /* Debug */,
+				1A29DE5818DE55CA004A3EB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A9A09E318D564F2002EABFD /* Build configuration list for PBXProject "wick" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A9A09E518D564F2002EABFD /* Debug */,
+				1A9A09E618D564F2002EABFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A9A09E018D564F2002EABFD /* Project object */;
+}
