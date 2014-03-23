@@ -32,11 +32,11 @@ Version 3. You must include LICENSE.txt in all projects which use the
 entirety or sections of The Wick Engine. 
 
 ~ CREDITS ~
-Portions of this software are copyright © 2013 The FreeType Project 
+Portions of this software are copyright Â© 2013 The FreeType Project 
 (www.freetype.org).  All rights reserved.
 
 Portions of this software use GLFW (http://www.glfw.org/index.html), 
-Copyright © 2002-2006 Marcus Geelnard and Copyright © 2006-2011 Camilla Berglund
+Copyright Â© 2002-2006 Marcus Geelnard and Copyright Â© 2006-2011 Camilla Berglund
 
 Portions of this software use the Simple OpenGL Image Library 
 (http://www.lonesock.net/soil.html), which is in the public domain.
