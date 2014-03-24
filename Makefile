@@ -20,12 +20,16 @@ release: $(OBJECTS)
 	ar -r bin/release/libwick.a obj/release/*.o lib/*.o
 
 obj/release/%.o: src/%.cpp
+	mkdir -p bin/release/
+	mkdir -p obj/release/
 	$(CC) $(CFLAGS) $(COPTIONS) -c $< -o $@ $(INCLUDEPATHS)
 
 debug: $(DOBJECTS)
 	ar -r bin/debug/libwick.a obj/debug/*.o lib/*.o
 
 obj/debug/%.o: src/%.cpp
+	mkdir -p bin/debug/
+	mkdir -p obj/debug/
 	$(CC) $(CFLAGS) $(DEBUGFLAGS) $(COPTIONS) -c $< -o $@ $(INCLUDEPATHS)
 
 clean:
