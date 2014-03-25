@@ -11,13 +11,13 @@ DEBUGFLAGS = -g
 SOURCES       = $(wildcard src/*.cpp)
 OBJECTS       = $(addprefix obj/release/,$(notdir $(SOURCES:.cpp=.o)))
 DOBJECTS      = $(addprefix obj/debug/,$(notdir $(SOURCES:.cpp=.o)))
-INCLUDEPATHS  = -I include/
+INCLUDEPATHS  = -I include/ -I deps/include/
 COPTIONS      = -std=c++11
 
 all: release
 	
 release: $(OBJECTS)
-	ar -r bin/release/libwick.a obj/release/*.o lib/*.o
+	ar -r bin/release/libwick.a obj/release/*.o deps/lib/*.o
 
 obj/release/%.o: src/%.cpp
 	mkdir -p bin/release/
@@ -25,7 +25,7 @@ obj/release/%.o: src/%.cpp
 	$(CC) $(CFLAGS) $(COPTIONS) -c $< -o $@ $(INCLUDEPATHS)
 
 debug: $(DOBJECTS)
-	ar -r bin/debug/libwick.a obj/debug/*.o lib/*.o
+	ar -r bin/debug/libwick.a obj/debug/*.o deps/lib/*.o
 
 obj/debug/%.o: src/%.cpp
 	mkdir -p bin/debug/

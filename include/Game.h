@@ -23,7 +23,7 @@
 #include "State.h"
 #include "WickException.h"
 #include "WickUtility.h"
-#include "Dependencies/GLFW/glfw3.h"
+#include "GLFW/glfw3.h"
 #include <iostream>
 #include <string>
 using std::string;

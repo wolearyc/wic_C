@@ -34,7 +34,7 @@
 #endif
 #include "Image.h"
 #include "WickException.h"
-#include "Dependencies/FreeType/ft2build.h"
+#include "FreeType/ft2build.h"
 #include FT_FREETYPE_H
 #include FT_BITMAP_H
 #include <string>

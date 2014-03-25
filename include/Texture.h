@@ -21,7 +21,7 @@
 #define TEXTURE_H
 #include "Pair.h"
 #include "WickException.h"
-#include "Dependencies/SOIL/SOIL.h"
+#include "SOIL/SOIL.h"
 #include "OpenGL/gl.h"
 #include <iostream>
 #include <string>
