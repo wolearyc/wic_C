@@ -9,9 +9,9 @@ Table of Contents
 
 Summary
 -------
-The Wick Engine is distrubuted under the GNU Lesser General Public License, 
+Wick is distrubuted under the GNU Lesser General Public License, 
 Version 3. You must include this license file in all projects which use the 
-entirety or sections of The Wick Engine.
+entirety or sections of wick
 
 License
 -------
@@ -185,6 +185,6 @@ Credits
 -------
 Portions of this software are copyright © 2013 The FreeType Project.  All rights reserved. [Website.](http://www.freetype.org/)
 
-Portions of this software use GLFW. Copyright © 2002-2006 Marcus Geelnard and Copyright © 2006-2011 Camilla Berglund. [Website.]((http://www.glfw.org/index.html)
+Portions of this software use GLFW. Copyright © 2002-2006 Marcus Geelnard and Copyright © 2006-2011 Camilla Berglund. [Website.](http://www.glfw.org/index.html)
 
 Portions of this software use the Simple OpenGL Image Library, which is in the public domain. [Website.](http://www.lonesock.net/soil.html)

@@ -28,13 +28,13 @@
 using std::string;
 namespace wick
 {
-    enum WickFilter
+    enum class WickFilter
     {
-        W_NEAREST = GL_NEAREST, W_LINEAR = GL_LINEAR
+        NEAREST = GL_NEAREST, LINEAR = GL_LINEAR
     };
     enum WickFormat
     {
-        W_MONO, W_GREYSCALE, W_RGB, W_RGBA
+        MONO, GREYSCALE, RGB, RGBA
     };
     class Texture
     {
@@ -43,8 +43,8 @@ namespace wick
                 enum WickFilter filter);
         Texture(unsigned char* buffer, Pair dimensions,
                 enum WickFormat format);
-        Texture(string filePath, enum WickFilter filter);
-        Texture(string filePath);
+        Texture(string filepath, enum WickFilter filter);
+        Texture(string filepath);
         Texture();
         Texture(const Texture& other);
         ~Texture();

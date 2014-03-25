@@ -24,27 +24,26 @@ namespace wick
                bool resizeable, bool fullscreen, unsigned short samples)
          :title_(title), dimensions_(dimensions), spf_(1.0 / fps),
           resizeable_(resizeable), fullscreen_(fullscreen),
-          samples_(samples), currentState_(0)
+          samples_(samples), selectedState_(nullptr)
 	{
-	    std::cout << "Wick Engine version " + wickVersion_ + " Copyright (C)" +
-                     " 2013-2014 Will O'Leary\n\n";
         if(title_ == "")
         {
             title_ = "Wick Game";
-            throw(WickException(W_GAME, 0));
+            throw(ParameterException("title", "any non-empty string",
+                                     "Wick Game"));
         }
         if(dimensions_.x_ <= 0)
         {
             dimensions_.x_ = 500;
-            throw(WickException(W_GAME, 1));
+            throw(ParameterException("dimensions_ (x value)", ">0", "500"));
         }
         if(dimensions_.y_ <= 0)
         {
             dimensions_.y_ = 500;
-            throw(WickException(W_GAME, 2));
+            throw(ParameterException("dimensions_ (y value)", ">0", "500"));
         }
         if(!glfwInit())
-            throw(WickException(W_GAME, 3));
+            throw(ArchitectureException("glfw could not initialize"));
         glfwWindowHint(GLFW_REFRESH_RATE, 1.0 / spf_);
         glfwWindowHint(GLFW_SAMPLES, samples_);
         glfwWindowHint(GLFW_RESIZABLE, resizeable_);
@@ -56,7 +55,7 @@ namespace wick
             window_ = glfwCreateWindow(dimensions_.x_, dimensions_.y_,
                                        title_.c_str(), 0, 0);
         if(window_ == 0)
-            throw(WickException(W_GAME, 4));
+            throw(ArchitectureException("window creation failed"));
         int width; int height;
         glfwGetMonitorPhysicalSize(monitor, &width, &height);
         const GLFWvidmode* mode = glfwGetVideoMode(monitor);
@@ -95,7 +94,7 @@ namespace wick
         {
             double lastUpdateTime = glfwGetTime();
             glfwPollEvents();
-            currentState_->update(this);
+            selectedState_->update(this);
             resetInput();
             while(glfwGetTime() - lastUpdateTime < spf_)
             {
@@ -104,7 +103,7 @@ namespace wick
             glClearColor(0.0,0.0,0.0,1.0);
             glClear(GL_COLOR_BUFFER_BIT);
             glLoadIdentity();
-            currentState_->paint(this);
+            selectedState_->paint(this);
             glfwSwapBuffers(window_);
             updates++;
             if(glfwGetTime() - lastSecondTime >= 1.0)
@@ -130,15 +129,10 @@ namespace wick
 	}
 	void Game::addState(State* state, unsigned short id)
 	{
-	    bool found = false;
 	    unsigned int length = states_.size();
-	    for(unsigned int i = 0; i < length; i++)
-        {
-            if(ids_[i] == id)
-                found = true;
-        }
-        if(found)
-            throw(WickException(W_GAME, 5, toString(id)));
+	    State* otherState = findState(id);
+        if(otherState != nullptr)
+            throw(WickException("state id already in use", false));
         else
         {
             states_.push_back(state);
@@ -147,7 +141,11 @@ namespace wick
 	}
     void Game::initializeState(unsigned short id)
     {
-        findState(id)->initialize(this);
+        State* state = findState(id);
+        if(state == nullptr)
+            throw(WickException("no state with that id exists", false));
+        else
+            state->initialize(this);
     }
     void Game::addAndInitializeState(State* state, unsigned short id)
     {
@@ -157,12 +155,14 @@ namespace wick
     void Game::deallocateState(unsigned short id)
     {
         State* state = findState(id);
-        if(state == currentState_)
-            throw(WickException(W_GAME, 7, toString(id)));
+        if(state == nullptr)
+            throw(WickException("no state with that id exists", false));
+        else if(state == selectedState_)
+            throw(WickException("cannot deallocate selected state", false));
         else
         {
             delete(state);
-            state = 0;
+            state = nullptr;
         }
     }
 	void Game::removeState(unsigned short id)
@@ -172,8 +172,9 @@ namespace wick
         {
             if(ids_[i] == id)
             {
-                if(findState(id) == currentState_)
-                    throw(WickException(W_GAME, 7, toString(id)));
+                State* state = states_[i];
+                if(state == selectedState_)
+                    throw(WickException("cannot remove selected state", false));
                 else
                 {
                     states_.erase(states_.begin() + i);
@@ -182,6 +183,7 @@ namespace wick
                 break;
             }
         }
+        throw(WickException("no state with that id exists", false));
 	}
 	void Game::deallocateAndRemoveState(unsigned short id)
 	{
@@ -190,7 +192,11 @@ namespace wick
 	}
 	void Game::selectState(unsigned short id)
 	{
-	    currentState_ = findState(id);
+	    State* state = findState(id);
+        if(state == nullptr)
+            throw(WickException("no state with that id exists", false));
+        else
+            selectedState_ = state;
 	}
 	State* Game::findState(unsigned short id)
 	{
@@ -200,19 +206,18 @@ namespace wick
             if(ids_[i] == id)
                 return(states_[i]);
         }
-        throw(WickException(W_GAME, 8, toString(id)));
-        return(0);
+        return(nullptr);
 	}
 	bool Game::isKeyDown(enum WickKey key)
 	{
-	    return(Game::downKeys_[key]);
+	    return(Game::downKeys_[(int) key]);
 	}
 	bool Game::isKeyPressed(enum WickKey key)
 	{
 	    unsigned int length = pressedKeys_.size();
 	    for(unsigned int i = 0; i < length; i++)
         {
-            if(pressedKeys_[i] == key)
+            if(pressedKeys_[i] == (int) key)
                 return(true);
         }
         return(false);
@@ -250,7 +255,7 @@ namespace wick
 	}
 	void Game::ErrorCallback(int error, const char* description)
 	{
-	    throw(WickException(W_GAME, 9, string(description)));
+	    throw(ArchitectureException(string(description)));
 	}
 	void Game::FocusCallback(GLFWwindow* window, int n)
     {

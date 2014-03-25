@@ -27,64 +27,32 @@
 using std::string;
 namespace wick
 {
-    /// \file ADD FILE DOCUMENTATION
-    /// \brief Designates exception locations.
-    enum WickLocation
-    {
-        W_UNKNOWN,       ///< Unknown class.
-        W_WICKEXCEPTION, ///< WickException class
-        W_PAINTABLE,     ///< Paintable class.
-        W_ROTATEABLE,    ///< Rotateable class.
-        W_SCALEABLE,     ///< Scaleable class.
-        W_IMAGE,         ///< Image class.
-        W_TEXTURE,       ///< Texture class.
-        W_POLYGON,       ///< Polygon class.
-        W_QUAD,          ///< Quad class.
-        W_STATE,         ///< State class.
-        W_FONT,          ///< Font class.
-        W_TEXT,          ///< Text class.
-        W_BOUNDS,        ///< Bounds class.
-        W_COLOR,         ///< Color class.
-        W_PAIR,          ///< Pair class.
-        W_GAME,          ///< Game class.
-        W_WICKUTILITY    ///< WickUtility.
-    };
-    /// \brief Defines the exceptions present in the Wick Engine.
-    ///
-    /// WickException extends the C++ standard library exception class.
-    /// Different exceptions are defined through the constructors.
     class WickException : public std::exception
     {
     public:
-        /// \brief Assembles a new exception with a location, ID, and some
-        ///        additional information and prints the exception's message.
-        ///
-        /// @param location where the exception was thrown.
-        /// @param id the ID of the exception (determines the message).
-        /// @param information Additional information, which usually is helpful
-        ///        when debugging.
-        WickException(enum WickLocation location, int id, string information);
-        /// \brief Assembles a new exception with a location and ID and prints
-        ///        the exception's message.
-        ///
-        /// @param location where the exception was thrown.
-        /// @param id the ID of the exception (determines the message).
-        WickException(enum WickLocation location, int id);
-        /// \brief Default constructor (assembles and prints unknown
-        ///        exception).
+        WickException(string message, bool fatal);
         WickException();
-        /// \brief Constructs and retrieves the exception's message.
-        /// @return the assembled message.
-        const char* what();
-        /// \brief If the exception was fatal, stops execution. If the
-        ///        the exception was not fatal, lets execution continue.
+        string what();
         void handle();
-    private:
-        enum WickLocation location_;
-        int id_;
-        string information_;
+    protected:
         string message_;
         bool fatal_;
+    };
+    class ParameterException : public WickException
+    {
+    public:
+        ParameterException(string name, string acceptedValues, string
+                           correctedValue);
+    };
+    class FileException : public WickException
+    {
+    public:
+        FileException(string filepath);
+    };
+    class ArchitectureException : public WickException
+    {
+    public:
+        ArchitectureException(string message);
     };
 }
 #endif

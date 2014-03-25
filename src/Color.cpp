@@ -21,44 +21,44 @@
 #include "Color.h"
 namespace wick
 {
-	Color Color::White   = Color(255,255,255);
-	Color Color::Silver  = Color(208,208,208);
-	Color Color::Gray    = Color(128,128,128);
-	Color Color::Black   = Color(0,0,0);
-	Color Color::Red     = Color(255,0,0);
-	Color Color::Maroon  = Color(128,0,0);
-	Color Color::Yellow  = Color(255,255,0);
-	Color Color::Orange  = Color(255,165,0);
-	Color Color::Olive   = Color(128,128,0);
-	Color Color::Lime    = Color(0,255,0);
-	Color Color::Green   = Color(0,128,0);
-	Color Color::Aqua    = Color(0,255,255);
-	Color Color::Teal    = Color(0,128,128);
-	Color Color::Blue    = Color(0,0,255);
-	Color Color::Navy    = Color(0,0,128);
-	Color Color::Fuchsia = Color(255,0,255);
-	Color Color::Purple  = Color(128,0,128);
+	const Color Color::White   = Color(255,255,255);
+	const Color Color::Silver  = Color(208,208,208);
+	const Color Color::Gray    = Color(128,128,128);
+	const Color Color::Black   = Color(0,0,0);
+    const Color Color::Red     = Color(255,0,0);
+	const Color Color::Maroon  = Color(128,0,0);
+	const Color Color::Yellow  = Color(255,255,0);
+	const Color Color::Orange  = Color(255,165,0);
+	const Color Color::Olive   = Color(128,128,0);
+	const Color Color::Lime    = Color(0,255,0);
+	const Color Color::Green   = Color(0,128,0);
+	const Color Color::Aqua    = Color(0,255,255);
+	const Color Color::Teal    = Color(0,128,128);
+	const Color Color::Blue    = Color(0,0,255);
+	const Color Color::Navy    = Color(0,0,128);
+	const Color Color::Fuchsia = Color(255,0,255);
+	const Color Color::Purple  = Color(128,0,128);
 	Color::Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha)
           :red_(red), green_(green), blue_(blue), alpha_(alpha)
 	{
 		if(red_ > 255)
 		{
-			throw(WickException(W_COLOR, 14));
+			throw(ParameterException("red", "0-255", "255"));
 			red_ = 255;
 		}
 		if(green_ > 255)
 		{
-			throw(WickException(W_COLOR, 15));
+			throw(ParameterException("green", "0-255", "255"));
 			green_ = 255;
 		}
 		if(blue_ > 255)
 		{
-			throw(WickException(W_COLOR, 16));
+			throw(ParameterException("blue", "0-255", "255"));
 			blue_ = 255;
 		}
 	    if(alpha_ > 255)
 		{
-			throw(WickException(W_COLOR, 17));
+			throw(ParameterException("alpha", "0-255", "255"));
 			alpha_ = 255;
 		}
 	}
@@ -85,7 +85,7 @@ namespace wick
 		red_ = red;
 		if(red_ > 255)
 		{
-			throw(WickException(W_COLOR, 14));
+			throw(ParameterException("red", "0-255", "255"));
 			red_ = 255;
 		}
 	}
@@ -98,7 +98,7 @@ namespace wick
 		green_ = green;
 		if(green_ > 255)
 		{
-			throw(WickException(W_COLOR, 15));
+			throw(ParameterException("green", "0-255", "255"));
 			green_ = 255;
 		}
 	}
@@ -111,7 +111,7 @@ namespace wick
 		blue_ = blue;
 		if(blue_ > 255)
 		{
-			throw(WickException(W_COLOR, 16));
+			throw(ParameterException("blue", "0-255", "255"));
 			blue_ = 255;
 		}
 	}
@@ -124,7 +124,7 @@ namespace wick
 		alpha_ = alpha;
 		if(alpha_ > 255)
 		{
-			throw(WickException(W_COLOR, 17));
+			throw(ParameterException("alpha", "0-255", "255"));
 			alpha_ = 255;
 		}
 	}

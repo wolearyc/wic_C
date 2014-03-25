@@ -33,7 +33,7 @@ using std::vector;
 namespace wick
 {
 	/// Designates keyboard keys and mouse buttons
-	enum WickKey
+	enum class WickKey
     {
         W_SPACE = 32,          ///< the space key.
         W_APOSTROPHE = 39,     ///< the apostrophe/double quotes key.
@@ -315,7 +315,7 @@ namespace wick
         Pair deviceResolution_;
 		vector<State*> states_;
 		vector<unsigned short> ids_;
-		State* currentState_;
+		State* selectedState_;
 		double spf_;
 		bool resizeable_;
 		bool fullscreen_;

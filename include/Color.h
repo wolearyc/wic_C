@@ -30,23 +30,23 @@ namespace wick
 	class Color
 	{
 	public:
-		static Color White;   ///< White (255,255,255).
-		static Color Silver;  ///< Silver (208,208,208).
-		static Color Gray;    ///< Gray (128,128,128).
-		static Color Black;   ///< Black (0,0,0).
-		static Color Red;     ///< Red (255,0,0).
-		static Color Maroon;  ///< Maroon (128,0,0).
-		static Color Yellow;  ///< Yellow (255,255,0).
-		static Color Orange;  ///< Orange (255,165,0).
-		static Color Olive;   ///< Olive (128,128,0).
-		static Color Lime;    ///< Lime (0,255,0).
-		static Color Green;   ///< Green (0,128,0).
-		static Color Aqua;    ///< Aqua (0,255,255).
-		static Color Teal;    ///< Teal (0,128,128).
-		static Color Blue;    ///< Blue (0,0,255).
-		static Color Navy;    ///< Navy (0,0,128).
-		static Color Fuchsia; ///< Fuschsia (255,0,255).
-		static Color Purple;  ///< Purple (128,0,128)
+		const static Color White;   ///< White (255,255,255).
+		const static Color Silver;  ///< Silver (208,208,208).
+		const static Color Gray;    ///< Gray (128,128,128).
+		const static Color Black;   ///< Black (0,0,0).
+		const static Color Red;     ///< Red (255,0,0).
+		const static Color Maroon;  ///< Maroon (128,0,0).
+		const static Color Yellow;  ///< Yellow (255,255,0).
+		const static Color Orange;  ///< Orange (255,165,0).
+		const static Color Olive;   ///< Olive (128,128,0).
+		const static Color Lime;    ///< Lime (0,255,0).
+		const static Color Green;   ///< Green (0,128,0).
+		const static Color Aqua;    ///< Aqua (0,255,255).
+		const static Color Teal;    ///< Teal (0,128,128).
+		const static Color Blue;    ///< Blue (0,0,255).
+		const static Color Navy;    ///< Navy (0,0,128).
+		const static Color Fuchsia; ///< Fuschsia (255,0,255).
+		const static Color Purple;  ///< Purple (128,0,128)
 		/// \brief A constructor defining an RGBA (red, green, blue, alpha) 
 		///  	   color
 		///

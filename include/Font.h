@@ -60,30 +60,30 @@ namespace wick
     	/// Regarding antialiasing: Usually, smaller fonts are blurry when
     	/// antialiasing is turned on. Therefore, it is best to disable 
 		/// antialiasing when rendering small fonts.
-        /// \param filePath the absolute or relative filepath to the font file 
+        /// \param filepath the absolute or relative filepath to the font file
 		/// 	   (only the name of the font file is required when the font is
 		///		   installed on the system)
         /// \param the point size of the font
         /// \param game the game 
         /// \param antialias whether or not the font should be antialiased
         /// \exception WickException fatal exception when the font file 
-		///			   existing at filePath cannot be found, is currupted, or 
+		///			   existing at filepath cannot be found, is currupted, or
 		///			   is not compatible with Wick.
-        Font(string filePath, unsigned short point, Game* game, bool antialias);
+        Font(string filepath, unsigned short point, Game* game, bool antialias);
         /// \brief A constructor for an antialiased font
         ///
     	/// Regarding antialiasing: Usually, smaller fonts are blurry when
     	/// antialiasing is turned on. Therefore, it is best to disable 
 		/// antialiasing when rendering small fonts.
-        /// \param filePath the absolute or relative filepath to the font file 
+        /// \param filepath the absolute or relative filepath to the font file
 		/// 	   (only the name of the font file is required when the font is
 		///		   installed on the system)
         /// \param the point size of the font
         /// \param game the game 
         /// \exception WickException fatal exception when the font file 
-		///			   existing at filePath cannot be found, is currupted, or 
+		///			   existing at filepath cannot be found, is currupted, or
 		///			   is not compatible with Wick.
-        Font(string filePath, unsigned short point, Game* game);
+        Font(string filepath, unsigned short point, Game* game);
         /// \brief The default constructor
         ///
         /// The default constructor does NOT create a complete Font object. 

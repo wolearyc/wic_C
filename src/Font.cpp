@@ -20,47 +20,48 @@
 #include "Font.h"
 namespace wick
 {
-    Font::Font(string filePath, unsigned short point, Game* game, bool antialias)
+    Font::Font(string filepath, unsigned short point, Game* game,
+               bool antialias)
          :point_(point), antialias_(antialias)
     {
         FT_Init_FreeType(&library_);
-        int error = FT_New_Face(library_, filePath.c_str(), 0, &face_);
+        int error = FT_New_Face(library_, filepath.c_str(), 0, &face_);
         if(error != 0)
         {
             error = FT_New_Face(library_,
-                                (string(FONT_PATH_1) + filePath).c_str(), 0,
+                                (string(FONT_PATH_1) + filepath).c_str(), 0,
                                 &face_);
         }
         if(error != 0)
         {
             error = FT_New_Face(library_,
-                                (string(FONT_PATH_2) + filePath).c_str(), 0,
+                                (string(FONT_PATH_2) + filepath).c_str(), 0,
                                 &face_);
         }
         if(error != 0)
-            throw(WickException(W_FONT, 18, filePath));
+            throw(FileException(filepath));
         Pair deviceResolution = game->getDeviceResolution();
         FT_Set_Char_Size(face_, 0, point*64, deviceResolution.x_,
                          deviceResolution.y_);
         for(unsigned int i = 0; i < 256; i++)
-            textures_[i] = 0;
+            textures_[i] = nullptr;
     }
-    Font::Font(string filePath, unsigned short point, Game* game)
-         :Font(filePath, point, game, true)
+    Font::Font(string filepath, unsigned short point, Game* game)
+         :Font(filepath, point, game, true)
     {
     }
     Font::Font()
-         :library_(0), face_(0), point_(12), antialias_(true)
+         :library_(nullptr), face_(nullptr), point_(12), antialias_(true)
     {
         for(unsigned int i = 0; i < 256; i++)
-            textures_[i] = 0;
+            textures_[i] = nullptr;
     }
     Font::Font(const Font& other)
          :library_(other.library_), face_(other.face_), point_(other.point_),
           antialias_(other.antialias_)
     {
         for(unsigned int i = 0; i < 256; i++)
-            textures_[i] = 0;
+            textures_[i] = nullptr;
     }
     Font::~Font()
     {
@@ -68,10 +69,10 @@ namespace wick
         FT_Done_FreeType(library_);
         for(unsigned int i = 0; i < 256; i++)
         {
-            if(textures_[i] != 0)
+            if(textures_[i] != nullptr)
             {
                 delete(textures_[i]);
-                textures_[i] = 0;
+                textures_[i] = nullptr;
             }
         }
     }
@@ -85,10 +86,10 @@ namespace wick
         FT_Set_Char_Size(face_, 0, point_*64, 0, 0);
         for(unsigned int i = 0; i < 256; i++)
         {
-            if(textures_[i] != 0)
+            if(textures_[i] != nullptr)
             {
                 delete(textures_[i]);
-                textures_[i] = 0;
+                textures_[i] = nullptr;
             }
         }
     }
@@ -107,7 +108,7 @@ namespace wick
                 FT_Load_Glyph(face_, glyphIndex, FT_LOAD_FORCE_AUTOHINT);
             else
                 FT_Load_Glyph(face_, glyphIndex, 0);
-            if(textures_[character] == 0)
+            if(textures_[character] == nullptr)
             {
                 if(antialias_)
                 {
@@ -115,7 +116,7 @@ namespace wick
                     Pair dimensions = Pair(face_->glyph->bitmap.width,
                                            face_->glyph->bitmap.rows);
                     texture = new Texture(face_->glyph->bitmap.buffer,
-                                          dimensions, W_GREYSCALE);
+                                          dimensions, WickFormat::GREYSCALE);
                     textures_[character] = texture;
                 }
                 else
@@ -123,9 +124,12 @@ namespace wick
                     FT_Render_Glyph(face_->glyph, FT_RENDER_MODE_MONO);
                     FT_Bitmap target;
                     FT_Bitmap_New(&target);
-                    int error = FT_Bitmap_Convert(library_, &(face_->glyph->bitmap), &target, 1);
+                    int error = FT_Bitmap_Convert(library_,
+                                                  &(face_->glyph->bitmap),
+                                                  &target, 1);
                     Pair dimensions = Pair(target.width, target.rows);
-                    texture = new Texture(target.buffer, dimensions, W_MONO);
+                    texture = new Texture(target.buffer, dimensions,
+                                          WickFormat::MONO);
                     FT_Bitmap_Done(library_, &target);
                     Texture* pointer = textures_[character];
                     textures_[character] = texture;

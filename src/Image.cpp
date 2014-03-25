@@ -84,7 +84,8 @@ namespace wick
         if(bounds.getLowerLeft() < Pair() || bounds.getUpperRight() >
            texture_->getDimensions())
         {
-            throw(WickException(W_IMAGE, 13));
+            throw(ParameterException("bounds", "within texture dimensions",
+                                     "previous value (unchanged)"));
         }
         bounds_ = bounds;
         setDimensions(bounds_.getUpperRight() - bounds_.getLowerLeft());
