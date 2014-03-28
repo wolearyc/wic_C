@@ -26,7 +26,7 @@ var searchData=
   ['setscale',['setScale',['../classwick_1_1_scaleable.html#a0cf835184543686d57cec788a5ea368b',1,'wick::Scaleable']]],
   ['settexture',['setTexture',['../classwick_1_1_image.html#a2714e1fa35973ae4c97f9191aa74062c',1,'wick::Image']]],
   ['setupperright',['setUpperRight',['../classwick_1_1_bounds.html#add6900dd95a9a573a4d6bbc3ed0e769b',1,'wick::Bounds']]],
-  ['silver',['Silver',['../classwick_1_1_color.html#a2e214965270decb7eff8d25017bdf447',1,'wick::Color']]],
+  ['silver',['Silver',['../classwick_1_1_color.html#adea05232450fbe5264a15d106616d7dc',1,'wick::Color']]],
   ['state',['State',['../classwick_1_1_state.html#aea852ae1edfdbfba67ddfca101016792',1,'wick::State']]],
   ['state',['State',['../classwick_1_1_state.html',1,'wick']]],
   ['state_2eh',['State.h',['../_state_8h.html',1,'']]],

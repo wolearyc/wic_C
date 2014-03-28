@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -21,8 +21,8 @@
 namespace wick
 {
     Image::Image(Pair location, Texture* texture)
-          :Quad(location, texture->getDimensions(), Color::White),
-           texture_(texture), bounds_(Bounds(Pair(), texture->getDimensions()))
+    :Quad(location, texture->getDimensions(), Color::White), texture_(texture),
+    bounds_(Bounds(Pair(), texture->getDimensions()))
     {
     }
     Image::Image()
@@ -30,7 +30,7 @@ namespace wick
     {
     }
     Image::Image(const Image& other)
-          :Quad(other), texture_(other.texture_), bounds_(other.bounds_)
+    :Quad(other), texture_(other.texture_), bounds_(other.bounds_)
     {
     }
     void Image::paint(Game* game)
@@ -87,8 +87,11 @@ namespace wick
             throw(ParameterException("bounds", "within texture dimensions",
                                      "previous value (unchanged)"));
         }
-        bounds_ = bounds;
-        setDimensions(bounds_.getUpperRight() - bounds_.getLowerLeft());
+        else
+        {
+            bounds_ = bounds;
+            setDimensions(bounds_.getUpperRight() - bounds_.getLowerLeft());
+        }
     }
 }
 

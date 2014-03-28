@@ -3,5 +3,7 @@ var searchData=
   ['addandinitializestate',['addAndInitializeState',['../classwick_1_1_game.html#acdda38489a57d50b5371076a9e046370',1,'wick::Game']]],
   ['addstate',['addState',['../classwick_1_1_game.html#a9f56da8d33c127970414c6b0c2400cc7',1,'wick::Game']]],
   ['angle',['angle',['../classwick_1_1_pair.html#a711a21308badc0b956dc40e475183642',1,'wick::Pair']]],
-  ['aqua',['Aqua',['../classwick_1_1_color.html#ab4c97c84b6f05043237514f8152c3669',1,'wick::Color']]]
+  ['aqua',['Aqua',['../classwick_1_1_color.html#acac2aaa88e9c35f0b83f0d360d598b76',1,'wick::Color']]],
+  ['architectureexception',['ArchitectureException',['../classwick_1_1_architecture_exception.html#a5e5860951ee54cd9b019643fa72a70b4',1,'wick::ArchitectureException']]],
+  ['architectureexception',['ArchitectureException',['../classwick_1_1_architecture_exception.html',1,'wick']]]
 ];

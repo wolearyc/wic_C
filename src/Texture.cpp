@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -22,7 +22,7 @@ namespace wick
 {
     Texture::Texture(unsigned char* buffer, Pair dimensions,
                      enum WickFormat format, enum WickFilter filter)
-            :dimensions_(dimensions)
+    :dimensions_(dimensions)
     {
         if(dimensions.x_ < 0)
         {
@@ -34,30 +34,35 @@ namespace wick
             throw(ParameterException("dimensions (y value)", ">= 0", "0"));
             dimensions.y_ = 0;
         }
-        unsigned char* formattedBuffer = formatBuffer(buffer, format);
-        if(formattedBuffer == nullptr)
-        {
-            throw(WickException((string) "dimensions and/or format are not " +
-                                (string) "compatible with buffer, texture not" +
-                                (string) " constructed", false));
-        }
         else
         {
-            glGenTextures(1, &data_);
-            glBindTexture(GL_TEXTURE_2D, data_);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (int) filter);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (int) filter);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions_.x_ + 2,
-                         dimensions_.y_ + 2, 0, GL_RGBA, GL_UNSIGNED_BYTE,
-                         formattedBuffer);
-            delete[] formattedBuffer;
+            unsigned char* formattedBuffer = formatBuffer(buffer, format);
+            if(formattedBuffer == nullptr)
+            {
+                string message = "dimensions and/or fomat are not compatible " +
+                                 " with buffer, texture not constructed";
+                throw(WickException(message, false));
+            }
+            else
+            {
+                glGenTextures(1, &data_);
+                glBindTexture(GL_TEXTURE_2D, data_);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                                (int) filter);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+                                (int) filter);
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions_.x_ + 2,
+                             dimensions_.y_ + 2, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+                             formattedBuffer);
+                delete[] formattedBuffer;
+            }
         }
     }
     Texture::Texture(unsigned char* buffer, Pair dimensions,
                      enum WickFormat format)
-            :Texture(buffer, dimensions, format, WickFilter::NEAREST)
+    :Texture(buffer, dimensions, format, WickFilter::NEAREST)
     {
     }
     Texture::Texture(string filepath, enum WickFilter filter)
@@ -91,15 +96,15 @@ namespace wick
         }
     }
     Texture::Texture(string filepath)
-            :Texture(filepath, WickFilter::NEAREST)
+    :Texture(filepath, WickFilter::NEAREST)
     {
     }
     Texture::Texture()
-            :data_(0), dimensions_(Pair())
+    :data_(0), dimensions_(Pair())
     {
     }
     Texture::Texture(const Texture& other)
-            :data_(other.data_), dimensions_(other.dimensions_)
+    :data_(other.data_), dimensions_(other.dimensions_)
     {
     }
     Texture::~Texture()

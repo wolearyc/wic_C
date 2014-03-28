@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -38,8 +38,9 @@ namespace wick
 	const Color Color::Navy    = Color(0,0,128);
 	const Color Color::Fuchsia = Color(255,0,255);
 	const Color Color::Purple  = Color(128,0,128);
-	Color::Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha)
-          :red_(red), green_(green), blue_(blue), alpha_(alpha)
+	Color::Color(unsigned char red, unsigned char green, unsigned char blue,
+                 unsigned char alpha)
+    :red_(red), green_(green), blue_(blue), alpha_(alpha)
 	{
 		if(red_ > 255)
 		{
@@ -63,17 +64,17 @@ namespace wick
 		}
 	}
 	Color::Color(unsigned char red, unsigned char green, unsigned char blue)
-          :Color(red, green, blue, 255)
+    :Color(red, green, blue, 255)
 	{
 	}
 
 	Color::Color(const Color &other)
-          :red_(other.red_), green_(other.green_), blue_(other.blue_),
-           alpha_(other.alpha_)
+    :red_(other.red_), green_(other.green_), blue_(other.blue_),
+    alpha_(other.alpha_)
 	{
 	}
 	Color::Color()
-	      :Color(255,255,255)
+    :Color(255,255,255)
 	{
 	}
 	unsigned char Color::getRed()

@@ -24,7 +24,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">wick
    </div>
-   <div id="projectbrief">A simple, 2D game engine written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -95,30 +94,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Loads and stores a single 2D <a class="el" href="classwick_1_1_texture.html" title="Loads and stores a single 2D Texture from the file system or from a char array. ">Texture</a> from the file system or from a char array.  
+ <a href="classwick_1_1_texture.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_texture_8h_source.html">Texture.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afee32ddc51d8fffa96797164a38b59f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#afee32ddc51d8fffa96797164a38b59f9">Texture</a> (unsigned char *buffer, <a class="el" href="classwick_1_1_pair.html">Pair</a> dimensions, enum <a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a> format, enum <a class="el" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a> filter)</td></tr>
+<tr class="memdesc:afee32ddc51d8fffa96797164a38b59f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor taking a character array.  <a href="#afee32ddc51d8fffa96797164a38b59f9">More...</a><br/></td></tr>
 <tr class="separator:afee32ddc51d8fffa96797164a38b59f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a035c37d1ddc96b6fb5f4ab6ddf02a8b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#a035c37d1ddc96b6fb5f4ab6ddf02a8b9">Texture</a> (unsigned char *buffer, <a class="el" href="classwick_1_1_pair.html">Pair</a> dimensions, enum <a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a> format)</td></tr>
+<tr class="memdesc:a035c37d1ddc96b6fb5f4ab6ddf02a8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor taking a character array that uses nearest filtering.  <a href="#a035c37d1ddc96b6fb5f4ab6ddf02a8b9">More...</a><br/></td></tr>
 <tr class="separator:a035c37d1ddc96b6fb5f4ab6ddf02a8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d3e95d7ca9c57841227648c2696314d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#a1d3e95d7ca9c57841227648c2696314d">Texture</a> (string filePath, enum <a class="el" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a> filter)</td></tr>
-<tr class="separator:a1d3e95d7ca9c57841227648c2696314d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51407a541647065f329455212a11b789"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#a51407a541647065f329455212a11b789">Texture</a> (string filePath)</td></tr>
-<tr class="separator:a51407a541647065f329455212a11b789"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80a06379584073d22a44f3a20743c8ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#a80a06379584073d22a44f3a20743c8ed">Texture</a> (string filepath, enum <a class="el" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a> filter)</td></tr>
+<tr class="memdesc:a80a06379584073d22a44f3a20743c8ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor loading a texture from the file system.  <a href="#a80a06379584073d22a44f3a20743c8ed">More...</a><br/></td></tr>
+<tr class="separator:a80a06379584073d22a44f3a20743c8ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cb5571bdd037802ae42a7db5b450e3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#a1cb5571bdd037802ae42a7db5b450e3e">Texture</a> (string filepath)</td></tr>
+<tr class="memdesc:a1cb5571bdd037802ae42a7db5b450e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor loading a texture from the file system and using nearest filtering.  <a href="#a1cb5571bdd037802ae42a7db5b450e3e">More...</a><br/></td></tr>
+<tr class="separator:a1cb5571bdd037802ae42a7db5b450e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c070b287b8115c76f00936d5098ec90"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a> ()</td></tr>
+<tr class="memdesc:a3c070b287b8115c76f00936d5098ec90"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default constructor.  <a href="#a3c070b287b8115c76f00936d5098ec90">More...</a><br/></td></tr>
 <tr class="separator:a3c070b287b8115c76f00936d5098ec90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e5bafbf3fe26127c059dcd053abde50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#a5e5bafbf3fe26127c059dcd053abde50">Texture</a> (const <a class="el" href="classwick_1_1_texture.html">Texture</a> &amp;other)</td></tr>
+<tr class="memdesc:a5e5bafbf3fe26127c059dcd053abde50"><td class="mdescLeft">&#160;</td><td class="mdescRight">The copy constructor.  <a href="#a5e5bafbf3fe26127c059dcd053abde50">More...</a><br/></td></tr>
 <tr class="separator:a5e5bafbf3fe26127c059dcd053abde50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7abe02604d894b71eb83462832a2780"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#aa7abe02604d894b71eb83462832a2780">~Texture</a> ()</td></tr>
+<tr class="memdesc:aa7abe02604d894b71eb83462832a2780"><td class="mdescLeft">&#160;</td><td class="mdescRight">destructor  <a href="#aa7abe02604d894b71eb83462832a2780">More...</a><br/></td></tr>
 <tr class="separator:aa7abe02604d894b71eb83462832a2780"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8383c8b10e9ebd4f5cf76d19315f254f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwick_1_1_pair.html">Pair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#a8383c8b10e9ebd4f5cf76d19315f254f">getDimensions</a> ()</td></tr>
+<tr class="memdesc:a8383c8b10e9ebd4f5cf76d19315f254f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the pixel dimensions of the texture.  <a href="#a8383c8b10e9ebd4f5cf76d19315f254f">More...</a><br/></td></tr>
 <tr class="separator:a8383c8b10e9ebd4f5cf76d19315f254f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac63aafb47820f49b3ff108e69dc114e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html#ac63aafb47820f49b3ff108e69dc114e3">select</a> ()</td></tr>
+<tr class="memdesc:ac63aafb47820f49b3ff108e69dc114e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects the texture for painting.  <a href="#ac63aafb47820f49b3ff108e69dc114e3">More...</a><br/></td></tr>
 <tr class="separator:ac63aafb47820f49b3ff108e69dc114e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Loads and stores a single 2D <a class="el" href="classwick_1_1_texture.html" title="Loads and stores a single 2D Texture from the file system or from a char array. ">Texture</a> from the file system or from a char array. </p>
+<p>Textures are used by <a class="el" href="classwick_1_1_image.html" title="An Image to be painted to the screen. ">Image</a> objects. Textures should be initialized as pointers (using "new") and deallocated after use. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afee32ddc51d8fffa96797164a38b59f9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -155,6 +169,24 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>A constructor taking a character array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>the character array </td></tr>
+    <tr><td class="paramname">dimensions</td><td>the pixel dimensions of the array </td></tr>
+    <tr><td class="paramname">format</td><td>the format of the array </td></tr>
+    <tr><td class="paramname">filter</td><td>the texture filter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_parameter_exception.html" title="A non-fatal exception that is thrown when parameters are invalid. ">ParameterException</a></td><td>non-fatal exception if either dimension values are less than or equal to 0; texture construction is terminated </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception if dimensions and/or format is not compatible with the char buffer; texture construction is terminated </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a035c37d1ddc96b6fb5f4ab6ddf02a8b9"></a>
@@ -187,9 +219,26 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>A constructor taking a character array that uses nearest filtering. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>the character array </td></tr>
+    <tr><td class="paramname">dimensions</td><td>the pixel dimensions of the array </td></tr>
+    <tr><td class="paramname">format</td><td>the format of the array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_parameter_exception.html" title="A non-fatal exception that is thrown when parameters are invalid. ">ParameterException</a></td><td>non-fatal exception if either dimension values are less than or equal to 0; texture construction is terminated </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception if dimensions and/or format is not compatible with the char buffer; texture construction is terminated </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a class="anchor" id="a1d3e95d7ca9c57841227648c2696314d"></a>
+<a class="anchor" id="a80a06379584073d22a44f3a20743c8ed"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -197,7 +246,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">wick::Texture::Texture </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>filePath</em>, </td>
+          <td class="paramname"><em>filepath</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -213,9 +262,25 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>A constructor loading a texture from the file system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>the absolute or relative filepath to the image file </td></tr>
+    <tr><td class="paramname">filter</td><td>the texture filter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_file_exception.html" title="A non-fatal exception that is thrown when a file cannot be found or cannot be loaded. ">FileException</a></td><td>non-fatal exception if no file can be found at filepath or the file cannot be loaded by wick (invalid format or curruption); texture construction is terminated </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when there is an unknown error in loading the texture; texture construction is terminated </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a class="anchor" id="a51407a541647065f329455212a11b789"></a>
+<a class="anchor" id="a1cb5571bdd037802ae42a7db5b450e3e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -223,11 +288,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">wick::Texture::Texture </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>filePath</em></td><td>)</td>
+          <td class="paramname"><em>filepath</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>A constructor loading a texture from the file system and using nearest filtering. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>absolute or relative filepath to the image file throw <a class="el" href="classwick_1_1_file_exception.html" title="A non-fatal exception that is thrown when a file cannot be found or cannot be loaded. ">FileException</a> non-fatal exception if no file can be found at filepath or the file cannot be loaded by wick (invalid format or curruption); texture construction is terminated </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when there is an unknown error in loading the texture; texture construction is terminated </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -243,6 +322,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The default constructor. </p>
+<p>A <a class="el" href="classwick_1_1_texture.html" title="Loads and stores a single 2D Texture from the file system or from a char array. ">Texture</a> constructed using the default constructor is invalid </p>
 
 </div>
 </div>
@@ -260,6 +342,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The copy constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_texture.html" title="Loads and stores a single 2D Texture from the file system or from a char array. ">Texture</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="aa7abe02604d894b71eb83462832a2780"></a>
@@ -274,6 +364,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>destructor </p>
 
 </div>
 </div>
@@ -291,6 +383,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Retrieves the pixel dimensions of the texture. </p>
+<dl class="section return"><dt>Returns</dt><dd>the pixel dimensions of the texture </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="ac63aafb47820f49b3ff108e69dc114e3"></a>
@@ -306,15 +401,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Selects the texture for painting. </p>
+<p>This method is used behind the scenes, and does not need to be used by the average wick user. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="_texture_8h_source.html">Texture.h</a></li>
+<li>/Users/willis/Documents/Programming/C++/wick/include/<a class="el" href="_texture_8h_source.html">Texture.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 23 2014 16:27:35 for wick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 28 2014 16:19:30 for wick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

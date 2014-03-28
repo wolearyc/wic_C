@@ -27,9 +27,11 @@ Directories and Files
 * license.md -- License. 
 * readme.md -- Readme. 
 * Makefile -- Makefile. 
+* deps/ -- Dependency files.
+    * lib/ -- Dependency libraries.
+	* include/ -- Dependency header files.
 * doc/ -- Doxygen documentation.
 * include/ -- Header files.
-    * dependencies/ -- Dependency header files.
 * lib/ -- Dependency libraries.
 * src/ -- Source files.
 * bin/ -- Libraries [created on build].
@@ -41,7 +43,7 @@ Directories and Files
 	
 Building wick
 -------------
-Wick uses the standard "make" to build. It should build on any system with g++, make, and coreutils installed. 
+Wick uses the standard "make" to build. No configure script is included, mostly because the makefile is so small and easy to modify. It should build on any system with g++, make, and binutils installed. 
 From wick's root directory, the following make commands can be executed:
 
 * $ make -- Builds wick as a static library.

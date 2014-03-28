@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -25,7 +25,7 @@
 #include "WickException.h"
 namespace wick
 {
-    /// \brief An Image to be painted to the screen.
+    /// \brief An Image to be painted to the screen
     ///
     /// An Image is defined by a Texture, and can be moved, rotated, scaled, and 
     /// centered. In essense, an Image behaves just like Quad. Multiple Image 
@@ -33,39 +33,36 @@ namespace wick
     class Image : public Quad
     {
     public:
-        /// \brief A constructor.
+        /// \brief A constructor
         ///
-        /// Constructs an unrotated and unscaled Image.
+        /// Constructs an unrotated and unscaled Image with its center at the
+        /// lower-left corner
         /// \param location the screen location
         /// \param texture the texture
         Image(Pair location, Texture* texture);
-        /// \brief Default constructor.
+        /// \brief The default constructor
         ///
         /// This constructor does NOT construct a valid, paintable Image.
         Image();
-        /// \brief Copy constructor.
+        /// \brief The copy constructor.
         Image(const Image& other);
-        /// \brief Paints the Image to the screen.
-        ///
+        /// \brief Paints the Image to the screen
         /// \param game the game
         void paint(Game* game);
-        /// \brief Gets the current Texture.
-        ///
+        /// \brief Retrieves the current Texture
         /// \return the current Texture
         Texture* getTexture();
         /// \brief Changes the current Texture.
-        ///
         /// \param texture the desired new Texture
         void setTexture(Texture* texture);
         /// \brief Returns the current Texture bounds
-        ///
-        /// \return the rectangular bounds of the Texture currently in use
+        /// \return the rectangular bounds of the current Texture
         Bounds getBounds();
         /// \brief Modifies the current Texture bounds
-        ///
         /// \param bounds the desired rectanglar bounds of the Texture to use
-        /// \exception WickException non-fatal exception when the bounds 
-        ///            go beyond the Texture's dimensions
+        /// \exception ParameterException non-fatal exception when the bounds
+        ///            go beyond the Texture's dimensions; the Texture bounds
+        ///            are not changed
         void setBounds(Bounds bounds);
     protected:
         Texture* texture_;

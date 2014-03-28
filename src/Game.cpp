@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -22,9 +22,9 @@ namespace wick
 {
 	Game::Game(string title, Pair dimensions, unsigned short fps,
                bool resizeable, bool fullscreen, unsigned short samples)
-         :title_(title), dimensions_(dimensions), spf_(1.0 / fps),
-          resizeable_(resizeable), fullscreen_(fullscreen),
-          samples_(samples), selectedState_(nullptr)
+    :title_(title), dimensions_(dimensions), spf_(1.0 / fps),
+    resizeable_(resizeable), fullscreen_(fullscreen), samples_(samples),
+    selectedState_(nullptr)
 	{
         if(title_ == "")
         {
@@ -73,7 +73,7 @@ namespace wick
         glDisable(GL_DEPTH_TEST);
 	}
     Game::Game(string title, Pair dimensions)
-         :Game(title, dimensions, 60, false, false, 3)
+    :Game(title, dimensions, 60, false, false, 3)
     {
     }
 	Game::~Game()

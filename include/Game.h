@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -162,7 +162,7 @@ namespace wick
         W_MB_7 = 356,          ///< mouse button 7.
         W_MB_8 = 357           ///< mouse button 8.
     };
-    /// \brief Holds and orchestrates the entire Wick game
+    /// \brief Holds and orchestrates the entire game
     ///
     /// Game creates the OS window, manages States, and handles keyboard and 
 	/// mouse input. A Game object should be instantiated (using 'new') in the 
@@ -186,11 +186,11 @@ namespace wick
         ///        numbers of samples reduce aliasing, but too many samples can
         ///        interfere with rendering of small Text and Images. A value
         ///        of zero disables anti-aliasing.
-        /// \exception WickException non-fatal exception when title is an empty
-        ///            string. The title is set to "Wick Game"
-        /// \exception WickException non-fatal exception when either of the
+        /// \exception ParameterException non-fatal exception when title is an
+        ///            empty string;  the title is set to "Wick Game"
+        /// \exception ParameterException non-fatal exception when either of the
         ///            values in the frame dimensions is less than or equal to 
-		///			   0. The frame dimensions are set to 500X500 pixels. 
+		///			   0; the invalid dimension is set to 500
         Game(string title, Pair dimensions, unsigned short fps,
              bool resizeable, bool fullscreen, unsigned short samples);
 	    /// \brief A constructor for a Window using 3 samples for antialiasing
@@ -201,11 +201,11 @@ namespace wick
 		///		   window (ignored if the game is fullscreen) 
         /// \param fullscreen designates whether or not the game is run
         ///        fullscreen
-        /// \exception WickException non-fatal exception when title is an empty
-        ///            string. The title is set to "Wick Game"
-        /// \exception WickException non-fatal exception when either of the
+        /// \exception ParameterException non-fatal exception when title is an
+        ///            empty string; the title is set to "Wick Game"
+        /// \exception ParameterException non-fatal exception when either of the
         ///            values in the frame dimensions is less than or equal to 
-		///			   0. The frame dimensions are set to 500X500 pixels. 
+		///			   0; the invalid dimension is set to 500
         Game(string title, Pair dimensions);
         /// \brief The destructor
         /// The destructor deallocates all of the States stored in Game as well.
@@ -220,19 +220,18 @@ namespace wick
 		/// \return the frame dimensions of the OS window in pixels.
 		Pair getDimensions();
 		/// \brief Retrieves the display resolution
-		/// \return the display resolution in pixels per inch (usually around 
-		///			Pair(72,72) or Pair(92,92))
+		/// \return the display resolution in pixels per inch
 		Pair getDeviceResolution();
 		/// \brief Adds a State
 		/// \param state the State to add
 		/// \param id the desired ID to be assigned to the State
-		/// \exception WickException non-fatal exception when the ID is already 
-		///			   in use. The State is not added.
+		/// \exception WickException non-fatal exception when the ID is already
+		///			   in use; the State is not added.
 		void addState(State* state, unsigned short id);
 		/// \brief Initializes a state that has already been added
-		/// \param id the ID assigned to the State that is to be initialized.
-		/// \exception WickException non-fatal exception when the ID is not
-		///            assigned to any state
+		/// \param id the ID assigned to the State that is to be initialized
+		/// \exception WickException non-fatal exception when no state with that
+        ///            ID exists; nothing is initialized
 		void initializeState(unsigned short id);
 		/// \brief Adds and initializes a State
 		/// \param state the State object to add and initialize
@@ -241,14 +240,15 @@ namespace wick
 		///            use.
 		/// \exception WickException non-fatal exception when the ID is not
 		///            assigned to any State, as a result of the failed
-		///            addState operation.
+		///            addState operation; no state is added or initialized
 		void addAndInitializeState(State* state, unsigned short id);
 		/// \brief Deallocates a State
 		/// \param id the ID assigned to the State that is to be deallocated.
 		/// \exception WickException non-fatal exception when the ID is not
 		///            assigned to any State
 		/// \exception WickException non-fatal exception when the State to be
-		///            deallocated is currently selected
+		///            deallocated is currently selected; no State is
+        ///            deallocated
 		void deallocateState(unsigned short id);
 		/// \brief Removes a State.
 		///
@@ -256,10 +256,10 @@ namespace wick
 		/// leak, unless the pointer is accessible elsewhere and can be
 		/// deallocated.
 		/// \param id the ID assigned to the State that is to be removed
-		/// \exception WickException non-fatal exception when the ID is not
-		///            assigned to any State
+		/// \exception WickException non-fatal exception when no state with the
+        ///            ID exists; no state is removed
 		/// \exception WickException non-fatal exception when the State to be
-		///            removed is currently selected
+		///            removed is currently selected; no state is removed
 		void removeState(unsigned short id);
 		/// \brief Removes and deallocates a State
 		///
@@ -267,24 +267,23 @@ namespace wick
 		/// accidental memory leaks.
 		/// \param id the ID assigned to the State that is to be deallocated
 		///        and removed
-		/// \exception WickException non-fatal exception when the ID is not
-		///            assigned to any State
+		/// \exception WickException non-fatal exception when no state with the
+        ///            ID exists; no state is deallocated or removed
 		/// \exception WickException non-fatal exception when the State to be
-		///            deallocated and removed is currently being painted
+		///            deallocated and removed is currently selected; no state
+        ///            is deallocated or removed
 		void deallocateAndRemoveState(unsigned short id);
 		/// \brief Changes the State that is being painted
 		///
 		/// \param id the ID assigned to the State that is to be painted.
 		/// \exception WickException non-fatal exception when the ID is not
-		///            assigned to any State
+		///            assigned to any State; the selected state does not change
 		void selectState(unsigned short id);
 		/// \brief Retrieves a State
 		///
 		/// \param id the ID assigned to the State to retrieve
-		/// \return a pointer to the retrieved State or 0 if an exception is 
-		///		    thrown
-		/// \exception WickException non-fatal exception when ID is not
-		///            assigned to any State
+		/// \return a pointer to the retrieved State or nullptr if no state with
+        ///         the ID exists
 		State* findState(unsigned short id);
 		/// \brief Checks whether a keyboard key or mouse button is depressed
 		/// \param key the key value

@@ -8,16 +8,19 @@ var searchData=
   ['getcenter',['getCenter',['../classwick_1_1_paintable.html#abbb83ed4e995d047962d881d78eed946',1,'wick::Paintable']]],
   ['getcolor',['getColor',['../classwick_1_1_polygon.html#a0acf22c4330aaf33d2bb43df8badb2fd',1,'wick::Polygon']]],
   ['getcolors',['getColors',['../classwick_1_1_text.html#a9bb4a3bbe275fad56c518b2e3d35d9f3',1,'wick::Text']]],
+  ['getcorrectedvalue',['getCorrectedValue',['../classwick_1_1_parameter_exception.html#aed8345db1099531b73ae419d51686baa',1,'wick::ParameterException']]],
   ['getcursorlocation',['getCursorLocation',['../classwick_1_1_game.html#ad9502ec48aaca622e5711b341ef68467',1,'wick::Game']]],
   ['getdeviceresolution',['getDeviceResolution',['../classwick_1_1_game.html#a4153a75e4e2f202165cd7cf3d2b7a8b0',1,'wick::Game']]],
   ['getdimensions',['getDimensions',['../classwick_1_1_game.html#a2aae7e86c50fbcb93f4b1c197908c8ee',1,'wick::Game::getDimensions()'],['../classwick_1_1_quad.html#ad3139790997925c49d64f3edf2a9e885',1,'wick::Quad::getDimensions()'],['../classwick_1_1_texture.html#a8383c8b10e9ebd4f5cf76d19315f254f',1,'wick::Texture::getDimensions()']]],
+  ['getfilepath',['getFilepath',['../classwick_1_1_file_exception.html#abd4e94b880295a492127b71700518a8e',1,'wick::FileException']]],
   ['getgeometriccenter',['getGeometricCenter',['../classwick_1_1_paintable.html#a7b29e78e032b1c90a64bf7fe97803f71',1,'wick::Paintable']]],
   ['getgreen',['getGreen',['../classwick_1_1_color.html#af0a5ef4448c8931f38343027c37e6cf7',1,'wick::Color']]],
   ['getimages',['getImages',['../classwick_1_1_font.html#a1165ecdde108ae0e1fa59fea60ad2de4',1,'wick::Font']]],
   ['getinput',['getInput',['../classwick_1_1_game.html#a6ac09c6d0539f06df74ed06929e32db3',1,'wick::Game']]],
   ['getlocation',['getLocation',['../classwick_1_1_paintable.html#a2dbeac7ddf324013676363f66d44c702',1,'wick::Paintable']]],
   ['getlowerleft',['getLowerLeft',['../classwick_1_1_bounds.html#abb4e6d26e433b2759886bb2fd4d0b679',1,'wick::Bounds']]],
-  ['getmessage',['getMessage',['../classwick_1_1_text.html#ae6d700855b6d99cb1c23e1ad5afeb831',1,'wick::Text']]],
+  ['getmessage',['getMessage',['../classwick_1_1_text.html#ae6d700855b6d99cb1c23e1ad5afeb831',1,'wick::Text::getMessage()'],['../classwick_1_1_wick_exception.html#a8647f3d611409159c443f2bb94ad45e3',1,'wick::WickException::getMessage()']]],
+  ['getname',['getName',['../classwick_1_1_parameter_exception.html#a838fcb02ed283c4abf18193b7f7545df',1,'wick::ParameterException']]],
   ['getpoint',['getPoint',['../classwick_1_1_font.html#a6e680a4b790d1f177bac441a3a9901d5',1,'wick::Font']]],
   ['getred',['getRed',['../classwick_1_1_color.html#a32abff5b0bedf0f2c5534b13f8952473',1,'wick::Color']]],
   ['getrotation',['getRotation',['../classwick_1_1_rotateable.html#a17640d16cc506f967482b778f125109e',1,'wick::Rotateable']]],
@@ -25,5 +28,6 @@ var searchData=
   ['getscrolloffset',['getScrollOffset',['../classwick_1_1_game.html#afb3bffb734a169d4f1b63b9e9530eddc',1,'wick::Game']]],
   ['gettexture',['getTexture',['../classwick_1_1_image.html#a66a99fd353e5b445891e721544551e03',1,'wick::Image']]],
   ['gettime',['getTime',['../classwick_1_1_game.html#af0757bd7cb8e3d186c90e3dae8a2552d',1,'wick::Game']]],
-  ['getupperright',['getUpperRight',['../classwick_1_1_bounds.html#acf1e17ed81ff7efd3289a2434f514daf',1,'wick::Bounds']]]
+  ['getupperright',['getUpperRight',['../classwick_1_1_bounds.html#acf1e17ed81ff7efd3289a2434f514daf',1,'wick::Bounds']]],
+  ['getvalidvalues',['getValidValues',['../classwick_1_1_parameter_exception.html#ab5ec4dc213c8d769e8628e1932620812',1,'wick::ParameterException']]]
 ];

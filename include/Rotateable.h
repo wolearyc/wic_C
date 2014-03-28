@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -23,30 +23,30 @@
 namespace wick
 {
     /// \brief An architectural superclass that should be inherited by any
-    ///        class that is "rotateable".
+    ///        class that is "rotateable"
     /// 
     /// Any class that inherits from Rotateable has a rotation. The object is
     /// rotated around a center, defined in Paintable.
     class Rotateable
     {
     public:
-        /// \brief A constructor.
-        ///
-        /// \param rotation the rotation in radians
+        /// \brief A constructor
+        /// \param rotation the rotation in radians relative to the x-axis
         Rotateable(double rotation);
-        /// \brief Default constructor.
+        /// \brief The default constructor
         ///
-        /// Constructs an object with 0 radians of rotation.
+        /// Constructs an object with 0 radians of rotation relative to the
+        /// x-axis.
         Rotateable();
-        /// \brief Copy constructor.
+        /// \brief The copy constructor
+        /// \param another Rotabeable object
         Rotateable(const Rotateable& other);
-        /// \brief Gets the rotation.
-        ///
-        /// \return the rotation in radians
+        /// \brief Retrieves the rotation
+        /// \return the rotation in radians relative to the x-axis
         double getRotation();
-        /// \brief Modifies the rotation.
-        ///
-        /// \param rotation the new rotation in radians
+        /// \brief Modifies the rotation
+        /// \param rotation the desired rotation in radians relative to the
+        //         x-axis
         void setRotation(double rotation);
         /// \brief Rotates the object
         /// 

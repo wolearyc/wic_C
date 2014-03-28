@@ -1,6 +1,6 @@
 var searchData=
 [
   ['geometriccenter_5f',['geometricCenter_',['../classwick_1_1_paintable.html#ad92822ba032536c6172c317759e81faa',1,'wick::Paintable']]],
-  ['gray',['Gray',['../classwick_1_1_color.html#a4a72f5830d10f39a5ffbf7bd323c120a',1,'wick::Color']]],
-  ['green',['Green',['../classwick_1_1_color.html#a5be4a193dddb170116681eedc1f9b067',1,'wick::Color']]]
+  ['gray',['Gray',['../classwick_1_1_color.html#ae05d33b79397934acd67155a27e1293c',1,'wick::Color']]],
+  ['green',['Green',['../classwick_1_1_color.html#ae017c66665d08600e2b68c255c6096da',1,'wick::Color']]]
 ];

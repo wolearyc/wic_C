@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -22,21 +22,21 @@ namespace wick
 {
     Font::Font(string filepath, unsigned short point, Game* game,
                bool antialias)
-         :point_(point), antialias_(antialias)
+    :point_(point), antialias_(antialias)
     {
         FT_Init_FreeType(&library_);
         int error = FT_New_Face(library_, filepath.c_str(), 0, &face_);
         if(error != 0)
         {
             error = FT_New_Face(library_,
-                                (string(FONT_PATH_1) + filepath).c_str(), 0,
-                                &face_);
+                                (string("/Library/Fonts/") + filepath).c_str(),
+                                0, &face_);
         }
         if(error != 0)
         {
             error = FT_New_Face(library_,
-                                (string(FONT_PATH_2) + filepath).c_str(), 0,
-                                &face_);
+                                (string("/System/Library/Fonts/") +
+                                filepath).c_str(), 0, &face_);
         }
         if(error != 0)
             throw(FileException(filepath));
@@ -47,18 +47,18 @@ namespace wick
             textures_[i] = nullptr;
     }
     Font::Font(string filepath, unsigned short point, Game* game)
-         :Font(filepath, point, game, true)
+    :Font(filepath, point, game, true)
     {
     }
     Font::Font()
-         :library_(nullptr), face_(nullptr), point_(12), antialias_(true)
+    :library_(nullptr), face_(nullptr), point_(12), antialias_(true)
     {
         for(unsigned int i = 0; i < 256; i++)
             textures_[i] = nullptr;
     }
     Font::Font(const Font& other)
-         :library_(other.library_), face_(other.face_), point_(other.point_),
-          antialias_(other.antialias_)
+    :library_(other.library_), face_(other.face_), point_(other.point_),
+    antialias_(other.antialias_)
     {
         for(unsigned int i = 0; i < 256; i++)
             textures_[i] = nullptr;

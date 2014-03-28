@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -26,31 +26,29 @@ namespace wick
     ///        class that can be scaled.
     ///
     /// Any class that inherits from Scaleable can be scaled. The object is
-    /// rotated around a center, which is defined in Paintable. A scale value
-    /// is a multiplier of the object's side.
+    /// scaled around a center, which is defined in Paintable. A scale value of
+    /// (1,1) is original size, (2,2) is twice the size, (0.5,0.5) is half the
+    /// size, etc.
     class Scaleable
     {
     public:
-        /// \brief A constructor.
-        ///
+        /// \brief A constructor
         /// \param scale the scale
         Scaleable(Pair scale);
-        /// \brief Default constructor.
+        /// \brief The default constructor
         ///
         /// This constructor constructs an unscaled object.
         Scaleable();
-        /// \brief Copy constructor.
+        /// \brief The copy constructor
+        /// \param other another Scaleable object
         Scaleable(const Scaleable& other);
-        /// \brief Gets the scale.
-        ///
+        /// \brief Retrieves the scale
         /// \return the scale
         Pair getScale();
-        /// \brief Modifies the scale.
-        ///
+        /// \brief Modifies the scale
         /// \param scale the desired scale
         void setScale(Pair scale);
-        /// \brief Scales the object.
-        ///
+        /// \brief Scales the object
         /// \param scale the value to add to the current scale
         void scale(Pair scale);
     protected:

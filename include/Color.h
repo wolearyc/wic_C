@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -57,12 +57,12 @@ namespace wick
 		/// \param green the green component (0-255)
 		/// \param blue the blue component (0-255)
 		/// \param alpha the alpha component (0-255)
-		/// \exception WickException non-fatal exception when the value(s) of 
-		///			   red, green, blue, and/or alpha exceeds 255. all 
-		///			   components that exceed 255 are set to 255. 
+		/// \exception ParameterException non-fatal exception when the value(s)
+		///			   of red, green, blue, and/or alpha exceeds 255; all
+		///			   components that exceed 255 are set to 255
 		Color(unsigned char red, unsigned char green, unsigned char blue, 
 			  unsigned char alpha);
-		/// \brief A constructor defining an RGBA (red, green, blue, alpha) 
+		/// \brief A constructor defining an RGB (red, green, blue)
 	    ///		   color
 		///
 		/// All component values must be in the range 0 (no expression) to 255 
@@ -71,16 +71,16 @@ namespace wick
 		/// \param red the red component (0-255)
 		/// \param green the green component (0-255)
 		/// \param blue the blue component (0-255)
-		/// \exception WickException non-fatal exception when the value(s) of 
-	    ///			   red, green, blue, and/or alpha exceeds 255. All 
-		///			   components that exceed 255 are set to 255. 
+		/// \exception ParameterException non-fatal exception when the value(s)
+	    ///			   of red, green, blue, and/or alpha exceeds 255; all
+		///			   components that exceed 255 are set to 255
 		
 		Color(unsigned char red, unsigned char green, unsigned char blue);
-		/// \brief The default constructor.
+		/// \brief The default constructor
 		///
-		/// The default constructor constructs a color representing white. 
+		/// The default constructor contructs the color white.
 		Color();
-		/// \brief The copy constructor.
+		/// \brief The copy constructor
         Color(const Color& other);
         /// \brief Retrieves the red component
         /// \return the red component
@@ -90,8 +90,8 @@ namespace wick
 		/// The desired red component should be in the range 0 (no expression) 
 		/// to 255 (complete expression).      
 		/// \param red the desired red component (0-255)
-		/// \exception WickException non-fatal exception if the value of red 
-		///			   exceeds 255. The red component is set to 255.
+		/// \exception ParameterException non-fatal exception if the value of
+		///			   red exceeds 255; the red component is set to 255.
 		void setRed(unsigned char red);
 		/// \brief Retrieves the green component
         /// \return the green component
@@ -101,8 +101,8 @@ namespace wick
 		/// The desired green component should be in the range 0 (no 
 		/// expression) to 255 (complete expression).      
 		/// \param green the desired green component (0-255)
-		/// \exception WickException non-fatal exception if the value of green 
-		///			   exceeds 255. The green component is set to 255.
+		/// \exception ParameterException non-fatal exception if the value of
+		///			   green exceeds 255; the green component is set to 255.
 		void setGreen(unsigned char green);
 		/// \brief Retrieves the blue component
         /// \return the blue component
@@ -112,8 +112,8 @@ namespace wick
 		/// The desired blue component should be in the range 0 (no expression) 
 		/// to 255 (complete expression).      
 		/// \param blue the desired blue component (0-255)
-		/// \exception WickException non-fatal exception if the value of blue 
-		///			   exceeds 255. The blue component is set to 255.
+		/// \exception ParameterException non-fatal exception if the value of
+        ///            blue exceeds 255; the blue component is set to 255.
 		void setBlue(unsigned char blue);
 		/// \brief Retrieves the alpha component
         /// \return the alpha component
@@ -123,8 +123,8 @@ namespace wick
 		/// The desired alpha component should be in the range 0 (no 
 		/// expression) to 255 (complete expression).      
 		/// \param alpha the desired alpha component (0-255)
-		/// \exception WickException non-fatal exception if the value of alpha 
-		///			   exceeds 255. The alpha component is set to 255.
+		/// \exception ParameterException non-fatal exception if the value of
+		///			   alpha exceeds 255; the alpha component is set to 255.
 		void setAlpha(unsigned char alpha);
 		/// \brief Selects the color as the current painting color
 		/// This method is used behind the scenes and is no interest to the 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['white',['White',['../classwick_1_1_color.html#a8e2a0bb3b4ed6a98a6ce1f0598d92dfd',1,'wick::Color']]]
+  ['white',['White',['../classwick_1_1_color.html#af72af2bae2847ceee1d6ad17ea2180a0',1,'wick::Color']]]
 ];

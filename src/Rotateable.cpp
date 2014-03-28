@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -21,15 +21,15 @@
 namespace wick
 {
     Rotateable::Rotateable(double rotation)
-               :rotation_(rotation)
+    :rotation_(rotation)
     {
     }
     Rotateable::Rotateable()
-               :Rotateable(0.0)
+    :Rotateable(0.0)
     {
     }
     Rotateable::Rotateable(const Rotateable& other)
-               :Rotateable(other.rotation_)
+    :Rotateable(other.rotation_)
     {
     }
     double Rotateable::getRotation()

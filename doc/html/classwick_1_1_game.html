@@ -24,7 +24,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">wick
    </div>
-   <div id="projectbrief">A simple, 2D game engine written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -95,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Holds and orchestrates the entire Wick game.  
+<p>Holds and orchestrates the entire game.  
  <a href="classwick_1_1_game.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_game_8h_source.html">Game.h</a>&gt;</code></p>
@@ -109,7 +108,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad1a1ed9e37cab2958a8fdf4f13f36091"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor for a Window using 3 samples for antialiasing.  <a href="#ad1a1ed9e37cab2958a8fdf4f13f36091">More...</a><br/></td></tr>
 <tr class="separator:ad1a1ed9e37cab2958a8fdf4f13f36091"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b84e5e81d933ec8133c71d765757b4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_game.html#a5b84e5e81d933ec8133c71d765757b4f">~Game</a> ()</td></tr>
-<tr class="memdesc:a5b84e5e81d933ec8133c71d765757b4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor The destructor deallocates all of the States stored in <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire Wick game. ">Game</a> as well.  <a href="#a5b84e5e81d933ec8133c71d765757b4f">More...</a><br/></td></tr>
+<tr class="memdesc:a5b84e5e81d933ec8133c71d765757b4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor The destructor deallocates all of the States stored in <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire game. ">Game</a> as well.  <a href="#a5b84e5e81d933ec8133c71d765757b4f">More...</a><br/></td></tr>
 <tr class="separator:a5b84e5e81d933ec8133c71d765757b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b8e75d6bf2eb71bd4fd55322fb85a41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_game.html#a3b8e75d6bf2eb71bd4fd55322fb85a41">execute</a> ()</td></tr>
 <tr class="memdesc:a3b8e75d6bf2eb71bd4fd55322fb85a41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the game The program exits this function once the user closes the OS window or <a class="el" href="classwick_1_1_game.html#adee15fa99b724ff5567aadba08a22d59" title="Stops the game and closes the OS window. ">stop()</a> is called.  <a href="#a3b8e75d6bf2eb71bd4fd55322fb85a41">More...</a><br/></td></tr>
@@ -167,8 +166,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af0757bd7cb8e3d186c90e3dae8a2552d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Holds and orchestrates the entire Wick game. </p>
-<p><a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire Wick game. ">Game</a> creates the OS window, manages States, and handles keyboard and mouse input. A <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire Wick game. ">Game</a> object should be instantiated (using 'new') in the program's main method. Then a <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> should be added and initialized within the <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire Wick game. ">Game</a> object. Then the <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire Wick game. ">Game</a> object should be executed. There should only be one <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire Wick game. ">Game</a> object instantiated at any time. <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire Wick game. ">Game</a> should always be instantiated using 'new', and must be deallocated using the destructor before the program terminates. </p>
+<div class="textblock"><p>Holds and orchestrates the entire game. </p>
+<p><a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire game. ">Game</a> creates the OS window, manages States, and handles keyboard and mouse input. A <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire game. ">Game</a> object should be instantiated (using 'new') in the program's main method. Then a <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> should be added and initialized within the <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire game. ">Game</a> object. Then the <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire game. ">Game</a> object should be executed. There should only be one <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire game. ">Game</a> object instantiated at any time. <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire game. ">Game</a> should always be instantiated using 'new', and must be deallocated using the destructor before the program terminates. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afcf5f63efef3fd9a94d281c0673ed574"></a>
 <div class="memitem">
@@ -226,14 +225,14 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">fps</td><td>the target frames per second </td></tr>
     <tr><td class="paramname">resizeable</td><td>designates whether the user can resize the OS window (ignored if the game is fullscreen) </td></tr>
     <tr><td class="paramname">fullscreen</td><td>designates whether or not the game is run fullscreen </td></tr>
-    <tr><td class="paramname">samples</td><td>the number the samples used in anti-aliasing. Larger numbers of samples reduce aliasing, but too many samples can interfere with rendering of small <a class="el" href="classwick_1_1_text.html">Text</a> and Images. A value of zero disables anti-aliasing. </td></tr>
+    <tr><td class="paramname">samples</td><td>the number the samples used in anti-aliasing. Larger numbers of samples reduce aliasing, but too many samples can interfere with rendering of small <a class="el" href="classwick_1_1_text.html" title="Text stores a string that can be painted to the screen. ">Text</a> and Images. A value of zero disables anti-aliasing. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when title is an empty string. The title is set to "Wick Game" </td></tr>
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when either of the values in the frame dimensions is less than or equal to 0. The frame dimensions are set to 500X500 pixels. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_parameter_exception.html" title="A non-fatal exception that is thrown when parameters are invalid. ">ParameterException</a></td><td>non-fatal exception when title is an empty string; the title is set to "Wick Game" </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_parameter_exception.html" title="A non-fatal exception that is thrown when parameters are invalid. ">ParameterException</a></td><td>non-fatal exception when either of the values in the frame dimensions is less than or equal to 0; the invalid dimension is set to 500 </td></tr>
   </table>
   </dd>
 </dl>
@@ -277,8 +276,8 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when title is an empty string. The title is set to "Wick Game" </td></tr>
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when either of the values in the frame dimensions is less than or equal to 0. The frame dimensions are set to 500X500 pixels. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_parameter_exception.html" title="A non-fatal exception that is thrown when parameters are invalid. ">ParameterException</a></td><td>non-fatal exception when title is an empty string; the title is set to "Wick Game" </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_parameter_exception.html" title="A non-fatal exception that is thrown when parameters are invalid. ">ParameterException</a></td><td>non-fatal exception when either of the values in the frame dimensions is less than or equal to 0; the invalid dimension is set to 500 </td></tr>
   </table>
   </dd>
 </dl>
@@ -298,7 +297,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The destructor The destructor deallocates all of the States stored in <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire Wick game. ">Game</a> as well. </p>
+<p>The destructor The destructor deallocates all of the States stored in <a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire game. ">Game</a> as well. </p>
 
 </div>
 </div>
@@ -337,8 +336,8 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when ID is already in use. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when the ID is not assigned to any <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a>, as a result of the failed addState operation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when ID is already in use. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when the ID is not assigned to any <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a>, as a result of the failed addState operation; no state is added or initialized </td></tr>
   </table>
   </dd>
 </dl>
@@ -379,7 +378,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when the ID is already in use. The <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> is not added. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when the ID is already in use; the <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> is not added. </td></tr>
   </table>
   </dd>
 </dl>
@@ -410,8 +409,8 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when the ID is not assigned to any <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> </td></tr>
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when the <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> to be deallocated and removed is currently being painted </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when no state with the ID exists; no state is deallocated or removed </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when the <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> to be deallocated and removed is currently selected; no state is deallocated or removed </td></tr>
   </table>
   </dd>
 </dl>
@@ -441,8 +440,8 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when the ID is not assigned to any <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> </td></tr>
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when the <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> to be deallocated is currently selected </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when the ID is not assigned to any <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when the <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> to be deallocated is currently selected; no <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> is deallocated </td></tr>
   </table>
   </dd>
 </dl>
@@ -487,13 +486,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the retrieved <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> or 0 if an exception is thrown </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when ID is not assigned to any <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the retrieved <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> or nullptr if no state with the ID exists </dd></dl>
 
 </div>
 </div>
@@ -529,7 +522,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Retrieves the display resolution. </p>
-<dl class="section return"><dt>Returns</dt><dd>the display resolution in pixels per inch (usually around Pair(72,72) or Pair(92,92)) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the display resolution in pixels per inch </dd></dl>
 
 </div>
 </div>
@@ -622,13 +615,13 @@ Public Member Functions</h2></td></tr>
 <p>Initializes a state that has already been added. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>the ID assigned to the <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> that is to be initialized. </td></tr>
+    <tr><td class="paramname">id</td><td>the ID assigned to the <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> that is to be initialized </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when the ID is not assigned to any state </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when no state with that ID exists; nothing is initialized </td></tr>
   </table>
   </dd>
 </dl>
@@ -709,8 +702,8 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when the ID is not assigned to any <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> </td></tr>
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when the <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> to be removed is currently selected </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when no state with the ID exists; no state is removed </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when the <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> to be removed is currently selected; no state is removed </td></tr>
   </table>
   </dd>
 </dl>
@@ -740,7 +733,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a></td><td>non-fatal exception when the ID is not assigned to any <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> </td></tr>
+    <tr><td class="paramname"><a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a></td><td>non-fatal exception when the ID is not assigned to any <a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a>; the selected state does not change </td></tr>
   </table>
   </dd>
 </dl>
@@ -765,12 +758,12 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="_game_8h_source.html">Game.h</a></li>
+<li>/Users/willis/Documents/Programming/C++/wick/include/<a class="el" href="_game_8h_source.html">Game.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 23 2014 16:27:35 for wick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 28 2014 16:19:30 for wick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

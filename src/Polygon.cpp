@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -21,8 +21,8 @@
 namespace wick
 {
     Polygon::Polygon(Pair location, vector<Pair> baseVertices, Color color)
-            :Paintable(location), Rotateable(), Scaleable(),
-             baseVertices_(baseVertices), color_(color)
+    :Paintable(location), Rotateable(), Scaleable(),
+    baseVertices_(baseVertices), color_(color)
     {
         unsigned int length = baseVertices.size();
         for(unsigned int i = 0; i < length; i++)
@@ -32,17 +32,17 @@ namespace wick
     }
     Polygon::Polygon(Pair location, initializer_list<Pair> baseVertices,
                      Color color)
-            :Polygon(location, (vector<Pair>) baseVertices, color)
+    :Polygon(location, (vector<Pair>) baseVertices, color)
     {
     }
     Polygon::Polygon()
-            :Paintable(), Rotateable(), Scaleable(), color_(Color())
+    :Paintable(), Rotateable(), Scaleable(), color_(Color())
     {
     }
     Polygon::Polygon(const Polygon& other)
-            :Paintable(other), Rotateable(other), Scaleable(other),
-             color_(other.color_), baseVertices_(other.baseVertices_),
-             vertices_(other.vertices_)
+    :Paintable(other), Rotateable(other), Scaleable(other),
+    color_(other.color_), baseVertices_(other.baseVertices_),
+    vertices_(other.vertices_)
     {
     }
     void Polygon::paint(Game* game)

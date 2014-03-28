@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -24,7 +24,7 @@ namespace wick
     class Game;
     /// \brief A game state that can be initialized, updated, and painted.
     ///
-    /// State objects are the building blocks of Wick. A State represents and
+    /// State objects are the building blocks of wick. A State represents and
     /// executes a single "game state". A State could represent the main menu
     /// or a single level of a game. The programmer should write their own
     /// classes that inherit from State. These programmer-defined States 
@@ -33,26 +33,27 @@ namespace wick
     class State
     {
     public:
-        /// \brief Default constructor.
+        /// \brief The default constructor
         State();
-        /// \brief Destructor.
+        /// \brief The destructor
         ///
-        /// The destructor should contain code to deallocate objects.
+        /// The destructor should contain code to deallocate all pointers.
         virtual ~State();
-        /// \brief Initializes the State.
+        /// \brief Initializes the State
         ///
         /// This method is called once before the State is run. Typically,
         /// game objects are constructed here.
         virtual void initialize(Game* game) = 0;
-        /// \brief Updates the game.
+        /// \brief Updates the game
         ///
-        /// This method called once before paint is called every time. 
-        /// Typically, user input is polled here.
+        /// Every time before paint is called, this method is called once.
+        /// Typically, user input is polled here and object locations,
+        /// rotations, scales, etc. are changed accordingly.
         virtual void update(Game* game) = 0;
-        /// \brief Paints the state to the screen.
+        /// \brief Paints the State to the screen
         ///
-        /// This method is called once for every frame. Typically, 
-        /// Paintable objects are painted here.
+        /// This method is called once for every frame, so usually about
+        /// 60 times per second. Typically, Paintable objects are painted here.
         virtual void paint(Game* game) = 0;
     };
 }

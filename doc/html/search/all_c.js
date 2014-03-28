@@ -1,7 +1,7 @@
 var searchData=
 [
   ['offsets_5f',['offsets_',['../classwick_1_1_text.html#a579fed24999d56aace4ba2fef00ef78e',1,'wick::Text']]],
-  ['olive',['Olive',['../classwick_1_1_color.html#ad0a5192542a14cc2f19d652ed79f95aa',1,'wick::Color']]],
+  ['olive',['Olive',['../classwick_1_1_color.html#af06ec69ae750573f7f7206273e59ef7c',1,'wick::Color']]],
   ['operator_21_3d',['operator!=',['../classwick_1_1_pair.html#a1599bfe43a3b874534a3d0e7dcb01688',1,'wick::Pair']]],
   ['operator_2a',['operator*',['../classwick_1_1_pair.html#a88acb0d0fff14cdc34616b886a69f0ab',1,'wick::Pair::operator*(const Pair &amp;other) const '],['../classwick_1_1_pair.html#ac13fcca1569cb0c045d9bcb4bfe5afe8',1,'wick::Pair::operator*(const double i) const ']]],
   ['operator_2a_3d',['operator*=',['../classwick_1_1_pair.html#a19b6818ce604dea07194fe2b091dcf3e',1,'wick::Pair::operator*=(const Pair &amp;other)'],['../classwick_1_1_pair.html#ac3f11686b3e97c45b0250c2148c61ba2',1,'wick::Pair::operator*=(const double i)']]],
@@ -16,5 +16,5 @@ var searchData=
   ['operator_3d_3d',['operator==',['../classwick_1_1_pair.html#a50f43c2c27833b450ccb8d16eab2c50a',1,'wick::Pair']]],
   ['operator_3e',['operator&gt;',['../classwick_1_1_pair.html#ad057baccdce830f52b82f8487e6304ac',1,'wick::Pair']]],
   ['operator_3e_3d',['operator&gt;=',['../classwick_1_1_pair.html#ac24b26aae02646a5a8f34adc3824c9bf',1,'wick::Pair']]],
-  ['orange',['Orange',['../classwick_1_1_color.html#a1db1575aff8f0d649aaf761cbb0541a6',1,'wick::Color']]]
+  ['orange',['Orange',['../classwick_1_1_color.html#a772d342b2761501541e78839bdc8b0d4',1,'wick::Color']]]
 ];

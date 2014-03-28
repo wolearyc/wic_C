@@ -24,7 +24,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">wick
    </div>
-   <div id="projectbrief">A simple, 2D game engine written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -89,13 +88,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classwick_1_1_wick_exception-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">wick::WickException Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Defines the exceptions present in the Wick Engine.  
+<p>A generic wick exception.  
  <a href="classwick_1_1_wick_exception.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_wick_exception_8h_source.html">WickException.h</a>&gt;</code></p>
@@ -105,88 +105,59 @@ Inheritance diagram for wick::WickException:</div>
  <div class="center">
   <img src="classwick_1_1_wick_exception.png" usemap="#wick::WickException_map" alt=""/>
   <map id="wick::WickException_map" name="wick::WickException_map">
+<area href="classwick_1_1_architecture_exception.html" title="A fatal exception that is thrown when some part of wick fails. " alt="wick::ArchitectureException" shape="rect" coords="0,112,168,136"/>
+<area href="classwick_1_1_file_exception.html" title="A non-fatal exception that is thrown when a file cannot be found or cannot be loaded. " alt="wick::FileException" shape="rect" coords="178,112,346,136"/>
+<area href="classwick_1_1_parameter_exception.html" title="A non-fatal exception that is thrown when parameters are invalid. " alt="wick::ParameterException" shape="rect" coords="356,112,524,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac83119d835fa4841b11d98733b658804"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#ac83119d835fa4841b11d98733b658804">WickException</a> (enum <a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0">WickLocation</a> location, int id, string information)</td></tr>
-<tr class="memdesc:ac83119d835fa4841b11d98733b658804"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assembles a new exception with a location, ID, and some additional information and prints the exception's message.  <a href="#ac83119d835fa4841b11d98733b658804">More...</a><br/></td></tr>
-<tr class="separator:ac83119d835fa4841b11d98733b658804"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6244465030b564f6d41f1e0999c2482"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#ad6244465030b564f6d41f1e0999c2482">WickException</a> (enum <a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0">WickLocation</a> location, int id)</td></tr>
-<tr class="memdesc:ad6244465030b564f6d41f1e0999c2482"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assembles a new exception with a location and ID and prints the exception's message.  <a href="#ad6244465030b564f6d41f1e0999c2482">More...</a><br/></td></tr>
-<tr class="separator:ad6244465030b564f6d41f1e0999c2482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21a5197c37001911402a570f90e54334"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#a21a5197c37001911402a570f90e54334">WickException</a> (string message, bool fatal)</td></tr>
+<tr class="memdesc:a21a5197c37001911402a570f90e54334"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor that prints the error message to the terminal.  <a href="#a21a5197c37001911402a570f90e54334">More...</a><br/></td></tr>
+<tr class="separator:a21a5197c37001911402a570f90e54334"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab72cd4bfb7193b0ed2213aedd19e2dbc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#ab72cd4bfb7193b0ed2213aedd19e2dbc">WickException</a> ()</td></tr>
-<tr class="memdesc:ab72cd4bfb7193b0ed2213aedd19e2dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor (assembles and prints unknown exception).  <a href="#ab72cd4bfb7193b0ed2213aedd19e2dbc">More...</a><br/></td></tr>
+<tr class="memdesc:ab72cd4bfb7193b0ed2213aedd19e2dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default constructor that prints the error message to the terminal.  <a href="#ab72cd4bfb7193b0ed2213aedd19e2dbc">More...</a><br/></td></tr>
 <tr class="separator:ab72cd4bfb7193b0ed2213aedd19e2dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6869cbd015667fae03d302f9f4192ad5"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#a6869cbd015667fae03d302f9f4192ad5">what</a> ()</td></tr>
-<tr class="memdesc:a6869cbd015667fae03d302f9f4192ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs and retrieves the exception's message.  <a href="#a6869cbd015667fae03d302f9f4192ad5">More...</a><br/></td></tr>
-<tr class="separator:a6869cbd015667fae03d302f9f4192ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a064b7ec28fdf10bc535e5d6c49097609"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#a064b7ec28fdf10bc535e5d6c49097609">what</a> ()</td></tr>
+<tr class="memdesc:a064b7ec28fdf10bc535e5d6c49097609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the formatted error message.  <a href="#a064b7ec28fdf10bc535e5d6c49097609">More...</a><br/></td></tr>
+<tr class="separator:a064b7ec28fdf10bc535e5d6c49097609"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a50e19562e58b4c81402ca9659068f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#a9a50e19562e58b4c81402ca9659068f3">handle</a> ()</td></tr>
-<tr class="memdesc:a9a50e19562e58b4c81402ca9659068f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the exception was fatal, stops execution. If the the exception was not fatal, lets execution continue.  <a href="#a9a50e19562e58b4c81402ca9659068f3">More...</a><br/></td></tr>
+<tr class="memdesc:a9a50e19562e58b4c81402ca9659068f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exits the program if the exception was fatal, and does nothing if the exception is non-fatal.  <a href="#a9a50e19562e58b4c81402ca9659068f3">More...</a><br/></td></tr>
 <tr class="separator:a9a50e19562e58b4c81402ca9659068f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8647f3d611409159c443f2bb94ad45e3"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#a8647f3d611409159c443f2bb94ad45e3">getMessage</a> ()</td></tr>
+<tr class="memdesc:a8647f3d611409159c443f2bb94ad45e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the error message.  <a href="#a8647f3d611409159c443f2bb94ad45e3">More...</a><br/></td></tr>
+<tr class="separator:a8647f3d611409159c443f2bb94ad45e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b3fc7d1aab7d25eae897392fab7d27a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#a7b3fc7d1aab7d25eae897392fab7d27a">isFatal</a> ()</td></tr>
+<tr class="memdesc:a7b3fc7d1aab7d25eae897392fab7d27a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves whether or not the exception should be fatal.  <a href="#a7b3fc7d1aab7d25eae897392fab7d27a">More...</a><br/></td></tr>
+<tr class="separator:a7b3fc7d1aab7d25eae897392fab7d27a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a3bbfd4dcfb634380b0ca19fc67e8f899"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#a3bbfd4dcfb634380b0ca19fc67e8f899">message_</a></td></tr>
+<tr class="separator:a3bbfd4dcfb634380b0ca19fc67e8f899"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d0fc059ee76e051dbfc260a5637f134"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html#a6d0fc059ee76e051dbfc260a5637f134">fatal_</a></td></tr>
+<tr class="separator:a6d0fc059ee76e051dbfc260a5637f134"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines the exceptions present in the Wick Engine. </p>
-<p><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a> extends the C++ standard library exception class. Different exceptions are defined through the constructors. </p>
+<div class="textblock"><p>A generic wick exception. </p>
+<p>A <a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a> can be either fatal (program exits when handle is called) or non-fatal (nothing happens when handle is called). <a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a> is the superclass for all the exceptions pertaining to wick. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ac83119d835fa4841b11d98733b658804"></a>
+<a class="anchor" id="a21a5197c37001911402a570f90e54334"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">wick::WickException::WickException </td>
           <td>(</td>
-          <td class="paramtype">enum <a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0">WickLocation</a>&#160;</td>
-          <td class="paramname"><em>location</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>information</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Assembles a new exception with a location, ID, and some additional information and prints the exception's message. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">location</td><td>where the exception was thrown. </td></tr>
-    <tr><td class="paramname">id</td><td>the ID of the exception (determines the message). </td></tr>
-    <tr><td class="paramname">information</td><td>Additional information, which usually is helpful when debugging. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ad6244465030b564f6d41f1e0999c2482"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">wick::WickException::WickException </td>
-          <td>(</td>
-          <td class="paramtype">enum <a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0">WickLocation</a>&#160;</td>
-          <td class="paramname"><em>location</em>, </td>
+          <td class="paramname"><em>message</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>id</em>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>fatal</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -196,11 +167,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Assembles a new exception with a location and ID and prints the exception's message. </p>
+<p>A constructor that prints the error message to the terminal. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">location</td><td>where the exception was thrown. </td></tr>
-    <tr><td class="paramname">id</td><td>the ID of the exception (determines the message). </td></tr>
+    <tr><td class="paramname">message</td><td>the error message </td></tr>
+    <tr><td class="paramname">fatal</td><td>whether or not the exception should be fatal </td></tr>
   </table>
   </dd>
 </dl>
@@ -220,11 +191,31 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Default constructor (assembles and prints unknown exception). </p>
+<p>The default constructor that prints the error message to the terminal. </p>
+<p>A <a class="el" href="classwick_1_1_wick_exception.html" title="A generic wick exception. ">WickException</a> constructed using the default constructor as the message "unknown exception" and is fatal. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8647f3d611409159c443f2bb94ad45e3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string wick::WickException::getMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the error message. </p>
+<p>When printing out the error message to the terminal, it's best to use <a class="el" href="classwick_1_1_wick_exception.html#a064b7ec28fdf10bc535e5d6c49097609" title="Retrieves the formatted error message. ">what()</a>, not <a class="el" href="classwick_1_1_wick_exception.html#a8647f3d611409159c443f2bb94ad45e3" title="Retrieves the error message. ">getMessage()</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>the error message </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a9a50e19562e58b4c81402ca9659068f3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -238,16 +229,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>If the exception was fatal, stops execution. If the the exception was not fatal, lets execution continue. </p>
+<p>Exits the program if the exception was fatal, and does nothing if the exception is non-fatal. </p>
 
 </div>
 </div>
-<a class="anchor" id="a6869cbd015667fae03d302f9f4192ad5"></a>
+<a class="anchor" id="a7b3fc7d1aab7d25eae897392fab7d27a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* wick::WickException::what </td>
+          <td class="memname">bool wick::WickException::isFatal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -255,18 +246,77 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs and retrieves the exception's message. </p>
-<dl class="section return"><dt>Returns</dt><dd>the assembled message. </dd></dl>
+<p>Retrieves whether or not the exception should be fatal. </p>
+<dl class="section return"><dt>Returns</dt><dd>whether or not the exception should be fatal </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a064b7ec28fdf10bc535e5d6c49097609"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string wick::WickException::what </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the formatted error message. </p>
+<dl class="section return"><dt>Returns</dt><dd>the formatted error message </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a6d0fc059ee76e051dbfc260a5637f134"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool wick::WickException::fatal_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3bbfd4dcfb634380b0ca19fc67e8f899"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string wick::WickException::message_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="_wick_exception_8h_source.html">WickException.h</a></li>
+<li>/Users/willis/Documents/Programming/C++/wick/include/<a class="el" href="_wick_exception_8h_source.html">WickException.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 23 2014 16:27:35 for wick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 28 2014 16:19:30 for wick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

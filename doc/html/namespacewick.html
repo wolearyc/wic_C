@@ -24,7 +24,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">wick
    </div>
-   <div id="projectbrief">A simple, 2D game engine written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -102,13 +101,13 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads and stores a font.  <a href="classwick_1_1_font.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_game.html">Game</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds and orchestrates the entire Wick game.  <a href="classwick_1_1_game.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds and orchestrates the entire game.  <a href="classwick_1_1_game.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_image.html">Image</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An <a class="el" href="classwick_1_1_image.html" title="An Image to be painted to the screen. ">Image</a> to be painted to the screen.  <a href="classwick_1_1_image.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html">Paintable</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An architectural superclass that should be inherited by any class "paintable" to the screen. Any class that inherits from <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> should define a paint method. All <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> objects have a screen location, a center (which can be painted around), and a geometric center that is defined by subclasses. The center and geometric centers are not relative to the screen, but relative to the object they are defined in. Any rotation and scaling (defined in <a class="el" href="classwick_1_1_rotateable.html" title="An architectural superclass that should be inherited by any class that is &quot;rotateable&quot;. ">Rotateable</a> and <a class="el" href="classwick_1_1_scaleable.html" title="An architectural superclass that should by inherited by any class that can be scaled. ">Scaleable</a> respectively) is done around the center defined in <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a>.  <a href="classwick_1_1_paintable.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An architectural superclass that should be inherited by any class that is "paintable" to the screen Any class that inherits from <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> should define a paint method. All <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> objects have a screen location, a center (which can be painted around), and a geometric center that is defined by subclasses. The center and geometric centers are not relative to the screen, but relative to the object they are defined in. Any rotation and scaling /// (defined in <a class="el" href="classwick_1_1_rotateable.html" title="An architectural superclass that should be inherited by any class that is &quot;rotateable&quot;. ">Rotateable</a> and <a class="el" href="classwick_1_1_scaleable.html" title="An architectural superclass that should by inherited by any class that can be scaled. ">Scaleable</a> respectively) is done around the center defined in <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a>.  <a href="classwick_1_1_paintable.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_pair.html">Pair</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores two double precision floating point values.  <a href="classwick_1_1_pair.html#details">More...</a><br/></td></tr>
@@ -129,232 +128,233 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A game state that can be initialized, updated, and painted.  <a href="classwick_1_1_state.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_text.html">Text</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classwick_1_1_text.html" title="Text stores a string that can be painted to the screen. ">Text</a> stores a string that can be painted to the screen.  <a href="classwick_1_1_text.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_texture.html">Texture</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads and stores a single 2D <a class="el" href="classwick_1_1_texture.html" title="Loads and stores a single 2D Texture from the file system or from a char array. ">Texture</a> from the file system or from a char array.  <a href="classwick_1_1_texture.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_wick_exception.html">WickException</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the exceptions present in the Wick Engine.  <a href="classwick_1_1_wick_exception.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic wick exception.  <a href="classwick_1_1_wick_exception.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_parameter_exception.html">ParameterException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A non-fatal exception that is thrown when parameters are invalid.  <a href="classwick_1_1_parameter_exception.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_file_exception.html">FileException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A non-fatal exception that is thrown when a file cannot be found or cannot be loaded.  <a href="classwick_1_1_file_exception.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_architecture_exception.html">ArchitectureException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A fatal exception that is thrown when some part of wick fails.  <a href="classwick_1_1_architecture_exception.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ab47ba789365ca5ca062b9aba0f0d339b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339b">WickKey</a> { <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba70b610cf17ebe9c8402032afda566962">W_SPACE</a> = 32, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba6ec4d69b227d89ec61acdc5cce1763b9">W_APOSTROPHE</a> = 39, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba3b38c92749ac462ac9679801643cf053">WK_COMMA</a> = 44, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae55bef6de581c6121792e19893a4bb94">W_MINUS</a> = 45, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba99ddade2c98d3658fae21bf1c226662f">WickKey::W_SPACE</a> = 32, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba4f1f8d260f4c129be383d5c72e4065c7">WickKey::W_APOSTROPHE</a> = 39, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba13d0811166c809579c3e23832961bec4">WickKey::WK_COMMA</a> = 44, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae215eaa0d35480ce36510d2059efe9a6">WickKey::W_MINUS</a> = 45, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa6c8d16ceafdb9dc281a73b81425906b">W_PERIOD</a> = 46, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba1b1e63f8e53d7a136f88eb544e8963d9">W_SLASH</a> = 47, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba63041cd98bb5516f8d54a6d5932c1dde">W_0</a> = 48, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae01119db29c2b0a5ab1b2a44e1693316">W_1</a> = 49, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac60f8f7ae45bad6aab5da2d64931f39d">WickKey::W_PERIOD</a> = 46, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba7c8417835c905d815e7210dba7d665bf">WickKey::W_SLASH</a> = 47, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bab2d46a4cfbb2eeddc082288d76c2a2d6">WickKey::W_0</a> = 48, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba8358da79689836e15fddd4aece082a7f">WickKey::W_1</a> = 49, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bab13eccedd697db65f2560be75d03f867">W_2</a> = 50, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba363927192b0f9a9191da7250561b5622">W_3</a> = 51, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba764362660c37b2e38e2115b2514377f4">W_4</a> = 52, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba6dacd16aa4e292b4ec9af21771abda23">W_5</a> = 53, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba956ddb3363743fe5e8296dc2beed9922">WickKey::W_2</a> = 50, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa45b1c1012fab7f25e4ead8f3473a2e8">WickKey::W_3</a> = 51, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba167c4d78881b5b5cbfee437ca788aa4d">WickKey::W_4</a> = 52, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba03f4d32e1acfcd03602a160b8b620a65">WickKey::W_5</a> = 53, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba346e5081f65a3f4003a0d391c4c58e5d">W_6</a> = 54, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bace34e984eda7c1dad154cd1969bfca1b">W_7</a> = 55, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba2129fae993e16e65fcb0e5869f64da18">W_8</a> = 56, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339babca537946ecd20a025b7dc86bf720eb1">W_9</a> = 57, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bad8c0547bed5cbef5167a2552159592cd">WickKey::W_6</a> = 54, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba7f40a311903497867771d20cc4d71994">WickKey::W_7</a> = 55, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba14fc44c0e3bb4c728ad88911a3536c76">WickKey::W_8</a> = 56, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba182c5bb73ea0a9d09530cc4018fdd58a">WickKey::W_9</a> = 57, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba779c8297a4468924ce0cf79e22f9d2b6">W_SEMICOLON</a> = 59, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba9c3822b58ae7dea92f0c570546e41c5b">W_EQUAL</a> = 61, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba74ec6b6bd6235bf1df21b5f2f204d756">W_A</a> = 65, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baaef05cca37674b4b84bc9132873e83e1">W_B</a> = 66, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa44731592db0880f5f34fca4fdc51386">WickKey::W_SEMICOLON</a> = 59, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba596ee94032713d521640e86ed82e2eff">WickKey::W_EQUAL</a> = 61, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba15bbc42a514b3cf401204ed7695d63d8">WickKey::W_A</a> = 65, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bade30cbb2caa04fac7611373616b91385">WickKey::W_B</a> = 66, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba11de372520240cd79c2b8cfda544d236">W_C</a> = 67, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba73a90ef6a2d8c6a1d01ae0a799651f4c">W_D</a> = 68, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bad854cf3e625d01a96c07723d77fc2585">W_E</a> = 69, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bad63e9eb1bbb1c648bd8b2f5484cc0dff">W_F</a> = 70, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba0dbf709d2ed6159c5249672bd8daf4a8">WickKey::W_C</a> = 67, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba943767da9b6c23b1b3c3fc7a6065db6b">WickKey::W_D</a> = 68, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa4477b7be876f73b858d49227d423d4b">WickKey::W_E</a> = 69, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba11f217a7d66382c887170bd452cfdb14">WickKey::W_F</a> = 70, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba24be11587b8403f9b241a031073613f0">W_G</a> = 71, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba35ade14d76d2c2f3ce89e7ad43574428">W_H</a> = 72, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba7eb09ea99bff1d66306778f298a89a17">W_I</a> = 73, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baff4c0f25c9fd232777bcf622c66fe158">W_J</a> = 74, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba1b369beac19d6df89f0e5d9b31550695">WickKey::W_G</a> = 71, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba44bdebb30882801d6c30a0b5b9c30beb">WickKey::W_H</a> = 72, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baaa823caeaf15da5c548e2d3af9f05b0c">WickKey::W_I</a> = 73, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa323ac8239b889533e6d9c657631966c">WickKey::W_J</a> = 74, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba81a1052a0193e5c1177d3716fa594d4d">W_K</a> = 75, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba2f9344ffaca3f6175b5dbf6f2c3cee22">W_L</a> = 76, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba21c5c8cc0fdf857a2dc3e2bbf9da6a15">W_M</a> = 77, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba91453a2e5040bd6258aaf4066cb8939b">W_N</a> = 78, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae3f3072d0e91095bc636881a95c59c6c">WickKey::W_K</a> = 75, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba3a9ed6027395422ec3347a1eea8512f9">WickKey::W_L</a> = 76, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba26e29d4ef349f7e3bc104ed75f1e92c6">WickKey::W_M</a> = 77, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba677370510d34567d8a8a4a09dac608e7">WickKey::W_N</a> = 78, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba175bd4bd74d95b96470f6a5b454f2e7e">W_O</a> = 79, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba21a0f2358d57ea7db5f4a7868751e183">W_P</a> = 80, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bad5812840fb464e484d06d56affe85421">W_Q</a> = 81, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa6435c6a08d0a751dbca4f25bfae9c67">W_R</a> = 82, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baf8546364d53cb9ff46ab53434bc42a22">WickKey::W_O</a> = 79, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa4edcb7cc44b815ecb4c4c8e1729e46b">WickKey::W_P</a> = 80, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac1b0b73f41e2f55f8b5a1244c1d55ef7">WickKey::W_Q</a> = 81, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba248a5183d953735ac06af9854818aec4">WickKey::W_R</a> = 82, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba917874104d32692e9a1febf354e94dad">W_S</a> = 83, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba5f9fa92fcd03955a3d92913a009127d8">W_T</a> = 84, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba52e272ec80fdea4f0ef50e829d8bda66">W_U</a> = 85, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba7b29681477fd33f4552b286f48e30c36">W_V</a> = 86, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339babb611991cffd81187c2328d4a97613d2">WickKey::W_S</a> = 83, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba64b7c39bcbe3601596fac0f35d0c15e0">WickKey::W_T</a> = 84, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba706d86dea1e4d5bc95b3981b9b92bd2d">WickKey::W_U</a> = 85, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba45946d51ed04e13e572d2cecf735cd1d">WickKey::W_V</a> = 86, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba5bde2db345505bc8574412bf1fd40ccf">W_W</a> = 87, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba9134b9f02fbbc401517e9746059b14cd">W_X</a> = 88, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba76e6c1ec871da0899b516ad82dd0a788">W_Y</a> = 89, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba56e11f77eef73c996be3f47c97665efc">W_Z</a> = 90, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339babd8c09bd6de0d1945f6c3c40dcbb02fd">WickKey::W_W</a> = 87, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baad5ce05406c378852c3817a5f319dc81">WickKey::W_X</a> = 88, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baf3e138b9a1a37eed42a8efb337e1871f">WickKey::W_Y</a> = 89, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba8a424c615689c1cd278a67eb64698dbe">WickKey::W_Z</a> = 90, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba38514c9753cc1b27fa085555d2d0c854">W_LEFT_BRACKET</a> = 91, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba9213d382f116b0d7d57807d2800f9646">W_BACKSLASH</a> = 92, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baed31738ddbd98e1edb329d940f58d2b8">W_RIGHT_BRACKET</a> = 93, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae254b7b52d52804c31f7a7fb014fd81f">W_GRAVE_ACCENT</a> = 96, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa854da50cbc7e6cec11cc12f96166011">WickKey::W_LEFT_BRACKET</a> = 91, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba5f42d16c6400bd8e9165996daabf37e4">WickKey::W_BACKSLASH</a> = 92, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba63f6b1b4290106c0554ae611dd311478">WickKey::W_RIGHT_BRACKET</a> = 93, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba43e10f7cd5aa75b943282e6196314928">WickKey::W_GRAVE_ACCENT</a> = 96, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bad02564ff070d758fe8517e9638367bc0">W_ESCAPE</a> = 256, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba7d03b7e51de5412b129cb7a6dc07f432">W_ENTER</a> = 257, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baf9c0f9fb137db7aa383206386a95943a">W_TAB</a> = 258, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba70581def935f079abb5e3b65b07bfdee">W_BACKSPACE</a> = 259, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baba43603d7e4fc1a1aa94bcebf5782258">WickKey::W_ESCAPE</a> = 256, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba71d1e00ae1679c6dd8d3fbe3568245e0">WickKey::W_ENTER</a> = 257, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba690ff7a5db858c18cbc2e2f7e5d0de1a">WickKey::W_TAB</a> = 258, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac2e56e772330b75a33799d019094eb92">WickKey::W_BACKSPACE</a> = 259, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba6bdab68f9192d8ff75e134977f3a028f">W_INSERT</a> = 260, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bada253dc841db39813a88c2ca3cb59bbf">W_DELETE</a> = 261, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba06bdd1e253ea39f86f7ddd12fc27f48d">W_RIGHT</a> = 262, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339babb6997462633aed2fb8350e670d5b1c4">W_LEFT</a> = 263, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bad44ef703c0f1817c4367660db48ad718">WickKey::W_INSERT</a> = 260, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba32c6e4b6af243c66e3db12467f6c7949">WickKey::W_DELETE</a> = 261, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac372151c5d7a4cbe0ea4622638577c44">WickKey::W_RIGHT</a> = 262, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba9fe6d70db532803b0baa83fe5a5bfe3a">WickKey::W_LEFT</a> = 263, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba5b39845e16c71a515fae786fe340724b">W_DOWN</a> = 264, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba97dffe703fc201e0f936ddaed9c82c33">W_UP</a> = 265, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baeab309a6d38ab11f9404604424695d16">W_PAGE_UP</a> = 266, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba7de75e205bd4aea503679f4a5602bbef">W_PAGE_DOWN</a> = 267, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339badb1d1ea9a7841a1f5a21be0c908cc1fa">WickKey::W_DOWN</a> = 264, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba83f546c57534f19fb3b761b0cf9e4893">WickKey::W_UP</a> = 265, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba434b6cc7c541c4edf1f5bbebd45de324">WickKey::W_PAGE_UP</a> = 266, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba5847012b46a2666edcaaace1f87540ce">WickKey::W_PAGE_DOWN</a> = 267, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac72c41c6fe6aedb47352176c36b905eb">W_HOME</a> = 268, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba59d05696c2c1b92fe0500667e9f0bf4a">W_END</a> = 269, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baaf75a8e8e625873d5ffb608c91380967">W_CAPS_LOCK</a> = 280, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba0ff3fa85df165d43f424201842a0d514">W_SCROLL_LOCK</a> = 281, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba62bad3190e2c510074b7d963bf8218f8">WickKey::W_HOME</a> = 268, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba0ea20cffb5fd30d721ada241dc17ec62">WickKey::W_END</a> = 269, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae843403101014fc34378bc5eb41f7e69">WickKey::W_CAPS_LOCK</a> = 280, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba14454a867f51c161b1fbc15c368e26d8">WickKey::W_SCROLL_LOCK</a> = 281, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba10ee1d13a39b75977666201231910087">W_NUM_LOCK</a> = 282, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac7929a7dccf161c5286a742dc6e34228">W_PRINT_SCREEN</a> = 283, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba89828ceba01c7f7f1d13cba27636411c">W_PAUSE</a> = 284, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba5e2f791e7618636d4c6199d2571093a1">W_F1</a> = 290, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba2ff54130d38ecb340f9ab6573d676b47">WickKey::W_NUM_LOCK</a> = 282, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba4541e5186dd57d02dad534efe84f029d">WickKey::W_PRINT_SCREEN</a> = 283, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba92dbd29441e84e8481400bf2ec100730">WickKey::W_PAUSE</a> = 284, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bafbd770973c69014acfafff7efeedb655">WickKey::W_F1</a> = 290, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae49c095afbe04bd8f367d1ade52bfe6e">W_F2</a> = 291, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba35b72df5b10970459f2ed07ba33c2b99">W_F3</a> = 292, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba96a3337c9c331bbf19211b484cf8cb36">W_F4</a> = 293, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bad7b74cd70829c172f94fbee3debbd8a6">W_F5</a> = 294, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba402b763aef83ff2d5436adf0363f0751">WickKey::W_F2</a> = 291, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba9a2e3376e4af0944cc3acd366cbb6d5b">WickKey::W_F3</a> = 292, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba33fdfe55281ed89355cce40b9df64b08">WickKey::W_F4</a> = 293, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae4cdc4ec2974b3e048e8decc86c73655">WickKey::W_F5</a> = 294, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baeedee00fde801bd097a3ea21f748169e">W_F6</a> = 295, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae856dd730f0bb5dad075c9347a4c90ea">W_F7</a> = 296, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bad244a5bbc17c25b4a0564e4aae007970">W_F8</a> = 297, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba4c0e4dd3e9a1121c90d64a0464f843e1">W_F9</a> = 298, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba8f41fa82e219dd08638b8ccea91f9fba">WickKey::W_F6</a> = 295, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba8ce4efcc563fc4e1659f021fc08c4fa1">WickKey::W_F7</a> = 296, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bab2ac392794f1cf18ce6528922bd562eb">WickKey::W_F8</a> = 297, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae3fbad92058348f3a0c129e2ae69bd50">WickKey::W_F9</a> = 298, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba7a586b43cfa9e631f32697564f022ea8">W_F10</a> = 299, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba7ced2114bf91364bceb40c184b908f12">W_F11</a> = 300, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba3014dae438f88a9f9e62abf2cca0fa28">W_F12</a> = 301, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba8786f3c45cee640467ff0fb4b07253d8">W_F13</a> = 302, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa8acfcf333d0d0835a16a438becd54fd">WickKey::W_F10</a> = 299, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa6bc2ada6364df44f7a4e2fe3ac8aa64">WickKey::W_F11</a> = 300, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba2f21f7382282c6722c4fab0f2ddb4507">WickKey::W_F12</a> = 301, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac1fa06974f4fc2b885afd8abb9148f4b">WickKey::W_F13</a> = 302, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba377bf51a6e0e69396937f4607347f69b">W_F14</a> = 303, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba73c8ee41d5c9818b6eea73da5a1f84e3">W_F15</a> = 304, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba484d80e94c3bc821fe6b076ba8628992">W_F16</a> = 305, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bad3ebb9073aa113611a6e2f3a4c44781a">W_F17</a> = 306, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba4ff85188b63594711c33afb0dcfa37fe">WickKey::W_F14</a> = 303, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba322c70860cf5fe38d7d22f6dc0b94e87">WickKey::W_F15</a> = 304, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baeb5549ec57c84124d87a6e1287de76e7">WickKey::W_F16</a> = 305, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339babbed5228f7699b23c54a828beecce572">WickKey::W_F17</a> = 306, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba31b1e82fbda8c4ff4be4d57b522fb264">W_F18</a> = 307, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba17ece0df135a9b7cc3baefb1a0f785c7">W_F19</a> = 308, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac59d6d03e191270f66c6f77d05f8149e">W_F20</a> = 309, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac96a539ada580657beb733ae5d5092f2">W_F21</a> = 310, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba6405e6e656a37c640e1d0dd180bd3732">WickKey::W_F18</a> = 307, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac83dc0ba5457bb8282a8dce93a24f885">WickKey::W_F19</a> = 308, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba1165e84cf2699be1f0bbb8cdaa269682">WickKey::W_F20</a> = 309, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba2e4dccd657cd90539b03c3a895885962">WickKey::W_F21</a> = 310, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac74924d82c33beee01fdf270105bbee3">W_F22</a> = 311, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba528ac33929135b4c2d018c574c5cffe6">W_F23</a> = 312, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba23c99d1884ee524cfa6e0b0ce7e634bd">W_F24</a> = 313, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba11c497d013a7c31eeab73ffdb3ace854">W_F25</a> = 314, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba894bc403de1033dab60ba1e58c9352db">WickKey::W_F22</a> = 311, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba65022f889d63922329711314d9a99608">WickKey::W_F23</a> = 312, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba98652959529f96d6e71e480f78c85fce">WickKey::W_F24</a> = 313, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baead4ead911cd78b17b4d5abce7fa0f4c">WickKey::W_F25</a> = 314, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba9210103b11ddd7f1eea9620c0d5b931c">W_KP_0</a> = 320, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba97bfa6c44dc6c0df7f5dde7517174a12">W_KP_1</a> = 321, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba79c9891c9f8347028e2aacfdacf54161">W_KP_2</a> = 322, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba86a139b65859ac9283fd8ecd77a25491">W_KP_3</a> = 323, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bad90f9ebb9a39c19aa899ae883630ced7">WickKey::W_KP_0</a> = 320, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baaf202e5e6344569f8d702a08110e80cf">WickKey::W_KP_1</a> = 321, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339babcfc5964963866b8a13c9e5c3a8d3324">WickKey::W_KP_2</a> = 322, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba86a309a97d27088dfc5dd0d30516e53c">WickKey::W_KP_3</a> = 323, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae4a9205cb249844427ab357fbeae640b">W_KP_4</a> = 324, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba3cc9ffe4db0a31da1c06b260ad33f485">W_KP_5</a> = 325, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba61ee3e69d86008683a655744f1a32aaf">W_KP_6</a> = 326, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba73d5c3b49b38d9c282160307e2bd0b5c">W_KP_7</a> = 327, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba82513759de0799198fc3593e8582b802">WickKey::W_KP_4</a> = 324, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baf6b25246fbf4cef40df2c34de55aadf3">WickKey::W_KP_5</a> = 325, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa48d2d2cc99a4611fe1e8c394a40a9ed">WickKey::W_KP_6</a> = 326, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baf09f0fa6fb020dd91e25ff9e7cb37172">WickKey::W_KP_7</a> = 327, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba75a1e13ce35e3e11449f930d8a6279fa">W_KP_8</a> = 328, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baca60a98b16b8d8e6851be6bdc6b40eda">W_KP_9</a> = 329, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae6feb98002d11baf0cb1d96671446d6f">W_KP_DECIMAL</a> = 330, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba6606f81e4108180fd0113f7443f2275e">W_KP_DIVIDE</a> = 331, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba0bb14e397b33244d017022d64812a77c">WickKey::W_KP_8</a> = 328, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba2ed0eaff6fb8ea5204808454a7383f44">WickKey::W_KP_9</a> = 329, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa7d6d587d533fa513d2607d59b61c678">WickKey::W_KP_DECIMAL</a> = 330, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba68b9d4e528d1ae6756751e085e452843">WickKey::W_KP_DIVIDE</a> = 331, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba62caec38083ac9597c34768bc366bea7">W_KP_MULTIPLY</a> = 332, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba7f222ad3cc7a1d81931bb125ea4fa75b">W_KP_SUBTRACT</a> = 333, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba913fc72fc37ea305790ec1d1bccd423c">W_KP_ADD</a> = 334, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baa22180905d222b0333a9f223c5c148b5">W_KP_ENTER</a> = 335, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba03f5e3b516bc9798f6bc5ac6aad7c11f">WickKey::W_KP_MULTIPLY</a> = 332, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba80ff89ff6b1b7bb6866169720bde0d92">WickKey::W_KP_SUBTRACT</a> = 333, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baf01f3d978b270ebfa5bb1a6c30e99717">WickKey::W_KP_ADD</a> = 334, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baddb29a74bb8fc03ef9d7968ae8d4e66f">WickKey::W_KP_ENTER</a> = 335, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bab3f351e07440d89c9fdaf2546a04695c">W_KP_EQUAL</a> = 336, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bab0b1a414fa204b1df4819ce72ac083c1">W_LEFT_SHIFT</a> = 340, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baac46405f7e8b4d236699fba20d5aaf3a">W_LEFT_CONTROL</a> = 341, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba290f2191a28da5cfed8c4f0e511d71ac">W_LEFT_ALT</a> = 342, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baf1067b6ba3c377849b9b823101f216f8">WickKey::W_KP_EQUAL</a> = 336, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba19bb890276b4994c428c66eb20b7c189">WickKey::W_LEFT_SHIFT</a> = 340, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae879884a74e2b3f395a06dcdfa44cf08">WickKey::W_LEFT_CONTROL</a> = 341, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba4873ac057c22c2c174977b7ce13e37d9">WickKey::W_LEFT_ALT</a> = 342, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bae549ca2864a38753f7b52f5694023c11">W_LEFT_SUPER</a> = 343, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba3871cce457e8feb6d0bdadde6ee03758">W_RIGHT_SHIFT</a> = 344, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba44b1bc504a8d45b9b831ae57f92f7e46">W_RIGHT_CONTROL</a> = 345, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba25e7006e8f35a9b44d054c3c2e6ef830">W_RIGHT_ALT</a> = 346, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba31e5efc0e6e4df443cc4a769a22907b1">WickKey::W_LEFT_SUPER</a> = 343, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339babbb6c08e191d06d4f42007567233a7ef">WickKey::W_RIGHT_SHIFT</a> = 344, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba67e79eb7f4ebb91f0c0530b6b6f5c147">WickKey::W_RIGHT_CONTROL</a> = 345, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac3ff1e8bc9f2b0175461ed68f4dbc4bf">WickKey::W_RIGHT_ALT</a> = 346, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba9e3e1ee38fd7c086589251970e876848">W_RIGHT_SUPER</a> = 347, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba81cdbad88c244a6c6f15801d1e9c56ec">W_MENU</a> = 348, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba4b883b6f3375cb2d58a74e731061502f">W_LMB</a> = 350, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339badbbf60ace651d3dafd35a231ab174cea">W_RMB</a> = 351, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba9a5cf7cb7ab4005db1dfa47851db1d39">WickKey::W_RIGHT_SUPER</a> = 347, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba51270f14f4639060613c785a80a2cf7e">WickKey::W_MENU</a> = 348, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baccdd961a9dab0406bf5c54145dc231e9">WickKey::W_LMB</a> = 350, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba742f425934b398326eb493de04379acd">WickKey::W_RMB</a> = 351, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac50037e052318fcb9e9d26b48b92df87">W_MMB</a> = 352, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba384f73e4f36dd2ea9e552d9c308ca168">W_MB_4</a> = 353, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba56d6c01d4fa85be1a5043615708ee1c3">W_MB_5</a> = 354, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba600ebed77fe30522609f0225d07fd682">W_MB_6</a> = 355, 
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac9466856024c4703c82219ff3d37ea27">WickKey::W_MMB</a> = 352, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bab92d588794d4019e92f7b355ad99b5c8">WickKey::W_MB_4</a> = 353, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339bac4d8099cbe485c494c70a08072e08fbc">WickKey::W_MB_5</a> = 354, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba57053f5ee39a4c68c9fabf9b3cd5bac4">WickKey::W_MB_6</a> = 355, 
 <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba985c81a6e4f398bab6f683b2a664855c">W_MB_7</a> = 356, 
-<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339baf2e560137617a342070efc42b796cbdc">W_MB_8</a> = 357
+&#160;&#160;<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba4c521d067556e403be370cb94f1ce5ae">WickKey::W_MB_7</a> = 356, 
+<a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339ba84a6c263584347ec6d6a781d7f48e1a7">WickKey::W_MB_8</a> = 357
 <br/>
  }</td></tr>
 <tr class="memdesc:ab47ba789365ca5ca062b9aba0f0d339b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Designates keyboard keys and mouse buttons.  <a href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339b">More...</a><br/></td></tr>
 <tr class="separator:ab47ba789365ca5ca062b9aba0f0d339b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3dca7d5c99829b077eaadc158a6ef14"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a> { <a class="el" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14a8b7b8c5d1b6cdb7adba8b08621199f63">W_NEAREST</a> = GL_NEAREST, 
-<a class="el" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14ac235c492dd46d5b9461cd0b48aa4fb79">W_LINEAR</a> = GL_LINEAR
+<tr class="memitem:ac3dca7d5c99829b077eaadc158a6ef14"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a> { <a class="el" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14aad135772d7cf93dd0ccf9d2474b34e6a">WickFilter::NEAREST</a> = GL_NEAREST, 
+<a class="el" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14aaac544aacc3615aada24897a215f5046">WickFilter::LINEAR</a> = GL_LINEAR
  }</td></tr>
+<tr class="memdesc:ac3dca7d5c99829b077eaadc158a6ef14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines constants for Texture filtering (behavior when images are scaled beyond their resolution)  <a href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">More...</a><br/></td></tr>
 <tr class="separator:ac3dca7d5c99829b077eaadc158a6ef14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af80fb1160ee562b3ce789331259dca56"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a> { <a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a7b204e5369629c633c1055c526d00d22">W_MONO</a>, 
-<a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a4d0cec9fcbcaf9627cbac89378f85fe0">W_GREYSCALE</a>, 
-<a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a631dc9a656957c4f35d1d40623f16799">W_RGB</a>, 
-<a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a7ac911540a5653fa4d310efcf3ddedf1">W_RGBA</a>
+<tr class="memitem:af80fb1160ee562b3ce789331259dca56"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a> { <a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a80397be70ccac73a56b8843e35acb819">MONO</a>, 
+<a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56ab8339d3dade545feb6de7d27b433355e">GREYSCALE</a>, 
+<a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a4ae91642b1e494426325b130dd64195d">RGB</a>, 
+<a class="el" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56abf1d16c613e1116bcce3c9831079be7d">RGBA</a>
  }</td></tr>
+<tr class="memdesc:af80fb1160ee562b3ce789331259dca56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines image formats.  <a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">More...</a><br/></td></tr>
 <tr class="separator:af80fb1160ee562b3ce789331259dca56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae36a93603380c9386d7f9ae892d3e9b0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0">WickLocation</a> { <br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0acd8358b509d173540ca2223cb0ee65f8">W_UNKNOWN</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0aaf390b7dfc6b7a524b1da6bed5f3b49b">W_WICKEXCEPTION</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0ac8cdb55ac846f7f3eafc6016a0297840">W_PAINTABLE</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0a965514db08e70d7c35830b36e61e3013">W_ROTATEABLE</a>, 
-<br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0a8536bdf63525975b70018481c3c1b25a">W_SCALEABLE</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0a6814e540ab95c12492868ea9f2929133">W_IMAGE</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0ae108886cefda6f9e4464cc3b4a842d45">W_TEXTURE</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0a162b14fe205301f542eec6ce72f96fd6">W_POLYGON</a>, 
-<br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0ad5abfda84d5df4b9dbd49a7724322009">W_QUAD</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0a8810007460589595e04afc157d00d875">W_STATE</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0a4603b855523ef949ef60a6fe5a2b7bbd">W_FONT</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0af4c6538cfd961f17d674965a6e66ec95">W_TEXT</a>, 
-<br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0ae760328745be7abe386aadadfd4aa6a0">W_BOUNDS</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0aa2362ea291efa09c6018de2bcd7da7f1">W_COLOR</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0a39d7a4227d62f9f79c8daacafa4bd1a3">W_PAIR</a>, 
-<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0a4af73a31d3774df96f747a46d3dabbac">W_GAME</a>, 
-<br/>
-&#160;&#160;<a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0ae0edf05a59b3577099b242a423b3b4b3">W_WICKUTILITY</a>
-<br/>
- }</td></tr>
-<tr class="separator:ae36a93603380c9386d7f9ae892d3e9b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a36c2660fadf415a2e68fda6a9e6caefb"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewick.html#a36c2660fadf415a2e68fda6a9e6caefb">toString</a> (int n)</td></tr>
+<tr class="memdesc:a36c2660fadf415a2e68fda6a9e6caefb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts and integer to a string.  <a href="#a36c2660fadf415a2e68fda6a9e6caefb">More...</a><br/></td></tr>
 <tr class="separator:a36c2660fadf415a2e68fda6a9e6caefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a class="anchor" id="ac3dca7d5c99829b077eaadc158a6ef14"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">enum <a class="el" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">wick::WickFilter</a></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>Defines constants for <a class="el" href="classwick_1_1_texture.html" title="Loads and stores a single 2D Texture from the file system or from a char array. ">Texture</a> filtering (behavior when images are scaled beyond their resolution) </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ac3dca7d5c99829b077eaadc158a6ef14a8b7b8c5d1b6cdb7adba8b08621199f63"></a>W_NEAREST</em>&#160;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ac3dca7d5c99829b077eaadc158a6ef14aad135772d7cf93dd0ccf9d2474b34e6a"></a>NEAREST</em>&#160;</td><td class="fielddoc">
+<p>Nearest filtering, no filtering is done. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ac3dca7d5c99829b077eaadc158a6ef14ac235c492dd46d5b9461cd0b48aa4fb79"></a>W_LINEAR</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ac3dca7d5c99829b077eaadc158a6ef14aaac544aacc3615aada24897a215f5046"></a>LINEAR</em>&#160;</td><td class="fielddoc">
+<p>Linear filtering, a linear filter is applied. </p>
 </td></tr>
 </table>
 
@@ -369,14 +369,20 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Defines image formats. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="af80fb1160ee562b3ce789331259dca56a7b204e5369629c633c1055c526d00d22"></a>W_MONO</em>&#160;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="af80fb1160ee562b3ce789331259dca56a80397be70ccac73a56b8843e35acb819"></a>MONO</em>&#160;</td><td class="fielddoc">
+<p>Each pixel has one 1 bit value (black or white) </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="af80fb1160ee562b3ce789331259dca56a4d0cec9fcbcaf9627cbac89378f85fe0"></a>W_GREYSCALE</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="af80fb1160ee562b3ce789331259dca56ab8339d3dade545feb6de7d27b433355e"></a>GREYSCALE</em>&#160;</td><td class="fielddoc">
+<p>Each pixel has one 8 bit value. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="af80fb1160ee562b3ce789331259dca56a631dc9a656957c4f35d1d40623f16799"></a>W_RGB</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="af80fb1160ee562b3ce789331259dca56a4ae91642b1e494426325b130dd64195d"></a>RGB</em>&#160;</td><td class="fielddoc">
+<p>Each pixel has three 8 bit values, red, green, and blue. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="af80fb1160ee562b3ce789331259dca56a7ac911540a5653fa4d310efcf3ddedf1"></a>W_RGBA</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="af80fb1160ee562b3ce789331259dca56abf1d16c613e1116bcce3c9831079be7d"></a>RGBA</em>&#160;</td><td class="fielddoc">
+<p>Each pixel has four 8 bit values, red, green, blue, and alpha. </p>
 </td></tr>
 </table>
 
@@ -385,457 +391,400 @@ Functions</h2></td></tr>
 <a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339b"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">enum <a class="el" href="namespacewick.html#ab47ba789365ca5ca062b9aba0f0d339b">wick::WickKey</a></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Designates keyboard keys and mouse buttons. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba70b610cf17ebe9c8402032afda566962"></a>W_SPACE</em>&#160;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba99ddade2c98d3658fae21bf1c226662f"></a>W_SPACE</em>&#160;</td><td class="fielddoc">
 <p>the space key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba6ec4d69b227d89ec61acdc5cce1763b9"></a>W_APOSTROPHE</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba4f1f8d260f4c129be383d5c72e4065c7"></a>W_APOSTROPHE</em>&#160;</td><td class="fielddoc">
 <p>the apostrophe/double quotes key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba3b38c92749ac462ac9679801643cf053"></a>WK_COMMA</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba13d0811166c809579c3e23832961bec4"></a>WK_COMMA</em>&#160;</td><td class="fielddoc">
 <p>the comma key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae55bef6de581c6121792e19893a4bb94"></a>W_MINUS</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae215eaa0d35480ce36510d2059efe9a6"></a>W_MINUS</em>&#160;</td><td class="fielddoc">
 <p>the minus/underscore key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa6c8d16ceafdb9dc281a73b81425906b"></a>W_PERIOD</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac60f8f7ae45bad6aab5da2d64931f39d"></a>W_PERIOD</em>&#160;</td><td class="fielddoc">
 <p>the period key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba1b1e63f8e53d7a136f88eb544e8963d9"></a>W_SLASH</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba7c8417835c905d815e7210dba7d665bf"></a>W_SLASH</em>&#160;</td><td class="fielddoc">
 <p>the slash/question mark key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba63041cd98bb5516f8d54a6d5932c1dde"></a>W_0</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bab2d46a4cfbb2eeddc082288d76c2a2d6"></a>W_0</em>&#160;</td><td class="fielddoc">
 <p>the 0 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae01119db29c2b0a5ab1b2a44e1693316"></a>W_1</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba8358da79689836e15fddd4aece082a7f"></a>W_1</em>&#160;</td><td class="fielddoc">
 <p>the 1 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bab13eccedd697db65f2560be75d03f867"></a>W_2</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba956ddb3363743fe5e8296dc2beed9922"></a>W_2</em>&#160;</td><td class="fielddoc">
 <p>the 2 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba363927192b0f9a9191da7250561b5622"></a>W_3</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa45b1c1012fab7f25e4ead8f3473a2e8"></a>W_3</em>&#160;</td><td class="fielddoc">
 <p>the 3 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba764362660c37b2e38e2115b2514377f4"></a>W_4</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba167c4d78881b5b5cbfee437ca788aa4d"></a>W_4</em>&#160;</td><td class="fielddoc">
 <p>the 4 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba6dacd16aa4e292b4ec9af21771abda23"></a>W_5</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba03f4d32e1acfcd03602a160b8b620a65"></a>W_5</em>&#160;</td><td class="fielddoc">
 <p>the 5 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba346e5081f65a3f4003a0d391c4c58e5d"></a>W_6</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bad8c0547bed5cbef5167a2552159592cd"></a>W_6</em>&#160;</td><td class="fielddoc">
 <p>the 6 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bace34e984eda7c1dad154cd1969bfca1b"></a>W_7</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba7f40a311903497867771d20cc4d71994"></a>W_7</em>&#160;</td><td class="fielddoc">
 <p>the 7 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba2129fae993e16e65fcb0e5869f64da18"></a>W_8</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba14fc44c0e3bb4c728ad88911a3536c76"></a>W_8</em>&#160;</td><td class="fielddoc">
 <p>the 8 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339babca537946ecd20a025b7dc86bf720eb1"></a>W_9</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba182c5bb73ea0a9d09530cc4018fdd58a"></a>W_9</em>&#160;</td><td class="fielddoc">
 <p>the 9 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba779c8297a4468924ce0cf79e22f9d2b6"></a>W_SEMICOLON</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa44731592db0880f5f34fca4fdc51386"></a>W_SEMICOLON</em>&#160;</td><td class="fielddoc">
 <p>the semicolon/colon key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba9c3822b58ae7dea92f0c570546e41c5b"></a>W_EQUAL</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba596ee94032713d521640e86ed82e2eff"></a>W_EQUAL</em>&#160;</td><td class="fielddoc">
 <p>the equals/plus key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba74ec6b6bd6235bf1df21b5f2f204d756"></a>W_A</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba15bbc42a514b3cf401204ed7695d63d8"></a>W_A</em>&#160;</td><td class="fielddoc">
 <p>the A key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baaef05cca37674b4b84bc9132873e83e1"></a>W_B</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bade30cbb2caa04fac7611373616b91385"></a>W_B</em>&#160;</td><td class="fielddoc">
 <p>the B key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba11de372520240cd79c2b8cfda544d236"></a>W_C</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba0dbf709d2ed6159c5249672bd8daf4a8"></a>W_C</em>&#160;</td><td class="fielddoc">
 <p>the C key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba73a90ef6a2d8c6a1d01ae0a799651f4c"></a>W_D</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba943767da9b6c23b1b3c3fc7a6065db6b"></a>W_D</em>&#160;</td><td class="fielddoc">
 <p>the D key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bad854cf3e625d01a96c07723d77fc2585"></a>W_E</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa4477b7be876f73b858d49227d423d4b"></a>W_E</em>&#160;</td><td class="fielddoc">
 <p>the E key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bad63e9eb1bbb1c648bd8b2f5484cc0dff"></a>W_F</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba11f217a7d66382c887170bd452cfdb14"></a>W_F</em>&#160;</td><td class="fielddoc">
 <p>the F key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba24be11587b8403f9b241a031073613f0"></a>W_G</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba1b369beac19d6df89f0e5d9b31550695"></a>W_G</em>&#160;</td><td class="fielddoc">
 <p>the G key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba35ade14d76d2c2f3ce89e7ad43574428"></a>W_H</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba44bdebb30882801d6c30a0b5b9c30beb"></a>W_H</em>&#160;</td><td class="fielddoc">
 <p>the H key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba7eb09ea99bff1d66306778f298a89a17"></a>W_I</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baaa823caeaf15da5c548e2d3af9f05b0c"></a>W_I</em>&#160;</td><td class="fielddoc">
 <p>the I key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baff4c0f25c9fd232777bcf622c66fe158"></a>W_J</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa323ac8239b889533e6d9c657631966c"></a>W_J</em>&#160;</td><td class="fielddoc">
 <p>the J key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba81a1052a0193e5c1177d3716fa594d4d"></a>W_K</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae3f3072d0e91095bc636881a95c59c6c"></a>W_K</em>&#160;</td><td class="fielddoc">
 <p>the K key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba2f9344ffaca3f6175b5dbf6f2c3cee22"></a>W_L</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba3a9ed6027395422ec3347a1eea8512f9"></a>W_L</em>&#160;</td><td class="fielddoc">
 <p>the L key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba21c5c8cc0fdf857a2dc3e2bbf9da6a15"></a>W_M</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba26e29d4ef349f7e3bc104ed75f1e92c6"></a>W_M</em>&#160;</td><td class="fielddoc">
 <p>the M key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba91453a2e5040bd6258aaf4066cb8939b"></a>W_N</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba677370510d34567d8a8a4a09dac608e7"></a>W_N</em>&#160;</td><td class="fielddoc">
 <p>the N key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba175bd4bd74d95b96470f6a5b454f2e7e"></a>W_O</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baf8546364d53cb9ff46ab53434bc42a22"></a>W_O</em>&#160;</td><td class="fielddoc">
 <p>the O key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba21a0f2358d57ea7db5f4a7868751e183"></a>W_P</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa4edcb7cc44b815ecb4c4c8e1729e46b"></a>W_P</em>&#160;</td><td class="fielddoc">
 <p>the P key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bad5812840fb464e484d06d56affe85421"></a>W_Q</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac1b0b73f41e2f55f8b5a1244c1d55ef7"></a>W_Q</em>&#160;</td><td class="fielddoc">
 <p>the Q key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa6435c6a08d0a751dbca4f25bfae9c67"></a>W_R</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba248a5183d953735ac06af9854818aec4"></a>W_R</em>&#160;</td><td class="fielddoc">
 <p>the R key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba917874104d32692e9a1febf354e94dad"></a>W_S</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339babb611991cffd81187c2328d4a97613d2"></a>W_S</em>&#160;</td><td class="fielddoc">
 <p>the S key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba5f9fa92fcd03955a3d92913a009127d8"></a>W_T</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba64b7c39bcbe3601596fac0f35d0c15e0"></a>W_T</em>&#160;</td><td class="fielddoc">
 <p>the T key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba52e272ec80fdea4f0ef50e829d8bda66"></a>W_U</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba706d86dea1e4d5bc95b3981b9b92bd2d"></a>W_U</em>&#160;</td><td class="fielddoc">
 <p>the U key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba7b29681477fd33f4552b286f48e30c36"></a>W_V</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba45946d51ed04e13e572d2cecf735cd1d"></a>W_V</em>&#160;</td><td class="fielddoc">
 <p>the V key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba5bde2db345505bc8574412bf1fd40ccf"></a>W_W</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339babd8c09bd6de0d1945f6c3c40dcbb02fd"></a>W_W</em>&#160;</td><td class="fielddoc">
 <p>the W key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba9134b9f02fbbc401517e9746059b14cd"></a>W_X</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baad5ce05406c378852c3817a5f319dc81"></a>W_X</em>&#160;</td><td class="fielddoc">
 <p>the X key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba76e6c1ec871da0899b516ad82dd0a788"></a>W_Y</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baf3e138b9a1a37eed42a8efb337e1871f"></a>W_Y</em>&#160;</td><td class="fielddoc">
 <p>the Y key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba56e11f77eef73c996be3f47c97665efc"></a>W_Z</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba8a424c615689c1cd278a67eb64698dbe"></a>W_Z</em>&#160;</td><td class="fielddoc">
 <p>the Z key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba38514c9753cc1b27fa085555d2d0c854"></a>W_LEFT_BRACKET</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa854da50cbc7e6cec11cc12f96166011"></a>W_LEFT_BRACKET</em>&#160;</td><td class="fielddoc">
 <p>the left bracket/left curly brace key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba9213d382f116b0d7d57807d2800f9646"></a>W_BACKSLASH</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba5f42d16c6400bd8e9165996daabf37e4"></a>W_BACKSLASH</em>&#160;</td><td class="fielddoc">
 <p>the backslash/vertical bar key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baed31738ddbd98e1edb329d940f58d2b8"></a>W_RIGHT_BRACKET</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba63f6b1b4290106c0554ae611dd311478"></a>W_RIGHT_BRACKET</em>&#160;</td><td class="fielddoc">
 <p>the right bracket/right curly brace key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae254b7b52d52804c31f7a7fb014fd81f"></a>W_GRAVE_ACCENT</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba43e10f7cd5aa75b943282e6196314928"></a>W_GRAVE_ACCENT</em>&#160;</td><td class="fielddoc">
 <p>the grave accent/tilde key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bad02564ff070d758fe8517e9638367bc0"></a>W_ESCAPE</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baba43603d7e4fc1a1aa94bcebf5782258"></a>W_ESCAPE</em>&#160;</td><td class="fielddoc">
 <p>the escape key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba7d03b7e51de5412b129cb7a6dc07f432"></a>W_ENTER</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba71d1e00ae1679c6dd8d3fbe3568245e0"></a>W_ENTER</em>&#160;</td><td class="fielddoc">
 <p>the enter key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baf9c0f9fb137db7aa383206386a95943a"></a>W_TAB</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba690ff7a5db858c18cbc2e2f7e5d0de1a"></a>W_TAB</em>&#160;</td><td class="fielddoc">
 <p>the tab key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba70581def935f079abb5e3b65b07bfdee"></a>W_BACKSPACE</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac2e56e772330b75a33799d019094eb92"></a>W_BACKSPACE</em>&#160;</td><td class="fielddoc">
 <p>the backspace key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba6bdab68f9192d8ff75e134977f3a028f"></a>W_INSERT</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bad44ef703c0f1817c4367660db48ad718"></a>W_INSERT</em>&#160;</td><td class="fielddoc">
 <p>the insert key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bada253dc841db39813a88c2ca3cb59bbf"></a>W_DELETE</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba32c6e4b6af243c66e3db12467f6c7949"></a>W_DELETE</em>&#160;</td><td class="fielddoc">
 <p>the delete key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba06bdd1e253ea39f86f7ddd12fc27f48d"></a>W_RIGHT</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac372151c5d7a4cbe0ea4622638577c44"></a>W_RIGHT</em>&#160;</td><td class="fielddoc">
 <p>the right arrow key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339babb6997462633aed2fb8350e670d5b1c4"></a>W_LEFT</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba9fe6d70db532803b0baa83fe5a5bfe3a"></a>W_LEFT</em>&#160;</td><td class="fielddoc">
 <p>the left arrow key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba5b39845e16c71a515fae786fe340724b"></a>W_DOWN</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339badb1d1ea9a7841a1f5a21be0c908cc1fa"></a>W_DOWN</em>&#160;</td><td class="fielddoc">
 <p>the down arrow key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba97dffe703fc201e0f936ddaed9c82c33"></a>W_UP</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba83f546c57534f19fb3b761b0cf9e4893"></a>W_UP</em>&#160;</td><td class="fielddoc">
 <p>the up arrow key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baeab309a6d38ab11f9404604424695d16"></a>W_PAGE_UP</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba434b6cc7c541c4edf1f5bbebd45de324"></a>W_PAGE_UP</em>&#160;</td><td class="fielddoc">
 <p>the page up key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba7de75e205bd4aea503679f4a5602bbef"></a>W_PAGE_DOWN</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba5847012b46a2666edcaaace1f87540ce"></a>W_PAGE_DOWN</em>&#160;</td><td class="fielddoc">
 <p>the page down key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac72c41c6fe6aedb47352176c36b905eb"></a>W_HOME</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba62bad3190e2c510074b7d963bf8218f8"></a>W_HOME</em>&#160;</td><td class="fielddoc">
 <p>the home key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba59d05696c2c1b92fe0500667e9f0bf4a"></a>W_END</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba0ea20cffb5fd30d721ada241dc17ec62"></a>W_END</em>&#160;</td><td class="fielddoc">
 <p>the end key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baaf75a8e8e625873d5ffb608c91380967"></a>W_CAPS_LOCK</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae843403101014fc34378bc5eb41f7e69"></a>W_CAPS_LOCK</em>&#160;</td><td class="fielddoc">
 <p>the caps lock key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba0ff3fa85df165d43f424201842a0d514"></a>W_SCROLL_LOCK</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba14454a867f51c161b1fbc15c368e26d8"></a>W_SCROLL_LOCK</em>&#160;</td><td class="fielddoc">
 <p>the scroll lock key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba10ee1d13a39b75977666201231910087"></a>W_NUM_LOCK</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba2ff54130d38ecb340f9ab6573d676b47"></a>W_NUM_LOCK</em>&#160;</td><td class="fielddoc">
 <p>the num lock key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac7929a7dccf161c5286a742dc6e34228"></a>W_PRINT_SCREEN</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba4541e5186dd57d02dad534efe84f029d"></a>W_PRINT_SCREEN</em>&#160;</td><td class="fielddoc">
 <p>the print screen key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba89828ceba01c7f7f1d13cba27636411c"></a>W_PAUSE</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba92dbd29441e84e8481400bf2ec100730"></a>W_PAUSE</em>&#160;</td><td class="fielddoc">
 <p>the pause key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba5e2f791e7618636d4c6199d2571093a1"></a>W_F1</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bafbd770973c69014acfafff7efeedb655"></a>W_F1</em>&#160;</td><td class="fielddoc">
 <p>the F1 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae49c095afbe04bd8f367d1ade52bfe6e"></a>W_F2</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba402b763aef83ff2d5436adf0363f0751"></a>W_F2</em>&#160;</td><td class="fielddoc">
 <p>the F2 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba35b72df5b10970459f2ed07ba33c2b99"></a>W_F3</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba9a2e3376e4af0944cc3acd366cbb6d5b"></a>W_F3</em>&#160;</td><td class="fielddoc">
 <p>the F3 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba96a3337c9c331bbf19211b484cf8cb36"></a>W_F4</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba33fdfe55281ed89355cce40b9df64b08"></a>W_F4</em>&#160;</td><td class="fielddoc">
 <p>the F4 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bad7b74cd70829c172f94fbee3debbd8a6"></a>W_F5</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae4cdc4ec2974b3e048e8decc86c73655"></a>W_F5</em>&#160;</td><td class="fielddoc">
 <p>the F5 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baeedee00fde801bd097a3ea21f748169e"></a>W_F6</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba8f41fa82e219dd08638b8ccea91f9fba"></a>W_F6</em>&#160;</td><td class="fielddoc">
 <p>the F6 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae856dd730f0bb5dad075c9347a4c90ea"></a>W_F7</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba8ce4efcc563fc4e1659f021fc08c4fa1"></a>W_F7</em>&#160;</td><td class="fielddoc">
 <p>the F7 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bad244a5bbc17c25b4a0564e4aae007970"></a>W_F8</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bab2ac392794f1cf18ce6528922bd562eb"></a>W_F8</em>&#160;</td><td class="fielddoc">
 <p>the F8 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba4c0e4dd3e9a1121c90d64a0464f843e1"></a>W_F9</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae3fbad92058348f3a0c129e2ae69bd50"></a>W_F9</em>&#160;</td><td class="fielddoc">
 <p>the F9 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba7a586b43cfa9e631f32697564f022ea8"></a>W_F10</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa8acfcf333d0d0835a16a438becd54fd"></a>W_F10</em>&#160;</td><td class="fielddoc">
 <p>the F10 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba7ced2114bf91364bceb40c184b908f12"></a>W_F11</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa6bc2ada6364df44f7a4e2fe3ac8aa64"></a>W_F11</em>&#160;</td><td class="fielddoc">
 <p>the F11 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba3014dae438f88a9f9e62abf2cca0fa28"></a>W_F12</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba2f21f7382282c6722c4fab0f2ddb4507"></a>W_F12</em>&#160;</td><td class="fielddoc">
 <p>the F12 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba8786f3c45cee640467ff0fb4b07253d8"></a>W_F13</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac1fa06974f4fc2b885afd8abb9148f4b"></a>W_F13</em>&#160;</td><td class="fielddoc">
 <p>the F13 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba377bf51a6e0e69396937f4607347f69b"></a>W_F14</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba4ff85188b63594711c33afb0dcfa37fe"></a>W_F14</em>&#160;</td><td class="fielddoc">
 <p>the F14 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba73c8ee41d5c9818b6eea73da5a1f84e3"></a>W_F15</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba322c70860cf5fe38d7d22f6dc0b94e87"></a>W_F15</em>&#160;</td><td class="fielddoc">
 <p>the F15 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba484d80e94c3bc821fe6b076ba8628992"></a>W_F16</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baeb5549ec57c84124d87a6e1287de76e7"></a>W_F16</em>&#160;</td><td class="fielddoc">
 <p>the F16 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bad3ebb9073aa113611a6e2f3a4c44781a"></a>W_F17</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339babbed5228f7699b23c54a828beecce572"></a>W_F17</em>&#160;</td><td class="fielddoc">
 <p>the F17 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba31b1e82fbda8c4ff4be4d57b522fb264"></a>W_F18</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba6405e6e656a37c640e1d0dd180bd3732"></a>W_F18</em>&#160;</td><td class="fielddoc">
 <p>the F18 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba17ece0df135a9b7cc3baefb1a0f785c7"></a>W_F19</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac83dc0ba5457bb8282a8dce93a24f885"></a>W_F19</em>&#160;</td><td class="fielddoc">
 <p>the F19 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac59d6d03e191270f66c6f77d05f8149e"></a>W_F20</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba1165e84cf2699be1f0bbb8cdaa269682"></a>W_F20</em>&#160;</td><td class="fielddoc">
 <p>the F20 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac96a539ada580657beb733ae5d5092f2"></a>W_F21</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba2e4dccd657cd90539b03c3a895885962"></a>W_F21</em>&#160;</td><td class="fielddoc">
 <p>the F21 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac74924d82c33beee01fdf270105bbee3"></a>W_F22</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba894bc403de1033dab60ba1e58c9352db"></a>W_F22</em>&#160;</td><td class="fielddoc">
 <p>the F22 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba528ac33929135b4c2d018c574c5cffe6"></a>W_F23</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba65022f889d63922329711314d9a99608"></a>W_F23</em>&#160;</td><td class="fielddoc">
 <p>the F23 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba23c99d1884ee524cfa6e0b0ce7e634bd"></a>W_F24</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba98652959529f96d6e71e480f78c85fce"></a>W_F24</em>&#160;</td><td class="fielddoc">
 <p>the F24 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba11c497d013a7c31eeab73ffdb3ace854"></a>W_F25</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baead4ead911cd78b17b4d5abce7fa0f4c"></a>W_F25</em>&#160;</td><td class="fielddoc">
 <p>the F25 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba9210103b11ddd7f1eea9620c0d5b931c"></a>W_KP_0</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bad90f9ebb9a39c19aa899ae883630ced7"></a>W_KP_0</em>&#160;</td><td class="fielddoc">
 <p>the keypad 0 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba97bfa6c44dc6c0df7f5dde7517174a12"></a>W_KP_1</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baaf202e5e6344569f8d702a08110e80cf"></a>W_KP_1</em>&#160;</td><td class="fielddoc">
 <p>the keypad 1 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba79c9891c9f8347028e2aacfdacf54161"></a>W_KP_2</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339babcfc5964963866b8a13c9e5c3a8d3324"></a>W_KP_2</em>&#160;</td><td class="fielddoc">
 <p>the keypad 2 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba86a139b65859ac9283fd8ecd77a25491"></a>W_KP_3</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba86a309a97d27088dfc5dd0d30516e53c"></a>W_KP_3</em>&#160;</td><td class="fielddoc">
 <p>the keypad 3 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae4a9205cb249844427ab357fbeae640b"></a>W_KP_4</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba82513759de0799198fc3593e8582b802"></a>W_KP_4</em>&#160;</td><td class="fielddoc">
 <p>the keypad 4 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba3cc9ffe4db0a31da1c06b260ad33f485"></a>W_KP_5</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baf6b25246fbf4cef40df2c34de55aadf3"></a>W_KP_5</em>&#160;</td><td class="fielddoc">
 <p>the keypad 5 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba61ee3e69d86008683a655744f1a32aaf"></a>W_KP_6</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa48d2d2cc99a4611fe1e8c394a40a9ed"></a>W_KP_6</em>&#160;</td><td class="fielddoc">
 <p>the keypad 6 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba73d5c3b49b38d9c282160307e2bd0b5c"></a>W_KP_7</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baf09f0fa6fb020dd91e25ff9e7cb37172"></a>W_KP_7</em>&#160;</td><td class="fielddoc">
 <p>the keypad 7 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba75a1e13ce35e3e11449f930d8a6279fa"></a>W_KP_8</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba0bb14e397b33244d017022d64812a77c"></a>W_KP_8</em>&#160;</td><td class="fielddoc">
 <p>the keypad 8 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baca60a98b16b8d8e6851be6bdc6b40eda"></a>W_KP_9</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba2ed0eaff6fb8ea5204808454a7383f44"></a>W_KP_9</em>&#160;</td><td class="fielddoc">
 <p>the keypad 9 key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae6feb98002d11baf0cb1d96671446d6f"></a>W_KP_DECIMAL</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa7d6d587d533fa513d2607d59b61c678"></a>W_KP_DECIMAL</em>&#160;</td><td class="fielddoc">
 <p>the keypad decimal key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba6606f81e4108180fd0113f7443f2275e"></a>W_KP_DIVIDE</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba68b9d4e528d1ae6756751e085e452843"></a>W_KP_DIVIDE</em>&#160;</td><td class="fielddoc">
 <p>the keypad divide key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba62caec38083ac9597c34768bc366bea7"></a>W_KP_MULTIPLY</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba03f5e3b516bc9798f6bc5ac6aad7c11f"></a>W_KP_MULTIPLY</em>&#160;</td><td class="fielddoc">
 <p>the keypad multiply key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba7f222ad3cc7a1d81931bb125ea4fa75b"></a>W_KP_SUBTRACT</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba80ff89ff6b1b7bb6866169720bde0d92"></a>W_KP_SUBTRACT</em>&#160;</td><td class="fielddoc">
 <p>the keypad subtract key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba913fc72fc37ea305790ec1d1bccd423c"></a>W_KP_ADD</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baf01f3d978b270ebfa5bb1a6c30e99717"></a>W_KP_ADD</em>&#160;</td><td class="fielddoc">
 <p>the keypad add key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baa22180905d222b0333a9f223c5c148b5"></a>W_KP_ENTER</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baddb29a74bb8fc03ef9d7968ae8d4e66f"></a>W_KP_ENTER</em>&#160;</td><td class="fielddoc">
 <p>the keypad enter key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bab3f351e07440d89c9fdaf2546a04695c"></a>W_KP_EQUAL</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baf1067b6ba3c377849b9b823101f216f8"></a>W_KP_EQUAL</em>&#160;</td><td class="fielddoc">
 <p>the keypad equals key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bab0b1a414fa204b1df4819ce72ac083c1"></a>W_LEFT_SHIFT</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba19bb890276b4994c428c66eb20b7c189"></a>W_LEFT_SHIFT</em>&#160;</td><td class="fielddoc">
 <p>the left shift key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baac46405f7e8b4d236699fba20d5aaf3a"></a>W_LEFT_CONTROL</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae879884a74e2b3f395a06dcdfa44cf08"></a>W_LEFT_CONTROL</em>&#160;</td><td class="fielddoc">
 <p>the left control key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba290f2191a28da5cfed8c4f0e511d71ac"></a>W_LEFT_ALT</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba4873ac057c22c2c174977b7ce13e37d9"></a>W_LEFT_ALT</em>&#160;</td><td class="fielddoc">
 <p>the left alt key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bae549ca2864a38753f7b52f5694023c11"></a>W_LEFT_SUPER</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba31e5efc0e6e4df443cc4a769a22907b1"></a>W_LEFT_SUPER</em>&#160;</td><td class="fielddoc">
 <p>the left super key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba3871cce457e8feb6d0bdadde6ee03758"></a>W_RIGHT_SHIFT</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339babbb6c08e191d06d4f42007567233a7ef"></a>W_RIGHT_SHIFT</em>&#160;</td><td class="fielddoc">
 <p>the right shift key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba44b1bc504a8d45b9b831ae57f92f7e46"></a>W_RIGHT_CONTROL</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba67e79eb7f4ebb91f0c0530b6b6f5c147"></a>W_RIGHT_CONTROL</em>&#160;</td><td class="fielddoc">
 <p>the right control key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba25e7006e8f35a9b44d054c3c2e6ef830"></a>W_RIGHT_ALT</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac3ff1e8bc9f2b0175461ed68f4dbc4bf"></a>W_RIGHT_ALT</em>&#160;</td><td class="fielddoc">
 <p>the right alt key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba9e3e1ee38fd7c086589251970e876848"></a>W_RIGHT_SUPER</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba9a5cf7cb7ab4005db1dfa47851db1d39"></a>W_RIGHT_SUPER</em>&#160;</td><td class="fielddoc">
 <p>the right super key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba81cdbad88c244a6c6f15801d1e9c56ec"></a>W_MENU</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba51270f14f4639060613c785a80a2cf7e"></a>W_MENU</em>&#160;</td><td class="fielddoc">
 <p>the menu key. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba4b883b6f3375cb2d58a74e731061502f"></a>W_LMB</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baccdd961a9dab0406bf5c54145dc231e9"></a>W_LMB</em>&#160;</td><td class="fielddoc">
 <p>the left mouse button. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339badbbf60ace651d3dafd35a231ab174cea"></a>W_RMB</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba742f425934b398326eb493de04379acd"></a>W_RMB</em>&#160;</td><td class="fielddoc">
 <p>the right mouse button. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac50037e052318fcb9e9d26b48b92df87"></a>W_MMB</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac9466856024c4703c82219ff3d37ea27"></a>W_MMB</em>&#160;</td><td class="fielddoc">
 <p>the middle mouse button. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba384f73e4f36dd2ea9e552d9c308ca168"></a>W_MB_4</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bab92d588794d4019e92f7b355ad99b5c8"></a>W_MB_4</em>&#160;</td><td class="fielddoc">
 <p>mouse button 4. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba56d6c01d4fa85be1a5043615708ee1c3"></a>W_MB_5</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339bac4d8099cbe485c494c70a08072e08fbc"></a>W_MB_5</em>&#160;</td><td class="fielddoc">
 <p>mouse button 5. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba600ebed77fe30522609f0225d07fd682"></a>W_MB_6</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba57053f5ee39a4c68c9fabf9b3cd5bac4"></a>W_MB_6</em>&#160;</td><td class="fielddoc">
 <p>mouse button 6. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba985c81a6e4f398bab6f683b2a664855c"></a>W_MB_7</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba4c521d067556e403be370cb94f1ce5ae"></a>W_MB_7</em>&#160;</td><td class="fielddoc">
 <p>mouse button 7. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339baf2e560137617a342070efc42b796cbdc"></a>W_MB_8</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="ab47ba789365ca5ca062b9aba0f0d339ba84a6c263584347ec6d6a781d7f48e1a7"></a>W_MB_8</em>&#160;</td><td class="fielddoc">
 <p>mouse button 8. </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="namespacewick.html#ae36a93603380c9386d7f9ae892d3e9b0">wick::WickLocation</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0acd8358b509d173540ca2223cb0ee65f8"></a>W_UNKNOWN</em>&#160;</td><td class="fielddoc">
-<p>Unknown class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0aaf390b7dfc6b7a524b1da6bed5f3b49b"></a>W_WICKEXCEPTION</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_wick_exception.html" title="Defines the exceptions present in the Wick Engine. ">WickException</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0ac8cdb55ac846f7f3eafc6016a0297840"></a>W_PAINTABLE</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0a965514db08e70d7c35830b36e61e3013"></a>W_ROTATEABLE</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_rotateable.html" title="An architectural superclass that should be inherited by any class that is &quot;rotateable&quot;. ">Rotateable</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0a8536bdf63525975b70018481c3c1b25a"></a>W_SCALEABLE</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_scaleable.html" title="An architectural superclass that should by inherited by any class that can be scaled. ">Scaleable</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0a6814e540ab95c12492868ea9f2929133"></a>W_IMAGE</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_image.html" title="An Image to be painted to the screen. ">Image</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0ae108886cefda6f9e4464cc3b4a842d45"></a>W_TEXTURE</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_texture.html">Texture</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0a162b14fe205301f542eec6ce72f96fd6"></a>W_POLYGON</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_polygon.html" title="A convex polygon that can be painted to the screen. ">Polygon</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0ad5abfda84d5df4b9dbd49a7724322009"></a>W_QUAD</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_quad.html" title="A rectangle that can be painted to the screen. ">Quad</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0a8810007460589595e04afc157d00d875"></a>W_STATE</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_state.html" title="A game state that can be initialized, updated, and painted. ">State</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0a4603b855523ef949ef60a6fe5a2b7bbd"></a>W_FONT</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_font.html" title="Loads and stores a font. ">Font</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0af4c6538cfd961f17d674965a6e66ec95"></a>W_TEXT</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_text.html">Text</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0ae760328745be7abe386aadadfd4aa6a0"></a>W_BOUNDS</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_bounds.html" title="Defines a rectangular area. ">Bounds</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0aa2362ea291efa09c6018de2bcd7da7f1"></a>W_COLOR</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_color.html" title="Defines a RGB or RGBA color. ">Color</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0a39d7a4227d62f9f79c8daacafa4bd1a3"></a>W_PAIR</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0a4af73a31d3774df96f747a46d3dabbac"></a>W_GAME</em>&#160;</td><td class="fielddoc">
-<p><a class="el" href="classwick_1_1_game.html" title="Holds and orchestrates the entire Wick game. ">Game</a> class. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ae36a93603380c9386d7f9ae892d3e9b0ae0edf05a59b3577099b242a423b3b4b3"></a>W_WICKUTILITY</em>&#160;</td><td class="fielddoc">
-<p>WickUtility. </p>
 </td></tr>
 </table>
 
@@ -856,12 +805,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Converts and integer to a string. </p>
+<dl class="section return"><dt>Returns</dt><dd>the integer in string form </dd></dl>
+
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 23 2014 16:27:35 for wick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 28 2014 16:19:30 for wick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

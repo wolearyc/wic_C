@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['navy',['Navy',['../classwick_1_1_color.html#a8e2b2f276dbd6643c362fa8bdc6df97d',1,'wick::Color']]]
+  ['name_5f',['name_',['../classwick_1_1_parameter_exception.html#a5c09c8475075c88af04239eddc961936',1,'wick::ParameterException']]],
+  ['navy',['Navy',['../classwick_1_1_color.html#a4a1157fbdd8e36ced9224d620e6592e2',1,'wick::Color']]]
 ];

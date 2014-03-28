@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>wick: include/Texture.h Source File</title>
+<title>wick: /Users/willis/Documents/Programming/C++/wick/include/Texture.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">wick
    </div>
-   <div id="projectbrief">A simple, 2D game engine written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -89,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="_texture_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// ----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// The Wick Engine - A simple, 2D, cross platform game library written in C++.</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// Copyright (C) 2013-2014  Will O&#39;Leary</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// This program is free software: you can redistribute it and/or modify it</span></div>
@@ -111,62 +110,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TEXTURE_H</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="_pair_8h.html">Pair.h</a>&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_wick_exception_8h.html">WickException.h</a>&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;Dependencies/SOIL/SOIL.h&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;SOIL/SOIL.h&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;OpenGL/gl.h&quot;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using</span> std::string;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">namespace </span>wick</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">   31</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14a8b7b8c5d1b6cdb7adba8b08621199f63">   33</a></span>&#160;        <a class="code" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14a8b7b8c5d1b6cdb7adba8b08621199f63">W_NEAREST</a> = GL_NEAREST, <a class="code" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14ac235c492dd46d5b9461cd0b48aa4fb79">W_LINEAR</a> = GL_LINEAR</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    };</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">   35</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a7ac911540a5653fa4d310efcf3ddedf1">   37</a></span>&#160;        <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a7b204e5369629c633c1055c526d00d22">W_MONO</a>, <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a4d0cec9fcbcaf9627cbac89378f85fe0">W_GREYSCALE</a>, <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a631dc9a656957c4f35d1d40623f16799">W_RGB</a>, <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a7ac911540a5653fa4d310efcf3ddedf1">W_RGBA</a></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    };</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classwick_1_1_texture.html">   39</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classwick_1_1_texture.html">Texture</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">   33</a></span>&#160;    <span class="keyword">enum class</span> <a class="code" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14aad135772d7cf93dd0ccf9d2474b34e6a">NEAREST</a> = GL_NEAREST, </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14aaac544aacc3615aada24897a215f5046">LINEAR</a> = GL_LINEAR    </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    };</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">   39</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, <a class="code" href="classwick_1_1_pair.html">Pair</a> dimensions, <span class="keyword">enum</span> <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a> format,</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keyword">enum</span> <a class="code" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a> filter);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, <a class="code" href="classwick_1_1_pair.html">Pair</a> dimensions,</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keyword">enum</span> <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a> format);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>(<span class="keywordtype">string</span> filePath, <span class="keyword">enum</span> <a class="code" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a> filter);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>(<span class="keywordtype">string</span> filePath);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>(<span class="keyword">const</span> <a class="code" href="classwick_1_1_texture.html">Texture</a>&amp; other);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="classwick_1_1_texture.html#aa7abe02604d894b71eb83462832a2780">~Texture</a>();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="classwick_1_1_pair.html">Pair</a> <a class="code" href="classwick_1_1_texture.html#a8383c8b10e9ebd4f5cf76d19315f254f">getDimensions</a>();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classwick_1_1_texture.html#ac63aafb47820f49b3ff108e69dc114e3">select</a>();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> data_;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classwick_1_1_pair.html">Pair</a> dimensions_;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* formatBuffer(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, <span class="keyword">enum</span> <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a> format);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    };</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classwick_1_1_texture_html"><div class="ttname"><a href="classwick_1_1_texture.html">wick::Texture</a></div><div class="ttdef"><b>Definition:</b> Texture.h:39</div></div>
-<div class="ttc" id="namespacewick_html_ac3dca7d5c99829b077eaadc158a6ef14a8b7b8c5d1b6cdb7adba8b08621199f63"><div class="ttname"><a href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14a8b7b8c5d1b6cdb7adba8b08621199f63">wick::W_NEAREST</a></div><div class="ttdef"><b>Definition:</b> Texture.h:33</div></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a80397be70ccac73a56b8843e35acb819">   41</a></span>&#160;        <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a80397be70ccac73a56b8843e35acb819">MONO</a>,      </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56ab8339d3dade545feb6de7d27b433355e">   42</a></span>&#160;        <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56ab8339d3dade545feb6de7d27b433355e">GREYSCALE</a>, </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a4ae91642b1e494426325b130dd64195d">   43</a></span>&#160;        <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a4ae91642b1e494426325b130dd64195d">RGB</a>,       </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56abf1d16c613e1116bcce3c9831079be7d">   44</a></span>&#160;        <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56abf1d16c613e1116bcce3c9831079be7d">RGBA</a>  </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classwick_1_1_texture.html">   51</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classwick_1_1_texture.html">Texture</a></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, <a class="code" href="classwick_1_1_pair.html">Pair</a> dimensions, <span class="keyword">enum</span> <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a> format,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keyword">enum</span> <a class="code" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a> filter);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, <a class="code" href="classwick_1_1_pair.html">Pair</a> dimensions, <span class="keyword">enum</span> <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a> format);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>(<span class="keywordtype">string</span> filepath, <span class="keyword">enum</span> <a class="code" href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">WickFilter</a> filter);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>(<span class="keywordtype">string</span> filepath);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <a class="code" href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">Texture</a>(<span class="keyword">const</span> <a class="code" href="classwick_1_1_texture.html">Texture</a>&amp; other);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <a class="code" href="classwick_1_1_texture.html#aa7abe02604d894b71eb83462832a2780">~Texture</a>();</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="classwick_1_1_pair.html">Pair</a> <a class="code" href="classwick_1_1_texture.html#a8383c8b10e9ebd4f5cf76d19315f254f">getDimensions</a>();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classwick_1_1_texture.html#ac63aafb47820f49b3ff108e69dc114e3">select</a>();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> data_;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="classwick_1_1_pair.html">Pair</a> dimensions_;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* formatBuffer(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* buffer, <span class="keyword">enum</span> <a class="code" href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">WickFormat</a> format);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    };</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="namespacewick_html_af80fb1160ee562b3ce789331259dca56ab8339d3dade545feb6de7d27b433355e"><div class="ttname"><a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56ab8339d3dade545feb6de7d27b433355e">wick::GREYSCALE</a></div><div class="ttdoc">Each pixel has one 8 bit value. </div><div class="ttdef"><b>Definition:</b> Texture.h:42</div></div>
+<div class="ttc" id="classwick_1_1_texture_html"><div class="ttname"><a href="classwick_1_1_texture.html">wick::Texture</a></div><div class="ttdoc">Loads and stores a single 2D Texture from the file system or from a char array. </div><div class="ttdef"><b>Definition:</b> Texture.h:51</div></div>
+<div class="ttc" id="namespacewick_html_af80fb1160ee562b3ce789331259dca56a4ae91642b1e494426325b130dd64195d"><div class="ttname"><a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a4ae91642b1e494426325b130dd64195d">wick::RGB</a></div><div class="ttdoc">Each pixel has three 8 bit values, red, green, and blue. </div><div class="ttdef"><b>Definition:</b> Texture.h:43</div></div>
 <div class="ttc" id="_pair_8h_html"><div class="ttname"><a href="_pair_8h.html">Pair.h</a></div></div>
-<div class="ttc" id="classwick_1_1_texture_html_a3c070b287b8115c76f00936d5098ec90"><div class="ttname"><a href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">wick::Texture::Texture</a></div><div class="ttdeci">Texture()</div></div>
+<div class="ttc" id="classwick_1_1_texture_html_a3c070b287b8115c76f00936d5098ec90"><div class="ttname"><a href="classwick_1_1_texture.html#a3c070b287b8115c76f00936d5098ec90">wick::Texture::Texture</a></div><div class="ttdeci">Texture()</div><div class="ttdoc">The default constructor. </div></div>
 <div class="ttc" id="classwick_1_1_pair_html"><div class="ttname"><a href="classwick_1_1_pair.html">wick::Pair</a></div><div class="ttdoc">Stores two double precision floating point values. </div><div class="ttdef"><b>Definition:</b> Pair.h:32</div></div>
-<div class="ttc" id="namespacewick_html_ac3dca7d5c99829b077eaadc158a6ef14"><div class="ttname"><a href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">wick::WickFilter</a></div><div class="ttdeci">WickFilter</div><div class="ttdef"><b>Definition:</b> Texture.h:31</div></div>
-<div class="ttc" id="namespacewick_html_af80fb1160ee562b3ce789331259dca56a7ac911540a5653fa4d310efcf3ddedf1"><div class="ttname"><a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a7ac911540a5653fa4d310efcf3ddedf1">wick::W_RGBA</a></div><div class="ttdef"><b>Definition:</b> Texture.h:37</div></div>
-<div class="ttc" id="namespacewick_html_af80fb1160ee562b3ce789331259dca56a631dc9a656957c4f35d1d40623f16799"><div class="ttname"><a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a631dc9a656957c4f35d1d40623f16799">wick::W_RGB</a></div><div class="ttdef"><b>Definition:</b> Texture.h:37</div></div>
-<div class="ttc" id="namespacewick_html_af80fb1160ee562b3ce789331259dca56a7b204e5369629c633c1055c526d00d22"><div class="ttname"><a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a7b204e5369629c633c1055c526d00d22">wick::W_MONO</a></div><div class="ttdef"><b>Definition:</b> Texture.h:37</div></div>
+<div class="ttc" id="namespacewick_html_ac3dca7d5c99829b077eaadc158a6ef14"><div class="ttname"><a href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14">wick::WickFilter</a></div><div class="ttdeci">WickFilter</div><div class="ttdoc">Defines constants for Texture filtering (behavior when images are scaled beyond their resolution) ...</div><div class="ttdef"><b>Definition:</b> Texture.h:33</div></div>
 <div class="ttc" id="_wick_exception_8h_html"><div class="ttname"><a href="_wick_exception_8h.html">WickException.h</a></div></div>
-<div class="ttc" id="namespacewick_html_af80fb1160ee562b3ce789331259dca56a4d0cec9fcbcaf9627cbac89378f85fe0"><div class="ttname"><a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a4d0cec9fcbcaf9627cbac89378f85fe0">wick::W_GREYSCALE</a></div><div class="ttdef"><b>Definition:</b> Texture.h:37</div></div>
-<div class="ttc" id="classwick_1_1_texture_html_ac63aafb47820f49b3ff108e69dc114e3"><div class="ttname"><a href="classwick_1_1_texture.html#ac63aafb47820f49b3ff108e69dc114e3">wick::Texture::select</a></div><div class="ttdeci">void select()</div></div>
-<div class="ttc" id="classwick_1_1_texture_html_aa7abe02604d894b71eb83462832a2780"><div class="ttname"><a href="classwick_1_1_texture.html#aa7abe02604d894b71eb83462832a2780">wick::Texture::~Texture</a></div><div class="ttdeci">~Texture()</div></div>
-<div class="ttc" id="namespacewick_html_af80fb1160ee562b3ce789331259dca56"><div class="ttname"><a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">wick::WickFormat</a></div><div class="ttdeci">WickFormat</div><div class="ttdef"><b>Definition:</b> Texture.h:35</div></div>
-<div class="ttc" id="classwick_1_1_texture_html_a8383c8b10e9ebd4f5cf76d19315f254f"><div class="ttname"><a href="classwick_1_1_texture.html#a8383c8b10e9ebd4f5cf76d19315f254f">wick::Texture::getDimensions</a></div><div class="ttdeci">Pair getDimensions()</div></div>
-<div class="ttc" id="namespacewick_html_ac3dca7d5c99829b077eaadc158a6ef14ac235c492dd46d5b9461cd0b48aa4fb79"><div class="ttname"><a href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14ac235c492dd46d5b9461cd0b48aa4fb79">wick::W_LINEAR</a></div><div class="ttdef"><b>Definition:</b> Texture.h:33</div></div>
+<div class="ttc" id="classwick_1_1_texture_html_ac63aafb47820f49b3ff108e69dc114e3"><div class="ttname"><a href="classwick_1_1_texture.html#ac63aafb47820f49b3ff108e69dc114e3">wick::Texture::select</a></div><div class="ttdeci">void select()</div><div class="ttdoc">Selects the texture for painting. </div></div>
+<div class="ttc" id="classwick_1_1_texture_html_aa7abe02604d894b71eb83462832a2780"><div class="ttname"><a href="classwick_1_1_texture.html#aa7abe02604d894b71eb83462832a2780">wick::Texture::~Texture</a></div><div class="ttdeci">~Texture()</div><div class="ttdoc">destructor </div></div>
+<div class="ttc" id="namespacewick_html_af80fb1160ee562b3ce789331259dca56"><div class="ttname"><a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56">wick::WickFormat</a></div><div class="ttdeci">WickFormat</div><div class="ttdoc">Defines image formats. </div><div class="ttdef"><b>Definition:</b> Texture.h:39</div></div>
+<div class="ttc" id="classwick_1_1_texture_html_a8383c8b10e9ebd4f5cf76d19315f254f"><div class="ttname"><a href="classwick_1_1_texture.html#a8383c8b10e9ebd4f5cf76d19315f254f">wick::Texture::getDimensions</a></div><div class="ttdeci">Pair getDimensions()</div><div class="ttdoc">Retrieves the pixel dimensions of the texture. </div></div>
+<div class="ttc" id="namespacewick_html_ac3dca7d5c99829b077eaadc158a6ef14aaac544aacc3615aada24897a215f5046"><div class="ttname"><a href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14aaac544aacc3615aada24897a215f5046">wick::WickFilter::LINEAR</a></div><div class="ttdoc">Linear filtering, a linear filter is applied. </div></div>
+<div class="ttc" id="namespacewick_html_ac3dca7d5c99829b077eaadc158a6ef14aad135772d7cf93dd0ccf9d2474b34e6a"><div class="ttname"><a href="namespacewick.html#ac3dca7d5c99829b077eaadc158a6ef14aad135772d7cf93dd0ccf9d2474b34e6a">wick::WickFilter::NEAREST</a></div><div class="ttdoc">Nearest filtering, no filtering is done. </div></div>
+<div class="ttc" id="namespacewick_html_af80fb1160ee562b3ce789331259dca56a80397be70ccac73a56b8843e35acb819"><div class="ttname"><a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56a80397be70ccac73a56b8843e35acb819">wick::MONO</a></div><div class="ttdoc">Each pixel has one 1 bit value (black or white) </div><div class="ttdef"><b>Definition:</b> Texture.h:41</div></div>
+<div class="ttc" id="namespacewick_html_af80fb1160ee562b3ce789331259dca56abf1d16c613e1116bcce3c9831079be7d"><div class="ttname"><a href="namespacewick.html#af80fb1160ee562b3ce789331259dca56abf1d16c613e1116bcce3c9831079be7d">wick::RGBA</a></div><div class="ttdoc">Each pixel has four 8 bit values, red, green, blue, and alpha. </div><div class="ttdef"><b>Definition:</b> Texture.h:44</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 23 2014 16:27:35 for wick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 28 2014 16:19:30 for wick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

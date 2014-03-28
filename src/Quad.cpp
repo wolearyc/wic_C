@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -21,16 +21,16 @@
 namespace wick
 {
     Quad::Quad(Pair location, Pair dimensions, Color color)
-         :Polygon(location, {Pair(), Pair(dimensions.x_,0.0), dimensions,
-                  Pair(0.0, dimensions.y_)}, color), dimensions_(dimensions)
+    :Polygon(location, {Pair(), Pair(dimensions.x_,0.0), dimensions,
+    Pair(0.0, dimensions.y_)}, color), dimensions_(dimensions)
     {
     }
     Quad::Quad()
-         :Quad(Pair(), Pair(32,32), Color::White)
+    :Quad(Pair(), Pair(32,32), Color::White)
     {
     }
     Quad::Quad(const Quad& other)
-         :Polygon(other), dimensions_(other.dimensions_)
+    :Polygon(other), dimensions_(other.dimensions_)
     {
     }
     Pair Quad::getDimensions()

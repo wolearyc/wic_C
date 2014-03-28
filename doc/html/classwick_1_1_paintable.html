@@ -24,7 +24,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">wick
    </div>
-   <div id="projectbrief">A simple, 2D game engine written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -97,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>An architectural superclass that should be inherited by any class "paintable" to the screen. Any class that inherits from <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> should define a paint method. All <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> objects have a screen location, a center (which can be painted around), and a geometric center that is defined by subclasses. The center and geometric centers are not relative to the screen, but relative to the object they are defined in. Any rotation and scaling (defined in <a class="el" href="classwick_1_1_rotateable.html" title="An architectural superclass that should be inherited by any class that is &quot;rotateable&quot;. ">Rotateable</a> and <a class="el" href="classwick_1_1_scaleable.html" title="An architectural superclass that should by inherited by any class that can be scaled. ">Scaleable</a> respectively) is done around the center defined in <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a>.  
+<p>An architectural superclass that should be inherited by any class that is "paintable" to the screen Any class that inherits from <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> should define a paint method. All <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> objects have a screen location, a center (which can be painted around), and a geometric center that is defined by subclasses. The center and geometric centers are not relative to the screen, but relative to the object they are defined in. Any rotation and scaling /// (defined in <a class="el" href="classwick_1_1_rotateable.html" title="An architectural superclass that should be inherited by any class that is &quot;rotateable&quot;. ">Rotateable</a> and <a class="el" href="classwick_1_1_scaleable.html" title="An architectural superclass that should by inherited by any class that can be scaled. ">Scaleable</a> respectively) is done around the center defined in <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a>.  
  <a href="classwick_1_1_paintable.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_paintable_8h_source.html">Paintable.h</a>&gt;</code></p>
@@ -108,7 +107,7 @@ Inheritance diagram for wick::Paintable:</div>
   <img src="classwick_1_1_paintable.png" usemap="#wick::Paintable_map" alt=""/>
   <map id="wick::Paintable_map" name="wick::Paintable_map">
 <area href="classwick_1_1_polygon.html" title="A convex polygon that can be painted to the screen. " alt="wick::Polygon" shape="rect" coords="0,56,95,80"/>
-<area href="classwick_1_1_text.html" alt="wick::Text" shape="rect" coords="105,56,200,80"/>
+<area href="classwick_1_1_text.html" title="Text stores a string that can be painted to the screen. " alt="wick::Text" shape="rect" coords="105,56,200,80"/>
 <area href="classwick_1_1_quad.html" title="A rectangle that can be painted to the screen. " alt="wick::Quad" shape="rect" coords="0,112,95,136"/>
 <area href="classwick_1_1_image.html" title="An Image to be painted to the screen. " alt="wick::Image" shape="rect" coords="0,168,95,192"/>
 </map>
@@ -120,31 +119,31 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:adb65ff96326feff830a07aacd9183bf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor.  <a href="#adb65ff96326feff830a07aacd9183bf0">More...</a><br/></td></tr>
 <tr class="separator:adb65ff96326feff830a07aacd9183bf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2a7b7d1f04fb01f2cc2f784e7df0212"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html#ae2a7b7d1f04fb01f2cc2f784e7df0212">Paintable</a> ()</td></tr>
-<tr class="memdesc:ae2a7b7d1f04fb01f2cc2f784e7df0212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#ae2a7b7d1f04fb01f2cc2f784e7df0212">More...</a><br/></td></tr>
+<tr class="memdesc:ae2a7b7d1f04fb01f2cc2f784e7df0212"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default constructor.  <a href="#ae2a7b7d1f04fb01f2cc2f784e7df0212">More...</a><br/></td></tr>
 <tr class="separator:ae2a7b7d1f04fb01f2cc2f784e7df0212"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7197d4f48cbff132acf8b9d7475f365a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html#a7197d4f48cbff132acf8b9d7475f365a">Paintable</a> (const <a class="el" href="classwick_1_1_paintable.html">Paintable</a> &amp;other)</td></tr>
-<tr class="memdesc:a7197d4f48cbff132acf8b9d7475f365a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a7197d4f48cbff132acf8b9d7475f365a">More...</a><br/></td></tr>
+<tr class="memdesc:a7197d4f48cbff132acf8b9d7475f365a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The copy constructor.  <a href="#a7197d4f48cbff132acf8b9d7475f365a">More...</a><br/></td></tr>
 <tr class="separator:a7197d4f48cbff132acf8b9d7475f365a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dbeac7ddf324013676363f66d44c702"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwick_1_1_pair.html">Pair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html#a2dbeac7ddf324013676363f66d44c702">getLocation</a> ()</td></tr>
-<tr class="memdesc:a2dbeac7ddf324013676363f66d44c702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the screen location.  <a href="#a2dbeac7ddf324013676363f66d44c702">More...</a><br/></td></tr>
+<tr class="memdesc:a2dbeac7ddf324013676363f66d44c702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the screen location.  <a href="#a2dbeac7ddf324013676363f66d44c702">More...</a><br/></td></tr>
 <tr class="separator:a2dbeac7ddf324013676363f66d44c702"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dc8b06b18990fce1d0a5fcdbb778862"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html#a2dc8b06b18990fce1d0a5fcdbb778862">setLocation</a> (<a class="el" href="classwick_1_1_pair.html">Pair</a> location)</td></tr>
 <tr class="memdesc:a2dc8b06b18990fce1d0a5fcdbb778862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifies the screen location.  <a href="#a2dc8b06b18990fce1d0a5fcdbb778862">More...</a><br/></td></tr>
 <tr class="separator:a2dc8b06b18990fce1d0a5fcdbb778862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47aa89a9fff04dbd205ea6d3ef5ac91d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html#a47aa89a9fff04dbd205ea6d3ef5ac91d">translate</a> (<a class="el" href="classwick_1_1_pair.html">Pair</a> translation)</td></tr>
-<tr class="memdesc:a47aa89a9fff04dbd205ea6d3ef5ac91d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translated the screen location.  <a href="#a47aa89a9fff04dbd205ea6d3ef5ac91d">More...</a><br/></td></tr>
+<tr class="memdesc:a47aa89a9fff04dbd205ea6d3ef5ac91d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates the screen location.  <a href="#a47aa89a9fff04dbd205ea6d3ef5ac91d">More...</a><br/></td></tr>
 <tr class="separator:a47aa89a9fff04dbd205ea6d3ef5ac91d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbb83ed4e995d047962d881d78eed946"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwick_1_1_pair.html">Pair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html#abbb83ed4e995d047962d881d78eed946">getCenter</a> ()</td></tr>
-<tr class="memdesc:abbb83ed4e995d047962d881d78eed946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the center.  <a href="#abbb83ed4e995d047962d881d78eed946">More...</a><br/></td></tr>
+<tr class="memdesc:abbb83ed4e995d047962d881d78eed946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the center.  <a href="#abbb83ed4e995d047962d881d78eed946">More...</a><br/></td></tr>
 <tr class="separator:abbb83ed4e995d047962d881d78eed946"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66809a87c9dfba38f9552f3097da142a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html#a66809a87c9dfba38f9552f3097da142a">setCenter</a> (<a class="el" href="classwick_1_1_pair.html">Pair</a> center)</td></tr>
 <tr class="memdesc:a66809a87c9dfba38f9552f3097da142a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifies the center.  <a href="#a66809a87c9dfba38f9552f3097da142a">More...</a><br/></td></tr>
 <tr class="separator:a66809a87c9dfba38f9552f3097da142a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d6f677cc376bca45afbb4c39f0f8740"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html#a8d6f677cc376bca45afbb4c39f0f8740">isPaintedCentered</a> ()</td></tr>
-<tr class="memdesc:a8d6f677cc376bca45afbb4c39f0f8740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not the <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> object is to be painted around the center.  <a href="#a8d6f677cc376bca45afbb4c39f0f8740">More...</a><br/></td></tr>
+<tr class="memdesc:a8d6f677cc376bca45afbb4c39f0f8740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves whether or not the <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> object is to be painted around the center.  <a href="#a8d6f677cc376bca45afbb4c39f0f8740">More...</a><br/></td></tr>
 <tr class="separator:a8d6f677cc376bca45afbb4c39f0f8740"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a850178eb49bd89aa21b95be865efcba8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html#a850178eb49bd89aa21b95be865efcba8">paintCentered</a> (bool paintCentered)</td></tr>
-<tr class="memdesc:a850178eb49bd89aa21b95be865efcba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not the <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> object is to be painted around the center.  <a href="#a850178eb49bd89aa21b95be865efcba8">More...</a><br/></td></tr>
+<tr class="memdesc:a850178eb49bd89aa21b95be865efcba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifies whether or not the <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> object is to be painted around the center.  <a href="#a850178eb49bd89aa21b95be865efcba8">More...</a><br/></td></tr>
 <tr class="separator:a850178eb49bd89aa21b95be865efcba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b29e78e032b1c90a64bf7fe97803f71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwick_1_1_pair.html">Pair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_paintable.html#a7b29e78e032b1c90a64bf7fe97803f71">getGeometricCenter</a> ()</td></tr>
 <tr class="memdesc:a7b29e78e032b1c90a64bf7fe97803f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the geometric center of the object.  <a href="#a7b29e78e032b1c90a64bf7fe97803f71">More...</a><br/></td></tr>
@@ -173,7 +172,7 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:ad92822ba032536c6172c317759e81faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>An architectural superclass that should be inherited by any class "paintable" to the screen. Any class that inherits from <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> should define a paint method. All <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> objects have a screen location, a center (which can be painted around), and a geometric center that is defined by subclasses. The center and geometric centers are not relative to the screen, but relative to the object they are defined in. Any rotation and scaling (defined in <a class="el" href="classwick_1_1_rotateable.html" title="An architectural superclass that should be inherited by any class that is &quot;rotateable&quot;. ">Rotateable</a> and <a class="el" href="classwick_1_1_scaleable.html" title="An architectural superclass that should by inherited by any class that can be scaled. ">Scaleable</a> respectively) is done around the center defined in <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a>. </p>
+<div class="textblock"><p>An architectural superclass that should be inherited by any class that is "paintable" to the screen Any class that inherits from <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> should define a paint method. All <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> objects have a screen location, a center (which can be painted around), and a geometric center that is defined by subclasses. The center and geometric centers are not relative to the screen, but relative to the object they are defined in. Any rotation and scaling /// (defined in <a class="el" href="classwick_1_1_rotateable.html" title="An architectural superclass that should be inherited by any class that is &quot;rotateable&quot;. ">Rotateable</a> and <a class="el" href="classwick_1_1_scaleable.html" title="An architectural superclass that should by inherited by any class that can be scaled. ">Scaleable</a> respectively) is done around the center defined in <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="adb65ff96326feff830a07aacd9183bf0"></a>
 <div class="memitem">
@@ -190,7 +189,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A constructor. </p>
-<p>Constructs a <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> object which a center at (0,0) and a geometric center of (0,0). </p>
+<p>Constructs a <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> object which a center at (0,0) and a geometric center of (0,0). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">location</td><td>the desired location </td></tr>
@@ -213,8 +212,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Default constructor. </p>
-<p>Constructs a <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> object at location (0,0) with a center at (0,0) and a geometric center at (0,0). </p>
+<p>The default constructor. </p>
+<p>Constructs a <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> object at location (0,0) with a center at (0,0) and a geometric center at (0,0). </p>
 
 </div>
 </div>
@@ -232,7 +231,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Copy constructor. </p>
+<p>The copy constructor. </p>
 
 </div>
 </div>
@@ -284,7 +283,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the center. </p>
+<p>Retrieves the center. </p>
 <dl class="section return"><dt>Returns</dt><dd>the center </dd></dl>
 
 </div>
@@ -303,7 +302,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the geometric center of the object. </p>
-<p>Keep in mind that the geometric center should be defined in subclasses. If it is not defined, the geometric center will always be (0,0). </p>
+<p>Keep in mind that the geometric center should be defined in subclasses. If it is not defined, the geometric center will always be (0,0), which is wrong is nearly all cases. </p>
 
 </div>
 </div>
@@ -320,7 +319,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the screen location. </p>
+<p>Retrieves the screen location. </p>
 <dl class="section return"><dt>Returns</dt><dd>the screen location </dd></dl>
 
 </div>
@@ -338,7 +337,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets whether or not the <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> object is to be painted around the center. </p>
+<p>Retrieves whether or not the <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> object is to be painted around the center. </p>
 <dl class="section return"><dt>Returns</dt><dd>whether or not the object is to be painted around the center </dd></dl>
 
 </div>
@@ -365,7 +364,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classwick_1_1_polygon.html#adf69980f999105cb1daeec293507f8ee">wick::Polygon</a>, <a class="el" href="classwick_1_1_image.html#ac6399d26d7dd3ec8864b69591b17169e">wick::Image</a>, and <a class="el" href="classwick_1_1_text.html#a502100551fa54a7817a3ce9f0f87a499">wick::Text</a>.</p>
+<p>Implemented in <a class="el" href="classwick_1_1_text.html#a502100551fa54a7817a3ce9f0f87a499">wick::Text</a>, <a class="el" href="classwick_1_1_polygon.html#adf69980f999105cb1daeec293507f8ee">wick::Polygon</a>, and <a class="el" href="classwick_1_1_image.html#ac6399d26d7dd3ec8864b69591b17169e">wick::Image</a>.</p>
 
 </div>
 </div>
@@ -383,10 +382,10 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets whether or not the <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class &quot;paintable&quot; to the screen...">Paintable</a> object is to be painted around the center. </p>
+<p>Modifies whether or not the <a class="el" href="classwick_1_1_paintable.html" title="An architectural superclass that should be inherited by any class that is &quot;paintable&quot; to the screen A...">Paintable</a> object is to be painted around the center. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">paintCentered</td><td>whether or not the object should be painted around the center. </td></tr>
+    <tr><td class="paramname">paintCentered</td><td>whether or not the object should be painted around the center </td></tr>
   </table>
   </dd>
 </dl>
@@ -455,7 +454,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Translated the screen location. </p>
+<p>Translates the screen location. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">translation</td><td>the translation vector </td></tr>
@@ -555,12 +554,12 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="_paintable_8h_source.html">Paintable.h</a></li>
+<li>/Users/willis/Documents/Programming/C++/wick/include/<a class="el" href="_paintable_8h_source.html">Paintable.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 23 2014 16:27:35 for wick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 28 2014 16:19:30 for wick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

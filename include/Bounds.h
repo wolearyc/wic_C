@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -24,7 +24,7 @@ namespace wick
 {
     /// \brief Defines a rectangular area
     ///
-    /// Bounds is most commonlyused when defining images that only use a 
+    /// Bounds is most commonly used when defining images that only use a
 	/// specific rectangular portion of a texture. 
     class Bounds
     {
@@ -48,9 +48,9 @@ namespace wick
         /// \xDimension the width from the lower-left x-y coordinate
         /// \yDimension the height from the lower-left x0y coordinate
         Bounds(Pair location, int xDimension, int yDimension);
-        /// \brief The default constructor.
+        /// \brief The default constructor
         Bounds();
-        /// \brief The copy constructor.
+        /// \brief The copy constructor
         Bounds(const Bounds& other);
         /// \brief Retrieves the lower-left x-y coordinate
         /// \return lower-left the lower-left x-y coordinate

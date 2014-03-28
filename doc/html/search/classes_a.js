@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['wickexception',['WickException',['../classwick_1_1_wick_exception.html',1,'wick']]]
+  ['text',['Text',['../classwick_1_1_text.html',1,'wick']]],
+  ['texture',['Texture',['../classwick_1_1_texture.html',1,'wick']]]
 ];

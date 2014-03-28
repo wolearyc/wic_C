@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -24,6 +24,8 @@
 using std::string;
 namespace wick
 {
+    /// \brief Converts and integer to a string
+    /// \return the integer in string form
     string toString(int n);
 }
 #endif

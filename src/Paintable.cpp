@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -21,18 +21,18 @@
 namespace wick
 {
     Paintable::Paintable(Pair location)
-              :location_(location), center_(Pair()),
-               paintCentered_(false), geometricCenter_(Pair())
+    :location_(location), center_(Pair()), paintCentered_(false),
+    geometricCenter_(Pair())
     {
     }
     Paintable::Paintable()
-              :Paintable(Pair())
+    :Paintable(Pair())
     {
     }
     Paintable::Paintable(const Paintable& other)
-              :location_(other.location_), center_(other.center_),
-               paintCentered_(other.paintCentered_),
-               geometricCenter_(other.geometricCenter_)
+    :location_(other.location_), center_(other.center_),
+    paintCentered_(other.paintCentered_),
+    geometricCenter_(other.geometricCenter_)
     {
     }
     Pair Paintable::getLocation()

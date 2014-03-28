@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bounds',['Bounds',['../classwick_1_1_bounds.html',1,'wick']]]
+  ['architectureexception',['ArchitectureException',['../classwick_1_1_architecture_exception.html',1,'wick']]]
 ];

@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -19,19 +19,6 @@
 // ----------------------------------------------------------------------------
 #ifndef FONT_H
 #define FONT_H
-#ifdef _WIN64
-    #define FONT_PATH_1 "C:/WINDOWS/Fonts/"
-    #define FONT_PATH_2 "C:/WINDOWS/Fonts/"
-#elif _WIN32
-    #define FONT_PATH_1 "C:/WINDOWS/Fonts/"
-    #define FONT_PATH_2 "C:/WINDOWS/Fonts/"
-#elif __APPLE__
-    #define FONT_PATH_1 "/Library/Fonts/"
-    #define FONT_PATH_2 "/System/Library/Fonts/"
-#elif __linux
-    #define FONT_PATH_1 "/usr/share/fonts/"
-    #define FONT_PATH_2 "/usr/local/share/fonts/"
-#endif
 #include "Image.h"
 #include "WickException.h"
 #include "FreeType/ft2build.h"
@@ -63,12 +50,12 @@ namespace wick
         /// \param filepath the absolute or relative filepath to the font file
 		/// 	   (only the name of the font file is required when the font is
 		///		   installed on the system)
-        /// \param the point size of the font
+        /// \param the desired font size in font points
         /// \param game the game 
         /// \param antialias whether or not the font should be antialiased
-        /// \exception WickException fatal exception when the font file 
+        /// \exception FileException non-fatal exception when the font file
 		///			   existing at filepath cannot be found, is currupted, or
-		///			   is not compatible with Wick.
+		///			   is not compatible with Wick; construction is terminated
         Font(string filepath, unsigned short point, Game* game, bool antialias);
         /// \brief A constructor for an antialiased font
         ///
@@ -80,14 +67,14 @@ namespace wick
 		///		   installed on the system)
         /// \param the point size of the font
         /// \param game the game 
-        /// \exception WickException fatal exception when the font file 
+        /// \exception FileException non-fatal exception when the font file
 		///			   existing at filepath cannot be found, is currupted, or
-		///			   is not compatible with Wick.
+		///			   is not compatible with Wick; construction is terminated
         Font(string filepath, unsigned short point, Game* game);
         /// \brief The default constructor
         ///
         /// The default constructor does NOT create a complete Font object. 
-		/// Using a default font will result in an error. 
+		/// Using a default font will result in an error.
         Font();
         /// \brief The copy constructor
         Font(const Font& other);

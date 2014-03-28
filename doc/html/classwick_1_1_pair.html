@@ -24,7 +24,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">wick
    </div>
-   <div id="projectbrief">A simple, 2D game engine written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -113,7 +112,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1081ae36e3b32340c439fe818ff4a28e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The copy constructor.  <a href="#a1081ae36e3b32340c439fe818ff4a28e">More...</a><br/></td></tr>
 <tr class="separator:a1081ae36e3b32340c439fe818ff4a28e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cacc983efb66b920452754636b0e87b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_pair.html#a4cacc983efb66b920452754636b0e87b">Pair</a> ()</td></tr>
-<tr class="memdesc:a4cacc983efb66b920452754636b0e87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default constructor.  <a href="#a4cacc983efb66b920452754636b0e87b">More...</a><br/></td></tr>
+<tr class="memdesc:a4cacc983efb66b920452754636b0e87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default constructor Constructs the <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(0.0,0.0).  <a href="#a4cacc983efb66b920452754636b0e87b">More...</a><br/></td></tr>
 <tr class="separator:a4cacc983efb66b920452754636b0e87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10a5cf994f57e5c5b311c6e3ee61eaa6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwick_1_1_pair.html#a10a5cf994f57e5c5b311c6e3ee61eaa6">distance</a> (const <a class="el" href="classwick_1_1_pair.html">Pair</a> &amp;other)</td></tr>
 <tr class="memdesc:a10a5cf994f57e5c5b311c6e3ee61eaa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the distance to another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>.  <a href="#a10a5cf994f57e5c5b311c6e3ee61eaa6">More...</a><br/></td></tr>
@@ -198,7 +197,7 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Stores two double precision floating point values. </p>
-<p><a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> is the workhorse of the Wick Engine. <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> objects are used to represent two dimensional vectors, dimensions, scaling parameters, and, most commonly, x-y coordinates. The usual mathematical operations and comparisons can be performed between Pairs, as well as angle and distance formulas (assuming the two Pairs represent x-y coordinates. </p>
+<p><a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> is the workhorse of wick. <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> objects are used to represent two dimensional vectors, dimensions, scaling parameters, and, most commonly, x-y coordinates. The usual mathematical operations and comparisons can be performed between Pairs, as well as angle and distance formulas (assuming the two Pairs represent x-y coordinates. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3cfe8d52a00765e44ad48ec39e3a506c"></a>
 <div class="memitem">
@@ -227,8 +226,8 @@ Public Attributes</h2></td></tr>
 <p>A constructor taking two doubles. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td>desired value of x_. </td></tr>
-    <tr><td class="paramname">y</td><td>desired value of y_. </td></tr>
+    <tr><td class="paramname">x</td><td>desired value of x_ </td></tr>
+    <tr><td class="paramname">y</td><td>desired value of y_ </td></tr>
   </table>
   </dd>
 </dl>
@@ -263,8 +262,8 @@ Public Attributes</h2></td></tr>
 <p>Defined to make using integer Pairs easier without constantly casting ints to doubles. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td>desired value of x_. </td></tr>
-    <tr><td class="paramname">y</td><td>desired value of y_. </td></tr>
+    <tr><td class="paramname">x</td><td>desired value of x_ </td></tr>
+    <tr><td class="paramname">y</td><td>desired value of y_ </td></tr>
   </table>
   </dd>
 </dl>
@@ -288,7 +287,7 @@ Public Attributes</h2></td></tr>
 <p>The copy constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>. </td></tr>
+    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -308,8 +307,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The default constructor. </p>
-<p>Constructs <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(0.0,0.0). </p>
+<p>The default constructor Constructs the <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(0.0,0.0). </p>
 
 </div>
 </div>
@@ -331,11 +329,11 @@ Public Attributes</h2></td></tr>
 <p>Computes the angle to another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>. </td></tr>
+    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the angle, in radians measured from the positive x axis. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the angle, in radians measured from the positive x axis </dd></dl>
 
 </div>
 </div>
@@ -356,11 +354,11 @@ Public Attributes</h2></td></tr>
 <p>Computes the distance to another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>. </td></tr>
+    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the distance in whatever unit of distance the Pairs used. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the distance in whatever units of distance the Pairs used. </dd></dl>
 
 </div>
 </div>
@@ -385,7 +383,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>false if bothPairs' values are the same (within epsilon), and true otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>false if bothPairs' values are the same (within epsilon), and true otherwise </dd></dl>
 
 </div>
 </div>
@@ -406,11 +404,11 @@ Public Attributes</h2></td></tr>
 <p>Defines the multiplication of Pairs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>. </td></tr>
+    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and Pair(c,d), returns Pair(a*c,b*d). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and Pair(c,d), returns Pair(a*c,b*d) </dd></dl>
 
 </div>
 </div>
@@ -435,7 +433,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and i, returns Pair(a*i,b*i). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and i, returns Pair(a*i,b*i) </dd></dl>
 
 </div>
 </div>
@@ -506,11 +504,11 @@ Public Attributes</h2></td></tr>
 <p>Defines the addition of Pairs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>. </td></tr>
+    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and Pair(c,d), returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a+c,b+d). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and Pair(c,d), returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a+c,b+d) </dd></dl>
 
 </div>
 </div>
@@ -535,7 +533,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and i, returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a+i,b+i). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and i, returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a+i,b+i) </dd></dl>
 
 </div>
 </div>
@@ -606,11 +604,11 @@ Public Attributes</h2></td></tr>
 <p>Defines the subtraction of Pairs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>. </td></tr>
+    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and Pair(c,d), returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a-c,b-d). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and Pair(c,d), returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a-c,b-d) </dd></dl>
 
 </div>
 </div>
@@ -635,7 +633,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and i, returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a-i,b-i). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and i, returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a-i,b-i) </dd></dl>
 
 </div>
 </div>
@@ -706,11 +704,11 @@ Public Attributes</h2></td></tr>
 <p>Defines the division of Pairs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>. </td></tr>
+    <tr><td class="paramname">other</td><td>another <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and Pair(c,d), returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a/c,b/d). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and Pair(c,d), returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a/c,b/d) </dd></dl>
 
 </div>
 </div>
@@ -735,7 +733,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and i, returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a/i,b/i). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>given Pair(a,b) and i, returns <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>(a/i,b/i) </dd></dl>
 
 </div>
 </div>
@@ -810,7 +808,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if this <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>'s values are both less than the other's values, and false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>'s values are both less than the other's values, and false otherwise </dd></dl>
 
 </div>
 </div>
@@ -835,7 +833,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if this <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>'s values are both less than or equal to the other's values, and false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>'s values are both less than or equal to the other's values, and false otherwise </dd></dl>
 
 </div>
 </div>
@@ -860,7 +858,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if both Pairs' values are the same (within epsilon), and false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if both Pairs' values are the same (within epsilon), and false otherwise </dd></dl>
 
 </div>
 </div>
@@ -885,7 +883,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if this <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>'s values are both greater than the other's values, and false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>'s values are both greater than the other's values, and false otherwise </dd></dl>
 
 </div>
 </div>
@@ -910,7 +908,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if this <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>'s values are both greater than or equal to the other's values, and false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this <a class="el" href="classwick_1_1_pair.html" title="Stores two double precision floating point values. ">Pair</a>'s values are both greater than or equal to the other's values, and false otherwise </dd></dl>
 
 </div>
 </div>
@@ -943,12 +941,12 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="_pair_8h_source.html">Pair.h</a></li>
+<li>/Users/willis/Documents/Programming/C++/wick/include/<a class="el" href="_pair_8h_source.html">Pair.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 23 2014 16:27:35 for wick by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 28 2014 16:19:30 for wick by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

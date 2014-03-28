@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// The Wick Engine - A simple, 2D, cross platform game library written in C++.
+// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
 // Copyright (C) 2013-2014  Will O'Leary
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -21,23 +21,24 @@
 namespace wick
 {
     Bounds::Bounds(Pair lowerLeft, Pair upperRight)
-           :lowerLeft_(lowerLeft), upperRight_(upperRight)
+    :lowerLeft_(lowerLeft), upperRight_(upperRight)
     {
     }
-    Bounds::Bounds(int lowerLeftX, int lowerLeftY, int upperRightX, int upperRightY)
-           :Bounds(Pair(lowerLeftX, lowerLeftY), Pair(upperRightX, upperRightY))
+    Bounds::Bounds(int lowerLeftX, int lowerLeftY, int upperRightX,
+                   int upperRightY)
+    :Bounds(Pair(lowerLeftX, lowerLeftY), Pair(upperRightX, upperRightY))
     {
     }
     Bounds::Bounds(Pair location, int xDimension, int yDimension)
-           :Bounds(location, location + Pair(xDimension,yDimension))
+    :Bounds(location, location + Pair(xDimension,yDimension))
     {
     }
     Bounds::Bounds(const Bounds& other)
-           :Bounds(other.lowerLeft_, other.upperRight_)
+    :Bounds(other.lowerLeft_, other.upperRight_)
     {
     }
     Bounds::Bounds()
-           :Bounds(Pair(), Pair(32,32))
+    :Bounds(Pair(), Pair(32,32))
     {
     }
     Pair Bounds::getLowerLeft()
