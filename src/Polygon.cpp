@@ -48,7 +48,7 @@ namespace wick
     void Polygon::paint(Game* game)
     {
         updateVertices();
-        Pair dimensions = game->getDimensions();
+        Pair dimensions = game->getLogicalDimensions();
         unsigned int length = vertices_.size();
         color_.select();
         glBegin(GL_POLYGON);

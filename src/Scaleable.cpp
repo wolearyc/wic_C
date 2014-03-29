@@ -21,15 +21,15 @@
 namespace wick
 {
     Scaleable::Scaleable(Pair scale)
-              :scale_(scale)
+    :scale_(scale)
     {
     }
     Scaleable::Scaleable()
-              :Scaleable(Pair(1,1))
+    :Scaleable(Pair(1,1))
     {
     }
     Scaleable::Scaleable(const Scaleable& other)
-              :Scaleable(other.scale_)
+    :Scaleable(other.scale_)
     {
     }
     Pair Scaleable::getScale()

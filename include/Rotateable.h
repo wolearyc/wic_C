@@ -49,7 +49,6 @@ namespace wick
         //         x-axis
         void setRotation(double rotation);
         /// \brief Rotates the object
-        /// 
         /// \param rotation the amount to rotate by in radians
         void rotate(double rotation);
     protected:

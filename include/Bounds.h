@@ -46,7 +46,7 @@ namespace wick
         /// \brief A constructor taking a x-y location and dimensions
         /// \param location the location of the lower-left x-y coordinate
         /// \xDimension the width from the lower-left x-y coordinate
-        /// \yDimension the height from the lower-left x0y coordinate
+        /// \yDimension the height from the lower-left x-y coordinate
         Bounds(Pair location, int xDimension, int yDimension);
         /// \brief The default constructor
         Bounds();

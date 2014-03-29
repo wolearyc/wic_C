@@ -36,7 +36,7 @@ namespace wick
     void Image::paint(Game* game)
     {
         updateVertices();
-        Pair wDimensions = game->getDimensions();
+        Pair wDimensions = game->getLogicalDimensions();
         Pair tDimensions = texture_->getDimensions();
         texture_->select();
         color_.select();

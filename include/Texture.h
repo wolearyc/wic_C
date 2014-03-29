@@ -47,7 +47,9 @@ namespace wick
     ///        a char array
     ///
     /// Textures are used by Image objects. Textures should be initialized as
-    /// pointers (using "new") and deallocated after use.
+    /// pointers (using "new") and deallocated after use. Textures can load the
+    /// following file formats: non-1bpp and non-RLE BMP, non-interlaced PNG,
+    /// JPEG, TGA, DDS, PSD, and HDR. 
     class Texture
     {
     public:

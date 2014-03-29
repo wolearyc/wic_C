@@ -22,7 +22,7 @@ namespace wick
 {
 	Game::Game(string title, Pair dimensions, unsigned short fps,
                bool resizeable, bool fullscreen, unsigned short samples)
-    :title_(title), dimensions_(dimensions), spf_(1.0 / fps),
+    :title_(title), logicalDimensions_(dimensions), spf_(1.0 / fps),
     resizeable_(resizeable), fullscreen_(fullscreen), samples_(samples),
     selectedState_(nullptr)
 	{
@@ -32,14 +32,14 @@ namespace wick
             throw(ParameterException("title", "any non-empty string",
                                      "Wick Game"));
         }
-        if(dimensions_.x_ <= 0)
+        if(logicalDimensions_.x_ <= 0)
         {
-            dimensions_.x_ = 500;
-            throw(ParameterException("dimensions_ (x value)", ">0", "500"));
+            logicalDimensions_.x_ = 500;
+            throw(ParameterException("dimensions (x value)", ">0", "500"));
         }
-        if(dimensions_.y_ <= 0)
+        if(logicalDimensions_.y_ <= 0)
         {
-            dimensions_.y_ = 500;
+            logicalDimensions_.y_ = 500;
             throw(ParameterException("dimensions_ (y value)", ">0", "500"));
         }
         if(!glfwInit())
@@ -49,18 +49,23 @@ namespace wick
         glfwWindowHint(GLFW_RESIZABLE, resizeable_);
         GLFWmonitor* monitor = glfwGetPrimaryMonitor();
         if(fullscreen_)
-            window_ = glfwCreateWindow(dimensions_.x_, dimensions_.y_,
-                                       title_.c_str(), monitor, 0);
+            window_ = glfwCreateWindow(logicalDimensions_.x_,
+                                       logicalDimensions_.y_, title_.c_str(),
+                                       monitor, 0);
         else
-            window_ = glfwCreateWindow(dimensions_.x_, dimensions_.y_,
-                                       title_.c_str(), 0, 0);
+            window_ = glfwCreateWindow(logicalDimensions_.x_,
+                                       logicalDimensions_.y_, title_.c_str(), 0,
+                                       0);
         if(window_ == 0)
             throw(ArchitectureException("window creation failed"));
-        int width; int height;
-        glfwGetMonitorPhysicalSize(monitor, &width, &height);
+        int actualWidth, actualHeight;
+        glfwGetFramebufferSize(window_, &actualWidth, &actualHeight);
+        actualDimensions_ = Pair(actualWidth, actualHeight);
+        int physicalWidth; int physicalHeight;
+        glfwGetMonitorPhysicalSize(monitor, &physicalWidth, &physicalHeight);
         const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-        deviceResolution_ = Pair(mode->width / (width * 0.0393701),
-                                 mode->height / (height * 0.0393701));
+        deviceResolution_ = Pair(mode->width / (physicalWidth * 0.0393701),
+                                 mode->height / (physicalHeight * 0.0393701));
         glfwSetErrorCallback(ErrorCallback);
         glfwSetWindowFocusCallback(window_, FocusCallback);
         glfwSetKeyCallback(window_, KeyCallback);
@@ -119,10 +124,15 @@ namespace wick
 	{
         glfwSetWindowShouldClose(window_, true);
 	}
-	Pair Game::getDimensions()
+	Pair Game::getLogicalDimensions()
 	{
-	    return(dimensions_);
+	    return(logicalDimensions_);
 	}
+    Pair Game::getActualDimensions()
+	{
+	    return(actualDimensions_);
+	}
+
 	Pair Game::getDeviceResolution()
 	{
 	    return(deviceResolution_);
@@ -229,7 +239,7 @@ namespace wick
 	Pair Game::getCursorLocation()
 	{
 	    Pair cursorLocation = cursorLocation_;
-	    cursorLocation.y_ = dimensions_.y_ - cursorLocation.y_;
+	    cursorLocation.y_ = logicalDimensions_.y_ - cursorLocation.y_;
 	    return(cursorLocation);
 	}
 	Pair Game::getScrollOffset()

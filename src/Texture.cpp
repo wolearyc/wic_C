@@ -39,8 +39,9 @@ namespace wick
             unsigned char* formattedBuffer = formatBuffer(buffer, format);
             if(formattedBuffer == nullptr)
             {
-                string message = "dimensions and/or fomat are not compatible " +
-                                 " with buffer, texture not constructed";
+                string message = string("dimensions and/or fomat are not") +
+                                 string("compatible with buffer, texture not") +
+                                 string("constructed");
                 throw(WickException(message, false));
             }
             else
@@ -127,7 +128,9 @@ namespace wick
         {
             int xDimension = (int) (dimensions_.x_ + 2) * 4;
             int yDimension = (int) dimensions_.y_ + 2;
-            unsigned char temp[xDimension][yDimension];
+            unsigned char** temp = new unsigned char*[xDimension];
+            for(int x = 0; x < xDimension; x++)
+                temp[x] = new unsigned char[yDimension];
             for(unsigned int y = 0; y < yDimension; y++)
             {
                 for(unsigned int x = 0; x < xDimension; x+=4)
@@ -192,6 +195,9 @@ namespace wick
                     formattedBufferIndex++;
                 }
             }
+            for(int x = 0; x < xDimension; x++)
+                delete[] temp[x];
+            delete[] temp;
             return(formattedBuffer);
         }
         catch(...)

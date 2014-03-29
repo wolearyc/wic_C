@@ -216,9 +216,22 @@ namespace wick
 		void execute();
 		/// \brief Stops the game and closes the OS window
 		void stop();
-		/// \brief Retrieves the frame dimensions of the OS window
-		/// \return the frame dimensions of the OS window in pixels.
-		Pair getDimensions();
+		/// \brief Retrieves the frame dimensions of the OS window in logical
+        ///        pixels
+        ///
+        /// The logical and actual dimensions of the OS window should be the
+        /// same with standard resolution screens, but the two may differ with
+        /// high dpi (retina or 4K) displays.
+		/// \return the frame dimensions of the OS window in logical pixels.
+		Pair getLogicalDimensions();
+        /// \brief Retrieves the frame dimensions of the OS window in actual
+        ///        physical pixels
+        ///
+        /// The actual and logical dimensions of the OS window should be the
+        /// same with standard resolution screens, but the two may differ with
+        /// high dpi (retina or 4K) displays.
+        /// \return the frame dimensions of the OS window in actual pixels.
+		Pair getActualDimensions();
 		/// \brief Retrieves the display resolution
 		/// \return the display resolution in pixels per inch
 		Pair getDeviceResolution();
@@ -309,7 +322,8 @@ namespace wick
 		double getTime();
     private:
 		string title_;
-		Pair dimensions_;
+		Pair logicalDimensions_;
+        Pair actualDimensions_;
 		GLFWwindow* window_;
         Pair deviceResolution_;
 		vector<State*> states_;

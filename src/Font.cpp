@@ -140,8 +140,8 @@ namespace wick
             {
                 FT_Vector delta;
                 FT_Get_Kerning(face_, previousGlyphIndex, glyphIndex,
-                               FT_KERNING_DEFAULT, &delta);
-                penX += delta.x / 64;
+                               FT_KERNING_UNFITTED, &delta);
+                penX += delta.x;
             }
             previousGlyphIndex = glyphIndex;
             Image image = Image(Pair(penX, (face_->glyph->metrics.horiBearingY - face_->glyph->metrics.height)/64), texture);

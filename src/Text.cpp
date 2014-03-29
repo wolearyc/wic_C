@@ -55,8 +55,10 @@ namespace wick
             Pair location = location_;
             if(!paintCentered_)
                 location += center_;
+            Pair scalingFactor = game->getLogicalDimensions() /
+                                 game->getActualDimensions();
             images_[i].setLocation(location);
-            images_[i].setScale(scale_);
+            images_[i].setScale(scale_ * scalingFactor);
             images_[i].setRotation(rotation_);
             images_[i].paint(game);
         }

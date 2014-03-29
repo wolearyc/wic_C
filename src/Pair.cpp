@@ -21,9 +21,8 @@
 namespace wick
 {
 	Pair::Pair(double x, double y)
+    :x_(x), y_(y)
 	{
-		x_ = x;
-		y_ = y;
 	}
 	Pair::Pair(int x, int y)
     :Pair((double) x, (double) y)
@@ -34,7 +33,7 @@ namespace wick
 	{
 	}
 	Pair::Pair()
-	     :Pair(0.0,0.0)
+    :Pair(0.0,0.0)
 	{
 	}
 	double Pair::distance(const Pair& other)
