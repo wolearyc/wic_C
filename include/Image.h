@@ -1,22 +1,23 @@
-// ----------------------------------------------------------------------------
-// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
-// Copyright (C) 2013-2014  Will O'Leary
-//
-// This program is free software: you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option)
-// any later version.
-//
-// This program is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-// more details.
-//
-// You should have received a copy of the GNU General Public License along with
-// this program.  If not, see <http://www.gnu.org/licenses/>.
-// ----------------------------------------------------------------------------
-// File:    Image.h
-// ----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+ * wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
+ * Copyright (C) 2013-2014  Will O'Leary
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+ * ----------------------------------------------------------------------------
+ * File:    Image.h
+ * ----------------------------------------------------------------------------
+ */
 #ifndef IMAGE_H
 #define IMAGE_H
 #include "Bounds.h"
@@ -25,44 +26,51 @@
 #include "WickException.h"
 namespace wick
 {
-    /// \brief An Image to be painted to the screen
-    ///
-    /// An Image is defined by a Texture, and can be moved, rotated, scaled, and 
-    /// centered. In essense, an Image behaves just like Quad. Multiple Image 
-    /// objects can be defined by the same Texture.
+    /** \brief an image that can be painted to the screen
+      *
+      * An Image is defined by a Texture, and can be moved, rotated, scaled, and
+      * centered. In essense, an Image behaves just like Quad. Multiple Images
+      * can use the same Texture.
+      */
     class Image : public Quad
     {
     public:
-        /// \brief A constructor
-        ///
-        /// Constructs an unrotated and unscaled Image with its center at the
-        /// lower-left corner
-        /// \param location the screen location
-        /// \param texture the texture
+        /** \brief constructs an unrotated, unscaled Image with its center at 
+          *        lower-left corner
+          * \param location the screen location
+          * \param texture the texture
+          */
         Image(Pair location, Texture* texture);
-        /// \brief The default constructor
-        ///
-        /// This constructor does NOT construct a valid, paintable Image.
+        /** \brief constructs an invalid Image
+          */
         Image();
-        /// \brief The copy constructor.
+        /** \brief constructs an Image identical to another
+          * \param other another Image
+          */
         Image(const Image& other);
-        /// \brief Paints the Image to the screen
-        /// \param game the game
+        /** \brief paints the Image to the screen
+          * \param game the game
+          */
         void paint(Game* game);
-        /// \brief Retrieves the current Texture
-        /// \return the current Texture
+        /** \brief retrieves the Texture
+          * \return the current Texture
+          */
         Texture* getTexture();
-        /// \brief Changes the current Texture.
-        /// \param texture the desired new Texture
+        /** \brief modifies the Texture.
+          *
+          * \param texture the desired Texture
+          */
         void setTexture(Texture* texture);
-        /// \brief Returns the current Texture bounds
-        /// \return the rectangular bounds of the current Texture
+        /** \brief retrieves the rectangular Texture bounds
+          * \return the bounds
+          */
         Bounds getBounds();
-        /// \brief Modifies the current Texture bounds
-        /// \param bounds the desired rectanglar bounds of the Texture to use
-        /// \exception ParameterException non-fatal exception when the bounds
-        ///            go beyond the Texture's dimensions; the Texture bounds
-        ///            are not changed
+        /** \brief modifies the rectangular Texture bounds
+          * \param bounds the desired rectangular Texture bounds
+          * \exception ParameterException non-fatal exception when the bounds
+          *            go beyond the Texture's dimensions; the Texture bounds
+          *            are corrected to cover the entire Texture
+          */
         void setBounds(Bounds bounds);
     protected:
         Texture* texture_;

@@ -1,22 +1,23 @@
-// ----------------------------------------------------------------------------
-// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
-// Copyright (C) 2013-2014  Will O'Leary
-//
-// This program is free software: you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option)
-// any later version.
-//
-// This program is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-// more details.
-//
-// You should have received a copy of the GNU General Public License along with
-// this program.  If not, see <http://www.gnu.org/licenses/>.
-// ----------------------------------------------------------------------------
-// File:    Polygon.cpp
-// ----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+ * wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
+ * Copyright (C) 2013-2014  Will O'Leary
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+ * ----------------------------------------------------------------------------
+ * File:    Polygon.cpp
+ * ----------------------------------------------------------------------------
+ */
 #include "Polygon.h"
 namespace wick
 {
@@ -36,13 +37,14 @@ namespace wick
     {
     }
     Polygon::Polygon()
-    :Paintable(), Rotateable(), Scaleable(), color_(Color())
+    :Polygon(Pair(), {Pair(), Pair(0,32), Pair(32,32), Pair(32,0)},
+             Color::White)
     {
     }
     Polygon::Polygon(const Polygon& other)
     :Paintable(other), Rotateable(other), Scaleable(other),
-    color_(other.color_), baseVertices_(other.baseVertices_),
-    vertices_(other.vertices_)
+    baseVertices_(other.baseVertices_), vertices_(other.vertices_),
+    color_(other.color_)
     {
     }
     void Polygon::paint(Game* game)
@@ -59,23 +61,6 @@ namespace wick
                 glVertex2d(vertex.x_, vertex.y_);
             }
         glEnd();
-    }
-    void Polygon::updateVertices()
-    {
-        double cosine = cos(rotation_);
-        double sine = sin(rotation_);
-        unsigned int length = baseVertices_.size();
-        for(unsigned int i = 0; i < length; i++)
-        {
-            Pair vertex = baseVertices_[i];
-            vertex -= (center_);
-            vertex *= scale_;
-            vertex = Pair(vertex.x_ * cosine - vertex.y_ * sine,
-                          vertex.x_ * sine + vertex.y_ * cosine);
-            if(!paintCentered_)
-                vertex += center_;
-            vertices_[i] = vertex;
-        }
     }
     vector<Pair> Polygon::getBaseVertices()
     {
@@ -104,6 +89,23 @@ namespace wick
     void Polygon::setColor(Color color)
     {
         color_ = color;
+    }
+    void Polygon::updateVertices()
+    {
+        double cosine = cos(rotation_);
+        double sine = sin(rotation_);
+        unsigned int length = baseVertices_.size();
+        for(unsigned int i = 0; i < length; i++)
+        {
+            Pair vertex = baseVertices_[i];
+            vertex -= (center_);
+            vertex *= scale_;
+            vertex = Pair(vertex.x_ * cosine - vertex.y_ * sine,
+                          vertex.x_ * sine + vertex.y_ * cosine);
+            if(!paintCentered_)
+                vertex += center_;
+            vertices_[i] = vertex;
+        }
     }
 }
 

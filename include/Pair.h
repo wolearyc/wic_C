@@ -1,158 +1,185 @@
-// ----------------------------------------------------------------------------
-// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
-// Copyright (C) 2013-2014  Will O'Leary
-//
-// This program is free software: you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option)
-// any later version.
-//
-// This program is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-// more details.
-//
-// You should have received a copy of the GNU General Public License along with
-// this program.  If not, see <http://www.gnu.org/licenses/>.
-// ----------------------------------------------------------------------------
-// File:    Pair.h
-// ----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+ * wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
+ * Copyright (C) 2013-2014  Will O'Leary
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+ * ----------------------------------------------------------------------------
+ * File:    Pair.h
+ * ----------------------------------------------------------------------------
+ */
 #ifndef PAIR_H
 #define PAIR_H
 #include <math.h>
 namespace wick
 {
-    /// \brief Stores two double precision floating point values
-    ///
-    /// Pair is the workhorse of wick. Pair objects are used to represent two
-    /// dimensional vectors, dimensions, scaling parameters, and, most commonly,
-    /// x-y coordinates. The usual mathematical operations and comparisons can
-    /// be performed between Pairs, as well as angle and distance formulas
-    /// (assuming the two Pairs represent x-y coordinates.
+    /** \brief a pair of double precision floating point values
+      *
+      * Pairs can hold two dimensional vectors, dimensions, scaling parameters, 
+      * and, most commonly, coordinates. Pairs support all the usual vector 
+      * operations (vector and scalar addition, subtraction, multiplication)
+      * as well as the usual comparisons. Pair also contains useful methods 
+      * for determining angle and distance between two Pairs.
+      */
 	class Pair
 	{
 	public:
-		double x_; ///< The x coordinate/x dimension/x component etc.
-		double y_; ///< The y coordinate/y dimension/y component etc.
-		/// \brief A constructor taking two doubles
-		///
-		/// \param x desired value of x_
-		/// \param y desired value of y_
+		double x_; /**< the x coordinate/x dimension/x component etc. */
+		double y_; /**< the y coordinate/y dimension/y component etc. */
+		/** \brief constructs Pair based on two doubles
+		  * \param x the desired x coordinate/x dimension/x component etc.
+		  * \param y the desired y coordinate/y dimension/y component etc.
+          */
 		Pair(double x, double y);
-		/// \brief A constructor taking two ints
-		///
-		/// Defined to make using integer Pairs easier without constantly
-		/// casting ints to doubles.
-		/// \param x desired value of x_
-		/// \param y desired value of y_
+		/** \brief constructs Pair based on two ints
+		  * \param x the desired x coordinate/x dimension/x component etc.
+		  * \param y the desired y coordinate/y dimension/y component etc.
+          */
 		Pair(int x, int y);
-		/// \brief The copy constructor
-		/// \param other another Pair
-		Pair(const Pair& other);
-		/// \brief The default constructor
-		/// Constructs the Pair(0.0,0.0).
+        /** \brief constructs Pair with x coordinate/x dimension/x component 0
+          *        and y coordinate/y dimension/y component 0 
+          */
 		Pair();
-		/// \brief Computes the distance to another Pair
-		/// \param other another Pair
-		/// \return the distance in whatever units of distance the Pairs used.
+		/** \brief constructs a Pair identical to another
+		  * \param other another Pair
+          */
+		Pair(const Pair& other);
+		/** \brief computes the distance to another Pair
+		  * \param other another Pair
+		  * \return the distance between the Pairs, in whatever units the Pairs
+          *         used
+          */
 		double distance(const Pair& other);
-		/// \brief Computes the angle to another Pair
-		/// \param other another Pair
-		/// \return the angle, in radians measured from the positive x axis
+		/** \brief computes the angle to another Pair
+		  * \param other another Pair
+		  * \return the angle, in radians measured from the positive x axis
+          */
 		double angle(const Pair& other);
-		/// \brief Defines the addition of Pairs
-		/// \param other another Pair
-		/// \return given Pair(a,b) and Pair(c,d), returns Pair(a+c,b+d)
+		/** \brief defines addition between Pairs
+		  * \param other another Pair
+		  * \return the component-wise sum of the Pairs
+          */
 		Pair operator+(const Pair& other) const;
-		/// \brief Defines the subtraction of Pairs
-		/// \param other another Pair
-		/// \return given Pair(a,b) and Pair(c,d), returns Pair(a-c,b-d)
+		/** \brief defines subraction between Pairs
+		  * \param other another Pair
+		  * \return the component-wise difference between the Pairs
+          */
 		Pair operator-(const Pair& other) const;
-		/// \brief Defines the multiplication of Pairs
-		/// \param other another Pair
-		/// \return given Pair(a,b) and Pair(c,d), returns Pair(a*c,b*d)
+		/** \brief defines multiplication between Pairs
+		  * \param other another Pair
+		  * \return the component-wise product of the Pairs
+          */
 		Pair operator*(const Pair& other) const;
-		/// \brief Defines the division of Pairs
-		/// \param other another Pair
-		/// \return given Pair(a,b) and Pair(c,d), returns Pair(a/c,b/d)
+		/** \brief defines division between Pairs
+		  * \param other another Pair
+		  * \return the component-wise quotient of the Pairs
+          */
 		Pair operator/(const Pair& other) const;
-		/// \brief Defines a short cut to add a Pair to another
-		/// \param other another Pair
-		/// \return the final added Pair
+		/** \brief defines addition assignment between Pairs
+		  * \param other another Pair
+		  * \return the final added Pair
+          */
 		Pair operator+=(const Pair& other);
-		/// \brief Defines a short cut to subtract a Pair from another
-		/// \param other another Pair
-		/// \return the final subtracted Pair
+		/** \brief defines subraction assignment between Pairs
+		  * \param other another Pair
+		  * \return the final subtracted Pair
+          */
 		Pair operator-=(const Pair& other);
-		/// \brief Defines a short cut to multiply a Pair to another
-		/// \param other another Pair
-		/// \return the final multiplied Pair
+		/** \brief defines multiplication assignment between Pairs 
+          * \param other another Pair
+		  * \return the final multiplied Pair
+          */
 		Pair operator*=(const Pair& other);
-		/// \brief Defines a short cut to divide a Pair by another
-		/// \param other another Pair
-		/// \return the final divided Pair
+		/** \brief defines division assiment between Pairs
+		  * \param other another Pair
+		  * \return the final divided Pair
+          */
 		Pair operator/=(const Pair& other);
-		/// \brief Defines the equality operator
-		/// \param other another Pair
-		/// \return true if both Pairs' values are the same (within epsilon),
-		///         and false otherwise
+		/** \brief defines equality operator between Pairs
+		  * \param other another Pair
+		  * \return true if both Pairs' respective components are within epsilon
+          *         (0.0000001), false otherwise
+          */
 		bool operator==(const Pair& other);
-		/// \brief Defines the opposite equality operator
-		/// \param other another Pair
-		/// \return false if bothPairs' values are the same (within epsilon),
-		///         and true otherwise
+		/** \brief defines the inequality operator between Pairs
+		  * \param other another Pair
+          * \return false if both Pairs' respective components are within 
+          *         epsilon (0.0000001), true otherwise
+          */
 		bool operator!=(const Pair& other) const;
-		/// \brief Defines the greater-than or equal operator.
-		/// \param other another Pair
-		/// \return true if this Pair's values are both greater than or equal
-		///         to the other's values, and false otherwise
+        /** \brief defines the greater than or equal to operator between Pairs
+		  * \param other another Pair
+		  * \return true if the Pair's respective components are both greater
+          *         than or equal to the components of the other Pair
+          */
 		bool operator>=(const Pair& other);
-		/// \brief Defines the greater-than operator.
-		/// \param other another Pair
-		/// \return true if this Pair's values are both greater than the
-		///         other's values, and false otherwise
+		/** \brief defines the greater than operator between Pairs
+		  * \param other another Pair
+          * \return true if the Pair's respective components are both greater
+          *         than to the components of the other Pair
+          */
 		bool operator>(const Pair& other);
-		/// \brief Defines the less-than or equal operator.
-		/// \param other another Pair
-		/// \return true if this Pair's values are both less than or equal
-		///         to the other's values, and false otherwise
+        /** \brief defines the less than or equal to operator between Pairs
+		  * \param other another Pair
+         * \return true if the Pair's respective components are both less than
+         *         or equal to the components of the other Pair
+         */
 		bool operator<=(const Pair& other);
-		/// \brief Defines the less-than operator
-		/// \param other another Pair
-		/// \return true if this Pair's values are both less than the other's
-		///         values, and false otherwise
+		/** \brief defines the less than operator between Pairs
+		  * \param other another Pair
+		 * \return true if the Pair's respective components are both greater
+         *         than or equal to the components of the other Pair
+         */
 		bool operator<(const Pair& other);
-		/// \brief Defines addition of a double.
-		/// \param i a double
-		/// \return given Pair(a,b) and i, returns Pair(a+i,b+i)
+		/** \brief defines addition between a Pair and a double
+		  * \param i a double
+		  * \return the Pair with the double added to both components
+          */
 		Pair operator+(const double i) const;
-		/// \brief Defines subtraction of a double.
-		/// \param i a double
-		/// \return given Pair(a,b) and i, returns Pair(a-i,b-i)
+        /** \brief defines subtraction between a Pair and a double
+          * \param i a double
+          * \return the Pair with the double subtracted from both components
+          */
 		Pair operator-(const double i) const;
-		/// \brief Defines multiplication of a double.
-		/// \param i a double
-		/// \return given Pair(a,b) and i, returns Pair(a*i,b*i)
+		/** \brief defines multiplication between a Pair and a double
+          * \param i a double
+          * \return the Pair with the double multiplied by both components
+          */
 		Pair operator*(const double i) const;
-		/// \brief Defines division of a double.
-		/// \param i a double
-		/// \return given Pair(a,b) and i, returns Pair(a/i,b/i)
+		/** \brief defines division between a Pair and a double
+          * \param i a double
+          * \return the Pair with the double divided into  both components
+          */
 		Pair operator/(const double i) const;
-		/// \brief Defines a short cut to add a double
-		/// \param i a double
-		/// \return the final added Pair
+		/** \brief defines addition assignment between a Pair and a double
+          * \param i a double
+		  * \return the final added Pair
+          */
 		Pair operator+=(const double i);
-		/// \brief Defines a short cut to subtract a double
-		/// \param i a double
-		/// \return the final subtracted Pair
+		/** \brief defines subtraction assignment between a Pair and a double
+		  * \param i a double
+		  * \return the final subtracted Pair
+          */
 		Pair operator-=(const double i);
-		/// \brief Defines a short cut to multiply a double
-		/// \param i a double
-		/// \return the final multiplied Pair
+        /** \brief defines multiplication assignment between a Pair and a double
+		  * \param i a double
+		  * \return the final multiplied Pair
+          */
 		Pair operator*=(const double i);
-		/// \brief Defines a short cut to divide a double
-		/// \param i a double
-		/// \return the final divided Pair
+		/** \brief defines division assignment between a Pair and a double
+          * \param i a double
+		  * \return the final divided Pair
+          */
 		Pair operator/=(const double i);
 	};
 }

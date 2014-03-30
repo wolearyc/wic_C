@@ -1,22 +1,23 @@
-// ----------------------------------------------------------------------------
-// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
-// Copyright (C) 2013-2014  Will O'Leary
-//
-// This program is free software: you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option)
-// any later version.
-//
-// This program is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-// more details.
-//
-// You should have received a copy of the GNU General Public License along with
-// this program.  If not, see <http://www.gnu.org/licenses/>.
-// ----------------------------------------------------------------------------
-// File:    Color.cpp
-// ----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+ * wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
+ * Copyright (C) 2013-2014  Will O'Leary
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+ * ----------------------------------------------------------------------------
+ * File:    Color.cpp
+ * ----------------------------------------------------------------------------
+ */
 
 #include "Color.h"
 namespace wick
@@ -83,12 +84,12 @@ namespace wick
 	}
 	void Color::setRed(unsigned char red)
 	{
-		red_ = red;
-		if(red_ > 255)
+		if(red > 255)
 		{
 			throw(ParameterException("red", "0-255", "255"));
-			red_ = 255;
+			red = 255;
 		}
+        red_ = red;
 	}
 	unsigned char Color::getGreen()
 	{
@@ -96,12 +97,12 @@ namespace wick
 	}
 	void Color::setGreen(unsigned char green)
 	{
-		green_ = green;
-		if(green_ > 255)
+		if(green > 255)
 		{
 			throw(ParameterException("green", "0-255", "255"));
-			green_ = 255;
+			green = 255;
 		}
+        green_ = green;
 	}
 	unsigned char Color::getBlue()
 	{
@@ -109,12 +110,12 @@ namespace wick
 	}
 	void Color::setBlue(unsigned char blue)
 	{
-		blue_ = blue;
-		if(blue_ > 255)
+		if(blue > 255)
 		{
 			throw(ParameterException("blue", "0-255", "255"));
-			blue_ = 255;
+			blue = 255;
 		}
+        blue_ = blue;
 	}
 	unsigned char Color::getAlpha()
 	{
@@ -122,12 +123,12 @@ namespace wick
 	}
 	void Color::setAlpha(unsigned char alpha)
 	{
-		alpha_ = alpha;
 		if(alpha_ > 255)
 		{
 			throw(ParameterException("alpha", "0-255", "255"));
 			alpha_ = 255;
 		}
+        alpha_ = alpha;
 	}
 	void Color::select()
 	{

@@ -1,22 +1,23 @@
-// ----------------------------------------------------------------------------
-// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
-// Copyright (C) 2013-2014  Will O'Leary
-//
-// This program is free software: you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option)
-// any later version.
-//
-// This program is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-// more details.
-//
-// You should have received a copy of the GNU General Public License along with
-// this program.  If not, see <http://www.gnu.org/licenses/>.
-// ----------------------------------------------------------------------------
-// File:    Text.cpp
-// ----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+ * wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
+ * Copyright (C) 2013-2014  Will O'Leary
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+ * ----------------------------------------------------------------------------
+ * File:    Text.cpp
+ * ----------------------------------------------------------------------------
+ */
 #include "Text.h"
 namespace wick
 {
@@ -91,6 +92,12 @@ namespace wick
     }
     void Text::setColors(vector<Color> colors)
     {
+        if(colors.size() == 0)
+        {
+            throw ParameterException("colors", "at least one element",
+                                     "{Color::White}");
+            colors = {Color::White};
+        }
         colors_ = colors;
         int colorIndex = 0;
         unsigned int length = message_.length();

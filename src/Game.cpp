@@ -1,30 +1,30 @@
-// ----------------------------------------------------------------------------
-// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
-// Copyright (C) 2013-2014  Will O'Leary
-//
-// This program is free software: you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option)
-// any later version.
-//
-// This program is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-// more details.
-//
-// You should have received a copy of the GNU General Public License along with
-// this program.  If not, see <http://www.gnu.org/licenses/>.
-// ----------------------------------------------------------------------------
-// File:    Game.cpp
-// ----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+ * wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
+ * Copyright (C) 2013-2014  Will O'Leary
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+ * ----------------------------------------------------------------------------
+ * File:    Game.cpp
+ * ----------------------------------------------------------------------------
+ */
 #include "Game.h"
 namespace wick
 {
 	Game::Game(string title, Pair dimensions, unsigned short fps,
                bool resizeable, bool fullscreen, unsigned short samples)
-    :title_(title), logicalDimensions_(dimensions), spf_(1.0 / fps),
-    resizeable_(resizeable), fullscreen_(fullscreen), samples_(samples),
-    selectedState_(nullptr)
+    :title_(title), logicalDimensions_(dimensions), resizeable_(resizeable),
+    fullscreen_(fullscreen), samples_(samples), selectedState_(nullptr)
 	{
         if(title_ == "")
         {
@@ -40,8 +40,14 @@ namespace wick
         if(logicalDimensions_.y_ <= 0)
         {
             logicalDimensions_.y_ = 500;
-            throw(ParameterException("dimensions_ (y value)", ">0", "500"));
+            throw(ParameterException("dimensions (y value)", ">0", "500"));
         }
+        if(fps == 0)
+        {
+            fps = 60;
+            throw(ParameterException("fps", ">0", "60"));
+        }
+        spf_ = 1.0 / fps;
         if(!glfwInit())
             throw(ArchitectureException("glfw could not initialize"));
         glfwWindowHint(GLFW_REFRESH_RATE, 1.0 / spf_);

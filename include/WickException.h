@@ -1,22 +1,23 @@
-// ----------------------------------------------------------------------------
-// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
-// Copyright (C) 2013-2014  Will O'Leary
-//
-// This program is free software: you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option)
-// any later version.
-//
-// This program is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-// more details.
-//
-// You should have received a copy of the GNU General Public License along with
-// this program.  If not, see <http://www.gnu.org/licenses/>.
-// ----------------------------------------------------------------------------
-// File:    WickException.h
-// ----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+ * wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
+ * Copyright (C) 2013-2014  Will O'Leary
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+ * ----------------------------------------------------------------------------
+ * File:    WickException.h
+ * ----------------------------------------------------------------------------
+ */
 #ifndef WICKEXCEPTION_H
 #define WICKEXCEPTION_H
 #include "WickUtility.h"
@@ -27,93 +28,117 @@
 using std::string;
 namespace wick
 {
-    /// \brief A generic wick exception
-    ///
-    /// A WickException can be either fatal (program exits when handle is
-    /// called) or non-fatal (nothing happens when handle is called).
-    /// WickException is the superclass for all the exceptions pertaining to
-    /// wick.
+    /** \brief a generic wick exception
+      *
+      * WickException can define either a fatal or non-fatal exception. When
+      * an exception is thrown by wick, an error message is automatically 
+      * printed to the terminal. The wick user should catch these exceptions
+      * and can call the handle() method to either 1) stop the program if the
+      * exception is fatal or 2) do nothing if the exception is non-fatal.
+      *
+      * WickException is the superclass for all the exceptions pertaining to
+      * wick. All of WickException's subclasses act behave similarly to
+      * WickException.
+      */
     class WickException : public std::exception
     {
     public:
-        /// \brief A constructor that prints the error message to the terminal
-        /// \param message the error message
-        /// \param fatal whether or not the exception should be fatal
+        /** \brief constructs WickException
+          * \param message the error message
+          * \param fatal whether or not the exception is fatal
+          */
         WickException(string message, bool fatal);
-        /// \brief The default constructor that prints the error message to the
-        ///        terminal
-        ///
-        /// A WickException constructed using the default constructor as the
-        /// message "unknown exception" and is fatal.
+        /** \brief constructs a fatal, "unknown error" exception
+          */
         WickException();
-        /// \brief Retrieves the formatted error message
-        /// \return the formatted error message
+        /**\brief retrieves the formatted error message
+          * \return the formatted error message
+          */
         string what();
-        /// \brief Exits the program if the exception was fatal, and does
-        ///        nothing if the exception is non-fatal.
+        /** \brief exits the program if the exception was fatal, and does
+          *        nothing if the exception is non-fatal
+          */
         void handle();
-        /// \brief Retrieves the error message
-        ///
-        /// When printing out the error message to the terminal, it's best to
-        /// use what(), not getMessage().
-        /// \return the error message
+        /** \brief retrieves the error message
+          *
+          * When printing out the error message to the terminal, it's best to
+          * use what(), not getMessage(), since what() will format the error 
+          * message for printing
+          * \return the error message
+          */
         string getMessage();
-        /// \brief Retrieves whether or not the exception should be fatal
-        /// \return whether or not the exception should be fatal
+        /** \brief retrieves whether or not the exception should be fatal
+          * \return true if the exception is fatal, false otherwise
+          */
         bool isFatal();
     protected:
         string message_;
         bool fatal_;
     };
-    /// \brief A non-fatal exception that is thrown when parameters are invalid
+    /** \brief a non-fatal exception thrown when parameters are invalid
+      *
+      * A ParameterException contains information on which parameter was
+      * invalid, the possible valid values for the parameter, and what the
+      * parameter was corrected to.
+      */
     class ParameterException : public WickException
     {
     public:
-        /// \brief A constructor that prints the error message to the terminal
-        /// \param name the name of the invalid parameter
-        /// \param the valid values the parameter can take
-        /// \param the value the invalid parameter corrected to
+        /** \brief constructs ParameterException
+          * \param name the name of the invalid parameter
+          * \param validValues the valid values the parameter can take
+          * \param correctedValue the value the invalid parameter corrected to
+          */
         ParameterException(string name, string validValues, string
                            correctedValue);
-        /// \brief Retrieves the name of the invalid parameter
-        /// \return the name of the invalid parameter
+        /** \brief retrieves the name of the invalid parameter
+          * \return the name of the invalid parameter
+          */
         string getName();
-        /// \brief Retrieves the valid values of the invalid parameter
-        /// \return the valid values of the invalid parameter
+        /** \brief retrieves the valid values of the invalid parameter
+          * \return the valid values of the invalid parameter
+          */
         string getValidValues();
-        /// \breif Retrieves what value the invalid parameter was corrected to
-        /// \return the value the invalid parameter was corrected to
+        /** \breif retrieves the value the invalid parameter was corrected to
+          * \return the value the invalid parameter was corrected to
+          */
         string getCorrectedValue();
     protected:
         string name_;
         string validValues_;
         string correctedValue_;
     };
-    /// \brief A non-fatal exception that is thrown when a file cannot be
-    ///        found or cannot be loaded.
+    /** \brief a non-fatal exception thrown when a file cannot be found or 
+      *        cannot be loaded
+      *
+      */
     class FileException : public WickException
     {
     public:
-        /// \brief A constructor
-        /// \param filepath the filepath of the file that could not be found or
-        ///        loaded
+        /** \brief constructs FileException
+          * \param filepath the filepath of the file that could not be found or
+          *        loaded
+          */
         FileException(string filepath);
-        /// \brief Retrieves the filepath of the file that could not be found or
-        ///        loaded
-        /// \return the filepath of the file that could not be found or loaded
+        /** \brief retrieves the filepath of the file that could not be found or
+          *        loaded
+          * \return the filepath of the file that could not be found or loaded
+          */
         string getFilepath();
     protected:
         string filepath_;
     };
-    /// \brief A fatal exception that is thrown when some part of wick fails
-    ///
-    /// It's advisable to call handle() when an ArchitectureException is thrown,
-    /// terminating the program.
+    /** \brief a fatal exception that is thrown when some part of wick fails
+      *
+      * It is advisable to call handle() when an ArchitectureException is 
+      * thrown since nothing can be done by the wick user to correct the error.
+      */
     class ArchitectureException : public WickException
     {
     public:
-        /// \brief A constructor
-        /// \param message the error message
+        /** \brief constructs ArchitectureException
+          * \param message the error message
+          */
         ArchitectureException(string message);
     };
 }

@@ -67,7 +67,7 @@ Second, you'll need to link in the appropriate libraries and frameworks.
 3. Link libwick.a to your project. In g++, this is done with "-lwick" assuming that libwick.a is in your working directory.
 4. You'll also need to link in the Cocoa, Quartz, IOKit, and OpenGL frameworks. In gcc, this can be done with "framework Cocoa -framework Quartz -framework IOKit -framework OpenGL".
 
-Lastly, you'll need to include "Wick.h" in all the code you write. Then you should be good to go!
+Lastly, you'll need to include "Wick.h" in all the code you write. Also, make sure you're compiling with the C++11. Then you should be good to go!
 
 Licensing and Distribution
 --------------------------

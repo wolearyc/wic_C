@@ -1,28 +1,28 @@
-// ----------------------------------------------------------------------------
-// wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
-// Copyright (C) 2013-2014  Will O'Leary
-//
-// This program is free software: you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option)
-// any later version.
-//
-// This program is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-// more details.
-//
-// You should have received a copy of the GNU General Public License along with
-// this program.  If not, see <http://www.gnu.org/licenses/>.
-// ----------------------------------------------------------------------------
-// File:    Font.cpp
-// ----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+ * wick - a simple, object-oriented 2D game engine for Mac OSX written in C++
+ * Copyright (C) 2013-2014  Will O'Leary
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+ * ----------------------------------------------------------------------------
+ * File:    Font.cpp
+ * ----------------------------------------------------------------------------
+ */
 #include "Font.h"
 namespace wick
 {
     Font::Font(string filepath, unsigned short point, Game* game,
                bool antialias)
-    :point_(point), antialias_(antialias)
     {
         FT_Init_FreeType(&library_);
         int error = FT_New_Face(library_, filepath.c_str(), 0, &face_);
@@ -36,29 +36,31 @@ namespace wick
         {
             error = FT_New_Face(library_,
                                 (string("/System/Library/Fonts/") +
-                                filepath).c_str(), 0, &face_);
+                                 filepath).c_str(), 0, &face_);
         }
         if(error != 0)
+        {
+            FT_Done_FreeType(library_);
             throw(FileException(filepath));
-        Pair deviceResolution = game->getDeviceResolution();
-        FT_Set_Char_Size(face_, 0, point*64, deviceResolution.x_,
-                         deviceResolution.y_);
-        for(unsigned int i = 0; i < 256; i++)
-            textures_[i] = nullptr;
+        }
+        else
+        {
+            for(unsigned int i = 0; i < 256; i++)
+                textures_[i] = nullptr;
+            point_ = point;
+            Pair deviceResolution = game->getDeviceResolution();
+            FT_Set_Char_Size(face_, 0, point*64, deviceResolution.x_,
+                             deviceResolution.y_);
+            antialias_ = antialias;
+        }
+
     }
     Font::Font(string filepath, unsigned short point, Game* game)
     :Font(filepath, point, game, true)
     {
     }
     Font::Font()
-    :library_(nullptr), face_(nullptr), point_(12), antialias_(true)
-    {
-        for(unsigned int i = 0; i < 256; i++)
-            textures_[i] = nullptr;
-    }
-    Font::Font(const Font& other)
-    :library_(other.library_), face_(other.face_), point_(other.point_),
-    antialias_(other.antialias_)
+    :library_(nullptr), face_(nullptr), point_(0), antialias_(false)
     {
         for(unsigned int i = 0; i < 256; i++)
             textures_[i] = nullptr;
@@ -73,6 +75,7 @@ namespace wick
             {
                 delete(textures_[i]);
                 textures_[i] = nullptr;
+                delete[] textures_[i];
             }
         }
     }
@@ -80,18 +83,9 @@ namespace wick
     {
         return(point_);
     }
-    void Font::setPoint(unsigned short point)
+    bool Font::isAntialised()
     {
-        point_ = point;
-        FT_Set_Char_Size(face_, 0, point_*64, 0, 0);
-        for(unsigned int i = 0; i < 256; i++)
-        {
-            if(textures_[i] != nullptr)
-            {
-                delete(textures_[i]);
-                textures_[i] = nullptr;
-            }
-        }
+        return(antialias_);
     }
     vector<Image> Font::getImages(string message)
     {
