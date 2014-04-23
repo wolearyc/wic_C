@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['update',['update',['../classwick_1_1_state.html#ab0fcb203097687da55ca632bba660975',1,'wick::State']]],
-  ['updatevertices',['updateVertices',['../classwick_1_1_polygon.html#ae71ec7a2fe298a4f397cce23b8fd33c3',1,'wick::Polygon']]],
-  ['upperright_5f',['upperRight_',['../classwick_1_1_bounds.html#af4e12eab45a0f8b232b4947043d265be',1,'wick::Bounds']]]
+  ['updt_5fgame',['updt_game',['../game_8h.html#afc1c008db562a93c9128ec603070ffaf',1,'game.h']]],
+  ['upper_5fright',['upper_right',['../struct_bounds.html#af16cda4ded29fa7a4eb016735ce20730',1,'Bounds']]]
 ];

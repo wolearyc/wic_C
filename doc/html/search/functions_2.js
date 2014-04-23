@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['color',['Color',['../classwick_1_1_color.html#a77a9fe67ea11fc96171e11145be11047',1,'wick::Color::Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha)'],['../classwick_1_1_color.html#a45432f2991b9a22f740c96dc13401669',1,'wick::Color::Color(unsigned char red, unsigned char green, unsigned char blue)'],['../classwick_1_1_color.html#a797ee9daa49a29d84178b8d98be86284',1,'wick::Color::Color()'],['../classwick_1_1_color.html#a116a92f891e6b5b234d1cd11b2bc46ca',1,'wick::Color::Color(const Color &amp;other)']]],
-  ['convertcoordinates',['convertCoordinates',['../classwick_1_1_paintable.html#a6264fbb174b8a651cbbfecb7979ea522',1,'wick::Paintable']]]
+  ['divide_5fpairs',['divide_pairs',['../pair_8h.html#a6d332b96af03ad3152ab5cbc152f84e0',1,'pair.h']]],
+  ['draw_5fimage',['draw_image',['../image_8h.html#ac420a560543d3b288b68fb0dddd11c06',1,'image.h']]],
+  ['draw_5fpolygon',['draw_polygon',['../polygon_8h.html#aa46c34f0246cdc25cf99c12c4c664127',1,'polygon.h']]],
+  ['draw_5fquad',['draw_quad',['../quad_8h.html#aae478d09bb1aea00b07f96c4c35b3017',1,'quad.h']]]
 ];

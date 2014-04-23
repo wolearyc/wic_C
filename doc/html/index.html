@@ -4,10 +4,17 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>wick: Main Page</title>
+<title>wick: the mainpage *\</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -37,8 +44,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,12 +66,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('index.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -75,15 +96,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">wick Documentation</div>  </div>
+<div class="title">the mainpage *\ </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><p>#WICK GUIDE (READ THIS!)# Wick is fully documented, but some elements of library do need some explaining. Here are some things you should know about wick before you use it. #A. Struct Overview#</p>
+<p>Wick uses structs to store information. Wick's structs represent "game objects", such as Images and Text. There are not very many of them, so I can give you an quick overview.</p>
+<p><b><a class="el" href="struct_game.html" title="represents the entire wick Game ">Game</a></b> One instance of <a class="el" href="struct_game.html" title="represents the entire wick Game ">Game</a> should exist throughout the life of the entire program. As the name suggests, it represents the entire <a class="el" href="struct_game.html" title="represents the entire wick Game ">Game</a>.</p>
+<p><b><a class="el" href="struct_pair.html" title="holds an x and a y double precision floating point value ">Pair</a></b> A <a class="el" href="struct_pair.html" title="holds an x and a y double precision floating point value ">Pair</a> is simply a <a class="el" href="struct_pair.html" title="holds an x and a y double precision floating point value ">Pair</a> of double precision floating point numbers. Pairs represent coordinates, 2D vectors, 2D dimensions, and basically everything 2D.</p>
+<p><b><a class="el" href="struct_color.html" title="an RGBA color ">Color</a></b> <a class="el" href="struct_color.html" title="an RGBA color ">Color</a> represents an RGBA color.</p>
+<p><b><a class="el" href="struct_polygon.html" title="a filled polygon that can be drawn to the screen via draw_polygon ">Polygon</a></b> A filled <a class="el" href="struct_polygon.html" title="a filled polygon that can be drawn to the screen via draw_polygon ">Polygon</a> which can be drawn to the screen. A <a class="el" href="struct_polygon.html" title="a filled polygon that can be drawn to the screen via draw_polygon ">Polygon</a> can be moved, scaled, rotated, and colored.</p>
+<p><b><a class="el" href="struct_quad.html" title="a filled rectangle that can be drawn to the screen via draw_quad ">Quad</a></b> A filled rectangle which can be drawn to the screen. A <a class="el" href="struct_quad.html" title="a filled rectangle that can be drawn to the screen via draw_quad ">Quad</a> can be moved, scaled, rotated, and colored.</p>
+<p><b><a class="el" href="struct_texture.html" title="a texture ">Texture</a></b> A <a class="el" href="struct_texture.html" title="a texture ">Texture</a> is a texture loaded from either the file system of some buffer of unsigned chars.</p>
+<p><b><a class="el" href="struct_image.html" title="an image that can be drawn to the screen via draw_image ">Image</a></b> An <a class="el" href="struct_image.html" title="an image that can be drawn to the screen via draw_image ">Image</a> can be drawn to the screen. It derives its data from some <a class="el" href="struct_texture.html" title="a texture ">Texture</a>. Images can be moved, scaled, rotated, and colored.</p>
+<p><b><a class="el" href="struct_bounds.html" title="a bounding rectangle, consisting of a lower left and an upper right coordinate ">Bounds</a></b> A <a class="el" href="struct_bounds.html" title="a bounding rectangle, consisting of a lower left and an upper right coordinate ">Bounds</a> is a bounding rectangle. It is usually used to define what part of a <a class="el" href="struct_texture.html" title="a texture ">Texture</a> and <a class="el" href="struct_image.html" title="an image that can be drawn to the screen via draw_image ">Image</a> should use for drawing.</p>
+<p><b>Font</b> A Font at a specific point size loaded from a file.</p>
+<p><b>Text</b> A Text can be drawn to the screen. It derives its data from some string and a Font. A Text can be moved, scaled, rotated, and colored.</p>
+<p>#B. Struct Initialization# <a class="el" href="struct_pair.html" title="holds an x and a y double precision floating point value ">Pair</a> and <a class="el" href="struct_bounds.html" title="a bounding rectangle, consisting of a lower left and an upper right coordinate ">Bounds</a> should be initialized manually. <code><a class="el" href="struct_pair.html" title="holds an x and a y double precision floating point value ">Pair</a> a = {0,0};</code> <code><a class="el" href="struct_bounds.html" title="a bounding rectangle, consisting of a lower left and an upper right coordinate ">Bounds</a> b = {(<a class="el" href="struct_pair.html" title="holds an x and a y double precision floating point value ">Pair</a>) {0,0}, (<a class="el" href="struct_pair.html" title="holds an x and a y double precision floating point value ">Pair</a>) {64,64)}};</code></p>
+<p>However, most structs really shouldn't be initialized manually. These structs use an "init" function. An init function always has the name init_structname, where struct name is the all-lowercase name of the struct.</p>
+<p>Thus, to initialize a color, for example: <a class="el" href="struct_color.html" title="an RGBA color ">Color</a> target; <code>init_color(&amp;target, 0, 0, 0, 255);</code></p>
+<p>The use of an init function ensures that more complex structs are initialized completely and correctly, and also allows for error reporting (which we'll discuss after another section).</p>
+<p>#C. Memory management# Some structs need to be freed once you're done with them. With Structs that need to be freed, you'll see a "free" function that coorosponds to the struct. Similar to the init function, free functions are named free_structname, which struct name is the all-lowercase name of the struct. For example:</p>
+<p><code><a class="el" href="struct_texture.html" title="a texture ">Texture</a> texture;</code> <code>/* initialize texture via init_texture</code> <code>/* do stuff involving texture</code> <code>free_texture(&amp;texture);</code></p>
+<p>In this example, texture is allocated on the stack. Once free_texture is called, texture is still on the stack, but all the heap space given to elements of texture is gone.</p>
+<p>Alternatively, one can store a <a class="el" href="struct_texture.html" title="a texture ">Texture</a> (or any other struct) on the heap:</p>
+<p><code>Texture* texture = malloc(sizeof(Texture));</code> <code>/* initialize texture via init_texture</code> <code>/* do stuff involving texture</code> <code>free_texture(texture);</code> <code>free(texture);</code></p>
+<p>free_texture still only deallocates the heap space given to <em>elements</em> of texture. A final "free" is required to completely deallocate the texture.</p>
+<p>#D. Modifying structs# Most elements in a given struct can be modified directly. For example the following is totally safe:</p>
+<p><code><a class="el" href="struct_image.html" title="an image that can be drawn to the screen via draw_image ">Image</a> image;</code> <code>/* initialize image via init_image</code> <code>image.location = (<a class="el" href="struct_pair.html" title="holds an x and a y double precision floating point value ">Pair</a>) {50,50};</code></p>
+<p>However, some elements (which are undocumented) should not be modifed directly. The name of these elements starts with "p_", the p standing for "private". These elements either should never be modifed, or can be modified correctly only through a function. For example, the the p_dimensions element in <a class="el" href="struct_quad.html" title="a filled rectangle that can be drawn to the screen via draw_quad ">Quad</a> should not be modified directly. Instead, the following function should be used instead:</p>
+<p><code>int <a class="el" href="quad_8h.html#a4564577609fd9008e7883db2fb210109" title="changes a Quad&#39;s dimensions ">set_quad_dimensions(Quad* target, Pair dimensions)</a></code></p>
+<p>#E. Error reporting# Many functions in wick return integer "error codes". Such functions return 0 on success and some code less than 0 on failure. These codes can be translated via:</p>
+<p><code>const char* <a class="el" href="error_8h.html#a8af34de9e5f9e832e17e37f775319796" title="translates an error code into a human-readable message ">translate_error_code(int code)</a></code></p>
+<p>If, for some reason, you don't have access to the error code, the last reported error code can be fetched via:</p>
+<p><code>int <a class="el" href="error_8h.html#a92540a3cba575aec179ef8453725ecd1" title="retrieves the latest error code ">get_last_error()</a></code></p>
+<p>If a function fails, returning a negative integer, wick guarantees (unless otherwise noted) that no variables, pointers, or anything will be modified.</p>
+<p>#F. Units# Wick uses the same units across all structs and functions.</p>
+<p><b>Screen coordinates</b> are measured in pixels from the lower left corner of the window.</p>
+<p><b>Coordinates in general</b> are measured in pixels.</p>
+<p><b>Rotation</b> is measured in radians from the positive x axis.</p>
+<p><b>Scale values</b> are measured with Pairs, where each element in the <a class="el" href="struct_pair.html" title="holds an x and a y double precision floating point value ">Pair</a> is a multipier for the scale. For example, a scale value of(1,1) is original size, which a scale value of (0.5,0.5) is half size.</p>
+<p>Some game objects, like Polygons and Quads, take vertices. These vertices are ***relative to the object**, meaning that they're measured in pixels relative to the object's location. </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 28 2014 16:19:30 for wick by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sun Apr 6 2014 19:03:39 for wick by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
 </body>
 </html>

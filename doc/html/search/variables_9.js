@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['name_5f',['name_',['../classwick_1_1_parameter_exception.html#a5c09c8475075c88af04239eddc961936',1,'wick::ParameterException']]],
-  ['navy',['Navy',['../classwick_1_1_color.html#a4a1157fbdd8e36ced9224d620e6592e2',1,'wick::Color']]]
+  ['olive',['OLIVE',['../color_8h.html#af2b047f92fe146747dbcb0dfa7c565c6',1,'color.h']]],
+  ['orange',['ORANGE',['../color_8h.html#aa80bde76e1e9770f8c7a437602a9f1a9',1,'color.h']]]
 ];

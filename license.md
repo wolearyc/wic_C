@@ -1,4 +1,4 @@
-wick license
+wic license
 ============
 Table of Contents
 -----------------
@@ -9,7 +9,7 @@ Table of Contents
 
 Summary
 -------
-Wick is distrubuted under the GNU Lesser General Public License, 
+Wic is distrubuted under the GNU Lesser General Public License, 
 Version 3. You must include this license file in all projects which use the 
 entirety or sections of wick
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['color',['Color',['../classwick_1_1_color.html',1,'wick']]]
+  ['game',['Game',['../struct_game.html',1,'']]]
 ];

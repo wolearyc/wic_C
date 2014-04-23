@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['fileexception',['FileException',['../classwick_1_1_file_exception.html#a3866f1a33cafed5d2fe84b52379e8eea',1,'wick::FileException']]],
-  ['findstate',['findState',['../classwick_1_1_game.html#a8ca877e9bfe607de6b8bdb502edf8f55',1,'wick::Game']]],
-  ['font',['Font',['../classwick_1_1_font.html#affaacb3c91c3809faf6f17a68f8375d7',1,'wick::Font::Font(string filepath, unsigned short point, Game *game, bool antialias)'],['../classwick_1_1_font.html#aefcb6e67581e3ce2cc9fc74d3563a94a',1,'wick::Font::Font(string filepath, unsigned short point, Game *game)'],['../classwick_1_1_font.html#a707233c3237bddaf3f4540bb14b0aa39',1,'wick::Font::Font()'],['../classwick_1_1_font.html#a985e14472cad1cfb06f47e1b90ae5636',1,'wick::Font::Font(const Font &amp;other)']]]
+  ['get_5fangle_5fbetween_5fpairs',['get_angle_between_pairs',['../pair_8h.html#aba55b9515bd5e716232b4c077aacdd55',1,'pair.h']]],
+  ['get_5fcursor_5flocation',['get_cursor_location',['../game_8h.html#a156ab4cf7249ed29e4f732d9115e5bff',1,'game.h']]],
+  ['get_5fdistance_5fbetween_5fpairs',['get_distance_between_pairs',['../pair_8h.html#a940f79cda3d2f4f777d3f911e17f162f',1,'pair.h']]],
+  ['get_5finput',['get_input',['../game_8h.html#a30475ef0cff5f9f7571a0a1c90480e5a',1,'game.h']]],
+  ['get_5flast_5ferror',['get_last_error',['../error_8h.html#a92540a3cba575aec179ef8453725ecd1',1,'error.h']]],
+  ['get_5fscroll_5foffset',['get_scroll_offset',['../game_8h.html#a22869610f584723129f587c7f875bd12',1,'game.h']]],
+  ['get_5ftime',['get_time',['../game_8h.html#af7ab092ab10d65db3b9051a12420fa52',1,'game.h']]]
 ];

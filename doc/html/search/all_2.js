@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['center_5f',['center_',['../classwick_1_1_paintable.html#aa5a7b9f3cbe3e1bbc211e619da533d57',1,'wick::Paintable']]],
-  ['color',['Color',['../classwick_1_1_color.html#a77a9fe67ea11fc96171e11145be11047',1,'wick::Color::Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha)'],['../classwick_1_1_color.html#a45432f2991b9a22f740c96dc13401669',1,'wick::Color::Color(unsigned char red, unsigned char green, unsigned char blue)'],['../classwick_1_1_color.html#a797ee9daa49a29d84178b8d98be86284',1,'wick::Color::Color()'],['../classwick_1_1_color.html#a116a92f891e6b5b234d1cd11b2bc46ca',1,'wick::Color::Color(const Color &amp;other)']]],
-  ['color',['Color',['../classwick_1_1_color.html',1,'wick']]],
-  ['color_2eh',['Color.h',['../_color_8h.html',1,'']]],
-  ['color_5f',['color_',['../classwick_1_1_polygon.html#a830b4a96165a74900c02b12e9b8fa32b',1,'wick::Polygon']]],
-  ['colors_5f',['colors_',['../classwick_1_1_text.html#ad286201a070cc600103cb7412d8335a8',1,'wick::Text']]],
-  ['convertcoordinates',['convertCoordinates',['../classwick_1_1_paintable.html#a6264fbb174b8a651cbbfecb7979ea522',1,'wick::Paintable']]],
-  ['correctedvalue_5f',['correctedValue_',['../classwick_1_1_parameter_exception.html#a1673ce8095ed385430a1910cf5725e21',1,'wick::ParameterException']]]
+  ['center',['center',['../struct_image.html#a533074775f8f6b07101b68a2a85fe617',1,'Image::center()'],['../struct_polygon.html#a69236fcce21e17cef1d2188784fbd62d',1,'Polygon::center()'],['../struct_quad.html#ad41dad5ce3589e5e0a707c306f864c75',1,'Quad::center()']]],
+  ['char_5fcallback',['char_callback',['../game_8h.html#a95cf068543735c82e45473e9fba14303',1,'game.h']]],
+  ['color',['Color',['../struct_color.html',1,'Color'],['../struct_image.html#a0d78100d523c9211a4f6c85bbd18d146',1,'Image::color()'],['../struct_polygon.html#af11748a279532cb7c86536c90d4bb98f',1,'Polygon::color()'],['../struct_quad.html#aba4cc1411529b22237d51ed7338d7db3',1,'Quad::color()'],['../color_8h.html#a0af5129fc90cfaec2f17f58fb0fb9686',1,'Color():&#160;color.h']]],
+  ['color_2eh',['color.h',['../color_8h.html',1,'']]],
+  ['convert_5flocation',['convert_location',['../game_8h.html#a2a07a96fc76f571b5969d67d28dc9e8f',1,'game.h']]],
+  ['cursor_5flocation_5fcallback',['cursor_location_callback',['../game_8h.html#a06219074bfacab053b880aa9e9956fab',1,'game.h']]]
 ];

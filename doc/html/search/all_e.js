@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['quad',['Quad',['../classwick_1_1_quad.html',1,'wick']]],
-  ['quad',['Quad',['../classwick_1_1_quad.html#af2f460c21b93009b5d550ec234ac3426',1,'wick::Quad::Quad(Pair location, Pair dimensions, Color color)'],['../classwick_1_1_quad.html#a69b8bd7704436a4ce0d34c0a6f5345bd',1,'wick::Quad::Quad()'],['../classwick_1_1_quad.html#a616d06b7d0eeae7ec8d01f9d92ce932e',1,'wick::Quad::Quad(const Quad &amp;other)']]],
-  ['quad_2eh',['Quad.h',['../_quad_8h.html',1,'']]]
+  ['quad',['Quad',['../struct_quad.html',1,'Quad'],['../quad_8h.html#a8cf4aae08b454d396fc61c8b36d6e706',1,'Quad():&#160;quad.h']]],
+  ['quad_2eh',['quad.h',['../quad_8h.html',1,'']]]
 ];

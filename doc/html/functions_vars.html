@@ -4,10 +4,17 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>wick: Class Members - Variables</title>
+<title>wick: Data Fields - Variables</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -37,8 +44,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -60,16 +67,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
+      <li class="current"><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
   <div id="navrow3" class="tabs2">
     <ul class="tablist">
       <li><a href="functions.html"><span>All</span></a></li>
-      <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
     </ul>
   </div>
@@ -79,31 +84,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_b"><span>b</span></a></li>
       <li><a href="#index_c"><span>c</span></a></li>
       <li><a href="#index_d"><span>d</span></a></li>
-      <li><a href="#index_f"><span>f</span></a></li>
       <li><a href="#index_g"><span>g</span></a></li>
-      <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_l"><span>l</span></a></li>
-      <li><a href="#index_m"><span>m</span></a></li>
-      <li><a href="#index_n"><span>n</span></a></li>
-      <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
-      <li><a href="#index_t"><span>t</span></a></li>
       <li><a href="#index_u"><span>u</span></a></li>
-      <li><a href="#index_v"><span>v</span></a></li>
-      <li><a href="#index_w"><span>w</span></a></li>
       <li><a href="#index_x"><span>x</span></a></li>
       <li class="current"><a href="#index_y"><span>y</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_vars.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -116,219 +127,149 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &#160;
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
-<li>Aqua
-: <a class="el" href="classwick_1_1_color.html#acac2aaa88e9c35f0b83f0d360d598b76">wick::Color</a>
+<li>alpha
+: <a class="el" href="struct_color.html#af485f621e60e201c55e7dae1966bb29f">Color</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
-<li>baseVertices_
-: <a class="el" href="classwick_1_1_polygon.html#a933946093014f6e7867deaeb0288a772">wick::Polygon</a>
-</li>
-<li>Black
-: <a class="el" href="classwick_1_1_color.html#abd3d68174f56cd3d751afef072ad8a08">wick::Color</a>
-</li>
-<li>Blue
-: <a class="el" href="classwick_1_1_color.html#aa24b9c3c0deb6c84ee5868d6b8e53d86">wick::Color</a>
-</li>
-<li>bounds_
-: <a class="el" href="classwick_1_1_image.html#aa82874f3973987c4e34a759d62458447">wick::Image</a>
+<li>blue
+: <a class="el" href="struct_color.html#a5b425af958edb0e7835eb08daeb90e71">Color</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
-<li>center_
-: <a class="el" href="classwick_1_1_paintable.html#aa5a7b9f3cbe3e1bbc211e619da533d57">wick::Paintable</a>
+<li>center
+: <a class="el" href="struct_image.html#a533074775f8f6b07101b68a2a85fe617">Image</a>
+, <a class="el" href="struct_polygon.html#a69236fcce21e17cef1d2188784fbd62d">Polygon</a>
+, <a class="el" href="struct_quad.html#ad41dad5ce3589e5e0a707c306f864c75">Quad</a>
 </li>
-<li>color_
-: <a class="el" href="classwick_1_1_polygon.html#a830b4a96165a74900c02b12e9b8fa32b">wick::Polygon</a>
-</li>
-<li>colors_
-: <a class="el" href="classwick_1_1_text.html#ad286201a070cc600103cb7412d8335a8">wick::Text</a>
-</li>
-<li>correctedValue_
-: <a class="el" href="classwick_1_1_parameter_exception.html#a1673ce8095ed385430a1910cf5725e21">wick::ParameterException</a>
+<li>color
+: <a class="el" href="struct_image.html#a0d78100d523c9211a4f6c85bbd18d146">Image</a>
+, <a class="el" href="struct_polygon.html#af11748a279532cb7c86536c90d4bb98f">Polygon</a>
+, <a class="el" href="struct_quad.html#aba4cc1411529b22237d51ed7338d7db3">Quad</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
-<li>dimensions_
-: <a class="el" href="classwick_1_1_quad.html#ac3ac7cd100251d66e090c5ee920884a9">wick::Quad</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
-<li>fatal_
-: <a class="el" href="classwick_1_1_wick_exception.html#a6d0fc059ee76e051dbfc260a5637f134">wick::WickException</a>
-</li>
-<li>filepath_
-: <a class="el" href="classwick_1_1_file_exception.html#a0ea4e8d9e38819d63fd0475fcf95a3b2">wick::FileException</a>
-</li>
-<li>font_
-: <a class="el" href="classwick_1_1_text.html#aacd9a29a14aff13a164542b02a3d1c50">wick::Text</a>
-</li>
-<li>Fuchsia
-: <a class="el" href="classwick_1_1_color.html#ae27a7aa7657d99b2508e85eae10a5060">wick::Color</a>
+<li>draw_centered
+: <a class="el" href="struct_image.html#a9338994b3f7570b780df3ec53ecad2c1">Image</a>
+, <a class="el" href="struct_polygon.html#ac0f4e21df930834f025d2ee652486be2">Polygon</a>
+, <a class="el" href="struct_quad.html#a22358ac9a070eb4aa4045ae5f6c98ebf">Quad</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
-<li>geometricCenter_
-: <a class="el" href="classwick_1_1_paintable.html#ad92822ba032536c6172c317759e81faa">wick::Paintable</a>
-</li>
-<li>Gray
-: <a class="el" href="classwick_1_1_color.html#ae05d33b79397934acd67155a27e1293c">wick::Color</a>
-</li>
-<li>Green
-: <a class="el" href="classwick_1_1_color.html#ae017c66665d08600e2b68c255c6096da">wick::Color</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
-<li>images_
-: <a class="el" href="classwick_1_1_text.html#a17e5361f8bfb4c7a45b293fb304e6dfa">wick::Text</a>
+<li>green
+: <a class="el" href="struct_color.html#a070831365fe6c626bc0020915a917081">Color</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
-<li>Lime
-: <a class="el" href="classwick_1_1_color.html#a9547a2dec59a208d7caf721c6079e38f">wick::Color</a>
+<li>location
+: <a class="el" href="struct_image.html#a3e80df7db427d8af97de2329f82da3fb">Image</a>
+, <a class="el" href="struct_polygon.html#a843158366bab5a0ff1585eea6ae129c4">Polygon</a>
+, <a class="el" href="struct_quad.html#a8be8d65aebce0eef50924f79388d2cb1">Quad</a>
 </li>
-<li>location_
-: <a class="el" href="classwick_1_1_paintable.html#a23cc6bfc760354bacf4daf7e88db2c32">wick::Paintable</a>
-</li>
-<li>lowerLeft_
-: <a class="el" href="classwick_1_1_bounds.html#a193b85a6bb7b2d9702e3f6678b479df5">wick::Bounds</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
-<li>Maroon
-: <a class="el" href="classwick_1_1_color.html#a6f35dc78acef54af606e7419320a3d99">wick::Color</a>
-</li>
-<li>message_
-: <a class="el" href="classwick_1_1_text.html#add702edf4ea776ca430b61204438f2ef">wick::Text</a>
-, <a class="el" href="classwick_1_1_wick_exception.html#a3bbfd4dcfb634380b0ca19fc67e8f899">wick::WickException</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
-<li>name_
-: <a class="el" href="classwick_1_1_parameter_exception.html#a5c09c8475075c88af04239eddc961936">wick::ParameterException</a>
-</li>
-<li>Navy
-: <a class="el" href="classwick_1_1_color.html#a4a1157fbdd8e36ced9224d620e6592e2">wick::Color</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
-<li>offsets_
-: <a class="el" href="classwick_1_1_text.html#a579fed24999d56aace4ba2fef00ef78e">wick::Text</a>
-</li>
-<li>Olive
-: <a class="el" href="classwick_1_1_color.html#af06ec69ae750573f7f7206273e59ef7c">wick::Color</a>
-</li>
-<li>Orange
-: <a class="el" href="classwick_1_1_color.html#a772d342b2761501541e78839bdc8b0d4">wick::Color</a>
+<li>lower_left
+: <a class="el" href="struct_bounds.html#afeb7fdbefb43679fe1a47537763a2ddc">Bounds</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
-<li>paintCentered_
-: <a class="el" href="classwick_1_1_paintable.html#a3d6a559691757ebb582908111f83b6fe">wick::Paintable</a>
+<li>p_bounds
+: <a class="el" href="struct_image.html#ade93faba09657b26b66db12a95c7a344">Image</a>
 </li>
-<li>Purple
-: <a class="el" href="classwick_1_1_color.html#a1ee6578e539e3f382c28f74523770db0">wick::Color</a>
+<li>p_data
+: <a class="el" href="struct_texture.html#ab6c572cac09b4bc4ed509d5a9d7b2984">Texture</a>
+</li>
+<li>p_dimensions
+: <a class="el" href="struct_game.html#ad2cabdb62958fcfcc9ad5cc1f992d6e7">Game</a>
+, <a class="el" href="struct_quad.html#a0783c0afcc8da455608372d89c46a038">Quad</a>
+, <a class="el" href="struct_texture.html#af9f05640abd9159b4e960e4140b3d936">Texture</a>
+</li>
+<li>p_geometric_center
+: <a class="el" href="struct_image.html#aba183bc46eecd0f94b610522badb6503">Image</a>
+, <a class="el" href="struct_polygon.html#aa93cce3a1832a96829d43121993d6cc0">Polygon</a>
+, <a class="el" href="struct_quad.html#a7920053596641e39e67eb5c54fc2e8c2">Quad</a>
+</li>
+<li>p_num_vertices
+: <a class="el" href="struct_polygon.html#a02f4f16a791c3b5bdf6d5a8d1050d98f">Polygon</a>
+</li>
+<li>p_previous_time
+: <a class="el" href="struct_game.html#ac9e04dfeff5f2a4e721a96f44a5ccf5c">Game</a>
+</li>
+<li>p_texture
+: <a class="el" href="struct_image.html#a6ee2052d785bd48fad50f16e1501c9e6">Image</a>
+</li>
+<li>p_vertices
+: <a class="el" href="struct_image.html#af5c8a308476f59471d0587235811c054">Image</a>
+, <a class="el" href="struct_polygon.html#a96e84a65b6e342ef6b0d68d351e19ca3">Polygon</a>
+</li>
+<li>p_window
+: <a class="el" href="struct_game.html#a0bb3ad6267419b3e64cf8a7b103b4a78">Game</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
-<li>Red
-: <a class="el" href="classwick_1_1_color.html#a646f87d5646cedeedf01c3add3ceb137">wick::Color</a>
+<li>red
+: <a class="el" href="struct_color.html#a245f5a423cdaaaeff27047036c24b7ef">Color</a>
 </li>
-<li>rotation_
-: <a class="el" href="classwick_1_1_rotateable.html#a6486f5715bf0a8ed7fad1060ccaa6882">wick::Rotateable</a>
+<li>rotation
+: <a class="el" href="struct_image.html#a5343f2a6b580fa15a341909a6d73583e">Image</a>
+, <a class="el" href="struct_polygon.html#a61a82f869dfde87b2e08f5c550b5f819">Polygon</a>
+, <a class="el" href="struct_quad.html#aca4a565629031a148e2ae8f92944f59b">Quad</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
-<li>scale_
-: <a class="el" href="classwick_1_1_scaleable.html#a0bc625fc6eeaff2bd81688495b8c6f51">wick::Scaleable</a>
+<li>scale
+: <a class="el" href="struct_image.html#a9dc95c6e2e8ed8db87a6422bdea7f282">Image</a>
+, <a class="el" href="struct_polygon.html#a5b1b549320c19673cf0355a79bde3f8f">Polygon</a>
+, <a class="el" href="struct_quad.html#adad2b89c97a458d7d99b76e813bf2a99">Quad</a>
 </li>
-<li>Silver
-: <a class="el" href="classwick_1_1_color.html#adea05232450fbe5264a15d106616d7dc">wick::Color</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
-<li>Teal
-: <a class="el" href="classwick_1_1_color.html#ad01537b5e635065fe9250bb1b318d50f">wick::Color</a>
-</li>
-<li>texture_
-: <a class="el" href="classwick_1_1_image.html#a92367ab58f42266d63132a0ff56396d2">wick::Image</a>
+<li>seconds_per_frame
+: <a class="el" href="struct_game.html#ae20dfb2ebd31b51cb832c700c7ae5796">Game</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
-<li>upperRight_
-: <a class="el" href="classwick_1_1_bounds.html#af4e12eab45a0f8b232b4947043d265be">wick::Bounds</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_v"></a>- v -</h3><ul>
-<li>validValues_
-: <a class="el" href="classwick_1_1_parameter_exception.html#a83c09ea5140821252479c152656908f2">wick::ParameterException</a>
-</li>
-<li>vertices_
-: <a class="el" href="classwick_1_1_polygon.html#ab2cd5c4ac3dfc7369a75ec1e26bbfd98">wick::Polygon</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
-<li>White
-: <a class="el" href="classwick_1_1_color.html#af72af2bae2847ceee1d6ad17ea2180a0">wick::Color</a>
+<li>upper_right
+: <a class="el" href="struct_bounds.html#af16cda4ded29fa7a4eb016735ce20730">Bounds</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_x"></a>- x -</h3><ul>
-<li>x_
-: <a class="el" href="classwick_1_1_pair.html#a36af1141d8da1117e8883b9f316f5d7b">wick::Pair</a>
+<li>x
+: <a class="el" href="struct_pair.html#a55c43e6bd21b0ad7d2bf68cfb4c7ac92">Pair</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_y"></a>- y -</h3><ul>
-<li>y_
-: <a class="el" href="classwick_1_1_pair.html#a4bc21c4fd884ba20b4f3f3a1293b1d23">wick::Pair</a>
-</li>
-<li>Yellow
-: <a class="el" href="classwick_1_1_color.html#a38e18aefecf8086638c469e5405a8c85">wick::Color</a>
+<li>y
+: <a class="el" href="struct_pair.html#ab3424a2a17d590cfe3d8dd75d44581c3">Pair</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 28 2014 16:19:30 for wick by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sun Apr 6 2014 19:03:39 for wick by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
 </body>
 </html>

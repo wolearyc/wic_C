@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['game',['Game',['../classwick_1_1_game.html',1,'wick']]]
+  ['pair',['Pair',['../struct_pair.html',1,'']]],
+  ['polygon',['Polygon',['../struct_polygon.html',1,'']]]
 ];

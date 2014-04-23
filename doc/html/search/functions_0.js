@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['addandinitializestate',['addAndInitializeState',['../classwick_1_1_game.html#acdda38489a57d50b5371076a9e046370',1,'wick::Game']]],
-  ['addstate',['addState',['../classwick_1_1_game.html#a9f56da8d33c127970414c6b0c2400cc7',1,'wick::Game']]],
-  ['angle',['angle',['../classwick_1_1_pair.html#a711a21308badc0b956dc40e475183642',1,'wick::Pair']]],
-  ['architectureexception',['ArchitectureException',['../classwick_1_1_architecture_exception.html#a5e5860951ee54cd9b019643fa72a70b4',1,'wick::ArchitectureException']]]
+  ['add_5fpairs',['add_pairs',['../pair_8h.html#a62e95738b9996da03d8c798a22a00606',1,'pair.h']]],
+  ['are_5fpairs_5fequal',['are_pairs_equal',['../pair_8h.html#a0375248cc4c1ed2397c4b8e4a6d965f0',1,'pair.h']]]
 ];

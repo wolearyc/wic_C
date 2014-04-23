@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['upperright_5f',['upperRight_',['../classwick_1_1_bounds.html#af4e12eab45a0f8b232b4947043d265be',1,'wick::Bounds']]]
+  ['white',['WHITE',['../color_8h.html#a9c1dae93bafe5ebc5b82ae9e4446f20d',1,'color.h']]]
 ];

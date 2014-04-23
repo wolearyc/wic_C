@@ -1,0 +1,73 @@
+\hypertarget{struct_polygon}{\section{Polygon Struct Reference}
+\label{struct_polygon}\index{Polygon@{Polygon}}
+}
+
+
+a filled polygon that can be drawn to the screen via draw\-\_\-polygon  
+
+
+
+
+{\ttfamily \#include $<$polygon.\-h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_pair}{Pair} \hyperlink{struct_polygon_a843158366bab5a0ff1585eea6ae129c4}{location}
+\item 
+\hyperlink{struct_pair}{Pair} $\ast$ \hyperlink{struct_polygon_a96e84a65b6e342ef6b0d68d351e19ca3}{p\-\_\-vertices}
+\item 
+size\-\_\-t \hyperlink{struct_polygon_a02f4f16a791c3b5bdf6d5a8d1050d98f}{p\-\_\-num\-\_\-vertices}
+\item 
+\hyperlink{struct_color}{Color} \hyperlink{struct_polygon_af11748a279532cb7c86536c90d4bb98f}{color}
+\item 
+\hyperlink{struct_pair}{Pair} \hyperlink{struct_polygon_a69236fcce21e17cef1d2188784fbd62d}{center}
+\item 
+\hyperlink{struct_pair}{Pair} \hyperlink{struct_polygon_aa93cce3a1832a96829d43121993d6cc0}{p\-\_\-geometric\-\_\-center}
+\item 
+bool \hyperlink{struct_polygon_ac0f4e21df930834f025d2ee652486be2}{draw\-\_\-centered}
+\item 
+\hyperlink{struct_pair}{Pair} \hyperlink{struct_polygon_a5b1b549320c19673cf0355a79bde3f8f}{scale}
+\item 
+double \hyperlink{struct_polygon_a61a82f869dfde87b2e08f5c550b5f819}{rotation}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a filled polygon that can be drawn to the screen via draw\-\_\-polygon 
+
+A \hyperlink{struct_polygon}{Polygon} should be initialized via init\-\_\-polygon. A \hyperlink{struct_polygon}{Polygon} should eventually be deallocated via free\-\_\-polygon. 
+
+\subsection{Field Documentation}
+\hypertarget{struct_polygon_a69236fcce21e17cef1d2188784fbd62d}{\index{Polygon@{Polygon}!center@{center}}
+\index{center@{center}!Polygon@{Polygon}}
+\subsubsection[{center}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Pair} Polygon\-::center}}\label{struct_polygon_a69236fcce21e17cef1d2188784fbd62d}
+the center to scale, rotate, and draw around (if draw\-\_\-centered = true) \hypertarget{struct_polygon_af11748a279532cb7c86536c90d4bb98f}{\index{Polygon@{Polygon}!color@{color}}
+\index{color@{color}!Polygon@{Polygon}}
+\subsubsection[{color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color} Polygon\-::color}}\label{struct_polygon_af11748a279532cb7c86536c90d4bb98f}
+the color \hypertarget{struct_polygon_ac0f4e21df930834f025d2ee652486be2}{\index{Polygon@{Polygon}!draw\-\_\-centered@{draw\-\_\-centered}}
+\index{draw\-\_\-centered@{draw\-\_\-centered}!Polygon@{Polygon}}
+\subsubsection[{draw\-\_\-centered}]{\setlength{\rightskip}{0pt plus 5cm}bool Polygon\-::draw\-\_\-centered}}\label{struct_polygon_ac0f4e21df930834f025d2ee652486be2}
+whether or not to draw around the center \hypertarget{struct_polygon_a843158366bab5a0ff1585eea6ae129c4}{\index{Polygon@{Polygon}!location@{location}}
+\index{location@{location}!Polygon@{Polygon}}
+\subsubsection[{location}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Pair} Polygon\-::location}}\label{struct_polygon_a843158366bab5a0ff1585eea6ae129c4}
+the screen location \hypertarget{struct_polygon_aa93cce3a1832a96829d43121993d6cc0}{\index{Polygon@{Polygon}!p\-\_\-geometric\-\_\-center@{p\-\_\-geometric\-\_\-center}}
+\index{p\-\_\-geometric\-\_\-center@{p\-\_\-geometric\-\_\-center}!Polygon@{Polygon}}
+\subsubsection[{p\-\_\-geometric\-\_\-center}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Pair} Polygon\-::p\-\_\-geometric\-\_\-center}}\label{struct_polygon_aa93cce3a1832a96829d43121993d6cc0}
+\hypertarget{struct_polygon_a02f4f16a791c3b5bdf6d5a8d1050d98f}{\index{Polygon@{Polygon}!p\-\_\-num\-\_\-vertices@{p\-\_\-num\-\_\-vertices}}
+\index{p\-\_\-num\-\_\-vertices@{p\-\_\-num\-\_\-vertices}!Polygon@{Polygon}}
+\subsubsection[{p\-\_\-num\-\_\-vertices}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t Polygon\-::p\-\_\-num\-\_\-vertices}}\label{struct_polygon_a02f4f16a791c3b5bdf6d5a8d1050d98f}
+\hypertarget{struct_polygon_a96e84a65b6e342ef6b0d68d351e19ca3}{\index{Polygon@{Polygon}!p\-\_\-vertices@{p\-\_\-vertices}}
+\index{p\-\_\-vertices@{p\-\_\-vertices}!Polygon@{Polygon}}
+\subsubsection[{p\-\_\-vertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Pair}$\ast$ Polygon\-::p\-\_\-vertices}}\label{struct_polygon_a96e84a65b6e342ef6b0d68d351e19ca3}
+\hypertarget{struct_polygon_a61a82f869dfde87b2e08f5c550b5f819}{\index{Polygon@{Polygon}!rotation@{rotation}}
+\index{rotation@{rotation}!Polygon@{Polygon}}
+\subsubsection[{rotation}]{\setlength{\rightskip}{0pt plus 5cm}double Polygon\-::rotation}}\label{struct_polygon_a61a82f869dfde87b2e08f5c550b5f819}
+the rotation measured in radians from the positive x-\/axis \hypertarget{struct_polygon_a5b1b549320c19673cf0355a79bde3f8f}{\index{Polygon@{Polygon}!scale@{scale}}
+\index{scale@{scale}!Polygon@{Polygon}}
+\subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Pair} Polygon\-::scale}}\label{struct_polygon_a5b1b549320c19673cf0355a79bde3f8f}
+the scale 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/\-Users/willis/\-Documents/\-Programming/\-C++/wick/include/\hyperlink{polygon_8h}{polygon.\-h}\end{DoxyCompactItemize}
