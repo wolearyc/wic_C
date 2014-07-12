@@ -52,6 +52,7 @@ From wic's root directory, the following make commands can be executed:
 * $ make all -- Functions identically to "$ make".
 * $ make release -- Functions identically to "$ make".
 * $ make debug -- Builds wic as a static library with debug symbols.
+* $ make doxygen -- Generates wic's doxygen documentation.
 * $ make clean -- Removes all library and object files.
 
 Using wic in your project

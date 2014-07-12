@@ -1,5 +1,5 @@
 # wic MakeFile. 
-# Targets: all (default, release), release, debug, and clean.
+# Targets: all (default, release), release, debug, doxygen, and clean.
 
 # SETTINGS
 CC         = gcc
@@ -32,9 +32,13 @@ obj/debug/%.o: src/%.c
 	mkdir -p obj/debug/
 	$(CC) $(CFLAGS) $(DEBUGFLAGS) $(COPTIONS) -c $< -o $@ $(INCLUDEPATHS)
 
+doxygen:
+	doxygen docs/Doxyfile
+
 clean:
 	rm -f -r obj/release/*
 	rm -f -r obj/debug/*
 	rm -f -r bin/release/*
 	rm -f -r bin/debug/*
+	rm -f -r docs/html
 	
