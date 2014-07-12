@@ -107,5 +107,4 @@ enum WicError wic_init_texture_from_file(WicTexture* target, char* filepath,
  *  \return the error code
  */
 enum WicError wic_free_texture(WicTexture* target);
-void p_wic_select_texture(WicTexture* target);
 #endif

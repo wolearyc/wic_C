@@ -218,12 +218,6 @@ enum WicKey
     WIC_MB_7 = 356,          /**< mouse button 7 */
     WIC_MB_8 = 357           /**< mouse button 8 */
 };
-static bool wic_focus;
-static bool wic_down_keys[360];
-static bool wic_pressed_keys[360];
-static unsigned char wic_input[100];
-static WicPair wic_cursor_location;
-static WicPair wic_scroll_offset;
 /** \brief determines whether or not a keyboard key/mouse button is being
  *         depressed
  *  \param key ID of the keyboard key/mouse button
@@ -259,16 +253,6 @@ WicPair wic_get_scroll_offset();
  *  \return the time since init_game was called in seconds
  */
 double wic_get_time();
-void wic_reset_input();
-void wic_error_callback(int error, const char* description);
-void wic_focus_callback(GLFWwindow* window, int n);
-void wic_key_callback(GLFWwindow* window, int key, int scancode, int action,
-                      int mods);
-void wic_char_callback(GLFWwindow* window, unsigned int key);
-void wic_cursor_location_callback(GLFWwindow* window, double x, double y);
-void wic_mouse_button_callback(GLFWwindow* window, int button, int action,
-                               int mods);
-void wic_scroll_callback(GLFWwindow* window, double x, double y);
 WicPair wic_convert_location(WicPair location, WicPair dimensions);
 
 #endif

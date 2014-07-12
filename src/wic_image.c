@@ -103,8 +103,9 @@ enum WicError wic_draw_image(WicImage* target, WicGame* game)
         return wic_report_error(WICER_GAME);
     WicPair window_dimensions = game->p_dimensions;
     WicPair tex_dimensions = target->p_texture->p_dimensions;
-    p_wic_select_texture(target->p_texture);
-    p_wic_select_color(&(target->color));
+    glBindTexture(GL_TEXTURE_2D, target->p_texture->p_data);
+    glColor4ub(target->color.red, target->color.green, target->color.blue,
+               target->color.alpha);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_QUADS);
         

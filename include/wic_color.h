@@ -65,5 +65,4 @@ extern const WicColor WIC_PURPLE;  /**< purple 128,0,128,255) */
 enum WicError wic_init_color(WicColor* target, unsigned char red,
                              unsigned char green, unsigned char blue,
                              unsigned char alpha);
-void p_wic_select_color(WicColor* target);
 #endif

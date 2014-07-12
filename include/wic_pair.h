@@ -22,7 +22,6 @@
 #define WIC_PAIR_H
 #include <math.h>
 #include <stdbool.h>
-static const double WIC_EPSILON;
 /** \brief holds an x and a y double precision floating point value
  *
  *  WicPair is the workhorse of wic. A WicPair can represent 2D dimensions, a 2D

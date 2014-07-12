@@ -175,7 +175,3 @@ enum WicError wic_free_texture(WicTexture* target)
     target->p_dimensions = (WicPair) {0,0};
     return wic_report_error(WICER_NONE);
 }
-void p_wic_select_texture(WicTexture* target)
-{
-    glBindTexture(GL_TEXTURE_2D, target->p_data);
-}

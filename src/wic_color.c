@@ -56,7 +56,3 @@ enum WicError wic_init_color(WicColor* target, unsigned char red, unsigned char 
     target->alpha = alpha;
     return wic_report_error(WICER_NONE);
 }
-void p_wic_select_color(WicColor* target)
-{
-    glColor4ub(target->red, target->green, target->blue, target->alpha);
-}

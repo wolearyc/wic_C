@@ -19,6 +19,78 @@
  * ----------------------------------------------------------------------------
  */
 #include "wic_game.h"
+static bool wic_focus = false;
+static bool wic_down_keys[360] = {0};
+static bool wic_pressed_keys[360] = {0};
+static unsigned char wic_input[100] = {0};
+static WicPair wic_cursor_location = {0.0,0.0};
+static WicPair wic_scroll_offset = {0.0,0.0};
+void wic_reset_input()
+{
+    memset(wic_pressed_keys, 0, sizeof(wic_down_keys));
+    memset(wic_input, 0, sizeof(wic_input));
+    wic_scroll_offset = (WicPair) {0,0};
+}
+void wic_error_callback(int error, const char* description)
+{
+    wic_report_error(WICER_GLFW);
+}
+void wic_focus_callback(GLFWwindow* window, int n)
+{
+    wic_focus = (bool) n;
+}
+void wic_key_callback(GLFWwindow* window, int key, int scancode, int action,
+                      int mods)
+{
+    if(wic_focus && key < 360)
+    {
+        if(action == GLFW_RELEASE)
+            wic_down_keys[key] = false;
+        else if(action == GLFW_PRESS)
+        {
+            wic_down_keys[key] = true;
+            wic_pressed_keys[key] = true;
+        }
+    }
+}
+void wic_char_callback(GLFWwindow* window, unsigned int key)
+{
+    if(wic_focus)
+    {
+        int startIndex = 0;
+        while(startIndex < 100 && wic_input[startIndex] != 0)
+            startIndex++;
+        if(startIndex != 99)
+            wic_input[startIndex] = (unsigned char) key;
+    }
+}
+void wic_cursor_location_callback(GLFWwindow* window, double x, double y)
+{
+    if(wic_focus)
+    {
+        wic_cursor_location.x = x;
+        wic_cursor_location.y = y;
+    }
+}
+void wic_mouse_button_callback(GLFWwindow* window, int button, int action,
+                               int mods)
+{
+    if(wic_focus)
+    {
+        if(action == GLFW_PRESS)
+            wic_down_keys[button + 350] = true;
+        else
+            wic_down_keys[button + 350] = false;
+    }
+}
+void wic_scroll_callback(GLFWwindow* window, double x, double y)
+{
+    if(wic_focus)
+    {
+        wic_scroll_offset.x = x;
+        wic_scroll_offset.y = y;
+    }
+}
 enum WicError wic_init_game(WicGame* target, const char* title,
                             WicPair dimensions, unsigned int fps,
                             bool resizeable, bool fullscreen,
@@ -136,12 +208,6 @@ enum WicError wic_free_game(WicGame* target)
     target->p_device_resolution = (WicPair) {0,0};
     return wic_report_error(WICER_NONE);
 }
-static bool wic_focus = false;
-static bool wic_down_keys[360] = {0};
-static bool wic_pressed_keys[360] = {0};
-static unsigned char wic_input[100] = {0};
-static WicPair wic_cursor_location = {0.0,0.0};
-static WicPair wic_scroll_offset = {0.0,0.0};
 bool wic_is_key_down(enum WicKey key)
 {
     return wic_down_keys[(int) key];
@@ -167,72 +233,6 @@ WicPair wic_get_scroll_offset()
 double wic_get_time()
 {
     return glfwGetTime();
-}
-void wic_reset_input()
-{
-    memset(wic_pressed_keys, 0, sizeof(wic_down_keys));
-    memset(wic_input, 0, sizeof(wic_input));
-    wic_scroll_offset = (WicPair) {0,0};
-}
-void wic_error_callback(int error, const char* description)
-{
-    wic_report_error(WICER_GLFW);
-}
-void wic_focus_callback(GLFWwindow* window, int n)
-{
-    wic_focus = (bool) n;
-}
-void wic_key_callback(GLFWwindow* window, int key, int scancode, int action,
-                      int mods)
-{
-    if(wic_focus && key < 360)
-    {
-        if(action == GLFW_RELEASE)
-            wic_down_keys[key] = false;
-        else if(action == GLFW_PRESS)
-        {
-            wic_down_keys[key] = true;
-            wic_pressed_keys[key] = true;
-        }
-    }
-}
-void wic_char_callback(GLFWwindow* window, unsigned int key)
-{
-    if(wic_focus)
-    {
-        int startIndex = 0;
-        while(startIndex < 100 && wic_input[startIndex] != 0)
-            startIndex++;
-        if(startIndex != 99)
-            wic_input[startIndex] = (unsigned char) key;
-    }
-}
-void wic_cursor_location_callback(GLFWwindow* window, double x, double y)
-{
-    if(wic_focus)
-    {
-        wic_cursor_location.x = x;
-        wic_cursor_location.y = y;
-    }
-}
-void wic_mouse_button_callback(GLFWwindow* window, int button, int action,
-                               int mods)
-{
-    if(wic_focus)
-    {
-        if(action == GLFW_PRESS)
-            wic_down_keys[button + 350] = true;
-        else
-            wic_down_keys[button + 350] = false;
-    }
-}
-void wic_scroll_callback(GLFWwindow* window, double x, double y)
-{
-    if(wic_focus)
-    {
-        wic_scroll_offset.x = x;
-        wic_scroll_offset.y = y;
-    }
 }
 WicPair wic_convert_location(WicPair location, WicPair dimensions)
 {

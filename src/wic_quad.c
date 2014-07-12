@@ -71,7 +71,8 @@ enum WicError wic_draw_quad(WicQuad* target, WicGame* game)
         return wic_report_error(WICER_GAME);
     double cosine = cos(target->rotation);
     double sine = sin(target->rotation);
-    p_wic_select_color(&(target->color));
+    glColor4ub(target->color.red, target->color.green, target->color.blue,
+               target->color.alpha);
     glBegin(GL_QUADS);
     for(int i = 0; i < 4; i++)
     {
