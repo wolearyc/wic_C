@@ -19,23 +19,26 @@
  * ----------------------------------------------------------------------------
  */
 #include "wic_texture.h"
-int wic_init_texture_from_buffer(WicTexture* target, unsigned char* buffer,
-                             WicPair dimensions, enum WicFormat format,
-                             enum WicFilter filter)
+enum WicError wic_init_texture_from_buffer(WicTexture* target,
+                                           unsigned char* buffer,
+                                           WicPair dimensions,
+                                           enum WicFormat format,
+                                           enum WicFilter filter,
+                                           enum WicWrap wrap)
 {
     if(target == 0)
-        return wic_report_error(-61);
+        return wic_report_error(WICER_TARGET);
     if(buffer == 0)
-        return wic_report_error(-62);
+        return wic_report_error(WICER_BUFFER);
     if(dimensions.x < 1)
-        return wic_report_error(-63);
+        return wic_report_error(WICER_DIMENSIONS_X);
     if(dimensions.y < 1)
-        return wic_report_error(-64);
-    int x_dimension = (int) (dimensions.x + 2) * 4;
-    int y_dimension = (int) dimensions.y + 2;
+        return wic_report_error(WICER_DIMENSIONS_Y);
+    int x_dimension = (int) (dimensions.x) * 4;
+    int y_dimension = (int) dimensions.y;
     unsigned char** temp = malloc(x_dimension * sizeof(unsigned char*));
     if(temp == 0)
-        return wic_report_error(-65);
+        return wic_report_error(WICER_HEAP);
     for(int x = 0; x < x_dimension; x++)
     {
         temp[x] = malloc(y_dimension * sizeof(unsigned char));
@@ -44,7 +47,7 @@ int wic_init_texture_from_buffer(WicTexture* target, unsigned char* buffer,
             for(int i = x-1; i < 0; i--)
                 free(temp[i]);
             free(temp);
-            return wic_report_error(-66);
+            return wic_report_error(WICER_HEAP);
         }
     }
     for(int y = 0; y < y_dimension; y++)
@@ -58,9 +61,9 @@ int wic_init_texture_from_buffer(WicTexture* target, unsigned char* buffer,
         }
     }
     int buffer_index = 0;
-    for(int y = 1; y < y_dimension - 1; y++)
+    for(int y = 0; y < y_dimension; y++)
     {
-        for(int x = 4; x < x_dimension - 4; x+=4)
+        for(int x = 0; x < x_dimension; x+=4)
         {
             if(format == WIC_MONO)
             {
@@ -101,10 +104,10 @@ int wic_init_texture_from_buffer(WicTexture* target, unsigned char* buffer,
         for(int x = 0; x < x_dimension; x++)
             free(temp[x]);
         free(temp);
-        return wic_report_error(-67);
+        return wic_report_error(WICER_HEAP);
     }
     int formatted_buffer_index = 0;
-    for(int y = 0; y < y_dimension; y++)
+    for(int y = y_dimension-1; y >= 0; y--) /* flips texture */
     {
         for(int x = 0; x < x_dimension; x++)
         {
@@ -118,60 +121,59 @@ int wic_init_texture_from_buffer(WicTexture* target, unsigned char* buffer,
     unsigned int data;
     glGenTextures(1, &data);
     glBindTexture(GL_TEXTURE_2D, data);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    if(wrap == WIC_STOP)
+    {
+        float color[] = { 1.0f, 1.0f, 1.0f, 0.0f };
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);
+    }
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrap);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrap);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions.x + 2, dimensions.y + 2,
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions.x, dimensions.y,
                  0, GL_RGBA, GL_UNSIGNED_BYTE, formatted_buffer);
     free(formatted_buffer);
     if(glGetError() == GL_OUT_OF_MEMORY)
     {
         glDeleteTextures(1, &data);
-        return wic_report_error(-68);
+        return wic_report_error(WICER_GPU);
     }
+    
     target->p_data = data;
     target->p_dimensions = dimensions;
-    return wic_report_error(0);
+    return wic_report_error(WICER_NONE);
 }
-int wic_init_texture_from_file(WicTexture* target, const char* filepath,
-                           enum WicFilter filter)
+enum WicError wic_init_texture_from_file(WicTexture* target, char* filepath,
+                                         enum WicFilter filter,
+                                         enum WicWrap wrap)
 {
     if(target == 0)
-        return wic_report_error(-69);
+        return wic_report_error(WICER_TARGET);
+    if(filepath == 0)
+        return wic_report_error(WICER_FILEPATH);
     unsigned char* buffer = 0;
     int x = 0;
     int y = 0;
     buffer = SOIL_load_image(filepath, &x, &y, 0, SOIL_LOAD_RGBA);
     WicPair dimensions = (WicPair) {x,y};
     if(buffer == 0)
-        return wic_report_error(-70);
-    int result = wic_init_texture_from_buffer(target, buffer, dimensions,
-                                              WIC_RGBA, filter);
+        return wic_report_error(WICER_FILE);
+    enum WicError result = wic_init_texture_from_buffer(target, buffer,
+                                                        dimensions, WIC_RGBA,
+                                                        filter, wrap);
     SOIL_free_image_data(buffer);
-    switch(result)
-    {
-        case 0:
-            return wic_report_error(0);
-        case -65:
-            return wic_report_error(-71);
-        case -66:
-            return wic_report_error(-72);
-        case -67:
-            return wic_report_error(-73);
-        case -68:
-            return wic_report_error(-74);
-        default:
-            return wic_report_error(1000);
-    }
+    return result;
 }
-int wic_free_texture(WicTexture* target)
+enum WicError wic_free_texture(WicTexture* target)
 {
     if(target == 0)
-        return wic_report_error(-75);
+        return wic_report_error(WICER_TARGET);
     glDeleteTextures(1, &(target->p_data));
+    
     target->p_data = 0;
-    return wic_report_error(0);
+    target->p_dimensions = (WicPair) {0,0};
+    return wic_report_error(WICER_NONE);
 }
 void p_wic_select_texture(WicTexture* target)
 {

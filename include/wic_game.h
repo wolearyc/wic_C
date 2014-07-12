@@ -40,10 +40,12 @@ typedef struct WicGame
     WicPair p_dimensions;
     double seconds_per_frame; /**< number of seconds between each frame */
     double p_previous_time;
+    double delta;             /**< time since last frame */
     FT_Library p_freetype_library;
+    WicPair p_device_resolution;
 } WicGame;
 /** \brief initializes a WicGame and creates a window
- *  \param target the target WicGame; must be valid
+ *  \param target the target WicGame
  *  \param title the desired window title; must contain one or more characters
  *  \param dimensions the desired window dimensions; both components must be 
  *         > 1
@@ -53,44 +55,45 @@ typedef struct WicGame
  *  \param fullscreen whether or not the game should run fullscreen
  *  \param samples the number of samples to use with antialiasing, a value of 0
  *         disables antialiasing
- *  \return 0 on success, < 0 on failure
+ *  \return the error code
  */
-int wic_init_game(WicGame* target, const char* title, WicPair dimensions,
-              unsigned int fps, bool resizeable, bool fullscreen,
-              unsigned int samples);
+enum WicError wic_init_game(WicGame* target, const char* title,
+                            WicPair dimensions, unsigned int fps,
+                            bool resizeable, bool fullscreen,
+                            unsigned int samples);
 /** \brief flips the window buffers and times game updates
  *
  *  This function will wait a certain amount of time before returning 1
  *  (indicating that the game was updated and a new frame was drawn). This
  *  mechanism ensures that the fps is maintained.
- *  \param target the target WicGame; must be valid
+ *  \param target the target WicGame
  *  \return 1 if the game should be updated, 0 if the game should not be
  *          updated (for example when the window is closed by the user), < 0 on
  *          failure
  */
-int wic_updt_game(WicGame* target);
+enum WicError wic_updt_game(WicGame* target);
 /** \brief closes the window
  *
  *  When this function is called, execution will not stop. Instead, the window
  *  will be closed and updt_game will return false the next time it's called.
- *  \param target the target WicGame; must be valid
- *  \return 0 on success, < 0 on failure
+ *  \param target the target WicGame
+ *  \return the error code
  */
-int wic_exit_game(WicGame* target);
+enum WicError wic_exit_game(WicGame* target);
 /** \brief deallocates a WicGame from memory
  *
  *  This function should only be called after the window has been closed and the
  *  program is about to be terminated.
- *  \param target the target WicGame; must be valid
- *  \return 0 on success, <0 on failure
+ *  \param target the target WicGame
+ *  \return the error code
  */
-int wic_free_game(WicGame* target);
+enum WicError wic_free_game(WicGame* target);
 /** \brief defines constants for keyboard keys and mouse buttons */
 enum WicKey
 {
     WIC_SPACE = 32,          /**< the space key */
     WIC_APOSTROPHE = 39,     /**< the apostrophe/double quotes key */
-    WK_COMMA = 44,         /**< the comma key */
+    WK_COMMA = 44,           /**< the comma key */
     WIC_MINUS = 45,          /**< the minus/underscore key */
     WIC_PERIOD = 46,         /**< the period key */
     WIC_SLASH = 47,          /**< the slash/question mark key */
@@ -260,11 +263,11 @@ void wic_reset_input();
 void wic_error_callback(int error, const char* description);
 void wic_focus_callback(GLFWwindow* window, int n);
 void wic_key_callback(GLFWwindow* window, int key, int scancode, int action,
-                  int mods);
+                      int mods);
 void wic_char_callback(GLFWwindow* window, unsigned int key);
 void wic_cursor_location_callback(GLFWwindow* window, double x, double y);
 void wic_mouse_button_callback(GLFWwindow* window, int button, int action,
-                           int mods);
+                               int mods);
 void wic_scroll_callback(GLFWwindow* window, double x, double y);
 WicPair wic_convert_location(WicPair location, WicPair dimensions);
 

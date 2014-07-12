@@ -19,53 +19,59 @@
  * ----------------------------------------------------------------------------
  */
 #include "wic_quad.h"
-int wic_init_quad(WicQuad* target, WicPair location, WicPair dimensions, WicColor color)
+enum WicError wic_init_quad(WicQuad* target, WicPair location,
+                            WicPair dimensions, WicColor color)
 {
     if(target == 0)
-        return wic_report_error(-101);
-    WicPair* new_vertices = malloc(4 * sizeof(WicPair));
-    if(new_vertices == 0)
-        return wic_report_error(-102);
+        return wic_report_error(WICER_TARGET);
+    WicPair* vertices = malloc(4 * sizeof(WicPair));
+    if(vertices == 0)
+        return wic_report_error(WICER_HEAP);
+    vertices[0] = (WicPair) {0,0};
+    vertices[1] = (WicPair) {dimensions.x, 0};
+    vertices[2] = dimensions;
+    vertices[3] = (WicPair) {0, dimensions.y};
+    WicPair geometric_center = wic_divide_pairs(dimensions, (WicPair) {2,2});
+    
     target->location = location;
     target->p_dimensions = dimensions;
-    target->p_vertices = new_vertices;
-    target->p_vertices[0] = (WicPair) {0,0};
-    target->p_vertices[1] = (WicPair) {dimensions.x, 0};
-    target->p_vertices[2] = dimensions;
-    target->p_vertices[3] = (WicPair) {0, dimensions.y};
+    target->p_vertices = vertices;
     target->color = color;
     target->center = (WicPair) {0,0};
-    target->p_geometric_center = wic_divide_pairs(dimensions, (WicPair) {2,2});
+    target->p_geometric_center = geometric_center;
     target->draw_centered = false;
     target->scale = (WicPair) {1,1};
     target->rotation = 0.0;
-    return wic_report_error(0);
+    return wic_report_error(WICER_NONE);
 }
-int wic_set_quad_dimensions(WicQuad* target, WicPair dimensions)
+enum WicError wic_set_quad_dimensions(WicQuad* target, WicPair dimensions)
 {
     if(target == 0)
-        return wic_report_error(-103);
-    WicPair* new_vertices = realloc(target->p_vertices, 4 * sizeof(WicPair));
-    if(new_vertices == 0)
-        return wic_report_error(-104);
+        return wic_report_error(WICER_TARGET);
+    WicPair* vertices = malloc(4 * sizeof(WicPair));
+    if(vertices == 0)
+        return wic_report_error(WICER_HEAP);
+    vertices[0] = (WicPair) {0,0};
+    vertices[1] = (WicPair) {dimensions.x, 0};
+    vertices[2] = dimensions;
+    vertices[3] = (WicPair) {0, dimensions.y};
+    WicPair geometric_center = wic_divide_pairs(dimensions, (WicPair) {2,2});
+    
     target->p_dimensions = dimensions;
-    target->p_vertices = new_vertices;
-    target->p_vertices[0] = (WicPair) {0,0};
-    target->p_vertices[1] = (WicPair) {dimensions.x,0};
-    target->p_vertices[2] = dimensions;
-    target->p_vertices[3] = (WicPair) {0, dimensions.y};
-    target->p_geometric_center = wic_divide_pairs(dimensions, (WicPair) {2,2});
-    return wic_report_error(0);
+    free(target->p_vertices);
+    target->p_vertices = vertices;
+    target->p_geometric_center = geometric_center;
+    return wic_report_error(WICER_NONE);
 }
-int wic_draw_quad(WicQuad* target, WicGame* game)
+enum WicError wic_draw_quad(WicQuad* target, WicGame* game)
 {
     if(target == 0)
-        return wic_report_error(-105);
+        return wic_report_error(WICER_TARGET);
     if(game == 0)
-        return wic_report_error(-106);
+        return wic_report_error(WICER_GAME);
     double cosine = cos(target->rotation);
     double sine = sin(target->rotation);
-    wic_select_color(&(target->color));
+    p_wic_select_color(&(target->color));
     glBegin(GL_QUADS);
     for(int i = 0; i < 4; i++)
     {
@@ -83,14 +89,23 @@ int wic_draw_quad(WicQuad* target, WicGame* game)
         glVertex2d(vertex.x, vertex.y);
     }
     glEnd();
-    return wic_report_error(0);
+    return wic_report_error(WICER_NONE);
 }
-int wic_free_quad(WicQuad* target)
+enum WicError wic_free_quad(WicQuad* target)
 {
     if(target == 0)
-        return wic_report_error(-107);
+        return wic_report_error(WICER_TARGET);
     free(target->p_vertices);
+    
+    target->location = (WicPair) {0,0};
+    target->p_dimensions = (WicPair) {0,0};
     target->p_vertices = 0;
-    return wic_report_error(0);
+    target->color = WIC_WHITE;
+    target->center = (WicPair) {0,0};
+    target->p_geometric_center = (WicPair) {0,0};
+    target->draw_centered = false;
+    target->scale = (WicPair) {1,1};
+    target->rotation = 0.0;
+    return wic_report_error(WICER_NONE);
 }
 

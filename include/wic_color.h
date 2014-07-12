@@ -55,14 +55,15 @@ extern const WicColor WIC_NAVY;    /**< navy (0,0,128,255) */
 extern const WicColor WIC_FUCHSIA; /**< fuchsia (255,0,255,255) */
 extern const WicColor WIC_PURPLE;  /**< purple 128,0,128,255) */
 /** \brief initializes an WicColor
- *  \param target the target WicColor; must be valid
+ *  \param target the target WicColor
  *  \param red the desired red component; must be < 256
  *  \param green the desired green component; must be < 256
  *  \param blue the desired blue component; must be < 256
  *  \param alpha the desired alpha component; must be < 256
- *  \return 0 on success, < 0 on failure
+ *  \return the error code
  */
-int wic_init_color(WicColor* target, unsigned char red, unsigned char green,
-               unsigned char blue, unsigned char alpha);
-void wic_select_color(WicColor* target);
+enum WicError wic_init_color(WicColor* target, unsigned char red,
+                             unsigned char green, unsigned char blue,
+                             unsigned char alpha);
+void p_wic_select_color(WicColor* target);
 #endif

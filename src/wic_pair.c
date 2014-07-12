@@ -48,3 +48,20 @@ double wic_get_angle_between_pairs(WicPair a, WicPair b)
 {
     return atan2(b.y - a.y, b.x - a.x);
 }
+double wic_get_norm_of_pair(WicPair pair)
+{
+    return sqrt(pow(pair.x, 2) + pow(pair.y ,2));
+}
+WicPair wic_transform_pair(WicPair pair, double rotation, WicPair scale,
+                           WicPair center)
+{
+    double cosine = cos(rotation);
+    double sine = sin(rotation);
+    pair = wic_subtract_pairs(pair, center);
+    pair = wic_multiply_pairs(pair, scale);
+    double x = pair.x * cosine - pair.y * sine;
+    double y = pair.x * sine + pair.y * cosine;
+    pair.x = x;
+    pair.y = y;
+    return pair;
+}

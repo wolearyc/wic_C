@@ -28,7 +28,7 @@
 /** \brief an image that can be drawn to the screen
  *
  *  A WicImage should be initialized with wic_init_image. A WicImage should
- *  eventually be freed via wic_free_image;
+ *  eventually be freed via wic_free_image.
  */
 typedef struct WicImage
 {
@@ -37,8 +37,8 @@ typedef struct WicImage
     WicBounds p_bounds;         /**< the bounds */
     WicPair* p_vertices;        /**< the set of four vertices */
     WicColor color;             /**< the color multiplier */
-    WicPair center;             /**< the center to scale, rotate, and draw around
-                                 *   (if draw_centered = true)
+    WicPair center;             /**< the center to scale, rotate, and draw
+                                 *   around (if draw_centered = true)
                                  */
     WicPair p_geometric_center; /**< the geometric center */
     bool draw_centered;         /**< whether or not to draw around the center */
@@ -48,37 +48,37 @@ typedef struct WicImage
                                  */
 } WicImage;
 /** \brief initializes a WicImage
- *  \param target the target WicImage; must be valid
+ *  \param target the target WicImage
  *  \param location the desired screen location
- *  \param texture the desired WicTexture; must be valid
- *  \return 0 on success, < 0 on failure
+ *  \param texture the desired WicTexture
+ *  \return the error code
  */
-int wic_init_image(WicImage* target, WicPair location, WicTexture* texture);
+enum WicError wic_init_image(WicImage* target, WicPair location,
+                             WicTexture* texture);
 /** \brief sets a WicImage's texture
  *
  *  This function also updates the geometric center of the WicImage and sets the
  *  WicImage's bounds to cover the entire new texture.
- *  \param target the target WicImage; must be valid
- *  \param texture the desired WicTexture; must be valid
- *  \return 0 on success, < 0 on failure
+ *  \param target the target WicImage
+ *  \param texture the desired WicTexture
+ *  \return the error code
  */
-int wic_set_image_texture(WicImage* target, WicTexture* texture);
+enum WicError wic_set_image_texture(WicImage* target, WicTexture* texture);
 /** \brief sets a WicImage's bounds
- *  \param target the target WicImage; must be valid
- *  \param bounds the desired bounds; must not extend behind the WicImage's 
- *         WicTexture's dimensions.
- *  \return 0 on success, < 0 on failure
+ *  \param target the target WicImage
+ *  \param bounds the desired bounds; can extend beyond dimensions
+ *  \return the error code
  */
-int wic_set_image_bounds(WicImage* target, WicBounds bounds);
+enum WicError wic_set_image_bounds(WicImage* target, WicBounds bounds);
 /** \brief draws a WicImage to the screen
- *  \param target the target WicImage; must be valid
- *  \param game the WicGame; must be valid
- *  \return 0 on success, < 0 on failure
+ *  \param target the target WicImage
+ *  \param game the WicGame
+ *  \return the error code
  */
-int wic_draw_image(WicImage* target, WicGame* game);
+enum WicError wic_draw_image(WicImage* target, WicGame* game);
 /** \brief deallocates a WicImage
- *  \param target the target WicImage; must be valid
- *  \return 0 on success, < 0 on failure
+ *  \param target the target WicImage
+ *  \return the error code
  */
-int wic_free_image(WicImage* target);
+enum WicError wic_free_image(WicImage* target);
 #endif

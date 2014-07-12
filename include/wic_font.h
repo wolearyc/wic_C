@@ -27,20 +27,42 @@
 #include "wic_texture.h"
 #include "wic_image.h"
 static const size_t WIC_FONT_NUM_TEXTURES;
-/**
+/** \brief a font
+ *
+ *  A WicFont should be initialized via wic_init_font, which loads a font file
+ *  to be used to draw text. A WicFont should eventually be deallocated via 
+ *  wic_free_font.
  */
 typedef struct WicFont
 {
-    FT_Face p_face;
-    WicTexture** p_textures;
-    bool p_point;
-    bool p_antialias;
+    FT_Face p_face;          /**< the face */
+    WicTexture** p_textures; /**< the glyph textures */
+    unsigned short p_point;  /**< the point size measured in font points */
+    bool p_antialias;        /**< whether or not to antialias the font */
     
 } WicFont;
-int wic_init_font(WicFont* target, const char* filepath, unsigned short point,
-                  bool antialias, WicGame* game);
-int wic_render_string(WicImage* result, WicFont* font, const char* string,
-                      size_t num_characters, WicGame* game);
-int wic_free_font(WicFont* target);
-
+/** \brief initializes a WicFont from a file
+ *  \param target the target WicFont
+ *  \param filepath the absolute or relative filepath to a TrueType (TTF), 
+ *         TrueType collection (TTC), Type 1 (PFA and PFB), CID-keyed Type 1,
+ *         CFF, OpenType, OpenType collection, SFNT-based bitmap, X11 PCF,
+ *         Windows FNT, BDF, or PFR font file; the file must exist and be one of 
+ *         the forementioned formats
+ * \param point the size of the font measured in font points; must be > 0
+ * \param antialias whether or not to antialias the font; antialiased fonts with
+ *        a small point size can be difficult to read
+ * \param game the game
+ * \return the error code
+ */
+enum WicError wic_init_font(WicFont* target, const char* filepath,
+                            unsigned short point, bool antialias,
+                            WicGame* game);
+enum WicError wic_render_string(WicImage* target, WicFont* font,
+                                const char* string, size_t num_characters,
+                                WicGame* game);
+/** \brief deallocates a WicFont
+ *  \param target the target WicFont
+ *  \return the error code
+ */
+enum WicError wic_free_font(WicFont* target);
 #endif

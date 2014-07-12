@@ -19,180 +19,94 @@
  * ----------------------------------------------------------------------------
  */
 #include "wic_error.h"
-static int wic_error_code = 0;
-int wic_report_error(int code)
+static enum WicError wic_error_code = WICER_NONE;
+enum WicError wic_report_error(enum WicError code)
 {
     wic_error_code = code;
+    if(code != WICER_NONE)
+        printf("%s%s", wic_translate_error_code(code), "\n");
     return code;
 }
-int wic_get_last_error()
+enum WicError wic_get_last_error()
 {
     return wic_error_code;
 }
-const char* wic_translate_error_code(int code)
+const char* wic_translate_error_code(enum WicError code)
 {
     switch(code)
     {
-        /* wic_game.h */
-        case 0:
+        /* general errors */
+        case WICER_NONE:
             return "no error";
-        case -1:
-            return "wic_init_game : target invalid";
-        case -2:
-            return "wic_init_game : empty title";
-        case -3:
-            return "wic_init_game : dimension.x < 1";
-        case -4:
-            return "wic_init_game : dimension.y < 1";
-        case -5:
-            return "wic_init_game : fps = 0";
-        case -6:
-            return "wic_init_game : glfw3 could not be initialized";
-        case -7:
-            return "wic_init_game : glfw3 monitor could not be fetched";
-        case -8:
-            return "wic_init_game : window could not be created";
-        case -9:
-            return "wic_init_game : freetype could not be initialized";
-        case -10:
-            return "wic_updt_game : target invalid";
-        case -11:
-            return "wic_exit_game : target invalid";
-        case -12:
-            return "wic_free_game : target invalid";
-        case -13:
+        case WICER_TARGET:
+            return "target == null";
+        case WICER_HEAP:
+            return "out of heap memory";
+        case WICER_GAME:
+            return "game == null";
+        case WICER_DIMENSIONS_X:
+            return "dimension.x < 1";
+        case WICER_DIMENSIONS_Y:
+            return "dimension.y < 1";
+        case WICER_FILEPATH:
+            return "filepath == null";
+        case WICER_FONT:
+            return "font == null";
+        case WICER_STRING:
+            return "string == null";
+            
+        /* wic_game errors */
+        case WICER_TITLE:
+            return "empty title";
+        case WICER_FPS:
+            return "fps == 0";
+        case WICER_INIT_GLFW:
+            return "glfw3 could not be initialized";
+        case WICER_FETCH_MONITOR:
+            return "glfw3 monitor could not be fetched";
+        case WICER_CREATE_WINDOW:
+            return "window could not be created";
+        case WICER_FREETYPE:
+            return "freetype could not be initialized";
+        case WICER_GLFW:
             return "glfw3 error";
-        /* wic_color.h */
-        case -21:
-            return "wic_init_color : target invalid";
-        case -22:
-            return "wic_init_color : red value > 255";
-        case -23:
-            return "wic_init_color : green value > 255";
-        case -24:
-            return "wic_init_color : blue value > 255";
-        case -25:
-            return "wic_init_color : alpha value > 255";
-        /* wic_polygon.h */
-        case -41:
-            return "wic_init_polygon : target invalid";
-        case -42:
-            return "wic_init_polygon : num_vertices < 3";
-        case -43:
-            return "init_polygon : out of heap memory";
-        case -44:
-            return "wic_set_polygon_vertices : target invalid";
-        case -45:
-            return "wic_set_polygon_vertices : num_vertices < 3";
-        case -46:
-            return "wic_set_polygon_vertices : out of heap memory";
-        case -47:
-            return "wic_draw_polygon : target invalid";
-        case -48:
-            return "wic_draw_polygon : game invalid";
-        case -49:
-            return "wic_free_polygon : target invalid";
-        /* wic_texture.h */
-        case -61:
-            return "wic_init_texture_from_buffer : target invalid";
-        case -62:
-            return "wic_init_texture_from_buffer : buffer not allocated";
-        case -63:
-            return "wic_init_texture_from_buffer : dimensions.x < 1";
-        case -64:
-            return "wic_init_texture_from_buffer : dimensions.y < 1";
-        case -65:
-            return "wic_init_texture_from_buffer : out of heap memory";
-        case -66:
-            return "wic_init_texture_from_buffer : out of heap memory";
-        case -67:
-            return "wic_init_texture_from_buffer : out of heap memory";
-        case -68:
-            return "wic_init_texture_from_buffer : out of gpu memory";
-        case -69:
-            return "wic_init_texture_from_file : target invalid";
-        case -70:
-            return "wic_init_texture_from_file : file could not be found or loaded";
-        case -71:
-            return "wic_init_texture_from_file : out of heap memory";
-        case -72:
-            return "wic_init_texture_from_file : out of heap memory";
-        case -73:
-            return "wic_init_texture_from_file : out of heap memory";
-        case -74:
-            return "wic_init_texture_from_file : out of gpu memory";
-        case -75:
-            return "wic_free_texture : target invalid";
-        /* image.h */
-        case -81:
-            return "wic_init_image : target invalid";
-        case -82:
-            return "wic_init_image : texture invalid";
-        case -83:
-            return "wic_init_image : out of heap memory";
-        case -84:
-            return "wic_set_image_texture : target invalid";
-        case -85:
-            return "wic_set_image_texture : texture invalid";
-        case -86:
-            return "wic_set_image_texture : out of heap memory";
-        case -87:
-            return "wic_set_image_bounds : target invalid";
-        case -88:
-            return "wic_set_image_bounds : bounds reaches outside of texture";
-        case -89:
-            return "wic_set_image_bounds : out of heap memory";
-        case -90:
-            return "wic_draw_image : target invalid";
-        case -91:
-            return "wic_draw_image : game invalid";
-        case -92:
-            return "wic_free_image : target invalid";
-        /* wic_quad.h */
-        case -101:
-            return "wic_init_quad : target invalid";
-        case -102:
-            return "wic_init_quad : out of heap memory";
-        case -103:
-            return "wic_set_quad_dimensions : target invalid";
-        case -104:
-            return "wic_set_quad_dimensions : out of heap memory";
-        case -105:
-            return "wic_draw_quad : target invalid";
-        case -106:
-            return "wic_draw_quad : game invalid";
-        case -107:
-            return "wic_free_quad : target invalid";
+        
+        /* wic_color errors */
+        case WICER_RED:
+            return "red > 255";
+        case WICER_GREEN:
+            return "green > 255";
+        case WICER_BLUE:
+            return "blue > 255";
+        case WICER_ALPHA:
+            return "alpha > 255";
+            
+        /* wic_polygon errors */
+        case WICER_NUM_VERTICES:
+            return "num_vertices < 3";
+        
+        /* wic_texture errors */
+        case WICER_BUFFER:
+            return "buffer == null";
+        case WICER_GPU:
+            return "out of gpu memory";
+        case WICER_FILE:
+            return "file could not be found / could not be loaded";
+        
+        /* wic_image errors */
+        case WICER_TEXTURE:
+            return "texture == null";
+            
+        /* wic_quad errors  */
+        
+            
         /* wic_font.h */
-        case -121:
-            return "wic_init_font : target invalid";
-        case -122:
-            return "wic_init_font : filepath invalid";
-        case -123:
-            return "wic_init_font : game invalid";
-        case -124:
-            return "wic_init_font : file could not be found or loaded";
-        case -125:
-            return "wic_init_font : out of heap memory";
-        case -126:
-            return "wic_init_font : point == 0";
-        case -127:
-            return "wic_render_string : result invalid";
-        case -128:
-            return "wic_render_string : font invalid";
-        case -129:
-            return "wic_render_string : string invalid";
-        case -130:
-            return "wic_render_string : game invalid";
-        case -131:
-            return "wic_render_string : out of heap memory";
-        case -132:
-            return "wic_free_font : target invalid";
-            
-            
-        case -666:
-            return "satan detected, core dumped";
-        default: /* usually error_code = 1000 */
+        case WICER_POINT:
+            return "point == 0";
+
+        /* wic_text.h */
+
+        default:
             return "unknown error";
     }
 }

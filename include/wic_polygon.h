@@ -45,37 +45,39 @@ typedef struct WicPolygon
                                 */
 } WicPolygon;
 /** \brief initializes a WicPolygon
- *  \param target the target WicPolygon; must be valid
+ *  \param target the target WicPolygon
  *  \param location the desired screen location
  *  \param vertices the desired vertices (relative to the object), in clockwise
  *         or counterclockwise order
  *  \param num_vertices the number of elements in vertices; must be > 2; an
  *         incorrect value will result in undefined behavior
  *  \param color the desired color
- *  \return 0 on success, < 0 on failure
+ *  \return the error code
  */
-int wic_init_polygon(WicPolygon* target, WicPair location, WicPair* vertices,
-                 size_t num_vertices, WicColor color);
+enum WicError wic_init_polygon(WicPolygon* target, WicPair location,
+                               WicPair* vertices, size_t num_vertices,
+                               WicColor color);
 /** \brief changes a WicPolygon's vertices
  *
  *  This function also updates the WicPolygon's geometric center.
- *  \param target the target WicPolygon; must be valid
+ *  \param target the target WicPolygon
  *  \param vertices the desired vertices (relative to the object), in clockwise
  *         or counterclockwise order
  *  \param num_vertices the number of elements in vertices; must be > 2; an
  *         incorrect value will result in undefined behavior
- *  \return 0 on success, < 0 on failure
+ *  \return the error code
  */
-int wic_set_polygon_vertices(WicPolygon* target, WicPair* vertices, size_t num_vertices);
+enum WicError wic_set_polygon_vertices(WicPolygon* target, WicPair* vertices,
+                                       size_t num_vertices);
 /** \brief draws a WicPolygon
- *  \param polygon the target WicPolygon; must be valid
+ *  \param polygon the target WicPolygon
  *  \param game the WicGame
- *  \return 0 on success, < 0 on failure
+ *  \return the error code
  */
-int wic_draw_polygon(WicPolygon* target, WicGame* game);
+enum WicError wic_draw_polygon(WicPolygon* target, WicGame* game);
 /** \brief deallocates a WicPolygon
- *  \param target the target WicPolygon; must be valid
- *  \return 0 on success, < 0 on failure
+ *  \param target the target WicPolygon
+ *  \return the error code
  */
-int wic_free_polygon(WicPolygon* target);
+enum WicError wic_free_polygon(WicPolygon* target);
 #endif

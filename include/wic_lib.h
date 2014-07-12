@@ -31,5 +31,6 @@
 #include "wic_bounds.h"
 #include "wic_image.h"
 #include "wic_quad.h"
+#include "wic_text.h"
 #include "wic_font.h"
 #endif

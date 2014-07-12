@@ -36,26 +36,27 @@ const WicColor WIC_BLUE    = {0,0,255,255};
 const WicColor WIC_NAVY    = {0,0,128,255};
 const WicColor WIC_FUCHSIA = {255,0,255,255};
 const WicColor WIC_PURPLE  = {128,0,128,255};
-int wic_init_color(WicColor* target, unsigned char red, unsigned char green,
+enum WicError wic_init_color(WicColor* target, unsigned char red, unsigned char green,
                unsigned char blue, unsigned char alpha)
 {
     if(target == 0)
-        return wic_report_error(-21);
+        return wic_report_error(WICER_TARGET);
     if(red > 255)
-        return wic_report_error(-22);
+        return wic_report_error(WICER_RED);
     if(green > 255)
-        return wic_report_error(-23);
+        return wic_report_error(WICER_GREEN);
     if(blue > 255)
-        return wic_report_error(-24);
+        return wic_report_error(WICER_BLUE);
     if(alpha > 255)
-        return wic_report_error(-25);
+        return wic_report_error(WICER_ALPHA);
+        
     target->red = red;
     target->green = green;
     target->blue = blue;
     target->alpha = alpha;
-    return wic_report_error(0);
+    return wic_report_error(WICER_NONE);
 }
-void wic_select_color(WicColor* target)
+void p_wic_select_color(WicColor* target)
 {
     glColor4ub(target->red, target->green, target->blue, target->alpha);
 }

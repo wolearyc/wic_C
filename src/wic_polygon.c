@@ -19,65 +19,69 @@
  * ----------------------------------------------------------------------------
  */
 #include "wic_polygon.h"
-int wic_init_polygon(WicPolygon* target, WicPair location, WicPair* vertices,
-                 size_t num_vertices, WicColor color)
+enum WicError wic_init_polygon(WicPolygon* target, WicPair location,
+                               WicPair* vertices, size_t num_vertices,
+                               WicColor color)
 {
     if(target == 0)
-        return wic_report_error(-41);
+        return wic_report_error(WICER_TARGET);
     if(num_vertices < 3)
-        return wic_report_error(-42);
+        return wic_report_error(WICER_NUM_VERTICES);
     WicPair* new_vertices = malloc(sizeof(WicPair) * num_vertices);
     if(new_vertices == 0)
-        return wic_report_error(-43);
-    target->p_vertices = new_vertices;
-    target->location = location;
+        return wic_report_error(WICER_HEAP);
     for(int i = 0; i < num_vertices; i++)
-        target->p_vertices[i] = vertices[i];
-    target->color = color;
-    target->center = (WicPair) {0,0};
+        new_vertices[i] = vertices[i];
     WicPair geometric_center = {0,0};
     for(int i = 0; i < num_vertices; i++)
-        geometric_center = wic_add_pairs(geometric_center, vertices[i]);
+        geometric_center = wic_add_pairs(geometric_center, new_vertices[i]);
     geometric_center = wic_divide_pairs(geometric_center,
-                                    (WicPair) {num_vertices, num_vertices});
+                                        (WicPair) {num_vertices, num_vertices});
+    
+    target->location = location;
+    target->p_vertices = vertices;
+    target->p_num_vertices = num_vertices;
+    target->color = color;
+    target->center = (WicPair) {0,0};
     target->p_geometric_center = geometric_center;
     target->draw_centered = false;
     target->scale = (WicPair) {1,1};
     target->rotation = 0.0;
-    return wic_report_error(0);
+    return wic_report_error(WICER_NONE);
 }
-int wic_set_polygon_vertices(WicPolygon* target, WicPair* vertices, size_t num_vertices)
+enum WicError wic_set_polygon_vertices(WicPolygon* target, WicPair* vertices,
+                                       size_t num_vertices)
 {
     if(target == 0)
-        return wic_report_error(-44);
+        return wic_report_error(WICER_TARGET);
     if(num_vertices < 3)
-        return wic_report_error(-45);
-    WicPair* new_vertices = realloc(target->p_vertices,
-                                 num_vertices * sizeof(WicPair));
+        return wic_report_error(WICER_NUM_VERTICES);
+    WicPair* new_vertices = malloc(num_vertices * sizeof(WicPair));
     if(new_vertices == 0)
-        return wic_report_error(-46);
-    target->p_vertices = new_vertices;
-    target->p_num_vertices = num_vertices;
+        return wic_report_error(WICER_HEAP);
+    for(int i = 0; i < num_vertices; i++)
+        new_vertices[i] = vertices[i];
     WicPair geometric_center = {0,0};
     for(int i = 0; i < num_vertices; i++)
-    {
-        target->p_vertices[i] = vertices[i];
-        geometric_center = wic_add_pairs(geometric_center, vertices[i]);
-    }
+        geometric_center = wic_add_pairs(geometric_center, new_vertices[i]);
     geometric_center = wic_divide_pairs(geometric_center,
-                                    (WicPair) {num_vertices, num_vertices});
+                                        (WicPair) {num_vertices, num_vertices});
+        
+    free(target->p_vertices);
+    target->p_vertices = new_vertices;
+    target->p_num_vertices = num_vertices;
     target->p_geometric_center = geometric_center;
-    return wic_report_error(0);
+    return wic_report_error(WICER_NONE);
 }
-int wic_draw_polygon(WicPolygon* target, WicGame* game)
+enum WicError wic_draw_polygon(WicPolygon* target, WicGame* game)
 {
     if(target == 0)
-        return wic_report_error(-47);
+        return wic_report_error(WICER_TARGET);
     if(game == 0)
-        return wic_report_error(-48);
+        return wic_report_error(WICER_GAME);
     double cosine = cos(target->rotation);
     double sine = sin(target->rotation);
-    wic_select_color(&(target->color));
+    p_wic_select_color(&(target->color));
     glBegin(GL_POLYGON);
     for(int i = 0; i < target->p_num_vertices; i++)
     {
@@ -95,13 +99,22 @@ int wic_draw_polygon(WicPolygon* target, WicGame* game)
         glVertex2d(vertex.x, vertex.y);
     }
     glEnd();
-    return wic_report_error(0);
+    return wic_report_error(WICER_NONE);
 }
-int wic_free_polygon(WicPolygon* target)
+enum WicError wic_free_polygon(WicPolygon* target)
 {
     if(target == 0)
-        return wic_report_error(-49);
+        return wic_report_error(WICER_TARGET);
     free(target->p_vertices);
+    
+    target->location = (WicPair) {0,0};
     target->p_vertices = 0;
-    return wic_report_error(0);
+    target->p_num_vertices = 0;
+    target->color = WIC_WHITE;
+    target->center = (WicPair) {0,0};
+    target->p_geometric_center = (WicPair) {0,0};
+    target->draw_centered = false;
+    target->scale = (WicPair) {1,1};
+    target->rotation = 0.0;
+    return wic_report_error(WICER_NONE);
 }

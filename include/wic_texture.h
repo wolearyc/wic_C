@@ -42,9 +42,20 @@ enum WicFormat
     WIC_RGB,       /**< each pixel has three 8 bit values, red, green, and 
                     *   blue 
                     */
-   WIC_RGBA       /**< each pixel has four 8 bit values, red, green, blue, and
-                   *   alpha
-                   */
+    WIC_RGBA       /**< each pixel has four 8 bit values, red, green, blue, and
+                    *   alpha
+                    */
+};
+/** \brief defines constants for texturing wrapping (behavior when drawing 
+ *         outside of texture dimensions
+ */
+enum WicWrap
+{
+    WIC_REPEAT = GL_REPEAT,               /**< the texture repeats */
+    WIC_CLAMP_TO_EDGE = GL_CLAMP_TO_EDGE, /**< the edges pixels are drawn out */
+    WIC_STOP = GL_CLAMP_TO_BORDER,        /**< nothing is drawn outside of the
+                                           *   texture dimensions
+                                           */
 };
 /** \brief a texture
  * 
@@ -54,11 +65,11 @@ enum WicFormat
  */
 typedef struct WicTexture
 {
-    unsigned int p_data;
-    WicPair p_dimensions;
+    unsigned int p_data;  /**< the opengl texture id */
+    WicPair p_dimensions; /**< the texture dimensions */
 } WicTexture;
 /** \brief initializes a WicTexture from an existing buffer
- *  \param target the target WicTexture; must be valid
+ *  \param target the target WicTexture
  *  \param buffer the buffer
  *  \param the dimensions; dimensions.x * dimensions.y not being equal to the
  *         number of elements in buffer will result in undefined behavior
@@ -66,26 +77,35 @@ typedef struct WicTexture
  *         warped texture and/or undefined behavior
  *  \param filter the desired texture filter (defines behavior when textures are
  *         scaled beyond or below their resolution
- *  \return 0 on success, < 0 on failure
+ *  \param wrap the texture wrap (defines behavior when drawing outside texture
+ *         dimensions
+ *  \return the error code
  */
-int wic_init_texture_from_buffer(WicTexture* target, unsigned char* buffer,
-                                  WicPair dimensions, enum WicFormat format,
-                                  enum WicFilter filter);
+enum WicError wic_init_texture_from_buffer(WicTexture* target,
+                                           unsigned char* buffer,
+                                           WicPair dimensions,
+                                           enum WicFormat format,
+                                           enum WicFilter filter,
+                                           enum WicWrap wrap);
 /** \brief initializes a WicTexture from a file
- *  \param target the target WicTexture; must be valid
- *  \param filepath the absolute of relative filepath to a non-1bpp and non-RLE 
+ *  \param target the target WicTexture
+ *  \param filepath the absolute or relative filepath to a non-1bpp and non-RLE 
  *         BMP, non-interlaced PNG, JPEG, TGA, DDS, PSD, or HDR image file; the
  *         file must exist and be one of the formentioned formats
  *  \param filter the desired texture filter (defines behavior when textures are
  *          scaled beyond or below their resolution
- *  \return 0 on success, < 0 on failure
+ *  \param wrap the texture wrap (defines behavior when drawing outside texture
+ *         dimensions
+ *  \return the error code
  */
-int wic_init_texture_from_file(WicTexture* target, const char* filepath,
-                               enum WicFilter filter);
+enum WicError wic_init_texture_from_file(WicTexture* target, char* filepath,
+                                         enum WicFilter filter,
+                                         enum WicWrap wrap);
+
 /** \brief deallocates a WicTexture
- *  \param target the target WicTexture; must be valid
- *  \return 0 on success, < 0 on failure
+ *  \param target the target WicTexture
+ *  \return the error code
  */
-int wic_free_texture(WicTexture* target);
+enum WicError wic_free_texture(WicTexture* target);
 void p_wic_select_texture(WicTexture* target);
 #endif

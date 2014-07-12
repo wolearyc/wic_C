@@ -22,19 +22,66 @@
 #define WIC_ERROR_H
 #include <stdio.h>
 #include <stdbool.h>
-static int wic_error_code;
+enum WicError
+{
+    /* general errors */
+    WICER_NONE,
+    WICER_TARGET,
+    WICER_HEAP,
+    WICER_GAME,
+    WICER_DIMENSIONS_X,
+    WICER_DIMENSIONS_Y,
+    WICER_FILEPATH,
+    WICER_FONT,
+    WICER_STRING,
+    
+    /* wic_game errors */
+    WICER_TITLE,
+    WICER_FPS,
+    WICER_INIT_GLFW,
+    WICER_FETCH_MONITOR,
+    WICER_CREATE_WINDOW,
+    WICER_FREETYPE,
+    WICER_GLFW,
+    
+    /* wic_color errors */
+    WICER_RED,
+    WICER_GREEN,
+    WICER_BLUE,
+    WICER_ALPHA,
+    
+    /* wic_polygon errors */
+    WICER_NUM_VERTICES,
+    
+    /* wic_texture errors */
+    WICER_BUFFER,
+    WICER_GPU,
+    WICER_FILE,
+    
+    /* wic_image errors */
+    WICER_TEXTURE,
+    
+    /* wic_quad errors */
+    
+    /* wic_font errors */
+    WICER_POINT,
+
+    /* wic_text errors */
+    
+};
+static enum WicError wic_error_code;
 /** \brief reports the latest error code
  *  \param code the latest error code
  *  \return the latest error code
  */
-int wic_report_error(int code);
+enum WicError wic_report_error(enum WicError code);
 /** \brief retrieves the latest error code
  *  \return the latest error code
  */
-int wic_get_last_error();
+enum WicError wic_get_last_error();
 /** \brief translates an error code into a human-readable message
  *  \param code the error code
  *  \return the error code translated into a human-readable message
  */
-const char* wic_translate_error_code(int code);
+const char* wic_translate_error_code(enum WicError code);
 #endif

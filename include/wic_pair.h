@@ -76,4 +76,18 @@ double wic_get_distance_between_pairs(WicPair a, WicPair b);
  *  \return the angle between a and b
  */
 double wic_get_angle_between_pairs(WicPair a, WicPair b);
+/** \brief computes the norm of a WicPair
+ *  \param pair a WicPair
+ *  \return the norm of the WicPair
+ */
+double wic_get_norm_of_pair(WicPair pair);
+/** \brief transforms a WicPair based on a rotation, scale, and center
+ *  \param pair the WicPair
+ *  \param rotation the rotation
+ *  \param scale the scale
+ *  \param center the center to rotate and scale around
+ *  \return the transformed WicPair
+ */
+WicPair wic_transform_pair(WicPair pair, double rotation, WicPair scale,
+                           WicPair center);
 #endif
