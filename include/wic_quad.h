@@ -18,6 +18,7 @@
  * File:    wic_quad.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef WIC_QUAD_H
 #define WIC_QUAD_H
 #include "wic_pair.h"

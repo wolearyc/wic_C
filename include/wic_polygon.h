@@ -18,6 +18,7 @@
  * File:    wic_polygon.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef WIC_POLYGON_H
 #define WIC_POLYGON_H
 #include "wic_pair.h"

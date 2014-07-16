@@ -18,6 +18,7 @@
  * File:    wic_pair.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef WIC_PAIR_H
 #define WIC_PAIR_H
 #include <math.h>

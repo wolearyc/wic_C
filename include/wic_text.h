@@ -18,6 +18,7 @@
  * File:    wic_text.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef WIC_TEXT
 #define WIC_TEXT
 #include "wic_pair.h"

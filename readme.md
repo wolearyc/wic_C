@@ -6,8 +6,9 @@ Table of Contents
 1. Summary
 2. Directories and Files
 3. Building wic
-4. Licensing and Distribution
-5. Credits
+4. Using wic in your project
+5. Licensing and Distribution
+6. Credits
 
 Summary
 -------
@@ -74,7 +75,7 @@ Lastly, you'll need to include "wic_lib.h" in all the code you write. Then you s
 
 Licensing and Distribution
 --------------------------
-Wic is distrubuted under the GNU Lesser General Public License, Version 3. You must include license.md in all projects which use the entirety or sections of wic.
+Wic is distributed under the GNU Lesser General Public License, Version 3. You must include license.md in all projects which use the entirety or sections of wic.
 
 Credits
 -------

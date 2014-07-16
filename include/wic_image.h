@@ -18,6 +18,7 @@
  * File:    wic_image.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef WIC_IMAGE_H
 #define WIC_IMAGE_H
 #include "wic_pair.h"

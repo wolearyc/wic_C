@@ -18,8 +18,7 @@
  * File:    wic_lib.h
  * ----------------------------------------------------------------------------
  */
-/** \file include this file to gain access to the wic library
- */
+/** \file include this file to gain access to the wic library */
 #ifndef WIC_LIB_H
 #define WIC_LIB_H
 #include "wic_game.h"

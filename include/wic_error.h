@@ -18,6 +18,7 @@
  * File:    wic_error.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef WIC_ERROR_H
 #define WIC_ERROR_H
 #include <stdio.h>

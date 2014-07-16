@@ -18,6 +18,7 @@
  * File:    wic_game.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef WIC_GAME_H
 #define WIC_GAME_H
 #include <stdlib.h>

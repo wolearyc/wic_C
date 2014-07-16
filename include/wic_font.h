@@ -18,6 +18,7 @@
  * File:    wic_font.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef WIC_FONT_H
 #define WIC_FONT_H
 #include "FreeType/ft2build.h"

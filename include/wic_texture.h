@@ -18,6 +18,7 @@
  * File:    wic_texture.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef WIC_TEXTURE_H
 #define WIC_TEXTURE_H
 #include "stdlib.h"

@@ -18,6 +18,7 @@
  * File:    wic_color.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef WIC_COLOR_H
 #define WIC_COLOR_H
 #include "OpenGL/gl.h"

@@ -18,6 +18,7 @@
  * File:    wic_bounds.h
  * ----------------------------------------------------------------------------
  */
+/** \file */
 #ifndef BOUNDS_H
 #define BOUNDS_H
 #include "wic_pair.h"
