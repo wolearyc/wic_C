@@ -1,0 +1,6 @@
+build-xcode.sh
+wic.xcodeproj/
+*.DS_Store
+bin
+obj
+docs/html
