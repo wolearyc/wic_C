@@ -21,15 +21,16 @@
 /** \file include this file to gain access to the wic library */
 #ifndef WIC_LIB_H
 #define WIC_LIB_H
-#include "wic_game.h"
-#include "wic_pair.h"
-#include "wic_error.h"
-#include "wic_color.h"
-#include "wic_polygon.h"
-#include "wic_texture.h"
 #include "wic_bounds.h"
-#include "wic_image.h"
-#include "wic_quad.h"
-#include "wic_text.h"
+#include "wic_color.h"
+#include "wic_error.h"
 #include "wic_font.h"
+#include "wic_game.h"
+#include "wic_image.h"
+#include "wic_pair.h"
+#include "wic_polygon.h"
+#include "wic_quad.h"
+#include "wic_splash.h"
+#include "wic_text.h"
+#include "wic_texture.h"
 #endif
