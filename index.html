@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Wic by wolearyc</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Wic</h1>
+        <p>A simple 2D game engine for Mac OSX written in C.</p>
+
+        <p class="view"><a href="https://github.com/wolearyc/wic">View the Project on GitHub <small>wolearyc/wic</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/wolearyc/wic/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/wolearyc/wic/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/wolearyc/wic">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="wic-readme" class="anchor" href="#wic-readme"><span class="octicon octicon-link"></span></a>wic readme</h1>
+
+<h2>
+<a name="table-of-contents" class="anchor" href="#table-of-contents"><span class="octicon octicon-link"></span></a>Table of Contents</h2>
+
+<ol>
+<li>Summary</li>
+<li>Directories and Files</li>
+<li>Building wic</li>
+<li>Using wic in your project</li>
+<li>Licensing and Distribution</li>
+<li>Credits</li>
+</ol><h2>
+<a name="summary" class="anchor" href="#summary"><span class="octicon octicon-link"></span></a>Summary</h2>
+
+<p>Wic is a simple 2D game engine for Mac OSX written in C and distributed as a standalone static library. It is currently under development by Will  O'Leary. You can download files, read documentation, and submit bug reports at wic's <a href="https://github.com/wolearyc/wic">github repository</a>. </p>
+
+<p>Wic was built with the following design goals in mind:</p>
+
+<ul>
+<li>simplicity</li>
+<li>extendability</li>
+<li>effective and robust error reporting</li>
+<li>effective documentation</li>
+<li>library-wide consistency</li>
+<li>flexibility in memory management</li>
+</ul><p>Enjoy!</p>
+
+<h2>
+<a name="directories-and-files" class="anchor" href="#directories-and-files"><span class="octicon octicon-link"></span></a>Directories and Files</h2>
+
+<ul>
+<li>license.md -- License. </li>
+<li>readme.md -- Readme. </li>
+<li>Makefile -- Makefile. </li>
+<li>deps/ -- Dependency files.
+
+<ul>
+<li>lib/ -- Dependency libraries.</li>
+<li>include/ -- Dependency header files.</li>
+</ul>
+</li>
+<li>doc/ -- Doxygen documentation.</li>
+<li>include/ -- Header files.</li>
+<li>lib/ -- Dependency libraries.</li>
+<li>src/ -- Source files.</li>
+<li>bin/ -- Libraries [created on build].
+
+<ul>
+<li>debug/ -- Debug library (debug/libwic.a) [created on build].</li>
+<li>release/ -- Release library (release/libwic.a) [created on build].</li>
+</ul>
+</li>
+<li>obj/ -- Object files [created on build].
+
+<ul>
+<li>debug/ -- Debug objects [created on build].</li>
+<li>release/ -- Release objects [created on build].</li>
+</ul>
+</li>
+</ul><h2>
+<a name="building-wic" class="anchor" href="#building-wic"><span class="octicon octicon-link"></span></a>Building wic</h2>
+
+<p>Wic uses the standard "make" to build. No configure script is included, mostly because the makefile is so small and easy to modify. It should build on any system with gcc, make, and binutils installed. 
+From wic's root directory, the following make commands can be executed:</p>
+
+<ul>
+<li>$ make -- Builds wic as a static library.</li>
+<li>$ make all -- Functions identically to "$ make".</li>
+<li>$ make release -- Functions identically to "$ make".</li>
+<li>$ make debug -- Builds wic as a static library with debug symbols.</li>
+<li>$ make doxygen -- Generates wic's doxygen documentation.</li>
+<li>$ make clean -- Removes all library and object files.</li>
+</ul><h2>
+<a name="using-wic-in-your-project" class="anchor" href="#using-wic-in-your-project"><span class="octicon octicon-link"></span></a>Using wic in your project</h2>
+
+<p>First, you'll need to include wic's header files.</p>
+
+<ol>
+<li>Copy include/ and deps/ into your project.</li>
+<li>In your project, delete deps/lib to save space. You won't be needing it.</li>
+<li>Add include/ and deps/include as include paths. In gcc, this can be done with "-I include/ -I deps/include", assuming include/ and deps/ are in your working directory.</li>
+</ol><p>Second, you'll need to link in the appropriate libraries and frameworks.</p>
+
+<ol>
+<li>From wic's root directory, run $make.</li>
+<li>Copy libwic.a from lib/release/ into your project. </li>
+<li>Link libwic.a to your project. In gcc, this is done with "-lwic" assuming that libwic.a is in your working directory.</li>
+<li>You'll also need to link in the Cocoa, Quartz, IOKit, and OpenGL frameworks. In gcc, this can be done with "-framework Cocoa -framework Quartz -framework IOKit -framework OpenGL".</li>
+</ol><p>Lastly, you'll need to include "wic_lib.h" in all the code you write. Then you should be good to go!</p>
+
+<h2>
+<a name="licensing-and-distribution" class="anchor" href="#licensing-and-distribution"><span class="octicon octicon-link"></span></a>Licensing and Distribution</h2>
+
+<p>Wic is distributed under the GNU Lesser General Public License, Version 3. You must include license.md in all projects which use the entirety or sections of wic.</p>
+
+<h2>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<p>Portions of this software are copyright © 2013 The FreeType Project.  All rights reserved. <a href="http://www.freetype.org/">Website.</a></p>
+
+<p>Portions of this software use GLFW. Copyright © 2002-2006 Marcus Geelnard and Copyright © 2006-2011 Camilla Berglund. <a href="http://www.glfw.org/index.html">Website.</a></p>
+
+<p>Portions of this software use the Simple OpenGL Image Library, which is in the public domain. <a href="http://www.lonesock.net/soil.html">Website.</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/wolearyc">wolearyc</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
