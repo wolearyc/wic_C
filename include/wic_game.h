@@ -37,13 +37,13 @@
  */
 typedef struct WicGame
 {
-    GLFWwindow* p_window;
-    WicPair p_dimensions;
+    GLFWwindow* window_ro;
+    WicPair dimensions_ro;
     double seconds_per_frame; /**< number of seconds between each frame */
-    double p_previous_time;
+    double previous_time_ro;
     double delta;             /**< time since last frame */
-    FT_Library p_freetype_library;
-    WicPair p_device_resolution;
+    FT_Library freetype_library_ro;
+    WicPair device_resolution_ro;
 } WicGame;
 /** \brief initializes a WicGame and creates a window
  *  \param target the target WicGame

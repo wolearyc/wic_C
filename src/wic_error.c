@@ -91,7 +91,7 @@ const char* wic_translate_error_code(enum WicError code)
         case WICER_GPU:
             return "out of gpu memory";
         case WICER_FILE:
-            return "file could not be found / could not be loaded";
+            return "file could not be found or loaded";
         
         /* wic_image errors */
         case WICER_TEXTURE:

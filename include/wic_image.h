@@ -34,14 +34,14 @@
 typedef struct WicImage
 {
     WicPair location;           /**< the screen location */
-    WicTexture* p_texture;      /**< the texture */
-    WicBounds p_bounds;         /**< the bounds */
-    WicPair* p_vertices;        /**< the set of four vertices */
+    WicTexture* texture_ro;      /**< the texture */
+    WicBounds bounds_ro;         /**< the bounds */
+    WicPair* vertices_ro;        /**< the set of four vertices */
     WicColor color;             /**< the color multiplier */
     WicPair center;             /**< the center to scale, rotate, and draw
                                  *   around (if draw_centered = true)
                                  */
-    WicPair p_geometric_center; /**< the geometric center */
+    WicPair geometric_center_ro; /**< the geometric center */
     bool draw_centered;         /**< whether or not to draw around the center */
     WicPair scale;              /**< the scale */
     double rotation;            /**< the rotation measured in radians from the

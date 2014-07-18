@@ -32,7 +32,7 @@ enum WicError wic_init_font(WicFont* target, const char* filepath,
     if(point == 0)
         return wic_report_error(WICER_POINT);
     FT_Face face;
-    int error = FT_New_Face(game->p_freetype_library, filepath, 0, &face);
+    int error = FT_New_Face(game->freetype_library_ro, filepath, 0, &face);
     if(error != 0)
         return wic_report_error(WICER_FILE);
     WicTexture** textures = malloc(WIC_FONT_NUM_TEXTURES * sizeof(WicTexture*));
@@ -43,13 +43,13 @@ enum WicError wic_init_font(WicFont* target, const char* filepath,
     }
     for(int i = 0; i < WIC_FONT_NUM_TEXTURES; i++)
         textures[i] = 0;
-    FT_Set_Char_Size(face, 0, point*64, game->p_device_resolution.x,
-                     game->p_device_resolution.y);
+    FT_Set_Char_Size(face, 0, point*64, game->device_resolution_ro.x,
+                     game->device_resolution_ro.y);
     
-    target->p_face = face;
-    target->p_textures = textures;
-    target->p_point = point;
-    target->p_antialias = antialias;
+    target->face_ro = face;
+    target->textures_ro = textures;
+    target->point_ro = point;
+    target->antialias_ro = antialias;
     return wic_report_error(WICER_NONE);
 }
 enum WicError wic_render_string(WicImage* target, WicFont* font,
@@ -66,45 +66,45 @@ enum WicError wic_render_string(WicImage* target, WicFont* font,
         return wic_report_error(WICER_GAME);
     int x = 0;
     int previous_glyph_index = 0;
-    bool do_kerning = FT_HAS_KERNING(font->p_face);
+    bool do_kerning = FT_HAS_KERNING(font->face_ro);
     for(int i = 0; i < num_characters; i++)
     {
         char character = string[i];
-        int glyph_index = FT_Get_Char_Index(font->p_face, character);
+        int glyph_index = FT_Get_Char_Index(font->face_ro, character);
         
-        if(font->p_antialias)
-            FT_Load_Glyph(font->p_face, glyph_index, FT_LOAD_FORCE_AUTOHINT);
+        if(font->antialias_ro)
+            FT_Load_Glyph(font->face_ro, glyph_index, FT_LOAD_FORCE_AUTOHINT);
         else
-            FT_Load_Glyph(font->p_face, glyph_index, 0);
-        if(font->p_textures[character] == 0)
+            FT_Load_Glyph(font->face_ro, glyph_index, 0);
+        if(font->textures_ro[character] == 0)
         {
-            font->p_textures[character] = malloc(sizeof(WicTexture));
-            if(font->p_textures[character] == 0)
+            font->textures_ro[character] = malloc(sizeof(WicTexture));
+            if(font->textures_ro[character] == 0)
                 return wic_report_error(WICER_HEAP);
-            if(font->p_antialias)
+            if(font->antialias_ro)
             {
-                FT_Render_Glyph(font->p_face->glyph, FT_RENDER_MODE_NORMAL);
-                WicPair dimensions = {font->p_face->glyph->bitmap.width,
-                                      font->p_face->glyph->bitmap.rows};
+                FT_Render_Glyph(font->face_ro->glyph, FT_RENDER_MODE_NORMAL);
+                WicPair dimensions = {font->face_ro->glyph->bitmap.width,
+                                      font->face_ro->glyph->bitmap.rows};
                 
-                wic_init_texture_from_buffer(font->p_textures[character],
-                                             font->p_face->glyph->bitmap.buffer,
+                wic_init_texture_from_buffer(font->textures_ro[character],
+                                             font->face_ro->glyph->bitmap.buffer,
                                              dimensions, WIC_GREYSCALE,
                                              WIC_NEAREST, WIC_STOP);
             }
             else
             {
-                FT_Render_Glyph(font->p_face->glyph, FT_RENDER_MODE_MONO);
+                FT_Render_Glyph(font->face_ro->glyph, FT_RENDER_MODE_MONO);
                 FT_Bitmap target;
                 FT_Bitmap_New(&target);
-                int error = FT_Bitmap_Convert(game->p_freetype_library,
-                                              &(font->p_face->glyph->bitmap),
+                int error = FT_Bitmap_Convert(game->freetype_library_ro,
+                                              &(font->face_ro->glyph->bitmap),
                                               &target, 1);
                 WicPair dimensions = {target.width, target.rows};
-                wic_init_texture_from_buffer(font->p_textures[character],
+                wic_init_texture_from_buffer(font->textures_ro[character],
                                              target.buffer, dimensions,
                                              WIC_MONO, WIC_NEAREST, WIC_STOP);
-                FT_Bitmap_Done(game->p_freetype_library, &target);
+                FT_Bitmap_Done(game->freetype_library_ro, &target);
             }
         }
         
@@ -112,18 +112,18 @@ enum WicError wic_render_string(WicImage* target, WicFont* font,
         if(do_kerning && previous_glyph_index != 0)
         {
             FT_Vector delta;
-            FT_Get_Kerning(font->p_face, previous_glyph_index, glyph_index,
+            FT_Get_Kerning(font->face_ro, previous_glyph_index, glyph_index,
                            FT_KERNING_UNFITTED, &delta);
             x += delta.x;
         }
         previous_glyph_index = glyph_index;
         int error = wic_init_image(&target[i], (WicPair) {0,0},
-                                   font->p_textures[character]);
+                                   font->textures_ro[character]);
         target[i].center.x = -x;
-        target[i].center.y = (font->p_face->glyph->metrics.horiBearingY -
-                             font->p_face->glyph->metrics.height)/64;
+        target[i].center.y = (font->face_ro->glyph->metrics.horiBearingY -
+                             font->face_ro->glyph->metrics.height)/64;
         target[i].draw_centered = true;
-        x += font->p_face->glyph->advance.x / 64;
+        x += font->face_ro->glyph->advance.x / 64;
     }
     return wic_report_error(WICER_NONE);
 }
@@ -131,22 +131,22 @@ enum WicError wic_free_font(WicFont* target)
 {
     if(target == 0)
         return wic_report_error(WICER_TARGET);
-    FT_Done_Face(target->p_face);
-    target->p_face = 0;
+    FT_Done_Face(target->face_ro);
+    target->face_ro = 0;
     for(int i = 0; i < WIC_FONT_NUM_TEXTURES; i++)
     {
-        if(target->p_textures[i] != 0)
+        if(target->textures_ro[i] != 0)
         {
-            wic_free_texture(target->p_textures[i]);
-            free(target->p_textures[i]);
-            target->p_textures[i] = 0;
+            wic_free_texture(target->textures_ro[i]);
+            free(target->textures_ro[i]);
+            target->textures_ro[i] = 0;
         }
     }
-    free(target->p_textures);
+    free(target->textures_ro);
     
-    target->p_face = 0;
-    target->p_textures = 0;
-    target->p_point = 0;
-    target->p_antialias = false;
+    target->face_ro = 0;
+    target->textures_ro = 0;
+    target->point_ro = 0;
+    target->antialias_ro = false;
     return wic_report_error(WICER_NONE);
 }

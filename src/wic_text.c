@@ -52,22 +52,22 @@ enum WicError wic_init_text(WicText* target, WicPair location, char* string,
         offsets[i] = images[i].center;
     }
     int boundsX = -offsets[num_chars-1].x +
-                  images[num_chars-1].p_texture->p_dimensions.x;
-    int boundsY = images[num_chars-1].p_texture->p_dimensions.y;
+                  images[num_chars-1].texture_ro->dimensions_ro.x;
+    int boundsY = images[num_chars-1].texture_ro->dimensions_ro.y;
     WicBounds bounds = {(WicPair) {0,0}, (WicPair) {boundsX, boundsY}};
     WicPair geometric_center = wic_divide_pairs(bounds.upper_right,
                                                 (WicPair) {2,2});
     
     target->location = location;
-    target->p_string = string;
-    target->p_num_chars = num_chars;
-    target->p_font = font;
-    target->p_images = images;
-    target->p_offsets = offsets;
-    target->p_bounds = bounds;
+    target->string_ro = string;
+    target->num_chars_ro = num_chars;
+    target->font_ro = font;
+    target->images_ro = images;
+    target->offsets_ro = offsets;
+    target->bounds_ro = bounds;
     target->color = color;
     target->center = (WicPair) {0,0};
-    target->p_geometric_center = geometric_center;
+    target->geometric_center_ro = geometric_center;
     target->draw_centered = false;
     target->scale = (WicPair) {1,1};
     target->rotation = 0.0;
@@ -85,7 +85,7 @@ enum WicError wic_set_text_string(WicText* target, char* string,
     WicImage* images = malloc(sizeof(WicImage) * num_chars);
     if(images == 0)
         return wic_report_error(WICER_HEAP);
-    enum WicError result = wic_render_string(images, target->p_font, string,
+    enum WicError result = wic_render_string(images, target->font_ro, string,
                                              num_chars, game);
     if(result != WICER_NONE)
     {
@@ -103,20 +103,20 @@ enum WicError wic_set_text_string(WicText* target, char* string,
         offsets[i] = images[i].center;
     }
     int boundsX = -offsets[num_chars-1].x +
-                  images[num_chars-1].p_texture->p_dimensions.x;
-    int boundsY = images[num_chars-1].p_texture->p_dimensions.y;
+                  images[num_chars-1].texture_ro->dimensions_ro.x;
+    int boundsY = images[num_chars-1].texture_ro->dimensions_ro.y;
     WicBounds bounds = {(WicPair) {0,0}, (WicPair) {boundsX, boundsY}};
     WicPair geometric_center = wic_divide_pairs(bounds.upper_right,
                                                 (WicPair) {2,2});
     
-    target->p_string = string;
-    target->p_num_chars = num_chars;
-    free(target->p_images);
-    target->p_images = images;
-    free(target->p_offsets);
-    target->p_offsets = offsets;
-    target->p_bounds = bounds;
-    target->p_geometric_center = geometric_center;
+    target->string_ro = string;
+    target->num_chars_ro = num_chars;
+    free(target->images_ro);
+    target->images_ro = images;
+    free(target->offsets_ro);
+    target->offsets_ro = offsets;
+    target->bounds_ro = bounds;
+    target->geometric_center_ro = geometric_center;
     return wic_report_error(WICER_NONE);
 }
 enum WicError wic_set_text_font(WicText* target, WicFont* font, WicGame* game)
@@ -127,39 +127,39 @@ enum WicError wic_set_text_font(WicText* target, WicFont* font, WicGame* game)
         return wic_report_error(WICER_FONT);
     if(game == 0)
         return wic_report_error(WICER_GAME);
-    WicImage* images = malloc(sizeof(WicImage) * target->p_num_chars);
+    WicImage* images = malloc(sizeof(WicImage) * target->num_chars_ro);
     if(images == 0)
         return wic_report_error(WICER_HEAP);
-    enum WicError result = wic_render_string(images, font, target->p_string,
-                                             target->p_num_chars, game);
+    enum WicError result = wic_render_string(images, font, target->string_ro,
+                                             target->num_chars_ro, game);
     if(result != WICER_NONE)
     {
         free(images);
         return wic_report_error(result);
     }
-    WicPair* offsets = malloc(sizeof(WicPair) * target->p_num_chars);
+    WicPair* offsets = malloc(sizeof(WicPair) * target->num_chars_ro);
     if(offsets == 0)
     {
         free(images);
         return wic_report_error(WICER_HEAP);
     }
-    for(int i = 0; i < target->p_num_chars; i++)
+    for(int i = 0; i < target->num_chars_ro; i++)
     {
         offsets[i] = images[i].center;
     }
-    int boundsX = -offsets[target->p_num_chars-1].x +
-                  images[target->p_num_chars-1].p_texture->p_dimensions.x;
-    int boundsY = images[target->p_num_chars-1].p_texture->p_dimensions.y;
+    int boundsX = -offsets[target->num_chars_ro-1].x +
+                  images[target->num_chars_ro-1].texture_ro->dimensions_ro.x;
+    int boundsY = images[target->num_chars_ro-1].texture_ro->dimensions_ro.y;
     WicBounds bounds = {(WicPair) {0,0}, (WicPair) {boundsX, boundsY}};
     WicPair geometric_center = wic_divide_pairs(bounds.upper_right,
                                                 (WicPair) {2,2});
-    target->p_font = font;
-    free(target->p_images);
-    target->p_images = images;
-    free(target->p_offsets);
-    target->p_offsets = offsets;
-    target->p_bounds = bounds;
-    target->p_geometric_center = geometric_center;
+    target->font_ro = font;
+    free(target->images_ro);
+    target->images_ro = images;
+    free(target->offsets_ro);
+    target->offsets_ro = offsets;
+    target->bounds_ro = bounds;
+    target->geometric_center_ro = geometric_center;
     return wic_report_error(WICER_NONE);
 
 }
@@ -169,20 +169,20 @@ enum WicError wic_draw_text(WicText* target, WicGame* game)
         return wic_report_error(WICER_TARGET);
     if(game == 0)
         return wic_report_error(WICER_GAME);
-    int num_chars = target->p_num_chars;
+    int num_chars = target->num_chars_ro;
     for(int i = 0; i < num_chars; i++)
     {
         if(target->draw_centered)
-            target->p_images[i].location = target->location;
+            target->images_ro[i].location = target->location;
         else
-            target->p_images[i].location = wic_add_pairs(target->location,
+            target->images_ro[i].location = wic_add_pairs(target->location,
                                                          target->center);
-        target->p_images[i].color = target->color;
-        target->p_images[i].center = wic_add_pairs(target->center,
-                                                   target->p_offsets[i]);
-        target->p_images[i].scale = target->scale;
-        target->p_images[i].rotation = target->rotation;
-        wic_draw_image(&(target->p_images[i]), game);
+        target->images_ro[i].color = target->color;
+        target->images_ro[i].center = wic_add_pairs(target->center,
+                                                   target->offsets_ro[i]);
+        target->images_ro[i].scale = target->scale;
+        target->images_ro[i].rotation = target->rotation;
+        wic_draw_image(&(target->images_ro[i]), game);
     }
     return wic_report_error(WICER_NONE);
 }
@@ -190,19 +190,19 @@ enum WicError wic_free_text(WicText* target)
 {
     if(target == 0)
         return wic_report_error(WICER_TARGET);
-    free(target->p_images);
-    free(target->p_offsets);
+    free(target->images_ro);
+    free(target->offsets_ro);
     
     target->location = (WicPair) {0,0};
-    target->p_string = 0;
-    target->p_num_chars = 0;
-    target->p_font = 0;
-    target->p_images = 0;
-    target->p_offsets = 0;
-    target->p_bounds = (WicBounds) {(WicPair) {0,0}, (WicPair) {0,0}};
+    target->string_ro = 0;
+    target->num_chars_ro = 0;
+    target->font_ro = 0;
+    target->images_ro = 0;
+    target->offsets_ro = 0;
+    target->bounds_ro = (WicBounds) {(WicPair) {0,0}, (WicPair) {0,0}};
     target->color = WIC_WHITE;
     target->center = (WicPair) {0,0};
-    target->p_geometric_center = (WicPair) {0,0};
+    target->geometric_center_ro = (WicPair) {0,0};
     target->draw_centered = false;
     target->scale = (WicPair) {1,1};
     target->rotation = 0.0;

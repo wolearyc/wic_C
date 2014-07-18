@@ -66,8 +66,8 @@ enum WicWrap
  */
 typedef struct WicTexture
 {
-    unsigned int p_data;  /**< the opengl texture id */
-    WicPair p_dimensions; /**< the texture dimensions */
+    unsigned int data_ro;  /**< the opengl texture id */
+    WicPair dimensions_ro; /**< the texture dimensions */
 } WicTexture;
 /** \brief initializes a WicTexture from an existing buffer
  *  \param target the target WicTexture

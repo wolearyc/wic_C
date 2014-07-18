@@ -33,19 +33,19 @@
 typedef struct WicText
 {
     WicPair location;           /**< the screen location */
-    char* p_string;             /**< the string to draw */
-    size_t p_num_chars;         /**< the number of characters in string */
-    WicFont* p_font;            /**< the font */
-    WicImage* p_images;         /**< the actual images to draw */
-    WicPair* p_offsets;         /**< the distance from each image to logical 
+    char* string_ro;             /**< the string to draw */
+    size_t num_chars_ro;         /**< the number of characters in string */
+    WicFont* font_ro;            /**< the font */
+    WicImage* images_ro;         /**< the actual images to draw */
+    WicPair* offsets_ro;         /**< the distance from each image to logical 
                                  *   text location
                                  */
-    WicBounds p_bounds;         /**< the bounds of text */
+    WicBounds bounds_ro;         /**< the bounds of text */
     WicColor color;             /**< the color */
     WicPair center;             /**< the center to scale, rotate, and draw
                                  *   around (if draw_centered = true)
                                  */
-    WicPair p_geometric_center; /**< the geometric center */
+    WicPair geometric_center_ro; /**< the geometric center */
     bool draw_centered;         /**< whether or not to draw around the center */
     WicPair scale;              /**< the scale */
     double rotation;            /**< the rotation measured in radians from the

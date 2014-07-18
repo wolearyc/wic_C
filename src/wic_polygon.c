@@ -39,11 +39,11 @@ enum WicError wic_init_polygon(WicPolygon* target, WicPair location,
                                         (WicPair) {num_vertices, num_vertices});
     
     target->location = location;
-    target->p_vertices = vertices;
-    target->p_num_vertices = num_vertices;
+    target->vertices_ro = vertices;
+    target->num_vertices_ro = num_vertices;
     target->color = color;
     target->center = (WicPair) {0,0};
-    target->p_geometric_center = geometric_center;
+    target->geometric_center_ro = geometric_center;
     target->draw_centered = false;
     target->scale = (WicPair) {1,1};
     target->rotation = 0.0;
@@ -67,10 +67,10 @@ enum WicError wic_set_polygon_vertices(WicPolygon* target, WicPair* vertices,
     geometric_center = wic_divide_pairs(geometric_center,
                                         (WicPair) {num_vertices, num_vertices});
         
-    free(target->p_vertices);
-    target->p_vertices = new_vertices;
-    target->p_num_vertices = num_vertices;
-    target->p_geometric_center = geometric_center;
+    free(target->vertices_ro);
+    target->vertices_ro = new_vertices;
+    target->num_vertices_ro = num_vertices;
+    target->geometric_center_ro = geometric_center;
     return wic_report_error(WICER_NONE);
 }
 enum WicError wic_draw_polygon(WicPolygon* target, WicGame* game)
@@ -84,9 +84,9 @@ enum WicError wic_draw_polygon(WicPolygon* target, WicGame* game)
     glColor4ub(target->color.red, target->color.green, target->color.blue,
                target->color.alpha);
     glBegin(GL_POLYGON);
-    for(int i = 0; i < target->p_num_vertices; i++)
+    for(int i = 0; i < target->num_vertices_ro; i++)
     {
-        WicPair vertex = target->p_vertices[i];
+        WicPair vertex = target->vertices_ro[i];
         vertex = wic_subtract_pairs(vertex, target->center);
         vertex = wic_multiply_pairs(vertex, target->scale);
         double x = vertex.x * cosine - vertex.y * sine;
@@ -96,7 +96,7 @@ enum WicError wic_draw_polygon(WicPolygon* target, WicGame* game)
         if(!target->draw_centered)
             vertex = wic_add_pairs(vertex, target->center);
         vertex = wic_convert_location(wic_add_pairs(vertex, target->location),
-                                  game->p_dimensions);
+                                  game->dimensions_ro);
         glVertex2d(vertex.x, vertex.y);
     }
     glEnd();
@@ -106,14 +106,14 @@ enum WicError wic_free_polygon(WicPolygon* target)
 {
     if(target == 0)
         return wic_report_error(WICER_TARGET);
-    free(target->p_vertices);
+    free(target->vertices_ro);
     
     target->location = (WicPair) {0,0};
-    target->p_vertices = 0;
-    target->p_num_vertices = 0;
+    target->vertices_ro = 0;
+    target->num_vertices_ro = 0;
     target->color = WIC_WHITE;
     target->center = (WicPair) {0,0};
-    target->p_geometric_center = (WicPair) {0,0};
+    target->geometric_center_ro = (WicPair) {0,0};
     target->draw_centered = false;
     target->scale = (WicPair) {1,1};
     target->rotation = 0.0;

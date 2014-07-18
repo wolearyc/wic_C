@@ -140,8 +140,8 @@ enum WicError wic_init_texture_from_buffer(WicTexture* target,
         return wic_report_error(WICER_GPU);
     }
     
-    target->p_data = data;
-    target->p_dimensions = dimensions;
+    target->data_ro = data;
+    target->dimensions_ro = dimensions;
     return wic_report_error(WICER_NONE);
 }
 enum WicError wic_init_texture_from_file(WicTexture* target, char* filepath,
@@ -169,9 +169,9 @@ enum WicError wic_free_texture(WicTexture* target)
 {
     if(target == 0)
         return wic_report_error(WICER_TARGET);
-    glDeleteTextures(1, &(target->p_data));
+    glDeleteTextures(1, &(target->data_ro));
     
-    target->p_data = 0;
-    target->p_dimensions = (WicPair) {0,0};
+    target->data_ro = 0;
+    target->dimensions_ro = (WicPair) {0,0};
     return wic_report_error(WICER_NONE);
 }

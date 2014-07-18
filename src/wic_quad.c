@@ -34,11 +34,11 @@ enum WicError wic_init_quad(WicQuad* target, WicPair location,
     WicPair geometric_center = wic_divide_pairs(dimensions, (WicPair) {2,2});
     
     target->location = location;
-    target->p_dimensions = dimensions;
-    target->p_vertices = vertices;
+    target->dimensions_ro = dimensions;
+    target->vertices_ro = vertices;
     target->color = color;
     target->center = (WicPair) {0,0};
-    target->p_geometric_center = geometric_center;
+    target->geometric_center_ro = geometric_center;
     target->draw_centered = false;
     target->scale = (WicPair) {1,1};
     target->rotation = 0.0;
@@ -57,10 +57,10 @@ enum WicError wic_set_quad_dimensions(WicQuad* target, WicPair dimensions)
     vertices[3] = (WicPair) {0, dimensions.y};
     WicPair geometric_center = wic_divide_pairs(dimensions, (WicPair) {2,2});
     
-    target->p_dimensions = dimensions;
-    free(target->p_vertices);
-    target->p_vertices = vertices;
-    target->p_geometric_center = geometric_center;
+    target->dimensions_ro = dimensions;
+    free(target->vertices_ro);
+    target->vertices_ro = vertices;
+    target->geometric_center_ro = geometric_center;
     return wic_report_error(WICER_NONE);
 }
 enum WicError wic_draw_quad(WicQuad* target, WicGame* game)
@@ -76,7 +76,7 @@ enum WicError wic_draw_quad(WicQuad* target, WicGame* game)
     glBegin(GL_QUADS);
     for(int i = 0; i < 4; i++)
     {
-        WicPair vertex = target->p_vertices[i];
+        WicPair vertex = target->vertices_ro[i];
         vertex = wic_subtract_pairs(vertex, target->center);
         vertex = wic_multiply_pairs(vertex, target->scale);
         double x = vertex.x * cosine - vertex.y * sine;
@@ -86,7 +86,7 @@ enum WicError wic_draw_quad(WicQuad* target, WicGame* game)
         if(!target->draw_centered)
             vertex = wic_add_pairs(vertex, target->center);
         vertex = wic_convert_location(wic_add_pairs(vertex, target->location),
-                                  game->p_dimensions);
+                                  game->dimensions_ro);
         glVertex2d(vertex.x, vertex.y);
     }
     glEnd();
@@ -96,14 +96,14 @@ enum WicError wic_free_quad(WicQuad* target)
 {
     if(target == 0)
         return wic_report_error(WICER_TARGET);
-    free(target->p_vertices);
+    free(target->vertices_ro);
     
     target->location = (WicPair) {0,0};
-    target->p_dimensions = (WicPair) {0,0};
-    target->p_vertices = 0;
+    target->dimensions_ro = (WicPair) {0,0};
+    target->vertices_ro = 0;
     target->color = WIC_WHITE;
     target->center = (WicPair) {0,0};
-    target->p_geometric_center = (WicPair) {0,0};
+    target->geometric_center_ro = (WicPair) {0,0};
     target->draw_centered = false;
     target->scale = (WicPair) {1,1};
     target->rotation = 0.0;

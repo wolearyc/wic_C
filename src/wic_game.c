@@ -152,32 +152,32 @@ enum WicError wic_init_game(WicGame* target, const char* title,
     WicPair device_resolution = {mode->width / (physicalWidth * 0.0393701),
                                  mode->height / (physicalHeight * 0.0393701)};
     
-    target->p_window = window;
-    target->p_dimensions = dimensions;
+    target->window_ro = window;
+    target->dimensions_ro = dimensions;
     target->seconds_per_frame = 1.0 / fps;
-    target->p_previous_time = 0.0;
+    target->previous_time_ro = 0.0;
     target->delta = 0.0;
-    target->p_freetype_library = freetype_library;
-    target->p_device_resolution = device_resolution;
+    target->freetype_library_ro = freetype_library;
+    target->device_resolution_ro = device_resolution;
     return wic_report_error(WICER_NONE);
 }
 enum WicError wic_updt_game(WicGame* target)
 {
     if(target == 0)
         return wic_report_error(WICER_TARGET);
-    if(!glfwWindowShouldClose(target->p_window))
+    if(!glfwWindowShouldClose(target->window_ro))
     {
-        while(glfwGetTime() - target->p_previous_time <
+        while(glfwGetTime() - target->previous_time_ro <
               target->seconds_per_frame)
         {}
         wic_reset_input();
-        glfwSwapBuffers(target->p_window);
+        glfwSwapBuffers(target->window_ro);
         glFlush();
         glClearColor(0.0,0.0,0.0,1.0);
         glClear(GL_COLOR_BUFFER_BIT);
         glLoadIdentity();
-        target->delta = glfwGetTime() - target->p_previous_time;
-        target->p_previous_time = glfwGetTime();
+        target->delta = glfwGetTime() - target->previous_time_ro;
+        target->previous_time_ro = glfwGetTime();
         wic_report_error(WICER_NONE);
         glfwPollEvents();
         return 1;
@@ -188,24 +188,24 @@ enum WicError wic_exit_game(WicGame* target)
 {
     if(target == 0)
         return wic_report_error(WICER_TARGET);
-    glfwSetWindowShouldClose(target->p_window, true);
+    glfwSetWindowShouldClose(target->window_ro, true);
     return wic_report_error(WICER_NONE);
 }
 enum WicError wic_free_game(WicGame* target)
 {
     if(target == 0)
         return wic_report_error(WICER_TARGET);
-    glfwDestroyWindow(target->p_window);
-    target->p_window = 0;
+    glfwDestroyWindow(target->window_ro);
+    target->window_ro = 0;
     glfwTerminate();
-    FT_Done_FreeType(target->p_freetype_library);
+    FT_Done_FreeType(target->freetype_library_ro);
     
-    target->p_window = 0;
-    target->p_dimensions = (WicPair) {0,0};
+    target->window_ro = 0;
+    target->dimensions_ro = (WicPair) {0,0};
     target->seconds_per_frame = 0.0;
-    target->p_previous_time = 0.0;
-    target->p_freetype_library = 0;
-    target->p_device_resolution = (WicPair) {0,0};
+    target->previous_time_ro = 0.0;
+    target->freetype_library_ro = 0;
+    target->device_resolution_ro = (WicPair) {0,0};
     return wic_report_error(WICER_NONE);
 }
 bool wic_is_key_down(enum WicKey key)
@@ -223,7 +223,7 @@ unsigned char* wic_get_input()
 WicPair wic_get_cursor_location(WicGame* game)
 {
     WicPair result = wic_cursor_location;
-    result.y = game->p_dimensions.y - result.y;
+    result.y = game->dimensions_ro.y - result.y;
     return result;
 }
 WicPair wic_get_scroll_offset()

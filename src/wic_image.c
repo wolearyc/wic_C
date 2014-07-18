@@ -26,7 +26,7 @@ enum WicError wic_init_image(WicImage* target, WicPair location,
         return wic_report_error(WICER_TARGET);
     if(texture == 0)
         return wic_report_error(WICER_TEXTURE);
-    WicBounds bounds = {(WicPair) {0,0}, texture->p_dimensions};
+    WicBounds bounds = {(WicPair) {0,0}, texture->dimensions_ro};
     WicPair* vertices = malloc(4 * sizeof(WicPair));
     if(vertices == 0)
         return wic_report_error(WICER_HEAP);
@@ -39,12 +39,12 @@ enum WicError wic_init_image(WicImage* target, WicPair location,
     geometric_center = wic_divide_pairs(geometric_center, (WicPair) {2,2});
         
     target->location = location;
-    target->p_texture = texture;
-    target->p_bounds = bounds;
-    target->p_vertices = vertices;
+    target->texture_ro = texture;
+    target->bounds_ro = bounds;
+    target->vertices_ro = vertices;
     target->color = WIC_WHITE;
     target->center = (WicPair) {0,0};
-    target->p_geometric_center = geometric_center;
+    target->geometric_center_ro = geometric_center;
     target->draw_centered = false;
     target->scale = (WicPair) {1,1};
     target->rotation = 0.0;
@@ -56,7 +56,7 @@ enum WicError wic_set_image_texture(WicImage* target, WicTexture* texture)
         return wic_report_error(WICER_TARGET);
     if(texture == 0)
         return wic_report_error(WICER_TEXTURE);
-    WicBounds bounds = {(WicPair) {0,0}, texture->p_dimensions};
+    WicBounds bounds = {(WicPair) {0,0}, texture->dimensions_ro};
     WicPair* vertices = malloc(4 * sizeof(WicPair));
     if(vertices == 0)
         return wic_report_error(WICER_HEAP);
@@ -68,11 +68,11 @@ enum WicError wic_set_image_texture(WicImage* target, WicTexture* texture)
                                                   bounds.lower_left);
     geometric_center = wic_divide_pairs(geometric_center, (WicPair) {2,2});
         
-    target->p_texture = texture;
-    target->p_bounds = bounds;
-    free(target->p_vertices);
-    target->p_vertices = vertices;
-    target->p_geometric_center = geometric_center;
+    target->texture_ro = texture;
+    target->bounds_ro = bounds;
+    free(target->vertices_ro);
+    target->vertices_ro = vertices;
+    target->geometric_center_ro = geometric_center;
     return wic_report_error(WICER_NONE);
 }
 enum WicError wic_set_image_bounds(WicImage* target, WicBounds bounds)
@@ -89,10 +89,10 @@ enum WicError wic_set_image_bounds(WicImage* target, WicBounds bounds)
     WicPair geometric_center = wic_subtract_pairs(bounds.upper_right,
                                                   bounds.lower_left);
         
-    target->p_bounds = bounds;
-    free(target->p_vertices);
-    target->p_vertices = vertices;
-    target->p_geometric_center = geometric_center;
+    target->bounds_ro = bounds;
+    free(target->vertices_ro);
+    target->vertices_ro = vertices;
+    target->geometric_center_ro = geometric_center;
     return wic_report_error(WICER_NONE);
 }
 enum WicError wic_draw_image(WicImage* target, WicGame* game)
@@ -101,16 +101,16 @@ enum WicError wic_draw_image(WicImage* target, WicGame* game)
         return wic_report_error(WICER_TARGET);
     if(game == 0)
         return wic_report_error(WICER_GAME);
-    WicPair window_dimensions = game->p_dimensions;
-    WicPair tex_dimensions = target->p_texture->p_dimensions;
-    glBindTexture(GL_TEXTURE_2D, target->p_texture->p_data);
+    WicPair window_dimensions = game->dimensions_ro;
+    WicPair tex_dimensions = target->texture_ro->dimensions_ro;
+    glBindTexture(GL_TEXTURE_2D, target->texture_ro->data_ro);
     glColor4ub(target->color.red, target->color.green, target->color.blue,
                target->color.alpha);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_QUADS);
         
     /* lower left corner */
-    WicPair vertex = target->p_vertices[0];
+    WicPair vertex = target->vertices_ro[0];
     vertex = wic_transform_pair(vertex, target->rotation, target->scale,
                                 target->center);
     if(!target->draw_centered)
@@ -118,41 +118,41 @@ enum WicError wic_draw_image(WicImage* target, WicGame* game)
     
     vertex = wic_convert_location(wic_add_pairs(vertex, target->location),
                                   window_dimensions);
-    glTexCoord2f(target->p_bounds.lower_left.x / tex_dimensions.x,
-                 target->p_bounds.lower_left.y / tex_dimensions.y);
+    glTexCoord2f(target->bounds_ro.lower_left.x / tex_dimensions.x,
+                 target->bounds_ro.lower_left.y / tex_dimensions.y);
     glVertex2d(vertex.x, vertex.y);
     /* lower right corner */
-    vertex = target->p_vertices[1];
+    vertex = target->vertices_ro[1];
     vertex = wic_transform_pair(vertex, target->rotation, target->scale,
                                 target->center);
     if(!target->draw_centered)
         vertex = wic_add_pairs(vertex, target->center);
     vertex = wic_convert_location(wic_add_pairs(vertex, target->location),
                               window_dimensions);
-    glTexCoord2f(target->p_bounds.upper_right.x / tex_dimensions.x,
-                 target->p_bounds.lower_left.y / tex_dimensions.y);
+    glTexCoord2f(target->bounds_ro.upper_right.x / tex_dimensions.x,
+                 target->bounds_ro.lower_left.y / tex_dimensions.y);
     glVertex2d(vertex.x, vertex.y);
     /* upper right corner */
-    vertex = target->p_vertices[2];
+    vertex = target->vertices_ro[2];
     vertex = wic_transform_pair(vertex, target->rotation, target->scale,
                                 target->center);
     if(!target->draw_centered)
         vertex = wic_add_pairs(vertex, target->center);
     vertex = wic_convert_location(wic_add_pairs(vertex, target->location),
                               window_dimensions);
-    glTexCoord2f(target->p_bounds.upper_right.x / tex_dimensions.x,
-                 target->p_bounds.upper_right.y / tex_dimensions.y);
+    glTexCoord2f(target->bounds_ro.upper_right.x / tex_dimensions.x,
+                 target->bounds_ro.upper_right.y / tex_dimensions.y);
     glVertex2d(vertex.x, vertex.y);
     /* upper left corner */
-    vertex = target->p_vertices[3];
+    vertex = target->vertices_ro[3];
     vertex = wic_transform_pair(vertex, target->rotation, target->scale,
                                 target->center);
     if(!target->draw_centered)
         vertex = wic_add_pairs(vertex, target->center);
     vertex = wic_convert_location(wic_add_pairs(vertex, target->location),
                                   window_dimensions);
-    glTexCoord2f(target->p_bounds.lower_left.x / tex_dimensions.x,
-                 target->p_bounds.upper_right.y / tex_dimensions.y);
+    glTexCoord2f(target->bounds_ro.lower_left.x / tex_dimensions.x,
+                 target->bounds_ro.upper_right.y / tex_dimensions.y);
     glVertex2d(vertex.x, vertex.y);
         
     glEnd();
@@ -163,15 +163,15 @@ enum WicError wic_free_image(WicImage* target)
 {
     if(target == 0)
         return wic_report_error(WICER_TARGET);
-    free(target->p_vertices);
+    free(target->vertices_ro);
     
     target->location = (WicPair) {0,0};
-    target->p_texture = 0;
-    target->p_bounds = (WicBounds) {(WicPair) {0,0}, (WicPair) {0,0}};
-    target->p_vertices = 0;
+    target->texture_ro = 0;
+    target->bounds_ro = (WicBounds) {(WicPair) {0,0}, (WicPair) {0,0}};
+    target->vertices_ro = 0;
     target->color = WIC_WHITE;
     target->center = (WicPair) {0,0};
-    target->p_geometric_center = (WicPair) {0,0};
+    target->geometric_center_ro = (WicPair) {0,0};
     target->draw_centered = false;
     target->scale = (WicPair) {1,1};
     target->rotation = 0.0;

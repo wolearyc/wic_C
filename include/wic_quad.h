@@ -32,13 +32,13 @@
 typedef struct WicQuad
 {
     WicPair location;               /**< the screen location */
-    WicPair p_dimensions;           /**< the dimensions */
-    WicPair* p_vertices;            /**< the vertices */
+    WicPair dimensions_ro;           /**< the dimensions */
+    WicPair* vertices_ro;            /**< the vertices */
     WicColor color;                 /**< the color */
     WicPair center;                 /**< the center to scale, rotate, and draw 
                                      *  around (if draw_centered = true)
                                      */
-    WicPair p_geometric_center;     /**< the geometric center */
+    WicPair geometric_center_ro;     /**< the geometric center */
     bool draw_centered;             /**< whether or not to draw around the 
                                      *   center 
                                      */

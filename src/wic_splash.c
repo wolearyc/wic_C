@@ -10,11 +10,11 @@ enum WicError wic_draw_splash(WicColor background_color, WicColor text_color,
         return wic_report_error(WICER_GAME);
     enum WicError result;
     WicQuad background;
-    result = wic_init_quad(&background, (WicPair) {0,0}, game->p_dimensions,
+    result = wic_init_quad(&background, (WicPair) {0,0}, game->dimensions_ro,
                            background_color);
     if(result != WICER_NONE)
         return result;
-    double min_dimension = fmin(game->p_dimensions.x, game->p_dimensions.y);
+    double min_dimension = fmin(game->dimensions_ro.x, game->dimensions_ro.y);
     WicPair scale_multiplier = wic_divide_pairs((WicPair) {min_dimension,
                                                            min_dimension},
                                                 (WicPair) {500,500});
@@ -37,7 +37,7 @@ enum WicError wic_draw_splash(WicColor background_color, WicColor text_color,
         return result;
     }
     WicImage wic;
-    WicPair  location = wic_divide_pairs(game->p_dimensions, (WicPair) {2,2});
+    WicPair  location = wic_divide_pairs(game->dimensions_ro, (WicPair) {2,2});
     result = wic_init_image(&wic, location, &wic_texture);
     if(result != WICER_NONE)
     {
@@ -46,7 +46,7 @@ enum WicError wic_draw_splash(WicColor background_color, WicColor text_color,
         return result;
     }
     wic.scale = wic_multiply_pairs((WicPair) {10,10}, scale_multiplier);
-    wic.center = wic.p_geometric_center;
+    wic.center = wic.geometric_center_ro;
     wic.draw_centered = true;
     wic.color = text_color;
     unsigned char engine_buffer[] =
@@ -69,8 +69,8 @@ enum WicError wic_draw_splash(WicColor background_color, WicColor text_color,
         return result;
     }
     WicImage engine;
-    location.x += wic.scale.x * wic_texture.p_dimensions.x / 2;
-    location.y -= wic.scale.y * (wic_texture.p_dimensions.y / 2  + 1);
+    location.x += wic.scale.x * wic_texture.dimensions_ro.x / 2;
+    location.y -= wic.scale.y * (wic_texture.dimensions_ro.y / 2  + 1);
     location = (WicPair) {(int) location.x, (int) location.y};
     result = wic_init_image(&engine, location, &engine_texture);
     if(result != WICER_NONE)
@@ -82,7 +82,7 @@ enum WicError wic_draw_splash(WicColor background_color, WicColor text_color,
         return result;
     }
     engine.scale = wic_multiply_pairs((WicPair) {2,2}, scale_multiplier);
-    engine.center = engine.p_geometric_center;
+    engine.center = engine.geometric_center_ro;
     engine.center.x *= 2;
     engine.draw_centered = true;
     engine.color = text_color;
@@ -108,7 +108,7 @@ enum WicError wic_draw_splash(WicColor background_color, WicColor text_color,
         return result;
     }
     WicImage version;
-    location.y -= engine.scale.y * (engine_texture.p_dimensions.y / 2 + 1);
+    location.y -= engine.scale.y * (engine_texture.dimensions_ro.y / 2 + 1);
     location.y = (int) location.y;
     result = wic_init_image(&version, location, &version_texture);
     if(result != WICER_NONE)
@@ -122,7 +122,7 @@ enum WicError wic_draw_splash(WicColor background_color, WicColor text_color,
         return result;
     }
     version.scale = wic_multiply_pairs((WicPair) {1.5,1.5}, scale_multiplier);
-    version.center = version.p_geometric_center;
+    version.center = version.geometric_center_ro;
     version.center.x *= 2;
     version.center.y *= 2;
     version.draw_centered = true;

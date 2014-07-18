@@ -35,10 +35,10 @@
  */
 typedef struct WicFont
 {
-    FT_Face p_face;          /**< the face */
-    WicTexture** p_textures; /**< the glyph textures */
-    unsigned short p_point;  /**< the point size measured in font points */
-    bool p_antialias;        /**< whether or not to antialias the font */
+    FT_Face face_ro;          /**< the face */
+    WicTexture** textures_ro; /**< the glyph textures */
+    unsigned short point_ro;  /**< the point size measured in font points */
+    bool antialias_ro;        /**< whether or not to antialias the font */
     
 } WicFont;
 /** \brief initializes a WicFont from a file
