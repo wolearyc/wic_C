@@ -23,8 +23,8 @@ static enum WicError wic_error_code = WICER_NONE;
 enum WicError wic_report_error(enum WicError code)
 {
     wic_error_code = code;
-    if(code != WICER_NONE)
-        printf("%s%s", wic_translate_error_code(code), "\n");
+    //if(code != WICER_NONE)
+        //printf("%s%s", wic_translate_error_code(code), "\n");
     return code;
 }
 enum WicError wic_get_last_error()
@@ -98,13 +98,56 @@ const char* wic_translate_error_code(enum WicError code)
             return "texture == null";
             
         /* wic_quad errors  */
-        
             
         /* wic_font.h */
         case WICER_POINT:
             return "point == 0";
 
         /* wic_text.h */
+            
+        /* wic_server errors */
+        case WICER_SOCKET:
+            return "socket could not be reserved";
+        case WICER_RESERVED_PORT:
+            return "port < 1025, port reserved";
+        case WICER_PORT_IN_USE:
+            return "port in use";
+        case WICER_ADDRESS_BIND:
+            return "address could not be bound";
+        case WICER_SERVER:
+            return "server == 0";
+        case WICER_PACKET:
+            return "packet == 0";
+        case WICER_CLIENT_DNE:
+            return "client_id not assigned to any client";
+        case WICER_RESULT:
+            return "result == 0";
+        case WICER_RESERVED_PACKET:
+            return "packet uses reserved id (<= 4)";
+        case WICER_BANNED_PACKET:
+            return "packet from banned client";
+        case WICER_REJECTED_CONNECT_PACKET:
+            return "connection rejected (full server)";
+        case WICER_NO_PACKET:
+            return "no packet waiting to be recieved";
+        case WICER_ADDRESS:
+            return "address invalid";
+        case WICER_ADDRESS_NULL:
+            return "address == 0";
+        case WICER_RESULT_LEN:
+            return "result_len < 16";
+            
+        /* wic_client errors */
+        case WICER_CLIENT:
+            return "client == null";
+        case WICER_TIMEOUT:
+            return "function timed out";
+        case WICER_PACKET_UNKNOWN_SOURCE:
+            return "packet from unknown source";
+        case WICER_NOT_JOINED:
+            return "client not joined";
+        case WICER_ALREADY_JOINED:
+            return "client is already joined";
 
         default:
             return "unknown error";

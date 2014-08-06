@@ -69,6 +69,30 @@ enum WicError
 
     /* wic_text errors */
     
+    /* wic_server errors */
+    WICER_SOCKET,
+    WICER_RESERVED_PORT,
+    WICER_PORT_IN_USE,
+    WICER_ADDRESS_BIND,
+    WICER_SERVER,
+    WICER_PACKET,
+    WICER_CLIENT_DNE,
+    WICER_RESULT,
+    WICER_RESERVED_PACKET,
+    WICER_BANNED_PACKET,
+    WICER_REJECTED_CONNECT_PACKET,
+    WICER_NO_PACKET,
+    WICER_ADDRESS,
+    WICER_ADDRESS_NULL,
+    WICER_RESULT_LEN,
+    WICER_ADDRESS_DNE,
+    
+    /* wic_client errors */
+    WICER_CLIENT,
+    WICER_TIMEOUT,
+    WICER_PACKET_UNKNOWN_SOURCE,
+    WICER_NOT_JOINED,
+    WICER_ALREADY_JOINED,
 };
 static enum WicError wic_error_code;
 /** \brief reports the latest error code
