@@ -19,26 +19,28 @@
  * ----------------------------------------------------------------------------
  */
 #include "wic_texture.h"
-enum WicError wic_init_texture_from_buffer(WicTexture* target,
-                                           unsigned char* buffer,
-                                           WicPair dimensions,
-                                           enum WicFormat format,
-                                           enum WicFilter filter,
-                                           enum WicWrap wrap)
+struct WicTexture
 {
-    if(target == 0)
-        return wic_report_error(WICER_TARGET);
+    unsigned int data;
+    WicPair dimensions;
+} WicTexture;
+WicTexture* wic_init_texture_from_buffer(unsigned char* buffer,
+                                         WicPair dimensions,
+                                         enum WicFormat format,
+                                         enum WicFilter filter,
+                                         enum WicWrap wrap)
+{
     if(buffer == 0)
-        return wic_report_error(WICER_BUFFER);
+        return wic_throw_error(WIC_ERRNO_NULL_BUFFER);
     if(dimensions.x < 1)
-        return wic_report_error(WICER_DIMENSIONS_X);
+        return wic_throw_error(WIC_ERRNO_SMALL_X_DIMENSION);
     if(dimensions.y < 1)
-        return wic_report_error(WICER_DIMENSIONS_Y);
+        return wic_throw_error(WIC_ERRNO_SMALL_Y_DIMENSION);
     int x_dimension = (int) (dimensions.x) * 4;
     int y_dimension = (int) dimensions.y;
     unsigned char** temp = malloc(x_dimension * sizeof(unsigned char*));
     if(temp == 0)
-        return wic_report_error(WICER_HEAP);
+        return wic_throw_error(WIC_ERRNO_NO_HEAP);
     for(int x = 0; x < x_dimension; x++)
     {
         temp[x] = malloc(y_dimension * sizeof(unsigned char));
@@ -47,7 +49,7 @@ enum WicError wic_init_texture_from_buffer(WicTexture* target,
             for(int i = x-1; i < 0; i--)
                 free(temp[i]);
             free(temp);
-            return wic_report_error(WICER_HEAP);
+            return wic_throw_error(WIC_ERRNO_NO_HEAP);
         }
     }
     for(int y = 0; y < y_dimension; y++)
@@ -104,7 +106,7 @@ enum WicError wic_init_texture_from_buffer(WicTexture* target,
         for(int x = 0; x < x_dimension; x++)
             free(temp[x]);
         free(temp);
-        return wic_report_error(WICER_HEAP);
+        return wic_throw_error(WIC_ERRNO_NO_HEAP);
     }
     int formatted_buffer_index = 0;
     for(int y = y_dimension-1; y >= 0; y--) /* flips texture */
@@ -137,41 +139,44 @@ enum WicError wic_init_texture_from_buffer(WicTexture* target,
     if(glGetError() == GL_OUT_OF_MEMORY)
     {
         glDeleteTextures(1, &data);
-        return wic_report_error(WICER_GPU);
+        return wic_throw_error(WIC_ERRNO_NO_GPU_MEM);
     }
     
-    target->data_ro = data;
-    target->dimensions_ro = dimensions;
-    return wic_report_error(WICER_NONE);
+    WicTexture* result = malloc(sizeof(WicTexture));
+    if(result == 0)
+    {
+        glDeleteTextures(1, &data);
+        return wic_throw_error(WIC_ERRNO_NO_GPU_MEM);
+    }
+    result->datA = data;
+    result->dimensions = dimensions;
+    return result;
 }
-enum WicError wic_init_texture_from_file(WicTexture* target, char* filepath,
-                                         enum WicFilter filter,
-                                         enum WicWrap wrap)
+WicTexture* wic_init_texture_from_file(char* filepath, enum WicFilter filter,
+                                       enum WicWrap wrap)
 {
-    if(target == 0)
-        return wic_report_error(WICER_TARGET);
     if(filepath == 0)
-        return wic_report_error(WICER_FILEPATH);
+        return wic_throw_error(WICER_FILEPATH);
     unsigned char* buffer = 0;
     int x = 0;
     int y = 0;
     buffer = SOIL_load_image(filepath, &x, &y, 0, SOIL_LOAD_RGBA);
     WicPair dimensions = (WicPair) {x,y};
     if(buffer == 0)
-        return wic_report_error(WICER_FILE);
-    enum WicError result = wic_init_texture_from_buffer(target, buffer,
-                                                        dimensions, WIC_RGBA,
-                                                        filter, wrap);
+        return wic_throw_error(WIC_ERRNO_LOAD_FILE_FAIL);
+    WicTexture* result = wic_init_texture_from_buffer(target, buffer,
+                                                      dimensions, WIC_RGBA,
+                                                      filter, wrap);
     SOIL_free_image_data(buffer);
     return result;
 }
-enum WicError wic_free_texture(WicTexture* target)
+bool wic_free_texture(WicTexture* target)
 {
     if(target == 0)
-        return wic_report_error(WICER_TARGET);
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
     glDeleteTextures(1, &(target->data_ro));
     
     target->data_ro = 0;
     target->dimensions_ro = (WicPair) {0,0};
-    return wic_report_error(WICER_NONE);
+    return true;
 }

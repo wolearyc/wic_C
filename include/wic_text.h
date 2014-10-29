@@ -32,65 +32,38 @@
  */
 typedef struct WicText
 {
-    WicPair location;           /**< the screen location */
-    char* string_ro;             /**< the string to draw */
-    size_t num_chars_ro;         /**< the number of characters in string */
-    WicFont* font_ro;            /**< the font */
-    WicImage* images_ro;         /**< the actual images to draw */
-    WicPair* offsets_ro;         /**< the distance from each image to logical 
-                                 *   text location
-                                 */
-    WicBounds bounds_ro;         /**< the bounds of text */
-    WicColor color;             /**< the color */
-    WicPair center;             /**< the center to scale, rotate, and draw
-                                 *   around (if draw_centered = true)
-                                 */
-    WicPair geometric_center_ro; /**< the geometric center */
-    bool draw_centered;         /**< whether or not to draw around the center */
-    WicPair scale;              /**< the scale */
-    double rotation;            /**< the rotation measured in radians from the
-                                 *   positive x-axis
-                                 */
-    
+    WicPair location;        /**< the screen location */
+    WicPair center;          /**< the center to scale, rotate, or draw around */
+    double rotation;         /**< the rotation measured in radians from the
+                              *   positive x-axis */
+    WicPair scale;           /**< the scale */
+    WicBounds bounds;        /**< the drawing bounds */
+    WicColor color;          /**< the color multiplier */
+    bool draw_centered;      /**< whether or not to draw around the center */
+    char* string;            /**< the string to draw */
+    size_t len_string;       /**< the length of string */
+    WicFont* font;           /**< the font */
 } WicText;
 /** \brief initializes a WicText
  *  \param target the target WicText
  *  \param location the desired screen location
  *  \param string the desired string to draw
- *  \param num_chars the desired number of visible characters in string
+ *  \param len_string the length of the string
  *  \param font the desired font
  *  \param color the desired color
- *  \param game the WicGame
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_init_text(WicText* target, WicPair location, char* string,
-                            size_t num_chars, WicFont* font, WicColor color,
-                            WicGame* game);
-/** \brief sets a WicText's string
- *  \param target the target WicText
- *  \param string the desired string to draw
- *  \param num_chars the desired number of visible characters in string
- *  \param game the WicGame
- *  \return the error code
- */
-enum WicError wic_set_text_string(WicText* target, char* string,
-                                  size_t num_chars, WicGame* game);
-/** \brief sets a WicText's font
- *  \param target the target WicText
- *  \param font the desired font
- *  \param game the WicGame
- *  \return the error code
- */
-enum WicError wic_set_text_font(WicText* target, WicFont* font, WicGame* game);
+bool wic_init_text(WicText* target, WicPair location, char* string,
+                   size_t len_string, WicFont* font, WicColor color);
 /** \brief draws a WicText to the screen
  *  \param target the target WicText
  *  \param game the WicGame
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_draw_text(WicText* target, WicGame* game);
+bool wic_draw_text(WicText* target, WicGame* game);
 /** \brief deallocates a WicText
  *  \param target the target WicText
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_free_text(WicText* target);
+bool wic_free_text(WicText* target);
 #endif

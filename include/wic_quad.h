@@ -26,53 +26,37 @@
 #include "wic_game.h"
 /**  \brief a filled rectangle that can be drawn to the screen
  *
- *  A WicQuad should be initialized via wic_init_quad. A WicQuad should
- *  eventually be deallocated via wic_free_quad.
+ *  A WicQuad should be initialized via wic_init_quad.
  */
 typedef struct WicQuad
 {
-    WicPair location;               /**< the screen location */
-    WicPair dimensions_ro;           /**< the dimensions */
-    WicPair* vertices_ro;            /**< the vertices */
-    WicColor color;                 /**< the color */
-    WicPair center;                 /**< the center to scale, rotate, and draw 
-                                     *  around (if draw_centered = true)
-                                     */
-    WicPair geometric_center_ro;     /**< the geometric center */
-    bool draw_centered;             /**< whether or not to draw around the 
-                                     *   center 
-                                     */
-    WicPair scale;                  /**< the scale */
-    double rotation;                /**< the rotation measured in radians from 
-                                     *  the positive x-axis
-                                     */
+    WicPair location;        /**< the screen location */
+    WicPair center;          /**< the center to scale, rotate, or draw around */
+    double rotation;         /**< the rotation measured in radians from the
+                              *   positive x-axis */
+    WicPair scale;           /**< the scale */
+    WicColor color;          /**< the color multiplier */
+    bool draw_centered;      /**< whether or not to draw around the center */
+    WicPair dimensions;      /**< the dimensions */
 } WicQuad;
 /** \brief initializes a WicQuad
  *  \param target the target WicQuad
  *  \param location the desired screen location
  *  \param dimensions the desired dimensions
  *  \param color the desired color
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_init_quad(WicQuad* target, WicPair location,
-                            WicPair dimensions, WicColor color);
-/** \brief changes a WicQuad's dimensions
- *
- *  This function also updates the WicQuad's geometric center
- *  \param target the target WicQuad
- *  \param vertices the desired dimensions
- *  \return the error code
+bool wic_init_quad(WicQuad* target, WicPair location, WicPair dimensions,
+                   WicColor color);
+/** \brief fetches the geometric center of a WicQuad
+ *  \param target a WicQuad
+ *  \return the geometric center of the WicQuad on success, {-1, -1} on failure
  */
-enum WicError wic_set_quad_dimensions(WicQuad* target, WicPair dimensions);
+WicPair wic_quad_get_geometric_center(WicQuad* target);
 /** \brief draws a WicQuad
  *  \param target the target WicQuad
  *  \param game the WicGame
- *  \return the error code
+ *  \return true on success, false otherwise
  */
 enum WicError wic_draw_quad(WicQuad* target, WicGame* game);
-/** \brief deallocates a WicQuad
- *  \param target the target WicQuad
- *  \return the error code
- */
-enum WicError wic_free_quad(WicQuad* target);
 #endif

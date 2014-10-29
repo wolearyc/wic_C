@@ -23,7 +23,7 @@
 #define WIC_SERVER_H
 #include "wic_error.h"
 #include "wic_packet.h"
-typedef struct WicClient WicClient;
+typedef struct WicClient;
 /** \brief a simple UDP server that connects to multiple clients
  *
  *  A WicServer works by sending and recieving packets to and from players.
@@ -39,7 +39,7 @@ typedef struct WicServer
     int socket_ro; /**< the socket */
     struct sockaddr_in address_ro; /**< the address */
     socklen_t address_length_ro; /**< the address length */
-    unsigned char max_clients_ro; /**< the maximum connected clients */
+    unsigned char max_players_ro; /**< the maximum connected clients */
     WicClient* clients_ro; /**< the clients */
     size_t blacklist_len_ro; /**< the blacklist length */
     in_addr_t* blacklist_ro; /**< the blacklist */

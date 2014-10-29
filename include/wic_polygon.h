@@ -31,54 +31,43 @@
  */
 typedef struct WicPolygon
 {
-    WicPair location;          /**< the screen location */
-    WicPair* vertices_ro;       /**< the set of vertices */
-    size_t num_vertices_ro;     /**< the number of vertices */
-    WicColor color;            /**< the color */
-    WicPair center;            /**< the center to scale, rotate, and draw around
-                                *   (if draw_centered = true)
-                                */
-    WicPair geometric_center_ro;/**< the geometric center */
-    bool draw_centered;        /**< whether or not to draw around the center */
-    WicPair scale;             /**< the scale */
-    double rotation;           /**< the rotation measured in radians from the
-                                *   positive x-axis
-                                */
+    WicPair location;        /**< the screen location */
+    WicPair center;          /**< the center to scale, rotate, or draw around */
+    double rotation;         /**< the rotation measured in radians from the
+                              *   positive x-axis */
+    WicPair scale;           /**< the scale */
+    WicColor color;          /**< the color multiplier */
+    bool draw_centered;      /**< whether or not to draw around the center */
+    WicPair* vertices;       /**< the set of vertices in clockwise or 
+                              *   counter-clockwise order */
+    unsigned num_vertices;   /**< the number of vertices */
 } WicPolygon;
 /** \brief initializes a WicPolygon
  *  \param target the target WicPolygon
  *  \param location the desired screen location
- *  \param vertices the desired vertices (relative to the object), in clockwise
- *         or counterclockwise order
+ *  \param vertices pointer to the the desired vertices (relative to the 
+ *         object), in clockwise or counterclockwise order
  *  \param num_vertices the number of elements in vertices; must be > 2; an
  *         incorrect value will result in undefined behavior
  *  \param color the desired color
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_init_polygon(WicPolygon* target, WicPair location,
-                               WicPair* vertices, size_t num_vertices,
-                               WicColor color);
-/** \brief changes a WicPolygon's vertices
- *
- *  This function also updates the WicPolygon's geometric center.
- *  \param target the target WicPolygon
- *  \param vertices the desired vertices (relative to the object), in clockwise
- *         or counterclockwise order
- *  \param num_vertices the number of elements in vertices; must be > 2; an
- *         incorrect value will result in undefined behavior
- *  \return the error code
+bool wic_init_polygon(WicPolygon* target, WicPair location, WicPair* vertices,
+                      unsigned len_vertices, WicColor color);
+/** \brief fetches a WicPolygon's geometric center
+ *  \param target a WicPolygon
+ *  \return the WicPolygon's geometric center on success, {-1,-1} on failure
  */
-enum WicError wic_set_polygon_vertices(WicPolygon* target, WicPair* vertices,
-                                       size_t num_vertices);
+WicPair wic_polygon_get_geometric_center(WicPolygon* target);
 /** \brief draws a WicPolygon
  *  \param polygon the target WicPolygon
  *  \param game the WicGame
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_draw_polygon(WicPolygon* target, WicGame* game);
+bool wic_draw_polygon(WicPolygon* target, WicGame* game);
 /** \brief deallocates a WicPolygon
  *  \param target the target WicPolygon
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_free_polygon(WicPolygon* target);
+bool wic_free_polygon(WicPolygon* target);
 #endif

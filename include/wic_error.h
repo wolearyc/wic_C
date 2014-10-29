@@ -22,91 +22,39 @@
 #ifndef WIC_ERROR_H
 #define WIC_ERROR_H
 #include <stdio.h>
-#include <stdbool.h>
+#include <string.h>
+extern enum WicError wic_errno;
 enum WicError
 {
-    /* general errors */
-    WICER_NONE,
-    WICER_TARGET,
-    WICER_HEAP,
-    WICER_GAME,
-    WICER_DIMENSIONS_X,
-    WICER_DIMENSIONS_Y,
-    WICER_FILEPATH,
-    WICER_FONT,
-    WICER_STRING,
-    
-    /* wic_game errors */
-    WICER_TITLE,
-    WICER_FPS,
-    WICER_INIT_GLFW,
-    WICER_FETCH_MONITOR,
-    WICER_CREATE_WINDOW,
-    WICER_FREETYPE,
-    WICER_GLFW,
-    
-    /* wic_color errors */
-    WICER_RED,
-    WICER_GREEN,
-    WICER_BLUE,
-    WICER_ALPHA,
-    
-    /* wic_polygon errors */
-    WICER_NUM_VERTICES,
-    
-    /* wic_texture errors */
-    WICER_BUFFER,
-    WICER_GPU,
-    WICER_FILE,
-    
-    /* wic_image errors */
-    WICER_TEXTURE,
-    
-    /* wic_quad errors */
-    
-    /* wic_font errors */
-    WICER_POINT,
-
-    /* wic_text errors */
-    
-    /* wic_server errors */
-    WICER_SOCKET,
-    WICER_RESERVED_PORT,
-    WICER_PORT_IN_USE,
-    WICER_ADDRESS_BIND,
-    WICER_SERVER,
-    WICER_PACKET,
-    WICER_CLIENT_DNE,
-    WICER_RESULT,
-    WICER_RESERVED_PACKET,
-    WICER_BANNED_PACKET,
-    WICER_REJECTED_CONNECT_PACKET,
-    WICER_NO_PACKET,
-    WICER_ADDRESS,
-    WICER_ADDRESS_NULL,
-    WICER_RESULT_LEN,
-    WICER_ADDRESS_DNE,
-    
-    /* wic_client errors */
-    WICER_CLIENT,
-    WICER_TIMEOUT,
-    WICER_PACKET_UNKNOWN_SOURCE,
-    WICER_NOT_JOINED,
-    WICER_ALREADY_JOINED,
+    WIC_ERRNO_NONE,                 /**< no error */
+    WIC_ERRNO_GAME_ALREADY_INIT,
+    WIC_ERRNO_NO_HEAP,              /**< out of heap memory */
+    WIC_ERRNO_LOAD_FILE_FAIL,	    /**< file could not be found or loaded */
+    WIC_ERRNO_NULL_TARGET,          /**< target is null */
+    WIC_ERRNO_NULL_GAME,            /**< game is null */
+    WIC_ERRNO_SMALL_X_DIMENSION,    /**< dimensions.x is less than 1 */
+    WIC_ERRNO_SMALL_Y_DIMENSION,    /**< dimensions.y is less than 1 */
+    WIC_ERRNO_NULL_TITLE,
+    WIC_ERRNO_SMALL_TITLE,
+    WIC_ERRNO_SMALL_FPS,
+    WIC_ERRNO_GLFW_FAIL,
+    WIC_ERRNO_MONITOR_FAIL,
+    WIC_ERRNO_FREETYPE_FAIL,
+    WIC_ERRNO_NULL_BUFFER,
+    WIC_ERRNO_NO_GPU_MEM,
+    WIC_ERRNO_NULL_FILEPATH,
+    WIC_ERRNO_NULL_TEXTURE,
+    WIC_ERRNO_NULL_VERTICES,
+    WIC_ERRNO_SMALL_NUM_VERTICES,
+    WIC_ERRNO_SMALL_POINT,
+    WIC_ERRNO_NULL_RESULT,
+    WIC_ERRNO_NULL_FONT,
+    WIC_ERRNO_NULL_STRING,
 };
-static enum WicError wic_error_code;
-/** \brief reports the latest error code
- *  \param code the latest error code
- *  \return the latest error code
+/** \brief translates the lastest wic_errno into a meaningful string and 
+ *  	   prints the string to stderr.
  */
-enum WicError wic_report_error(enum WicError code);
-/** \brief retrieves the latest error code
- *  \return the latest error code
- */
-enum WicError wic_get_last_error();
-/** \brief translates an error code into a human-readable message
- *  \param code the error code
- *  \return the error code translated into a human-readable message
- */
-const char* wic_translate_error_code(enum WicError code);
+void wic_print_errno_string();
+int wic_throw_error(enum WicError errno);
 #endif
+

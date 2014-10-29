@@ -19,6 +19,8 @@
  * ----------------------------------------------------------------------------
  */
 #include "wic_game.h"
+const int WIC_GAME_CONTINUE = 1;
+const int WIC_GAME_TERMINATE = 2;
 static bool wic_focus = false;
 static bool wic_down_keys[360] = {0};
 static bool wic_pressed_keys[360] = {0};
@@ -91,23 +93,35 @@ void wic_scroll_callback(GLFWwindow* window, double x, double y)
         wic_scroll_offset.y = y;
     }
 }
-enum WicError wic_init_game(WicGame* target, const char* title,
-                            WicPair dimensions, unsigned int fps,
-                            bool resizeable, bool fullscreen,
-                            unsigned int samples)
+static unsigned games = 0;
+struct WicGame
 {
-    if(target == 0)
-        return wic_report_error(WICER_TARGET);
-    if(strcmp(title, "") == 0)
-        return wic_report_error(WICER_TITLE);
-    if(dimensions.x <= 1.0)
-        return wic_report_error(WICER_DIMENSIONS_X);
-    if(dimensions.y <= 1.0)
-        return wic_report_error(WICER_DIMENSIONS_Y);
+    GLFWwindow* window;
+    WicPair dimensions;
+    WicPair pixel_density;
+    double seconds_per_frame;
+    double previous_time;
+    double delta;
+    FT_Library freetype_library;
+
+} WicGame;
+WicGame* wic_init_game(const char* title, WicPair dimensions, unsigned fps,
+                       bool resizeable, bool fullscreen, unsigned samples)
+{
+    if(games != 0)
+        return wic_throw_error(WIC_ERRNO_GAME_ALREADY_INIT);
+    if(title == 0)
+        return wic_throw_error(WIC_ERRNO_NULL_TITLE);
+    if(strlen(title))
+        return wic_throw_error(WIC_ERRNO_SMALL_TITLE);
+    if(dimensions.x < 32)
+        return wic_throw_error(WIC_ERRNO_SMALL_X_DIMENSION);
+    if(dimensions.y < 32)
+        return wic_throw_error(WIC_ERRNO_SMALL_Y_DIMENSION);
     if(fps == 0)
-        return wic_report_error(WICER_FPS);
+        return wic_throw_error(WIC_ERRNO_SMALL_FPS);
     if(!glfwInit())
-        return wic_report_error(WICER_INIT_GLFW);
+        return wic_throw_error(WIC_ERRNO_GLFW_FAIL);
     glfwWindowHint(GLFW_REFRESH_RATE, fps);
     glfwWindowHint(GLFW_SAMPLES, samples);
     glfwWindowHint(GLFW_RESIZABLE, resizeable);
@@ -115,7 +129,7 @@ enum WicError wic_init_game(WicGame* target, const char* title,
     if(monitor == 0)
     {
         glfwTerminate();
-        return wic_report_error(WICER_FETCH_MONITOR);
+        return wic_throw_error(WIC_ERRNO_MONITOR_FAIL);
     }
     GLFWwindow* window;
     if(fullscreen)
@@ -126,7 +140,7 @@ enum WicError wic_init_game(WicGame* target, const char* title,
     if(window == 0)
     {
         glfwTerminate();
-        return wic_report_error(WICER_CREATE_WINDOW);
+        return wic_throw_error(WIC_ERRNO_WINDOW_FAIL);
     }
     glfwSetErrorCallback(wic_error_callback);
     glfwSetWindowFocusCallback(window, wic_focus_callback);
@@ -144,69 +158,81 @@ enum WicError wic_init_game(WicGame* target, const char* title,
     if(result != 0)
     {
         glfwTerminate();
-        return wic_report_error(WICER_FREETYPE);
+        glfwDestroyWindow(window);
+        return wic_throw_error(WIC_ERRNO_FREETYPE_FAIL);
     }
     int physicalWidth; int physicalHeight;
     glfwGetMonitorPhysicalSize(monitor, &physicalWidth, &physicalHeight);
     const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-    WicPair device_resolution = {mode->width / (physicalWidth * 0.0393701),
-                                 mode->height / (physicalHeight * 0.0393701)};
     
-    target->window_ro = window;
-    target->dimensions_ro = dimensions;
-    target->seconds_per_frame = 1.0 / fps;
-    target->previous_time_ro = 0.0;
-    target->delta = 0.0;
-    target->freetype_library_ro = freetype_library;
-    target->device_resolution_ro = device_resolution;
-    return wic_report_error(WICER_NONE);
+    WicGame* result = malloc(sizeof(WicGame));
+    if(result == 0)
+    {
+        glfwTerminate();
+        glfwDestroyWindow(window);
+        return wic_throw_error(WIC_ERRNO_NO_HEAP);
+    }
+    result->window = window;
+    result->dimensions = dimensions;
+    result->pixel_density =(WicPair) {mode->width / (physicalWidth * 0.0393701),
+                                 mode->height / (physicalHeight * 0.0393701)};
+    result->seconds_per_frame = 1.0 / fps;
+    result->previous_time = 0.0;
+    result->delta = 0.0;
+    result->freetype_library = freetype_library;
+    return result;
 }
-enum WicError wic_updt_game(WicGame* target)
+int wic_updt_game(WicGame* target)
 {
     if(target == 0)
-        return wic_report_error(WICER_TARGET);
-    if(!glfwWindowShouldClose(target->window_ro))
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(!glfwWindowShouldClose(window))
     {
-        while(glfwGetTime() - target->previous_time_ro <
-              target->seconds_per_frame)
+        while(glfwGetTime() - target->previous_time < target->seconds_per_frame)
         {}
         wic_reset_input();
-        glfwSwapBuffers(target->window_ro);
+        glfwSwapBuffers(target->window);
         glFlush();
         glClearColor(0.0,0.0,0.0,1.0);
         glClear(GL_COLOR_BUFFER_BIT);
         glLoadIdentity();
-        target->delta = glfwGetTime() - target->previous_time_ro;
-        target->previous_time_ro = glfwGetTime();
-        wic_report_error(WICER_NONE);
+        target->delta = glfwGetTime() - target->previous_time;
+        target->previous_time = glfwGetTime();
         glfwPollEvents();
-        return 1;
+        return WIC_GAME_CONTINUE_LOOP;
     }
-    return wic_report_error(WICER_NONE);
+    return WIC_GAME_END_LOOP;
 }
-enum WicError wic_exit_game(WicGame* target)
+bool wic_exit_game(WicGame* target)
+{
+    if(game == 0)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    glfwSetWindowShouldClose(window, true);
+    return true;
+}
+double wic_get_delta(WicGame* target)
 {
     if(target == 0)
-        return wic_report_error(WICER_TARGET);
-    glfwSetWindowShouldClose(target->window_ro, true);
-    return wic_report_error(WICER_NONE);
+    {
+        wic_throw_error(WIC_ERRNO_NULL_TARGET);
+        return -1;
+    }
+    return target->delta;
 }
-enum WicError wic_free_game(WicGame* target)
+bool wic_free_game(WicGame* target)
 {
     if(target == 0)
-        return wic_report_error(WICER_TARGET);
-    glfwDestroyWindow(target->window_ro);
-    target->window_ro = 0;
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    glfwDestroyWindow(target->window);
     glfwTerminate();
-    FT_Done_FreeType(target->freetype_library_ro);
     
-    target->window_ro = 0;
-    target->dimensions_ro = (WicPair) {0,0};
+    target->window = 0;
+    target->dimensions = (WicPair) {0,0};
     target->seconds_per_frame = 0.0;
-    target->previous_time_ro = 0.0;
-    target->freetype_library_ro = 0;
-    target->device_resolution_ro = (WicPair) {0,0};
-    return wic_report_error(WICER_NONE);
+    target->previous_time = 0.0;
+    target->pixel_density = (WicPair) {0,0};
+    games--;
+    return true;
 }
 bool wic_is_key_down(enum WicKey key)
 {
@@ -223,7 +249,7 @@ unsigned char* wic_get_input()
 WicPair wic_get_cursor_location(WicGame* game)
 {
     WicPair result = wic_cursor_location;
-    result.y = game->dimensions_ro.y - result.y;
+    result.y = game->dimensions.y - result.y;
     return result;
 }
 WicPair wic_get_scroll_offset()

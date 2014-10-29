@@ -29,66 +29,55 @@
 #include FT_FREETYPE_H
 #include "wic_pair.h"
 #include "wic_error.h"
-
-/** \brief represents the entire wic game
+extern const unsigned WIC_GAME_CONTINUE;
+extern const unsigned WIC_GAME_TERMINATE;
+/** \brief represents the entire  game
  *
- *  A WicGame should be initialized via wic_init_game. A WicGame should 
+ *  A WicGame should be initialized via wic_init_game. A WicGame should
  *  eventually be deallocated via wic_free_game.
  */
-typedef struct WicGame
-{
-    GLFWwindow* window_ro;
-    WicPair dimensions_ro;
-    double seconds_per_frame; /**< number of seconds between each frame */
-    double previous_time_ro;
-    double delta;             /**< time since last frame */
-    FT_Library freetype_library_ro;
-    WicPair device_resolution_ro;
-} WicGame;
-/** \brief initializes a WicGame and creates a window
- *  \param target the target WicGame
+typedef struct WicGame WicGame;
+/** \brief initializes the game and creates a window
  *  \param title the desired window title; must contain one or more characters
  *  \param dimensions the desired window dimensions; both components must be 
- *         > 1
+ *         greater than or equal to 32
  *  \param fps the desired number of frames to draw per second; must be > 0
  *  \param resizeable whether or not the window should be resizeable by the
  *         user, ignored if the game is fullscreen
  *  \param fullscreen whether or not the game should run fullscreen
  *  \param samples the number of samples to use with antialiasing, a value of 0
  *         disables antialiasing
- *  \return the error code
+ *  \return a valid pointer to a WicGame on success, null on failure
  */
-enum WicError wic_init_game(WicGame* target, const char* title,
-                            WicPair dimensions, unsigned int fps,
-                            bool resizeable, bool fullscreen,
-                            unsigned int samples);
+WicGame* wic_init_game(const char* title, WicPair dimensions, unsigned fps,
+                       bool resizeable, bool fullscreen, unsigned samples);
 /** \brief flips the window buffers and times game updates
  *
- *  This function will wait a certain amount of time before returning 1
- *  (indicating that the game was updated and a new frame was drawn). This
- *  mechanism ensures that the fps is maintained.
- *  \param target the target WicGame
- *  \return 1 if the game should be updated, 0 if the game should not be
- *          updated (for example when the window is closed by the user), < 0 on
- *          failure
+ *  This function will wait a certain amount of time before returning, assuming
+ *  there was no error, This mechanism ensures that the fps is maintained.
+ *  \return WIC_GAME_CONTINUE if the game should be updated, WIC_GAME_TERMINATE
+ *          if the game should not be updated (for example when the window is 
+ *          closed), 0 on failure
  */
-enum WicError wic_updt_game(WicGame* target);
+unsigned wic_updt_game(WicGame* target);
 /** \brief closes the window
  *
- *  When this function is called, execution will not stop. Instead, the window
- *  will be closed and updt_game will return false the next time it's called.
- *  \param target the target WicGame
- *  \return the error code
+ *  When this function is called, the window will be closed and updt_game will 
+ *  return WIC_GAME_TERMINATE the next time it is called.
+ *  \return true on success, false on failure
  */
-enum WicError wic_exit_game(WicGame* target);
-/** \brief deallocates a WicGame from memory
+bool wic_exit_game(WicGame* target);
+/** \brief fetches the time since the last update in seconds
+ *  \return the time since the last update in seconds, -1 on failure
+ */
+double wic_get_delta(WicGame* target);
+/** \brief frees the game
  *
  *  This function should only be called after the window has been closed and the
  *  program is about to be terminated.
- *  \param target the target WicGame
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_free_game(WicGame* target);
+bool wic_free_game(WicGame* target);
 /** \brief defines constants for keyboard keys and mouse buttons */
 enum WicKey
 {

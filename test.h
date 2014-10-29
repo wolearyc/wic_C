@@ -1,4 +1,0 @@
-typedef struct Pair
-{
-	
-} Pair;

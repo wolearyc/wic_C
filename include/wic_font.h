@@ -33,16 +33,8 @@
  *  to be used to draw text. A WicFont should eventually be deallocated via 
  *  wic_free_font.
  */
-typedef struct WicFont
-{
-    FT_Face face_ro;          /**< the face */
-    WicTexture** textures_ro; /**< the glyph textures */
-    unsigned short point_ro;  /**< the point size measured in font points */
-    bool antialias_ro;        /**< whether or not to antialias the font */
-    
-} WicFont;
+typedef struct WicFont WicFont;
 /** \brief initializes a WicFont from a file
- *  \param target the target WicFont
  *  \param filepath the absolute or relative filepath to a TrueType (TTF), 
  *         TrueType collection (TTC), Type 1 (PFA and PFB), CID-keyed Type 1,
  *         CFF, OpenType, OpenType collection, SFNT-based bitmap, X11 PCF,
@@ -52,17 +44,13 @@ typedef struct WicFont
  * \param antialias whether or not to antialias the font; antialiased fonts with
  *        a small point size can be difficult to read
  * \param game the game
- * \return the error code
+ * \return a valid pointer to a WicFont on success, null on failure
  */
-enum WicError wic_init_font(WicFont* target, const char* filepath,
-                            unsigned short point, bool antialias,
-                            WicGame* game);
-enum WicError wic_render_string(WicImage* target, WicFont* font,
-                                const char* string, size_t num_characters,
-                                WicGame* game);
+WicFont* wic_init_font(const char* filepath, unsigned point, bool antialias,
+                       WicGame* game);
 /** \brief deallocates a WicFont
  *  \param target the target WicFont
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_free_font(WicFont* target);
+bool wic_free_font(WicFont* target);
 #endif
