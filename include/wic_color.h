@@ -21,6 +21,7 @@
 /** \file */
 #ifndef WIC_COLOR_H
 #define WIC_COLOR_H
+#include <stdbool.h>
 #include "OpenGL/gl.h"
 #include "wic_error.h"
 /** \brief an RGBA color
@@ -63,7 +64,6 @@ extern const WicColor WIC_PURPLE;  /**< purple 128,0,128,255) */
  *  \param alpha the desired alpha component; must be < 256
  *  \return the error code
  */
-enum WicError wic_init_color(WicColor* target, unsigned char red,
-                             unsigned char green, unsigned char blue,
-                             unsigned char alpha);
+bool wic_init_color(WicColor* target, unsigned char red, unsigned char green,
+                    unsigned char blue, unsigned char alpha);
 #endif

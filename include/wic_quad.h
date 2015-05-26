@@ -58,5 +58,5 @@ WicPair wic_quad_get_geometric_center(WicQuad* target);
  *  \param game the WicGame
  *  \return true on success, false otherwise
  */
-enum WicError wic_draw_quad(WicQuad* target, WicGame* game);
+bool wic_draw_quad(WicQuad* target, WicGame* game);
 #endif

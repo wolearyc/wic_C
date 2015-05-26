@@ -23,104 +23,98 @@
 #define WIC_SERVER_H
 #include "wic_error.h"
 #include "wic_packet.h"
-typedef struct WicClient;
 /** \brief a simple UDP server that connects to multiple clients
  *
  *  A WicServer works by sending and recieving packets to and from players.
  *  WicServer handles certain low level functions, such as joining,  kicking, 
  *  and banning players. More advanced features can be implemented by users by
  *  pulling recieved packets out of a WicServer and processing them accordingly.
+ *  Only one WicServer can be initialized at a time. 
  *
  *  Since WicServer uses UDP, packets are likely, but not guaranteed, to arrive
  *  in order. Packets may not even arrive at all.
+ *
+ * As a rule, the members of a WicServer should not be altered directly; they
+ * should be treated as read only.
  */
 typedef struct WicServer
 {
-    int socket_ro; /**< the socket */
-    struct sockaddr_in address_ro; /**< the address */
-    socklen_t address_length_ro; /**< the address length */
-    unsigned char max_players_ro; /**< the maximum connected clients */
-    WicClient* clients_ro; /**< the clients */
-    size_t blacklist_len_ro; /**< the blacklist length */
-    in_addr_t* blacklist_ro; /**< the blacklist */
-    unsigned char send_buffer_ro[sizeof(WicPacket)]; /**< the send buffer */
-    unsigned char recv_buffer_ro[sizeof(WicPacket)]; /**< the recieve buffer */
+    char* name;
+    uint8_t max_nodes;
+    bool* used;
+    char** names;
+    char** ips;
+    size_t len_blacklist;
+    char** blacklist;
 } WicServer;
 /** \brief initializes a WicServer, allowing remote clients to connect
  *  \param target the target WicServer
+ *  \param name the desired name of the server; must have 1-20 characters
  *  \param port the desired port
- *  \param max_clients the desired maximum number of connected clients
- *  \return the error code
+ *  \param max_clients the desired maximum number of connected clients; must be
+ *         in the range 1-254
+ *  \return true on success, false on failure
  */
-enum WicError wic_init_server(WicServer* target, unsigned port,
-                              unsigned char max_clients);
+bool wic_init_server(WicServer* target, char* name, unsigned port,
+                     uint8_t max_clients);
 /** \brief sends a single packet to a client
  *  \param server the WicServer
  *  \param packet the packet to send
- *  \param client_id the client's client id
- *  \return the error code
+ *  \param dest_index the index of the client to sent it to; must be > 0
+ *  \return true on success, false on failure
  */
-enum WicError wic_send_packet_to_player(WicServer* server, WicPacket* packet,
-                                        unsigned char client_id);
+bool wic_server_send_packet(WicServer* target, WicPacket* packet,
+                            WicNodeIndex dest_index);
 /** \brief sends a packet to all connected clients but one
  *  \param server the WicServer
  *  \param packet the packet to send
- *  \param client_id_exclude the excluded client's client id
- *  \return the error code
+ *  \param exclude_index the index of the client to exclude; must be > 0
+ *  \return true on success, false on failure
  */
-enum WicError wic_send_packet_to_other_clients(WicServer* server,
-                                               WicPacket* packet,
-                                               unsigned char client_id_exclude);
+bool wic_server_send_packet_exclude(WicServer* target, WicPacket* packet,
+                                    WicNodeIndex exclude_index);
 /** \brief sends a packet to all connected clients
  *  \param server the WicServer
  *  \param packet the packet to send
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_send_packet_to_clients(WicServer* server, WicPacket* packet);
-/** \brief retrieves a client's IP address and stores it in result
+bool wic_server_send_packet_all(WicServer* target, WicPacket* packet);
+/** \brief fetches and processes a single packet from a client
  *  \param server the WicServer
- *  \param client_id the client's client id
- *  \param result the buffer to store the IP address
- *  \param result_len the length of result; must be >= 16
- *  \return the error code
+ *  \param result the destination of the received packet
+ *  \return true on success, false on failure
  */
-enum WicError wic_server_get_client_address(WicServer* server,
-                                            unsigned char client_id,
-                                            char* result, size_t result_len);
-/** \brief fetches and processes a single recieved packet, and then passes the
- *         packet to the user for further processing
- *  \param server the WicServer
- *  \param result the destination of the recieved packet
- *  \return the error code
- */
-enum WicError wic_server_recv_packet(WicServer* server, WicPacket* result);
+bool wic_server_recv_packet(WicServer* target, WicPacket* result);
 /** \brief kicks a client
  *  \param server the WicServer
- *  \param client_id the client's client id
- *  \return the error code
+ *  \param client_index the client's index; must be > 0
+ *  \param reason string given the reason for kick; must be 0-50 characters
+ *  \return true on success, false on failure
  */
-enum WicError wic_kick_client(WicServer* server, unsigned char client_id);
-/** \brief bans a client for the lifetime of the WicServer
+bool wic_server_kick_client(WicServer* target, WicNodeIndex client_index,
+                            char* reason);
+/** \brief bans a name or IP address
  *  \param server the WicServer
- *  \param client_id the client's client id
+ *  \param name_or_ip a name or IP address
+ *  \return true on success, false on failure
  */
-enum WicError wic_ban_client(WicServer* server, unsigned char client_id);
-/** \brief bans any client with a certain IP address for the lifetime of the
- *         WicServer
+bool wic_server_ban(WicServer* target, char* name_or_ip);
+/** \brief bans a client (in both name and IP address) for the lifetime of the 
+ *         WicServer, disconnecting the client
  *  \param server the WicServer
- *  \param address the IP address
- *  \return the error code
+ *  \param reason string given the reason for kick; must be 0-50 characters
+ *  \param client_index the client's index; must be > 0
  */
-enum WicError wic_ban_address(WicServer* server, char* address);
-/** \brief unbans a certain IP address from connecting to the server
+bool wic_server_ban_client(WicServer* target, WicNodeIndex client_index,
+                           char* reason);/** \brief unbans a certain name or IP address from connecting to the server
  *  \param server the WicServer
- *  \param address the IP address
- *  \return the error code
+ *  \param name_or_ip a name or IP address
+ *  \return true on success, false on failure
  */
-enum WicError wic_unban_address(WicServer* server, char* address);
-/** \brief frees a WicServer, kicking all connected clients
+bool wic_server_unban(WicServer* target, char* name_or_ip);
+/** \brief frees a WicServer, disconnecting all connected clients cleanly
  *  \param server the WicServer
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_free_server(WicServer* target);
+bool wic_free_server(WicServer* target);
 #endif

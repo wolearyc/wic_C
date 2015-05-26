@@ -19,8 +19,8 @@
  * ----------------------------------------------------------------------------
  */
 #include "wic_game.h"
-const int WIC_GAME_CONTINUE = 1;
-const int WIC_GAME_TERMINATE = 2;
+const unsigned WIC_GAME_CONTINUE = 1;
+const unsigned WIC_GAME_TERMINATE = 2;
 static bool wic_focus = false;
 static bool wic_down_keys[360] = {0};
 static bool wic_pressed_keys[360] = {0};
@@ -35,7 +35,7 @@ void wic_reset_input()
 }
 void wic_error_callback(int error, const char* description)
 {
-    wic_report_error(WICER_GLFW);
+    wic_throw_error(WIC_ERRNO_GLFW_FAIL);
 }
 void wic_focus_callback(GLFWwindow* window, int n)
 {
@@ -93,7 +93,7 @@ void wic_scroll_callback(GLFWwindow* window, double x, double y)
         wic_scroll_offset.y = y;
     }
 }
-static unsigned games = 0;
+static bool wic_initialized = false;
 struct WicGame
 {
     GLFWwindow* window;
@@ -104,32 +104,32 @@ struct WicGame
     double delta;
     FT_Library freetype_library;
 
-} WicGame;
+};
 WicGame* wic_init_game(const char* title, WicPair dimensions, unsigned fps,
                        bool resizeable, bool fullscreen, unsigned samples)
 {
-    if(games != 0)
-        return wic_throw_error(WIC_ERRNO_GAME_ALREADY_INIT);
-    if(title == 0)
-        return wic_throw_error(WIC_ERRNO_NULL_TITLE);
-    if(strlen(title))
-        return wic_throw_error(WIC_ERRNO_SMALL_TITLE);
+    if(wic_initialized)
+        return (void*) wic_throw_error(WIC_ERRNO_ALREADY_INIT);
+    if(!title)
+        return (void*) wic_throw_error(WIC_ERRNO_NULL_TITLE);
+    if(!strlen(title))
+        return (void*) wic_throw_error(WIC_ERRNO_SMALL_TITLE);
     if(dimensions.x < 32)
-        return wic_throw_error(WIC_ERRNO_SMALL_X_DIMENSION);
+        return (void*) wic_throw_error(WIC_ERRNO_SMALL_X_DIMENSION);
     if(dimensions.y < 32)
-        return wic_throw_error(WIC_ERRNO_SMALL_Y_DIMENSION);
-    if(fps == 0)
-        return wic_throw_error(WIC_ERRNO_SMALL_FPS);
+        return (void*) wic_throw_error(WIC_ERRNO_SMALL_Y_DIMENSION);
+    if(!fps)
+        return (void*) wic_throw_error(WIC_ERRNO_SMALL_FPS);
     if(!glfwInit())
-        return wic_throw_error(WIC_ERRNO_GLFW_FAIL);
+        return (void*) wic_throw_error(WIC_ERRNO_GLFW_FAIL);
     glfwWindowHint(GLFW_REFRESH_RATE, fps);
     glfwWindowHint(GLFW_SAMPLES, samples);
     glfwWindowHint(GLFW_RESIZABLE, resizeable);
     GLFWmonitor* monitor = glfwGetPrimaryMonitor();
-    if(monitor == 0)
+    if(!monitor)
     {
         glfwTerminate();
-        return wic_throw_error(WIC_ERRNO_MONITOR_FAIL);
+        return (void*) wic_throw_error(WIC_ERRNO_MONITOR_FAIL);
     }
     GLFWwindow* window;
     if(fullscreen)
@@ -137,10 +137,10 @@ WicGame* wic_init_game(const char* title, WicPair dimensions, unsigned fps,
                                   0);
     else
         window = glfwCreateWindow(dimensions.x, dimensions.y, title, 0, 0);
-    if(window == 0)
+    if(!window)
     {
         glfwTerminate();
-        return wic_throw_error(WIC_ERRNO_WINDOW_FAIL);
+        return (void*) wic_throw_error(WIC_ERRNO_WINDOW_FAIL);
     }
     glfwSetErrorCallback(wic_error_callback);
     glfwSetWindowFocusCallback(window, wic_focus_callback);
@@ -154,23 +154,23 @@ WicGame* wic_init_game(const char* title, WicPair dimensions, unsigned fps,
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDisable(GL_DEPTH_TEST);
     FT_Library freetype_library;
-    int result = FT_Init_FreeType(&freetype_library);
-    if(result != 0)
+    int error = FT_Init_FreeType(&freetype_library);
+    if(error != 0)
     {
         glfwTerminate();
         glfwDestroyWindow(window);
-        return wic_throw_error(WIC_ERRNO_FREETYPE_FAIL);
+        return (void*) wic_throw_error(WIC_ERRNO_FREETYPE_FAIL);
     }
     int physicalWidth; int physicalHeight;
     glfwGetMonitorPhysicalSize(monitor, &physicalWidth, &physicalHeight);
     const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-    
+
     WicGame* result = malloc(sizeof(WicGame));
-    if(result == 0)
+    if(!result)
     {
         glfwTerminate();
         glfwDestroyWindow(window);
-        return wic_throw_error(WIC_ERRNO_NO_HEAP);
+        return (void*) wic_throw_error(WIC_ERRNO_NO_HEAP);
     }
     result->window = window;
     result->dimensions = dimensions;
@@ -180,13 +180,14 @@ WicGame* wic_init_game(const char* title, WicPair dimensions, unsigned fps,
     result->previous_time = 0.0;
     result->delta = 0.0;
     result->freetype_library = freetype_library;
+    wic_initialized = true;
     return result;
 }
-int wic_updt_game(WicGame* target)
+unsigned wic_updt_game(WicGame* target)
 {
-    if(target == 0)
+    if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
-    if(!glfwWindowShouldClose(window))
+    if(!glfwWindowShouldClose(target->window))
     {
         while(glfwGetTime() - target->previous_time < target->seconds_per_frame)
         {}
@@ -199,20 +200,20 @@ int wic_updt_game(WicGame* target)
         target->delta = glfwGetTime() - target->previous_time;
         target->previous_time = glfwGetTime();
         glfwPollEvents();
-        return WIC_GAME_CONTINUE_LOOP;
+        return WIC_GAME_CONTINUE;
     }
-    return WIC_GAME_END_LOOP;
+    return WIC_GAME_TERMINATE;
 }
 bool wic_exit_game(WicGame* target)
 {
-    if(game == 0)
+    if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
-    glfwSetWindowShouldClose(window, true);
+    glfwSetWindowShouldClose(target->window, true);
     return true;
 }
 double wic_get_delta(WicGame* target)
 {
-    if(target == 0)
+    if(!target)
     {
         wic_throw_error(WIC_ERRNO_NULL_TARGET);
         return -1;
@@ -221,7 +222,7 @@ double wic_get_delta(WicGame* target)
 }
 bool wic_free_game(WicGame* target)
 {
-    if(target == 0)
+    if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
     glfwDestroyWindow(target->window);
     glfwTerminate();
@@ -231,7 +232,7 @@ bool wic_free_game(WicGame* target)
     target->seconds_per_frame = 0.0;
     target->previous_time = 0.0;
     target->pixel_density = (WicPair) {0,0};
-    games--;
+    wic_initialized = false;
     return true;
 }
 bool wic_is_key_down(enum WicKey key)

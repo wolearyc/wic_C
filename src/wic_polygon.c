@@ -29,16 +29,18 @@ struct WicGame
     double delta;
     FT_Library freetype_library;
     
-} WicGame;
+};
 bool wic_init_polygon(WicPolygon* target, WicPair location, WicPair* vertices,
                       unsigned num_vertices, WicColor color)
 {
-    if(target == 0)
+    if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(!vertices)
+        return wic_throw_error(WIC_ERRNO_NULL_VERTICES);
     if(num_vertices < 3)
         return wic_throw_error(WIC_ERRNO_SMALL_NUM_VERTICES);
     WicPair* new_vertices = malloc(sizeof(WicPair) * num_vertices);
-    if(new_vertices == 0)
+    if(!new_vertices)
         return wic_throw_error(WIC_ERRNO_NO_HEAP);
     memcpy(new_vertices, vertices, num_vertices * sizeof(WicPair));
     
@@ -54,23 +56,23 @@ bool wic_init_polygon(WicPolygon* target, WicPair location, WicPair* vertices,
 }
 WicPair wic_polygon_get_geometric_center(WicPolygon* target)
 {
-    if(target == 0)
+    if(!target)
     {
         wic_throw_error(WIC_ERRNO_NULL_TARGET);
         return (WicPair) {-1,-1};
     }
     WicPair result = {0,0};
-    for(unsigned i = 0; i < target->len_vertices; i++)
+    for(unsigned i = 0; i < target->num_vertices; i++)
         result = wic_add_pairs(result, target->vertices[i]);
-    result = wic_divide_pairs(result, (WicPair) {target->len_vertices,
-                                                target->len_vertices});
+    result = wic_divide_pairs(result, (WicPair) {target->num_vertices,
+                                                target->num_vertices});
     return result;
 }
 bool wic_draw_polygon(WicPolygon* target, WicGame* game)
 {
-    if(target == 0)
+    if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
-    if(game == 0)
+    if(!game)
         return wic_throw_error(WIC_ERRNO_NULL_GAME);
     double cosine = cos(target->rotation);
     double sine = sin(target->rotation);
@@ -97,7 +99,7 @@ bool wic_draw_polygon(WicPolygon* target, WicGame* game)
 }
 bool wic_free_polygon(WicPolygon* target)
 {
-    if(target == 0)
+    if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
     free(target->vertices);
     

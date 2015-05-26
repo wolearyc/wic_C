@@ -19,39 +19,52 @@
  * ----------------------------------------------------------------------------
  */
 #include "wic_packet.h"
-const WicPacketType WIC_PACKET_JOIN = {0, 0};
-const WicPacketType WIC_PACKET_RESPOND_JOIN = {1, 2 * sizeof(unsigned char)};
-const unsigned char WIC_PACKET_RESPOND_JOIN_OKAY = 0;
-const unsigned char WIC_PACKET_RESPOND_JOIN_FULL = 1;
-const unsigned char WIC_PACKET_RESPOND_JOIN_BANNED = 2;
-const WicPacketType WIC_PACKET_LEAVE = {2, 0};
-const WicPacketType WIC_PACKET_KICK = {3, 0};
-const WicPacketType WIC_PACKET_BAN = {4, 0};
-const WicPacketType WIC_PACKET_SERVER_SHUTDOWN = {5,0};
-const size_t WIC_PACKET_HEADER_SIZE = sizeof(unsigned char) +
+const uint8_t WIC_NAME_SIZE; 
+const WicNodeIndex WIC_SERVER_INDEX = 0;
+const WicPacketType WIC_PACKET_REQUEST_JOIN = {0, 21};
+const WicPacketType WIC_PACKET_RESPOND_JOIN = {1, 24};
+const uint8_t WIC_PACKET_RESPOND_JOIN_OKAY = 0;
+const uint8_t WIC_PACKET_RESPOND_JOIN_FULL = 1;
+const uint8_t WIC_PACKET_RESPOND_JOIN_BANNED = 2;
+
+const WicPacketType WIC_PACKET_CLIENT_JOINED = {2, 22};
+const WicPacketType WIC_PACKET_IN_CLIENT  = {3, 22};
+
+const WicPacketType WIC_PACKET_LEAVE = {4, 0};
+const WicPacketType WIC_PACKET_KICK_CLIENT = {5, 51};
+const WicPacketType WIC_PACKET_BAN_CLIENT = {6, 51};
+const WicPacketType WIC_PACKET_CLIENT_LEFT = {7, 53};
+const uint8_t WIC_PACKET_CLIENT_LEFT_NORMALLY = 0;
+const uint8_t WIC_PACKET_CLIENT_LEFT_KICKED = 1;
+const uint8_t WIC_PACKET_CLIENT_LEFT_BANNED = 2;
+
+const WicPacketType WIC_PACKET_SERVER_SHUTDOWN = {8,0};
+
+const size_t WIC_PACKET_HEADER_SIZE = sizeof(WicNodeIndex) +
                                       sizeof(WicPacketType);
-enum WicError wic_get_packet_from_buffer(unsigned char* buffer,
-                                         WicPacket* result)
+bool wic_get_packet_from_buffer(uint8_t* buffer, WicPacket* result)
 {
-    if(buffer == 0)
-        return wic_report_error(WICER_BUFFER);
-    if(result == 0)
-        return wic_report_error(WICER_RESULT);
+    if(!buffer)
+        return wic_throw_error(WIC_ERRNO_NULL_BUFFER);
+    if(!result)
+        return wic_throw_error(WIC_ERRNO_NULL_RESULT);
+    
     memcpy(result, buffer, WIC_PACKET_HEADER_SIZE);
     memcpy(result->data, buffer + WIC_PACKET_HEADER_SIZE, result->type.size);
-    return wic_report_error(WICER_NONE);
+    bzero(result->data + result->type.size, 255 - result->type.size);
+    return true;
 }
-enum WicError wic_convert_packet_to_buffer(unsigned char* result,
-                                           WicPacket* packet)
+bool wic_convert_packet_to_buffer(uint8_t* result, WicPacket* packet)
 {
-    if(result == 0)
-        return wic_report_error(WICER_BUFFER);
-    if(packet == 0)
-        return wic_report_error(WICER_RESULT);
+    if(!result)
+        return wic_throw_error(WIC_ERRNO_NULL_RESULT);
+    if(!packet)
+        return wic_throw_error(WIC_ERRNO_NULL_PACKET);
+    
     memcpy(result, packet, WIC_PACKET_HEADER_SIZE + packet->type.size);
-    return wic_report_error(WICER_NONE);
+    return true;
 }
-bool wic_is_reserved_packet_id(unsigned char packet_id)
+bool wic_is_reserved_packet_id(uint8_t packet_id)
 {
-    return packet_id <= 5;
+    return packet_id <= 15;
 }

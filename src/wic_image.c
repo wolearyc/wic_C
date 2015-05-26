@@ -23,7 +23,7 @@ struct WicTexture
 {
     unsigned int data;
     WicPair dimensions;
-} WicTexture;
+};
 struct WicGame
 {
     GLFWwindow* window;
@@ -34,12 +34,12 @@ struct WicGame
     double delta;
     FT_Library freetype_library;
     
-} WicGame;
+};
 bool wic_init_image(WicImage* target, WicPair location, WicTexture* texture)
 {
-    if(target == 0)
+    if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
-    if(texture == 0)
+    if(!texture)
         return wic_throw_error(WIC_ERRNO_NULL_TEXTURE);
     
     target->location = location;
@@ -54,18 +54,20 @@ bool wic_init_image(WicImage* target, WicPair location, WicTexture* texture)
 }
 WicPair wic_image_get_geometric_center(WicImage* target)
 {
-    if(target == 0)
+    if(!target)
     {
         wic_throw_error(WIC_ERRNO_NULL_TARGET);
         return (WicPair) {-1,-1};
     }
-    return wic_divide_pairs(target->texture->dimensions, (WicPair) {2,2});
+    WicPair diagonal = wic_subtract_pairs(target->bounds.upper_right,
+                                          target->bounds.lower_left);
+    return wic_divide_pairs(diagonal, (WicPair) {2,2});
 }
-enum WicError wic_draw_image(WicImage* target, WicGame* game)
+bool wic_draw_image(WicImage* target, WicGame* game)
 {
-    if(target == 0)
+    if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
-    if(game == 0)
+    if(!game)
         return wic_throw_error(WIC_ERRNO_NULL_GAME);
     WicPair window_dimensions = game->dimensions;
     WicPair tex_dimensions = target->texture->dimensions;

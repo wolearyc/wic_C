@@ -29,12 +29,12 @@ struct WicGame
     double delta;
     FT_Library freetype_library;
     
-} WicGame;
+};
 static WicPair vertices[4] = {(WicPair) {0,0}};
 bool wic_init_quad(WicQuad* target, WicPair location, WicPair dimensions,
                    WicColor color)
 {
-    if(target == 0)
+    if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
     
     target->location = location;
@@ -48,18 +48,18 @@ bool wic_init_quad(WicQuad* target, WicPair location, WicPair dimensions,
 }
 WicPair wic_quad_get_geometric_center(WicQuad* target)
 {
-    if(target == 0)
+    if(!target)
     {
         wic_throw_error(WIC_ERRNO_NULL_TARGET);
         return (WicPair) {-1,-1};
     }
     return wic_divide_pairs(target->dimensions, (WicPair) {2,2});
 }
-enum WicError wic_draw_quad(WicQuad* target, WicGame* game)
+bool wic_draw_quad(WicQuad* target, WicGame* game)
 {
-    if(target == 0)
+    if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
-    if(game == 0)
+    if(!game)
         return wic_throw_error(WIC_ERRNO_NULL_GAME);
     double cosine = cos(target->rotation);
     double sine = sin(target->rotation);

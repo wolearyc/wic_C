@@ -15,323 +15,410 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  * ----------------------------------------------------------------------------
- * File:    wic_client.c
+ * File:    wic_server`.c
  * ----------------------------------------------------------------------------
  */
 #include "wic_server.h"
-struct WicClient
+static int wic_socket;
+static struct sockaddr_in wic_addr;
+static socklen_t wic_size_addr = sizeof(wic_addr);
+static struct sockaddr_in* addrs;
+static uint8_t wic_buffer[sizeof(WicPacket)];
+static size_t wic_size_buffer = sizeof(wic_buffer);
+static bool wic_initialized = false;
+static WicPacket wic_packet;
+char** wic_alloc_string_array(unsigned num_string, unsigned size_string)
 {
-    bool joined_ro;
-    struct sockaddr_in address_ro;
-    socklen_t address_length_ro;
-};
-enum WicError wic_init_server(WicServer* target, unsigned port,
-                              unsigned char max_clients)
+    char** result = malloc(num_string * sizeof(char*));
+    if(!result)
+        return 0;
+    for(uint8_t i = 0; i < num_string; i++)
+    {
+        result[i] = malloc(size_string * sizeof(char));
+        if(!result[i])
+        {
+            i--;
+            for(; i >= 0; i--)
+                free(result[i]);
+            free(result);
+            return 0;
+        }
+    }
+    return result;
+}
+void wic_free_string_array(char** array, unsigned len)
 {
-    if(target == 0)
-        return wic_report_error(WICER_TARGET);
+    for(unsigned i = 0; i < len; i++)
+        free(array[i]);
+    free(array);
+}
+bool wic_init_server(WicServer* target, char* name, unsigned port,
+                     uint8_t max_clients)
+{
+    if(wic_initialized)
+        wic_throw_error(WIC_ERRNO_ALREADY_INIT);
+    if(!target)
+        wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(!name)
+        wic_throw_error(WIC_ERRNO_NULL_NAME);
+    if(strlen(name) < 1)
+        wic_throw_error(WIC_ERRNO_SMALL_NAME);
+    if(strlen(name) > 20)
+        wic_throw_error(WIC_ERRNO_LARGE_NAME);
     if(port < 1025)
-        return wic_report_error(WICER_RESERVED_PORT);
-    int tmp_socket = socket(AF_INET, SOCK_DGRAM, 0);
-    if(tmp_socket == -1)
-        return wic_report_error(WICER_SOCKET);
-    fcntl(tmp_socket, F_SETFL, O_NONBLOCK);
-    struct sockaddr_in address;
-    bzero(&address, sizeof(address));
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = htonl(INADDR_ANY);
-    address.sin_port = htons(port);
-    int result = bind(tmp_socket, (struct sockaddr*) &address, sizeof(address));
+        wic_throw_error(WIC_ERRNO_RESERVED_PORT);
+    if(max_clients < 1)
+        wic_throw_error(WIC_ERRNO_SMALL_MAX_CLIENTS);
+    if(max_clients > 254)
+        wic_throw_error(WIC_ERRNO_LARGE_MAX_CLIENTS);
+    
+    wic_socket = socket(AF_INET, SOCK_DGRAM, 0);
+    if(wic_socket == -1)
+        return wic_throw_error(WIC_ERRNO_SOCKET_FAIL);
+    fcntl(wic_socket, F_SETFL, O_NONBLOCK);
+    bzero(&wic_addr, wic_size_addr);
+    wic_addr.sin_family = AF_INET;
+    wic_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    wic_addr.sin_port = htons(port);
+    int result = bind(wic_socket, (struct sockaddr*) &wic_addr, wic_size_addr);
     if(result == -1)
     {
-        close(tmp_socket);
+        close(wic_socket);
         if(errno == EADDRINUSE)
-            return wic_report_error(WICER_PORT_IN_USE);
+            return wic_throw_error(WIC_ERRNO_PORT_IN_USE);
         else
-            return wic_report_error(WICER_ADDRESS_BIND);
+            return wic_throw_error(WIC_ERRNO_SOCKET_BIND_FAIL);
     }
-    WicClient* clients = malloc(max_clients * sizeof(WicClient));
-    if(clients == 0)
+    wic_packet.sender_index = 0;
+    uint8_t max_nodes = 1 + max_clients;
+    addrs = malloc(max_nodes * wic_size_addr);
+    if(!addrs)
     {
-        close(tmp_socket);
-        return wic_report_error(WICER_HEAP);
+        close(wic_socket);
+        wic_throw_error(WIC_ERRNO_NO_HEAP);
     }
-    for(unsigned char client_id = 0; client_id < max_clients; client_id++)
-        clients[client_id].joined_ro = false;
+    addrs[0] = wic_addr;
+    bool* used = malloc(max_nodes * sizeof(bool));
+    if(!used)
+    {
+        close(wic_socket);
+        free(addrs);
+        return wic_throw_error(WIC_ERRNO_NO_HEAP);
+    }
+    used[0] = true;
+    char** names = wic_alloc_string_array(max_nodes, 21);
+    if(!names)
+    {
+        close(wic_socket);
+        free(addrs);
+        free(used);
+        return wic_throw_error(WIC_ERRNO_NO_HEAP);
+    }
+    strcpy(names[0], name);
+    char** ips = wic_alloc_string_array(max_nodes, INET_ADDRSTRLEN);
+    if(!ips)
+    {
+        close(wic_socket);
+        free(addrs);
+        free(used);
+        wic_free_string_array(names, max_nodes);
+        wic_throw_error(WIC_ERRNO_NO_HEAP);
+    }
+    inet_ntop(AF_INET, &wic_addr.sin_addr, ips[0], INET_ADDRSTRLEN);
     
-    target->socket_ro = tmp_socket;
-    target->address_ro = address;
-    target->address_length_ro = sizeof(address);
-    target->max_clients_ro = max_clients;
-    target->clients_ro = clients;
-    target->blacklist_len_ro = 0;
-    target->blacklist_ro = 0;
-    return wic_report_error(WICER_NONE);
+    target->name = name;
+    target->max_nodes = max_nodes;
+    target->used = used;
+    target->names = names;
+    target->ips = ips;
+    target->len_blacklist = 0;
+    target->blacklist = 0;
+    return true;
 }
-bool wic_is_valid_client(WicServer* server, unsigned char client_id)
+bool wic_server_send_packet(WicServer* target, WicPacket* packet,
+                            WicNodeIndex dest_index)
 {
-    return client_id < server->max_clients_ro &&
-           server->clients_ro[client_id].joined_ro;
-}
-void wic_send_packet_to_address(WicServer* server, WicPacket* packet,
-                                struct sockaddr* address,
-                                socklen_t address_length)
-{
-    size_t size = WIC_PACKET_HEADER_SIZE + packet->type.size;
-    wic_convert_packet_to_buffer(server->send_buffer_ro, packet);
-    sendto(server->socket_ro, server->send_buffer_ro, size, 0, address,
-           address_length);
-}
-enum WicError wic_send_packet_to_player(WicServer* server, WicPacket* packet,
-                                        unsigned char client_id)
-{
-    if(server == 0)
-        return wic_report_error(WICER_SERVER);
-    if(packet == 0)
-        return wic_report_error(WICER_PACKET);
-    if(wic_is_valid_client(server, client_id))
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(!packet)
+        return wic_throw_error(WIC_ERRNO_NULL_PACKET);
+    if(dest_index < 1)
+        return wic_throw_error(WIC_ERRNO_NOT_CLIENT_INDEX);
+    if(dest_index >= target->max_nodes)
+        return wic_throw_error(WIC_ERRNO_IMPOSSIBLE_INDEX);
+    
+    if(target->used[dest_index])
     {
-        wic_send_packet_to_address(server, packet,
-                (struct sockaddr*) &server->clients_ro[client_id].address_ro,
-                server->clients_ro[client_id].address_length_ro);
-        return wic_report_error(WICER_NONE);
+        size_t size = WIC_PACKET_HEADER_SIZE + packet->type.size;
+        wic_convert_packet_to_buffer(wic_buffer, packet);
+        sendto(wic_socket, wic_buffer, size, 0,
+               (struct sockaddr*) &addrs[dest_index],
+               wic_size_addr);
+        return true;
     }
-    return wic_report_error(WICER_CLIENT_DNE);
+    return wic_throw_error(WIC_ERRNO_INDEX_UNUSED);
 }
-enum WicError wic_send_packet_to_other_clients(WicServer* server,
-                                               WicPacket* packet,
-                                               unsigned char client_id_exclude)
+bool wic_server_send_packet_exclude(WicServer* target, WicPacket* packet,
+                                    WicNodeIndex exclude_index)
 {
-    if(server == 0)
-        return wic_report_error(WICER_SERVER);
-    if(packet == 0)
-        return wic_report_error(WICER_PACKET);
-    for(unsigned char client_id = 0; client_id < server->max_clients_ro;
-        client_id++)
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(!packet)
+        return wic_throw_error(WIC_ERRNO_NULL_PACKET);
+    if(exclude_index < 1)
+        return wic_throw_error(WIC_ERRNO_NOT_CLIENT_INDEX);
+    if(exclude_index >= target->max_nodes)
+        return wic_throw_error(WIC_ERRNO_IMPOSSIBLE_INDEX);
+    
+    for(WicNodeIndex i = 1; i < target->max_nodes; i++)
     {
-        if(client_id != client_id_exclude)
-            wic_send_packet_to_player(server, packet, client_id);
+        if(i != exclude_index && target->used[i])
+            wic_server_send_packet(target, packet, i);
     }
-    return wic_report_error(WICER_NONE);
+    return true;
 }
-enum WicError wic_send_packet_to_clients(WicServer* server, WicPacket* packet)
+bool wic_server_send_packet_all(WicServer* target, WicPacket* packet)
 {
-    if(server == 0)
-        return wic_report_error(WICER_SERVER);
-    if(packet == 0)
-        return wic_report_error(WICER_PACKET);
-    for(unsigned char client_id = 0; client_id < server->max_clients_ro;
-        client_id++)
-        wic_send_packet_to_player(server, packet, client_id);
-    return wic_report_error(WICER_NONE);
-}
-enum WicError wic_server_get_client_address(WicServer* server,
-                                            unsigned char client_id,
-                                            char* result, size_t result_len)
-{
-    if(server == 0)
-        return wic_report_error(WICER_SERVER);
-    if(result == 0)
-        return wic_report_error(WICER_RESULT);
-    if(result_len < INET_ADDRSTRLEN)
-        return wic_report_error(WICER_RESULT_LEN);
-    if(wic_is_valid_client(server, client_id))
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(!packet)
+        return wic_throw_error(WIC_ERRNO_NULL_PACKET);
+    
+    for(WicNodeIndex i = 1; i < target->max_nodes; i++)
     {
-        const char* code = inet_ntop(AF_INET,
-                            &server->clients_ro[client_id].address_ro.sin_addr,
-                            result, result_len);
-        if(code == 0)
-            return wic_report_error(WICER_ADDRESS);
-        return wic_report_error(WICER_NONE);
+        if(target->used[i])
+            wic_server_send_packet(target, packet, i);
     }
-    return wic_report_error(WICER_CLIENT_DNE);
+    return true;
 }
-bool wic_is_client_address(WicServer* server, struct sockaddr_in address)
+bool wic_server_recv_packet(WicServer* target, WicPacket* result)
 {
-    for(unsigned char client_id = 0; client_id < server->max_clients_ro;
-        client_id++)
-    {
-        if(wic_is_valid_client(server, client_id) &&
-           server->clients_ro[client_id].address_ro.sin_addr.s_addr ==
-           address.sin_addr.s_addr &&
-           server->clients_ro[client_id].address_ro.sin_port ==
-           address.sin_port)
-            return true;
-    }
-    return false;
-}
-enum WicError wic_server_recv_packet(WicServer* server, WicPacket* result)
-{
-    if(server == 0)
-        return wic_report_error(WICER_SERVER);
-    if(result == 0)
-        return wic_report_error(WICER_RESULT);
-    struct sockaddr_in client_address;
-    socklen_t client_address_length = sizeof(client_address);
-    ssize_t length = recvfrom(server->socket_ro, server->recv_buffer_ro,
-                              sizeof(server->recv_buffer_ro), 0,
-                              (struct sockaddr*) &client_address,
-                              &client_address_length);
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(!result)
+        return wic_throw_error(WIC_ERRNO_NULL_RESULT);
+    
+    struct sockaddr_in recv_addr;
+    socklen_t len_recv_addr;
+    ssize_t length = recvfrom(wic_socket, wic_buffer, wic_size_buffer, 0,
+                              (struct sockaddr*) &recv_addr, &len_recv_addr);
     if(length > 0)
     {
-        wic_get_packet_from_buffer(server->recv_buffer_ro, result);
-        if(result->type.id == WIC_PACKET_JOIN.id)
+        
+        WicNodeIndex index;
+        wic_get_packet_from_buffer(wic_buffer, result);
+        if(result->type.id == WIC_PACKET_REQUEST_JOIN.id)
         {
-            WicPacket response;
-            response.type = WIC_PACKET_RESPOND_JOIN;
-            for(size_t i = 0; i < server->blacklist_len_ro; i++)
+            wic_packet.type = WIC_PACKET_RESPOND_JOIN;
+            char ip[INET_ADDRSTRLEN];
+            inet_ntop(AF_INET, &recv_addr.sin_addr, &ip[0], INET_ADDRSTRLEN);
+            for(unsigned i = 0; i < target->len_blacklist; i++)
             {
-                if(server->blacklist_ro[i] == client_address.sin_addr.s_addr)
+                if(!strcmp(&ip[0], target->blacklist[i]) ||
+                    !strcmp((char*) &result->data[0], target->blacklist[i]))
                 {
-                    response.data[0] = WIC_PACKET_RESPOND_JOIN_BANNED;
-                    wic_send_packet_to_address(server, &response,
-                                    (struct sockaddr*) &client_address,
-                                               client_address_length);
-                    return wic_report_error(WICER_BANNED_PACKET);
+                    wic_packet.data[0] = WIC_PACKET_RESPOND_JOIN_BANNED;
+                    size_t size = WIC_PACKET_HEADER_SIZE + wic_packet.type.size;
+                    wic_convert_packet_to_buffer(wic_buffer, &wic_packet);
+                    sendto(wic_socket, wic_buffer, size, 0,
+                           (struct sockaddr*) &recv_addr, wic_size_addr);
+                    return false;
                 }
             }
-            for(unsigned char new_id = 0; new_id < server->max_clients_ro;
-                new_id++)
+            uint8_t connections = 0;
+            for(WicNodeIndex i = 1; i < target->max_nodes; i++)
             {
-                if(!server->clients_ro[new_id].joined_ro)
+                if(target->used[i])
+                    connections++;
+            }
+            if(connections == target->max_nodes - 1)
+            {
+                wic_packet.data[0] = WIC_PACKET_RESPOND_JOIN_FULL;
+                wic_packet.data[0] = WIC_PACKET_RESPOND_JOIN_BANNED;
+                size_t size = WIC_PACKET_HEADER_SIZE + wic_packet.type.size;
+                wic_convert_packet_to_buffer(wic_buffer, &wic_packet);
+                sendto(wic_socket, wic_buffer, size, 0,
+                       (struct sockaddr*) &recv_addr, wic_size_addr);
+                return false;
+            }
+            wic_packet.data[0] = WIC_PACKET_RESPOND_JOIN_OKAY;
+            wic_packet.data[1] = target->max_nodes;
+            for(WicNodeIndex i = 0; i < target->max_nodes; i++)
+            {
+                if(!target->used[i])
                 {
-                    server->clients_ro[new_id].joined_ro = true;
-                    server->clients_ro[new_id].address_ro = client_address;
-                    server->clients_ro[new_id].address_length_ro =
-                    client_address_length;
-                    response.client_id = new_id;
-                    result->client_id = new_id;
-                    response.data[0] = WIC_PACKET_RESPOND_JOIN_OKAY;
-                    response.data[1] = server->max_clients_ro;
-                    wic_send_packet_to_clients(server, &response);
-                    return wic_report_error(WICER_NONE);
+                    index = i;
+                    wic_packet.data[2] = i;
+                    break;
                 }
             }
-            response.data[0] = WIC_PACKET_RESPOND_JOIN_FULL;
-            wic_send_packet_to_address(server, &response,
-                                       (struct sockaddr*) &client_address,
-                                       client_address_length);
-            return wic_report_error(WICER_REJECTED_CONNECT_PACKET);
+            strcpy((char*) &wic_packet.data[3], target->name);
+            addrs[index] = recv_addr;
+            target->used[index] = true;
+            strcpy(target->names[index], (char*) result->data);
+            inet_ntop(AF_INET, &recv_addr.sin_addr, target->ips[index],
+                      INET_ADDRSTRLEN);
+            wic_server_send_packet(target, &wic_packet, index);
+            
+            wic_packet.type = WIC_PACKET_CLIENT_JOINED;
+            wic_packet.data[0] = index;
+            strcpy((char*) &wic_packet.data[1], target->names[index]);
+            wic_server_send_packet_exclude(target, &wic_packet, index);
+            wic_packet.type = WIC_PACKET_IN_CLIENT;
+            wic_server_send_packet(target, &wic_packet, index);
+            return true;
         }
-        if(wic_is_client_address(server, client_address))
+        index = wic_buffer[0];
+        if(index > 0 && index < target->max_nodes && target->used[index] &&
+           recv_addr.sin_addr.s_addr == addrs[index].sin_addr.s_addr &&
+           recv_addr.sin_port == addrs[index].sin_port)
         {
             if(result->type.id == WIC_PACKET_LEAVE.id)
             {
-                unsigned char client_id = result->client_id;
-                wic_send_packet_to_other_clients(server, result, client_id);
-                server->clients_ro[client_id].joined_ro = false;
-                return wic_report_error(WICER_NONE);
+                wic_packet.type = WIC_PACKET_CLIENT_LEFT;
+                wic_packet.data[0] = index;
+                wic_packet.data[1] = WIC_PACKET_CLIENT_LEFT_NORMALLY;
+                wic_packet.data[2] = '\0';
+                wic_server_send_packet_exclude(target, &wic_packet, index);
+                target->used[index] = false;
             }
-            return wic_report_error(WICER_NONE);
+            return true;
         }
-        return wic_report_error(WICER_PACKET_UNKNOWN_SOURCE);
+        return wic_throw_error(WIC_ERRNO_PACKET_UNKNOWN_SOURCE);
     }
-    return wic_report_error(WICER_NO_PACKET);
+    return false;
 }
-enum WicError wic_kick_client(WicServer* server, unsigned char client_id)
+bool wic_server_kick_client(WicServer* target, WicNodeIndex client_index,
+                            char* reason)
 {
-    if(server == 0)
-        return wic_report_error(WICER_SERVER);
-    if(wic_is_valid_client(server, client_id))
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(client_index < 1)
+        return wic_throw_error(WIC_ERRNO_NOT_CLIENT_INDEX);
+    if(client_index >= target->max_nodes)
+        return wic_throw_error(WIC_ERRNO_IMPOSSIBLE_INDEX);
+    if(!target->used[client_index])
+        return wic_throw_error(WIC_ERRNO_INDEX_UNUSED);
+    if(strlen(reason) > 50)
+        return wic_throw_error(WIC_ERRNO_LARGE_REASON);
+    
+    wic_packet.type = WIC_PACKET_KICK_CLIENT;
+    strcpy((char*) &wic_packet.data[0], reason);
+    wic_server_send_packet(target, &wic_packet, client_index);
+    wic_packet.type = WIC_PACKET_CLIENT_LEFT;
+    wic_packet.data[0] = client_index;
+    wic_packet.data[1] = WIC_PACKET_CLIENT_LEFT_KICKED;
+    strcpy((char*) &wic_packet.data[2], reason);
+    wic_server_send_packet_exclude(target, &wic_packet, client_index);
+    target->used[client_index] = false;
+    return true;
+}
+bool wic_server_ban(WicServer* target, char* name_or_ip)
+{
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(!name_or_ip)
+        return wic_throw_error(WIC_ERRNO_NULL_NAME_OR_IP);
+    if(strlen(name_or_ip) > 20)
+        return wic_throw_error(WIC_ERRNO_LARGE_NAME_OR_IP);
+    
+    char** new_blacklist = realloc(target->blacklist,
+                                   (target->len_blacklist + 1) * sizeof(char*));
+    if(!new_blacklist)
+        return wic_throw_error(WIC_ERRNO_NO_HEAP);
+    new_blacklist[target->len_blacklist] = malloc(21 * sizeof(char));
+    if(!new_blacklist[target->len_blacklist])
     {
-        WicPacket packet;
-        packet.client_id = client_id;
-        packet.type = WIC_PACKET_KICK;
-        wic_send_packet_to_clients(server, &packet);
-        server->clients_ro[client_id].joined_ro = false;
-        return wic_report_error(WICER_NONE);
+        realloc(target->blacklist, target->len_blacklist);
+        return wic_throw_error(WIC_ERRNO_NO_HEAP);
     }
-    else
-        return wic_report_error(WICER_CLIENT_DNE);
+    target->len_blacklist++;
+    target->blacklist = new_blacklist;
+    strcpy(target->blacklist[target->len_blacklist-1], name_or_ip);
+    return true;
 }
-enum WicError wic_ban_client(WicServer* server, unsigned char client_id)
+bool wic_server_ban_client(WicServer* target, WicNodeIndex client_index,
+                           char* reason)
 {
-    if(wic_is_valid_client(server, client_id))
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(client_index < 1)
+        return wic_throw_error(WIC_ERRNO_NOT_CLIENT_INDEX);
+    if(client_index >= target->max_nodes)
+        return wic_throw_error(WIC_ERRNO_IMPOSSIBLE_INDEX);
+    if(!target->used[client_index])
+        return wic_throw_error(WIC_ERRNO_INDEX_UNUSED);
+    if(strlen(reason) > 50)
+        return wic_throw_error(WIC_ERRNO_LARGE_REASON);
+    
+    if(!wic_server_ban(target, target->names[client_index]))
+        return false;
+    if(!wic_server_ban(target, target->ips[client_index]))
     {
-        server->blacklist_len_ro++;
-        server->blacklist_ro = realloc(server->blacklist_ro,
-                                       server->blacklist_len_ro *
-                                       sizeof(in_addr_t));
-        server->blacklist_ro[server->blacklist_len_ro-1] =
-                        server->clients_ro[client_id].address_ro.sin_addr.s_addr;
-        WicPacket packet;
-        packet.client_id = client_id;
-        packet.type = WIC_PACKET_BAN;
-        wic_send_packet_to_clients(server, &packet);
-        server->clients_ro[client_id].joined_ro = false;
-        return wic_report_error(WICER_NONE);
+        target->len_blacklist--;
+        target->blacklist = realloc(target->blacklist, target->len_blacklist);
+        return false;
     }
-    return wic_report_error(WICER_CLIENT_DNE);
+    
+    wic_packet.type = WIC_PACKET_BAN_CLIENT;
+    strcpy((char*) &wic_packet.data[0], reason);
+    wic_server_send_packet(target, &wic_packet, client_index);
+    wic_packet.type = WIC_PACKET_CLIENT_LEFT;
+    wic_packet.data[0] = client_index;
+    wic_packet.data[1] = WIC_PACKET_CLIENT_LEFT_BANNED;
+    strcpy((char*) &wic_packet.data[2], reason);
+    wic_server_send_packet_exclude(target, &wic_packet, client_index);
+    target->used[client_index] = false;
+    return true;
 }
-enum WicError wic_ban_address(WicServer* server, char* address)
+bool wic_server_unban(WicServer* target, char* name_or_ip)
 {
-    if(server == 0)
-        return wic_report_error(WICER_SERVER);
-    if(address == 0)
-        return wic_report_error(WICER_ADDRESS_NULL);
-    struct sockaddr_in net_address;
-    int result = inet_pton(AF_INET, address, &net_address);
-    if(result == 0 || result == -1)
-        return wic_report_error(WICER_ADDRESS);
-    for(unsigned char client_id = 0; client_id < server->max_clients_ro;
-        client_id++)
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(!name_or_ip)
+        return wic_throw_error(WIC_ERRNO_NULL_NAME_OR_IP);
+    if(strlen(name_or_ip) > 20)
+        return wic_throw_error(WIC_ERRNO_LARGE_NAME_OR_IP);
+    
+    for(unsigned i = 0; i < target->len_blacklist; i++)
     {
-        if(wic_is_valid_client(server, client_id) &&
-           server->clients_ro[client_id].address_ro.sin_addr.s_addr ==
-           net_address.sin_addr.s_addr)
+        if(!strcmp(name_or_ip, target->blacklist[i]))
         {
-            wic_ban_client(server, client_id);
-            return wic_report_error(WICER_NONE);
+            free(target->blacklist[i]);
+            if(target->len_blacklist - i != 0)
+            {
+                memmove(&target->blacklist[i], &target->blacklist[i+1],
+                        (target->len_blacklist - i) * sizeof(char*));
+                target->len_blacklist--;
+                target->blacklist = realloc(target->blacklist,
+                                            target->len_blacklist *
+                                            sizeof(char*));
+            }
+            return true;
         }
     }
-    server->blacklist_len_ro++;
-    server->blacklist_ro = realloc(server->blacklist_ro,
-                                   server->blacklist_len_ro *
-                                   sizeof(in_addr_t));
-    server->blacklist_ro[server->blacklist_len_ro-1] =
-                                                  net_address.sin_addr.s_addr;
-    return wic_report_error(WICER_NONE);
+    return wic_throw_error(WIC_ERRNO_UNBANNED_NAME_OR_IP);
 }
-enum WicError wic_unban_address(WicServer* server, char* address)
+bool wic_free_server(WicServer* target)
 {
-    if(server == 0)
-        return wic_report_error(WICER_SERVER);
-    if(address == 0)
-        return wic_report_error(WICER_ADDRESS_NULL);
-    struct sockaddr_in net_address;
-    int result = inet_pton(AF_INET, address, &net_address);
-    if(result == 0 || result == -1)
-        return wic_report_error(WICER_ADDRESS);
-    for(int i = 0; i < server->blacklist_len_ro; i++)
-    {
-        if(net_address.sin_addr.s_addr == server->blacklist_ro[i])
-        {
-            memcpy(server->blacklist_ro+i, server->blacklist_ro+i+1,
-                   server->blacklist_len_ro-i-1);
-            server->blacklist_len_ro--;
-            server->blacklist_ro = realloc(server->blacklist_ro,
-                                           server->blacklist_len_ro);
-            return wic_report_error(WICER_NONE);
-        }
-    }
-    return wic_report_error(WICER_ADDRESS_DNE);
-}
-enum WicError wic_free_server(WicServer* target)
-{
-    if(target == 0)
-        return wic_report_error(WICER_TARGET);
-    WicPacket packet;
-    packet.type = WIC_PACKET_SERVER_SHUTDOWN;
-    wic_send_packet_to_clients(target, &packet);
-    close(target->socket_ro);
-    target->socket_ro = -1;
-    bzero(&target->address_ro, sizeof(target->address_ro));
-    target->address_length_ro = 0;
-    target->max_clients_ro = 0;
-    free(target->clients_ro);
-    target->clients_ro = 0;
-    target->blacklist_len_ro = 0;
-    free(target->blacklist_ro);
-    target->blacklist_ro = 0;
-    return wic_report_error(WICER_NONE);
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    
+    wic_packet.type = WIC_PACKET_SERVER_SHUTDOWN;
+    wic_server_send_packet_all(target, &wic_packet);
+    
+    close(wic_socket);
+    free(addrs);
+    target->name = 0;
+    free(target->used);
+    target->used = 0;
+    wic_free_string_array(target->names, target->max_nodes);
+    target->names = 0;
+    wic_free_string_array(target->ips, target->max_nodes);
+    target->ips = 0;
+    wic_free_string_array(target->blacklist, target->len_blacklist);
+    target->blacklist = 0;
+    target->len_blacklist = 0;
+    target->max_nodes = 0;
+    return true;
 }

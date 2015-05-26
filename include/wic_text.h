@@ -42,6 +42,8 @@ typedef struct WicText
     bool draw_centered;      /**< whether or not to draw around the center */
     char* string;            /**< the string to draw */
     size_t len_string;       /**< the length of string */
+    WicPair* offsets;        /**< the offsets of each glyph from location */
+    WicImage* images;        /**< the glyph images */
     WicFont* font;           /**< the font */
 } WicText;
 /** \brief initializes a WicText
@@ -55,6 +57,13 @@ typedef struct WicText
  */
 bool wic_init_text(WicText* target, WicPair location, char* string,
                    size_t len_string, WicFont* font, WicColor color);
+/** \brief sets a WicText's string, resizing the bounds to fit the entire 
+ *         string.
+ *  \param target the target WicText
+ *  \param string the desired new string to draw
+ *  \param len_string the length of the string
+ */
+bool wic_text_set_string(WicText* target, char* string, size_t len_string);
 /** \brief draws a WicText to the screen
  *  \param target the target WicText
  *  \param game the WicGame

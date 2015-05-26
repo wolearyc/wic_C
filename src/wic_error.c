@@ -19,7 +19,10 @@
  * ----------------------------------------------------------------------------
  */
 #include "wic_error.h"
-void wic_get_errno_string()
+WicError wic_errno = WIC_ERRNO_NONE;
+bool wic_print_errors = false;
+bool wic_pause_errors = false;
+void wic_print_errno_string()
 {
 	char message[100];
 	strcpy(message, "[WIC ERROR]: ");
@@ -27,8 +30,8 @@ void wic_get_errno_string()
 	{
 		case WIC_ERRNO_NONE:
 			strcat(message, "no error"); break;
-        case WIC_ERRNO_GAME_ALREADY_INIT:
-            strcat(message, "a game is already initialized"); break;
+        case WIC_ERRNO_ALREADY_INIT:
+            strcat(message, "an instance is already initialized"); break;
 		case WIC_ERRNO_NO_HEAP:
 			strcat(message, "out of heap memory"); break;
 		case WIC_ERRNO_LOAD_FILE_FAIL:
@@ -71,15 +74,90 @@ void wic_get_errno_string()
             strcat(message, "point is 0"); break;
         case WIC_ERRNO_NULL_RESULT:
             strcat(message, "result is null"); break;
-            
-		
+        case WIC_ERRNO_NULL_FONT:
+            strcat(message, "font is null"); break;
+        case WIC_ERRNO_NULL_STRING:
+            strcat(message, "string is null"); break;
+        case WIC_ERRNO_INVALID_RED:
+            strcat(message, "red is not in range 0-255"); break;
+        case WIC_ERRNO_INVALID_GREEN:
+            strcat(message, "green is not in range 0-255"); break;
+        case WIC_ERRNO_INVALID_BLUE:
+            strcat(message, "blue is not in range 0-255"); break;
+        case WIC_ERRNO_INVALID_ALPHA:
+            strcat(message, "alpha is not in range 0-255"); break;
+        case WIC_ERRNO_NULL_PACKET:
+            strcat(message, "packet is null"); break;
+        case WIC_ERRNO_NULL_NAME:
+            strcat(message, "name is null"); break;
+        case WIC_ERRNO_RESERVED_PORT:
+            strcat(message, "port is reserved"); break;
+        case WIC_ERRNO_SMALL_NAME:
+            strcat(message, "name has 0 characters"); break;
+        case WIC_ERRNO_LARGE_NAME:
+            strcat(message, "name has > 20 characters"); break;
+        case WIC_ERRNO_NULL_SERVER_IP:
+            strcat(message, "server_ip is null"); break;
+        case WIC_ERRNO_SMALL_LEN_SERVER_IP:
+            strcat(message, "len_server_ip is 0"); break;
+        case WIC_ERRNO_SOCKET_FAIL:
+            strcat(message, "socket creation failed"); break;
+        case WIC_ERRNO_PORT_IN_USE:
+            strcat(message, "port in use"); break;
+        case WIC_ERRNO_SOCKET_BIND_FAIL:
+            strcat(message, "socket binding failed"); break;
+        case WIC_ERRNO_CLIENT_ALREADY_JOINED:
+            strcat(message, "client is already joined");
+        case WIC_ERRNO_JOIN_FAIL_FULL:
+            strcat(message, "server is full"); break;
+        case WIC_ERRNO_JOIN_FAIL_BANNED:
+            strcat(message, "client is banned"); break;
+        case WIC_ERRNO_CLIENT_NOT_JOINED:
+            strcat(message, "client not joined"); break;
+        case WIC_ERRNO_TIMEOUT:
+            strcat(message, "operation timed out"); break;
+        case WIC_ERRNO_PACKET_UNKNOWN_SOURCE:
+            strcat(message, "packet from unknown source"); break;
+        case WIC_ERRNO_SMALL_MAX_CLIENTS:
+            strcat(message, "max_clients < 1"); break;
+        case WIC_ERRNO_LARGE_MAX_CLIENTS:
+            strcat(message, "max_clients > 254"); break;
+        case WIC_ERRNO_NOT_CLIENT_INDEX:
+            strcat(message, "index < 1 (not a client index)"); break;
+        case WIC_ERRNO_IMPOSSIBLE_INDEX:
+            strcat(message, "index impossible given max clients"); break;
+        case WIC_ERRNO_INDEX_UNUSED:
+            strcat(message, "index not in use"); break;
+        case WIC_ERRNO_LARGE_REASON:
+            strcat(message, "reason has > 50 characters"); break;
+        case WIC_ERRNO_NULL_NAME_OR_IP:
+            strcat(message, "name_or_ip is null");
+        case WIC_ERRNO_LARGE_NAME_OR_IP:
+            strcat(message, "name_or_ip has > 20 characters"); break;
+        case WIC_ERRNO_UNBANNED_NAME_OR_IP:
+            strcat(message, "name_or_ip was never banned"); break;
 	}
 	strcat(message, "\n");
-	fprintf(stderr, message);
+	fprintf(stderr, "%s", message);
 }
-int wic_throw_error(enum WicError errno)
+void wic_print_all_errors()
 {
-    wic_errno = errno;
-    return 0;
+    wic_print_errors = true;
+}
+void wic_pause_at_errors()
+{
+    wic_pause_errors = true;
+}
+bool wic_throw_error(WicError error)
+{
+    wic_errno = error;
+    if(wic_print_errors)
+        wic_print_errno_string();
+    if(wic_pause_errors)
+    {
+        printf("Execution paused. Press return to continue...");
+        while(getchar() != '\n');
+    }
+    return false;
 }
 

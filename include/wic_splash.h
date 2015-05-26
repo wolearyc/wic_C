@@ -44,8 +44,8 @@ extern const WicColor WIC_SPLASH_TEXT_COLOR; /**< standard and preferred splash
  *  \param text_color the desired text color (use of WIC_SPLASH_TEXT_COLOR is
  *         encouraged)
  *  \param game the game
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_draw_splash(WicColor background_color, WicColor text_color,
-                              WicGame* game);
+bool wic_draw_splash(WicColor background_color, WicColor text_color,
+                     WicGame* game);
 #endif

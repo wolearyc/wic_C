@@ -27,6 +27,7 @@
 #include "wic_game.h"
 #include "wic_texture.h"
 #include "wic_image.h"
+#include "wic_error.h"
 /** \brief a font
  *
  *  A WicFont should be initialized via wic_init_font, which loads a font file

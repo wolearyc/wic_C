@@ -94,7 +94,11 @@ WicTexture* wic_init_texture_from_buffer(unsigned char* buffer,
  */
 WicTexture* wic_init_texture_from_file(char* filepath, enum WicFilter filter,
                                        enum WicWrap wrap);
-
+/** \brief returns the dimensions of a texture.
+ *  \param target the target WicTexture
+ *  \return the dimensons of target on success, (-1, -1) on failure.
+ */
+WicPair wic_texture_get_dimensions(WicTexture* target);
 /** \brief deallocates a WicTexture
  *  \param target the target WicTexture
  *  \return true on success, false on failure

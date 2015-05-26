@@ -27,72 +27,61 @@
  *  A WicClient works by sending and recieving packets to and from a server.
  *  WicClient handles certain low level functions, such as joining, kicking, and
  *  banning. More advanced features can be implemented by users by pulling 
- *  recievied packets out of a WicServer and processing them accordingly.
+ *  received packets out of a WicClient and processing them accordingly. Only
+ *  one WicClient can be initialized at a time in a game.
  *
  *  Since WicClient uses UDP, packets are likely, but not guaranteed, to arrive
  *  in order. Packets may not even arrive at all.
+ 
+ * As a rule, the members of a WicClient should not be altered directly; they 
+ * should be treated as read only.
  */
 typedef struct WicClient
 {
-    int socket_ro; /**< the socket */
-    struct sockaddr_in address_ro; /**< the address */
-    socklen_t address_length_ro; /**< the address length */
-    struct sockaddr_in server_address_ro; /**< the server address */
-    socklen_t server_address_length_ro; /**< the server address length */
-    unsigned char max_server_clients_ro; /**< the max clients of the server */
-    unsigned char send_buffer_ro[sizeof(WicPacket)]; /**< the send buffer */
-    unsigned char recv_buffer_ro[sizeof(WicPacket)]; /**< the receive buffer */
-    bool joined_ro; /**< whether or not the client is connected to the server */
-    bool kicked_ro; /**< whether or not the client has been kicked */
-    bool banned_ro; /**< whether or not the client has been banned */
-    unsigned char id_ro; /**< the client's id */
+    bool joined;
+    WicNodeIndex index;
+    char* name;
+    uint8_t max_nodes;
+    bool* used;
+    char** names;
 } WicClient;
 /** \brief initializes a WicClient
  *  \param target the target WicClient
- *  \param server_port the server port
- *  \param server_address the server IP address
- *  \param server_address_len the length of server_address
- *  \return the error code
+ *  \param name the client's name; must have 1-20 characters
+ *  \param server_port the server port; must be > 1024
+ *  \param server_ip the server IP address
+ *  \return true on success, false on failure
  */
-enum WicError wic_init_client(WicClient* target, unsigned server_port,
-                              char* server_address, size_t server_address_len);
-/** \brief attempts to join the server
+bool wic_init_client(WicClient* target, char* name, unsigned server_port,
+                     char* server_ip);
+/** \brief attempts to join a client to its server
  *  \param client the WicClient
- *  \param response the server response
- *  \param the join timeout
- *  \return the error code
+ *  \param result the destination of the server's response
+ *  \param the join timeout in seconds
+ *  \return true on success, false on failure
  */
-enum WicError wic_client_join_server(WicClient* client, WicPacket* response,
-                                     double timeout);
-/** \brief sends a packet to the server
- *  \param client the WicClient
+bool wic_client_join_server(WicClient* client, WicPacket* result,
+                            double timeout);
+/** \brief sends a packet to a client's server
+ *  \param target the target WicClient
  *  \param packet the packet to send
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_send_packet_to_server(WicClient* client, WicPacket* packet);
-/** \brief retrieves the server's IP address and stores it in result
- *  \param client the WicClient
- *  \param result the buffer to store the IP address
- *  \param result_len the length of result; must be >= 16
- *  \return the error code
+bool wic_client_send_packet(WicClient* target, WicPacket* packet);
+/** \brief fetches and processes a single packet from the server
+ *  \param target the target WicClient
+ *  \param result the destination of the received packet
+ *  \return true on success, false on failure
  */
-enum WicError wic_client_get_server_address(WicClient* client, char* result,
-                                            size_t result_len);
-/** \brief fetches and processes a single recieved packet, and then passes the
- *         packet to the user for further processing
- *  \param client the WicClient
- *  \param result the destination of the recieved packet
- *  \return the error code
- */
-enum WicError wic_client_recv_packet(WicClient* client, WicPacket* result);
+bool wic_client_recv_packet(WicClient* target, WicPacket* result);
 /** \brief leaves the server
  *  \param client the WicClient
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_client_leave_server(WicClient* client);
+bool wic_client_leave(WicClient* target);
 /** \brief frees a WicClient
  *  \param target the target WicClient
- *  \return the error code
+ *  \return true on success, false on failure
  */
-enum WicError wic_free_client(WicClient* target);
+bool wic_free_client(WicClient* target);
 #endif

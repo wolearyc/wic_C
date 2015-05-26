@@ -36,23 +36,23 @@ const WicColor WIC_BLUE    = {0,0,255,255};
 const WicColor WIC_NAVY    = {0,0,128,255};
 const WicColor WIC_FUCHSIA = {255,0,255,255};
 const WicColor WIC_PURPLE  = {128,0,128,255};
-enum WicError wic_init_color(WicColor* target, unsigned char red, unsigned char green,
-               unsigned char blue, unsigned char alpha)
+bool wic_init_color(WicColor* target, unsigned char red, unsigned char green,
+                    unsigned char blue, unsigned char alpha)
 {
-    if(target == 0)
-        return wic_report_error(WICER_TARGET);
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
     if(red > 255)
-        return wic_report_error(WICER_RED);
+        return wic_throw_error(WIC_ERRNO_INVALID_RED);
     if(green > 255)
-        return wic_report_error(WICER_GREEN);
+        return wic_throw_error(WIC_ERRNO_INVALID_GREEN);
     if(blue > 255)
-        return wic_report_error(WICER_BLUE);
+        return wic_throw_error(WIC_ERRNO_INVALID_BLUE);
     if(alpha > 255)
-        return wic_report_error(WICER_ALPHA);
+        return wic_throw_error(WIC_ERRNO_INVALID_ALPHA);
         
     target->red = red;
     target->green = green;
     target->blue = blue;
     target->alpha = alpha;
-    return wic_report_error(WICER_NONE);
+    return true;
 }
