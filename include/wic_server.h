@@ -106,7 +106,8 @@ bool wic_server_ban(WicServer* target, char* name_or_ip);
  *  \param client_index the client's index; must be > 0
  */
 bool wic_server_ban_client(WicServer* target, WicNodeIndex client_index,
-                           char* reason);/** \brief unbans a certain name or IP address from connecting to the server
+                           char* reason);
+/** \brief unbans a certain name or IP address from connecting to the server
  *  \param server the WicServer
  *  \param name_or_ip a name or IP address
  *  \return true on success, false on failure

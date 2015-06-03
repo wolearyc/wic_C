@@ -88,7 +88,12 @@ extern WicError wic_errno;
 void wic_print_errno_string();
 /** \brief forces wic to print all thrown errors to stderr */
 void wic_print_all_errors();
+/** \brief forces pause at any errors */
 void wic_pause_at_errors();
+/** \brief throws an error
+  *
+  * \param error an error
+  */
 bool wic_throw_error(WicError error);
 #endif
 

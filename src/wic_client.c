@@ -136,6 +136,7 @@ bool wic_client_join_server(WicClient* target, WicPacket* result,
                     target->names = names;
                     memcpy(target->names[0], &result->data[3], 21);
                     strcpy(target->names[target->index], target->name);
+                    wic_server_addr = response_addr;
                     return true;
                 }
                 else if(result->data[0] == WIC_PACKET_RESPOND_JOIN_FULL)
