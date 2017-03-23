@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  * ----------------------------------------------------------------------------
- * File:    wic_quad.c
+ * File:    wic_rect.c
  * ----------------------------------------------------------------------------
  */
-#include "wic_quad.h"
+#include "wic_rect.h"
 struct WicGame
 {
     GLFWwindow* window;
@@ -31,7 +31,7 @@ struct WicGame
     
 };
 static WicPair vertices[4] = {(WicPair) {0,0}};
-bool wic_init_quad(WicQuad* target, WicPair location, WicPair dimensions,
+bool wic_init_rect(WicRect* target, WicPair location, WicPair dimensions,
                    WicColor color)
 {
     if(!target)
@@ -46,7 +46,7 @@ bool wic_init_quad(WicQuad* target, WicPair location, WicPair dimensions,
     target->dimensions = dimensions;
     return true;
 }
-WicPair wic_quad_get_geometric_center(WicQuad* target)
+WicPair wic_rect_get_geo_center(WicRect* target)
 {
     if(!target)
     {
@@ -55,7 +55,7 @@ WicPair wic_quad_get_geometric_center(WicQuad* target)
     }
     return wic_divide_pairs(target->dimensions, (WicPair) {2,2});
 }
-bool wic_draw_quad(WicQuad* target, WicGame* game)
+bool wic_draw_rect(WicRect* target, WicGame* game)
 {
     if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);

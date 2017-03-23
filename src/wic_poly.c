@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  * ----------------------------------------------------------------------------
- * File:    wic_polygon.c
+ * File:    wic_poly.c
  * ----------------------------------------------------------------------------
  */
-#include "wic_polygon.h"
+#include "wic_poly.h"
 struct WicGame
 {
     GLFWwindow* window;
@@ -30,7 +30,7 @@ struct WicGame
     FT_Library freetype_library;
     
 };
-bool wic_init_polygon(WicPolygon* target, WicPair location, WicPair* vertices,
+bool wic_init_poly(WicPoly* target, WicPair location, WicPair* vertices,
                       unsigned num_vertices, WicColor color)
 {
     if(!target)
@@ -54,7 +54,7 @@ bool wic_init_polygon(WicPolygon* target, WicPair location, WicPair* vertices,
     target->num_vertices = num_vertices;
     return true;
 }
-WicPair wic_polygon_get_geometric_center(WicPolygon* target)
+WicPair wic_poly_get_geo_center(WicPoly* target)
 {
     if(!target)
     {
@@ -68,7 +68,7 @@ WicPair wic_polygon_get_geometric_center(WicPolygon* target)
                                                 target->num_vertices});
     return result;
 }
-bool wic_draw_polygon(WicPolygon* target, WicGame* game)
+bool wic_draw_poly(WicPoly* target, WicGame* game)
 {
     if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
@@ -97,7 +97,7 @@ bool wic_draw_polygon(WicPolygon* target, WicGame* game)
     glEnd();
     return true;
 }
-bool wic_free_polygon(WicPolygon* target)
+bool wic_free_poly(WicPoly* target)
 {
     if(!target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);

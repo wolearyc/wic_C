@@ -21,8 +21,8 @@ bool wic_draw_splash(WicColor background_color, WicColor text_color,
     background_color.alpha = 0;
     text_color.alpha = 0;
     
-    WicQuad background;
-    if(!wic_init_quad(&background, (WicPair) {0,0}, game->dimensions,
+    WicRect background;
+    if(!wic_init_rect(&background, (WicPair) {0,0}, game->dimensions,
                       background_color))
        return false;
     double min_dim = fmin(game->dimensions.x, game->dimensions.y);
@@ -53,7 +53,7 @@ bool wic_draw_splash(WicColor background_color, WicColor text_color,
         return false;
     }
     wic.scale = wic_multiply_pairs((WicPair) {10,10}, scale_multiplier);
-    wic.center = wic_image_get_geometric_center(&wic);
+    wic.center = wic_image_get_geo_center(&wic);
     wic.draw_centered = true;
     wic.color = text_color;
     unsigned char engine_buffer[] =
@@ -86,7 +86,7 @@ bool wic_draw_splash(WicColor background_color, WicColor text_color,
         return false;
     }
     engine.scale = wic_multiply_pairs((WicPair) {2,2}, scale_multiplier);
-       engine.center = wic_image_get_geometric_center(&engine);
+       engine.center = wic_image_get_geo_center(&engine);
     engine.center.x *= 2;
     engine.draw_centered = true;
     engine.color = text_color;
@@ -121,7 +121,7 @@ bool wic_draw_splash(WicColor background_color, WicColor text_color,
         return false;
     }
     version.scale = wic_multiply_pairs((WicPair) {1.5,1.5}, scale_multiplier);
-    version.center = wic_image_get_geometric_center(&version);
+    version.center = wic_image_get_geo_center(&version);
     version.center.x *= 2;
     version.center.y *= 2;
     version.draw_centered = true;
@@ -153,7 +153,7 @@ bool wic_draw_splash(WicColor background_color, WicColor text_color,
             if(!version.color.alpha)
                 break;
         }
-        wic_draw_quad(&background, game);
+        wic_draw_rect(&background, game);
         wic_draw_image(&wic, game);
         wic_draw_image(&engine, game);
         wic_draw_image(&version, game);

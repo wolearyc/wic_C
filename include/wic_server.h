@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -66,7 +66,7 @@ bool wic_init_server(WicServer* target, char* name, unsigned port,
 bool wic_server_send_packet(WicServer* target, WicPacket* packet,
                             WicNodeIndex dest_index);
 /** \brief sends a packet to all connected clients but one
- *  \param server the WicServer
+ *  \param target the target WicServer
  *  \param packet the packet to send
  *  \param exclude_index the index of the client to exclude; must be > 0
  *  \return true on success, false on failure
@@ -74,19 +74,19 @@ bool wic_server_send_packet(WicServer* target, WicPacket* packet,
 bool wic_server_send_packet_exclude(WicServer* target, WicPacket* packet,
                                     WicNodeIndex exclude_index);
 /** \brief sends a packet to all connected clients
- *  \param server the WicServer
+ *  \param target the target WicServer
  *  \param packet the packet to send
  *  \return true on success, false on failure
  */
 bool wic_server_send_packet_all(WicServer* target, WicPacket* packet);
 /** \brief fetches and processes a single packet from a client
- *  \param server the WicServer
+ *  \param target the target WicServer
  *  \param result the destination of the received packet
  *  \return true on success, false on failure
  */
 bool wic_server_recv_packet(WicServer* target, WicPacket* result);
 /** \brief kicks a client
- *  \param server the WicServer
+ *  \param target the target WicServer
  *  \param client_index the client's index; must be > 0
  *  \param reason string given the reason for kick; must be 0-50 characters
  *  \return true on success, false on failure
@@ -94,27 +94,32 @@ bool wic_server_recv_packet(WicServer* target, WicPacket* result);
 bool wic_server_kick_client(WicServer* target, WicNodeIndex client_index,
                             char* reason);
 /** \brief bans a name or IP address
- *  \param server the WicServer
+ *  \param target the target WicServer
  *  \param name_or_ip a name or IP address
  *  \return true on success, false on failure
  */
 bool wic_server_ban(WicServer* target, char* name_or_ip);
 /** \brief bans a client (in both name and IP address) for the lifetime of the 
  *         WicServer, disconnecting the client
- *  \param server the WicServer
+ *  \param target the target WicServer
  *  \param reason string given the reason for kick; must be 0-50 characters
  *  \param client_index the client's index; must be > 0
  */
 bool wic_server_ban_client(WicServer* target, WicNodeIndex client_index,
                            char* reason);
 /** \brief unbans a certain name or IP address from connecting to the server
- *  \param server the WicServer
+ *  \param target the target WicServer
  *  \param name_or_ip a name or IP address
  *  \return true on success, false on failure
  */
 bool wic_server_unban(WicServer* target, char* name_or_ip);
+/** \brief returns the node index of a client with a particular name/IP
+ *  \param target the target WicServer
+ *  \return index on success, false on failure
+ */
+unsigned wic_server_get_index(WicServer* target, char* name_or_ip);
 /** \brief frees a WicServer, disconnecting all connected clients cleanly
- *  \param server the WicServer
+ *  \param target the target WicServer
  *  \return true on success, false on failure
  */
 bool wic_free_server(WicServer* target);

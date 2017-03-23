@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -47,7 +47,7 @@ enum WicFormat
                     *   alpha
                     */
 };
-/** \brief defines constants for texturing wrapping (behavior when drawing 
+/** \brief defines constants for texture wrapping (behavior when drawing
  *         outside of texture dimensions
  */
 enum WicWrap

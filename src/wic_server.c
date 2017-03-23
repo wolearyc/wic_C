@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  * ----------------------------------------------------------------------------
- * File:    wic_server`.c
+ * File:    wic_server.c
  * ----------------------------------------------------------------------------
  */
 #include "wic_server.h"
@@ -98,7 +98,7 @@ bool wic_init_server(WicServer* target, char* name, unsigned port,
         wic_throw_error(WIC_ERRNO_NO_HEAP);
     }
     addrs[0] = wic_addr;
-    bool* used = malloc(max_nodes * sizeof(bool));
+    bool* used = calloc(max_nodes, sizeof(bool));
     if(!used)
     {
         close(wic_socket);
@@ -199,12 +199,11 @@ bool wic_server_recv_packet(WicServer* target, WicPacket* result)
         return wic_throw_error(WIC_ERRNO_NULL_RESULT);
     
     struct sockaddr_in recv_addr;
-    socklen_t len_recv_addr;
+    socklen_t len_recv_addr = sizeof(recv_addr);
     ssize_t length = recvfrom(wic_socket, wic_buffer, wic_size_buffer, 0,
                               (struct sockaddr*) &recv_addr, &len_recv_addr);
     if(length > 0)
     {
-        
         WicNodeIndex index;
         wic_get_packet_from_buffer(wic_buffer, result);
         if(result->type.id == WIC_PACKET_REQUEST_JOIN.id)
@@ -234,7 +233,6 @@ bool wic_server_recv_packet(WicServer* target, WicPacket* result)
             if(connections == target->max_nodes - 1)
             {
                 wic_packet.data[0] = WIC_PACKET_RESPOND_JOIN_FULL;
-                wic_packet.data[0] = WIC_PACKET_RESPOND_JOIN_BANNED;
                 size_t size = WIC_PACKET_HEADER_SIZE + wic_packet.type.size;
                 wic_convert_packet_to_buffer(wic_buffer, &wic_packet);
                 sendto(wic_socket, wic_buffer, size, 0,
@@ -264,8 +262,17 @@ bool wic_server_recv_packet(WicServer* target, WicPacket* result)
             wic_packet.data[0] = index;
             strcpy((char*) &wic_packet.data[1], target->names[index]);
             wic_server_send_packet_exclude(target, &wic_packet, index);
+            memcpy(result, &wic_packet, sizeof(WicPacket));
             wic_packet.type = WIC_PACKET_IN_CLIENT;
-            wic_server_send_packet(target, &wic_packet, index);
+            for(WicNodeIndex i = 1; i < target->max_nodes; i++)
+            {
+                if(target->used[i])
+                {
+                    wic_packet.data[0] = i;
+                    strcpy((char*) &wic_packet.data[1], target->names[i]);
+                    wic_server_send_packet(target, &wic_packet, index);
+                }
+            }
             return true;
         }
         index = wic_buffer[0];
@@ -398,6 +405,25 @@ bool wic_server_unban(WicServer* target, char* name_or_ip)
         }
     }
     return wic_throw_error(WIC_ERRNO_UNBANNED_NAME_OR_IP);
+}
+unsigned wic_server_get_index(WicServer* target, char* name_or_ip)
+{
+    if(!target)
+        return wic_throw_error(WIC_ERRNO_NULL_TARGET);
+    if(!name_or_ip)
+        return wic_throw_error(WIC_ERRNO_NULL_NAME_OR_IP);
+    if(strlen(name_or_ip) > 20)
+        return wic_throw_error(WIC_ERRNO_LARGE_NAME_OR_IP);
+    
+    for(unsigned i = 0; i < target->max_nodes; i++)
+    {
+        if(target->used[i] && (!strcmp(name_or_ip, target->names[i])
+                               || !strcmp(name_or_ip, target->ips[i])))
+        {
+            return i;
+        }
+    }
+    return wic_throw_error(WIC_ERRNO_NO_SUCH_CLIENT);
 }
 bool wic_free_server(WicServer* target)
 {

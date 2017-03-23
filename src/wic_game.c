@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -189,8 +189,10 @@ unsigned wic_updt_game(WicGame* target)
         return wic_throw_error(WIC_ERRNO_NULL_TARGET);
     if(!glfwWindowShouldClose(target->window))
     {
-        while(glfwGetTime() - target->previous_time < target->seconds_per_frame)
-        {}
+        float delay = target->seconds_per_frame -
+                       (glfwGetTime() - target->previous_time);
+        if(delay > 0)
+            usleep(delay * 1000);
         wic_reset_input();
         glfwSwapBuffers(target->window);
         glFlush();

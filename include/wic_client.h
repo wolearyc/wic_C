@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -25,16 +25,15 @@
 /** \brief a simple UDP client that connects to a server
  *  
  *  A WicClient works by sending and recieving packets to and from a server.
- *  WicClient handles certain low level functions, such as joining, kicking, and
- *  banning. More advanced features can be implemented by users by pulling 
- *  received packets out of a WicClient and processing them accordingly. Only
+ *  WicClient handles certain low level functions, such as joining and leaving. 
+ *  More advanced features can be implemented by users by pulling received 
+ *  packets out of a WicClient and processing them accordingly. Only
  *  one WicClient can be initialized at a time in a game.
- *
  *  Since WicClient uses UDP, packets are likely, but not guaranteed, to arrive
  *  in order. Packets may not even arrive at all.
  
- * As a rule, the members of a WicClient should not be altered directly; they 
- * should be treated as read only.
+ *  As a rule, the members of a WicClient should not be altered directly; they
+ *  should be treated as read only.
  */
 typedef struct WicClient
 {

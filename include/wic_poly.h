@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -15,20 +15,21 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  * ----------------------------------------------------------------------------
- * File:    wic_quad.h
+ * File:    wic_poly.h
  * ----------------------------------------------------------------------------
  */
 /** \file */
-#ifndef WIC_QUAD_H
-#define WIC_QUAD_H
+#ifndef WIC_POLY_H
+#define WIC_POLY_H
 #include "wic_pair.h"
 #include "wic_color.h"
 #include "wic_game.h"
-/**  \brief a filled rectangle that can be drawn to the screen
+/** \brief a filled polygon that can be drawn to the screen
  *
- *  A WicQuad should be initialized via wic_init_quad.
+ *  A WicPoly should be initialized via wic_init_poly. A WicPoly should
+ *  eventually be deallocated via wic_free_poly.
  */
-typedef struct WicQuad
+typedef struct WicPoly
 {
     WicPair location;        /**< the screen location */
     WicPair center;          /**< the center to scale, rotate, or draw around */
@@ -37,26 +38,36 @@ typedef struct WicQuad
     WicPair scale;           /**< the scale */
     WicColor color;          /**< the color multiplier */
     bool draw_centered;      /**< whether or not to draw around the center */
-    WicPair dimensions;      /**< the dimensions */
-} WicQuad;
-/** \brief initializes a WicQuad
- *  \param target the target WicQuad
+    WicPair* vertices;       /**< the set of vertices in clockwise or 
+                              *   counter-clockwise order */
+    unsigned num_vertices;   /**< the number of vertices */
+} WicPoly;
+/** \brief initializes a WicPoly
+ *  \param target the target WicPoly
  *  \param location the desired screen location
- *  \param dimensions the desired dimensions
+ *  \param vertices pointer to the the desired vertices (relative to the 
+ *         object), in clockwise or counterclockwise order
+ *  \param num_vertices the number of elements in vertices; must be > 2; an
+ *         incorrect value will result in undefined behavior
  *  \param color the desired color
  *  \return true on success, false on failure
  */
-bool wic_init_quad(WicQuad* target, WicPair location, WicPair dimensions,
-                   WicColor color);
-/** \brief fetches the geometric center of a WicQuad
- *  \param target a WicQuad
- *  \return the geometric center of the WicQuad on success, {-1, -1} on failure
+bool wic_init_poly(WicPoly* target, WicPair location, WicPair* vertices,
+                      unsigned len_vertices, WicColor color);
+/** \brief fetches a WicPoly's geometric center
+ *  \param target a WicPoly
+ *  \return the WicPoly's geometric center on success, {-1,-1} on failure
  */
-WicPair wic_quad_get_geometric_center(WicQuad* target);
-/** \brief draws a WicQuad
- *  \param target the target WicQuad
+WicPair wic_poly_get_geo_center(WicPoly* target);
+/** \brief draws a WicPoly
+ *  \param poly the target WicPoly
  *  \param game the WicGame
- *  \return true on success, false otherwise
+ *  \return true on success, false on failure
  */
-bool wic_draw_quad(WicQuad* target, WicGame* game);
+bool wic_draw_poly(WicPoly* target, WicGame* game);
+/** \brief deallocates a WicPoly
+ *  \param target the target WicPoly
+ *  \return true on success, false on failure
+ */
+bool wic_free_poly(WicPoly* target);
 #endif

@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -80,6 +80,7 @@ typedef enum
     WIC_ERRNO_NULL_NAME_OR_IP,
     WIC_ERRNO_LARGE_NAME_OR_IP,
     WIC_ERRNO_UNBANNED_NAME_OR_IP,
+    WIC_ERRNO_NO_SUCH_CLIENT,
 } WicError;
 extern WicError wic_errno;
 /** \brief translates the lastest wic_errno into a meaningful string and

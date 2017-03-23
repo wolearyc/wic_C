@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -18,7 +18,6 @@
  * File:    wic_client.c
  * ----------------------------------------------------------------------------
  */
-/* TODO: add wic_ in front of global variables for consistency */
 #include "wic_client.h"
 static int wic_socket;
 static struct sockaddr_in wic_addr;
@@ -95,9 +94,10 @@ bool wic_client_join_server(WicClient* target, WicPacket* result,
     clock_t initial_clock = clock();
     while((clock() - initial_clock)/CLOCKS_PER_SEC <= timeout)
     {
-        struct sockaddr_in response_addr;
-        ssize_t length = recvfrom(wic_socket, wic_buffer, sizeof(wic_buffer), 0,
-                                  (struct sockaddr*) &response_addr, 0);
+        struct sockaddr_in recv_addr;
+        socklen_t tmp_len = sizeof(recv_addr);
+        ssize_t length = recvfrom(wic_socket, wic_buffer, wic_size_buffer, 0,
+                                  (struct sockaddr*) &recv_addr, &tmp_len);
         if(length > 0)
         {
             wic_get_packet_from_buffer(wic_buffer, result);
@@ -127,7 +127,7 @@ bool wic_client_join_server(WicClient* target, WicPacket* result,
                             return wic_throw_error(WIC_ERRNO_NO_HEAP);
                         }
                     }
-                    
+                    wic_server_addr = recv_addr;
                     target->joined = true;
                     target->index = result->data[2];
                     target->used = used;
@@ -136,7 +136,6 @@ bool wic_client_join_server(WicClient* target, WicPacket* result,
                     target->names = names;
                     memcpy(target->names[0], &result->data[3], 21);
                     strcpy(target->names[target->index], target->name);
-                    wic_server_addr = response_addr;
                     return true;
                 }
                 else if(result->data[0] == WIC_PACKET_RESPOND_JOIN_FULL)
@@ -172,8 +171,9 @@ bool wic_client_recv_packet(WicClient* target, WicPacket* result)
         return wic_throw_error(WIC_ERRNO_CLIENT_NOT_JOINED);
     
     struct sockaddr_in recv_addr;
+    socklen_t tmp_len = sizeof(recv_addr);
     ssize_t length = recvfrom(wic_socket, wic_buffer, wic_size_buffer, 0,
-                              (struct sockaddr*) &recv_addr, 0);
+                              (struct sockaddr*) &recv_addr, &tmp_len);
     if(length > 0)
     {
         if(recv_addr.sin_addr.s_addr == wic_server_addr.sin_addr.s_addr &&

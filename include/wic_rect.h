@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -15,21 +15,20 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  * ----------------------------------------------------------------------------
- * File:    wic_polygon.h
+ * File:    wic_rect.h
  * ----------------------------------------------------------------------------
  */
 /** \file */
-#ifndef WIC_POLYGON_H
-#define WIC_POLYGON_H
+#ifndef WIC_RECT_H
+#define WIC_RECT_H
 #include "wic_pair.h"
 #include "wic_color.h"
 #include "wic_game.h"
-/** \brief a filled polygon that can be drawn to the screen
+/**  \brief a filled rectangle that can be drawn to the screen
  *
- *  A WicPolygon should be initialized via wic_init_polygon. A WicPolygon should
- *  eventually be deallocated via wic_free_polygon.
+ *  A WicRect should be initialized via wic_init_rect.
  */
-typedef struct WicPolygon
+typedef struct WicRect
 {
     WicPair location;        /**< the screen location */
     WicPair center;          /**< the center to scale, rotate, or draw around */
@@ -38,36 +37,26 @@ typedef struct WicPolygon
     WicPair scale;           /**< the scale */
     WicColor color;          /**< the color multiplier */
     bool draw_centered;      /**< whether or not to draw around the center */
-    WicPair* vertices;       /**< the set of vertices in clockwise or 
-                              *   counter-clockwise order */
-    unsigned num_vertices;   /**< the number of vertices */
-} WicPolygon;
-/** \brief initializes a WicPolygon
- *  \param target the target WicPolygon
+    WicPair dimensions;      /**< the dimensions */
+} WicRect;
+/** \brief initializes a WicRect
+ *  \param target the target WicRect
  *  \param location the desired screen location
- *  \param vertices pointer to the the desired vertices (relative to the 
- *         object), in clockwise or counterclockwise order
- *  \param num_vertices the number of elements in vertices; must be > 2; an
- *         incorrect value will result in undefined behavior
+ *  \param dimensions the desired dimensions
  *  \param color the desired color
  *  \return true on success, false on failure
  */
-bool wic_init_polygon(WicPolygon* target, WicPair location, WicPair* vertices,
-                      unsigned len_vertices, WicColor color);
-/** \brief fetches a WicPolygon's geometric center
- *  \param target a WicPolygon
- *  \return the WicPolygon's geometric center on success, {-1,-1} on failure
+bool wic_init_rect(WicRect* target, WicPair location, WicPair dimensions,
+                   WicColor color);
+/** \brief fetches the geometric center of a WicRect
+ *  \param target a WicRect
+ *  \return the geometric center of the WicRect on success, {-1, -1} on failure
  */
-WicPair wic_polygon_get_geometric_center(WicPolygon* target);
-/** \brief draws a WicPolygon
- *  \param polygon the target WicPolygon
+WicPair wic_rect_get_geo_center(WicRect* target);
+/** \brief draws a WicRect
+ *  \param target the target WicRect
  *  \param game the WicGame
- *  \return true on success, false on failure
+ *  \return true on success, false otherwise
  */
-bool wic_draw_polygon(WicPolygon* target, WicGame* game);
-/** \brief deallocates a WicPolygon
- *  \param target the target WicPolygon
- *  \return true on success, false on failure
- */
-bool wic_free_polygon(WicPolygon* target);
+bool wic_draw_rect(WicRect* target, WicGame* game);
 #endif

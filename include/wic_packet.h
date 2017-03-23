@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -57,6 +57,7 @@ typedef struct WicPacketType
 } WicPacketType;
 /** \brief identifies the index of a node (either the server or a client) */
 typedef uint8_t WicNodeIndex;
+/** \brief the server's index (always 0) */
 extern const WicNodeIndex WIC_SERVER_INDEX;
 /** \brief a packet containing source and type information as well as
  *         a data payload */
@@ -86,8 +87,8 @@ extern const uint8_t WIC_PACKET_RESPOND_JOIN_FULL;
 /** \brief unsuccessful join response code due to ban */
 extern const uint8_t WIC_PACKET_RESPOND_JOIN_BANNED;
 
-/** \brief the reserved packet sent from a server to > 1 clients announcing that
- *         a new client has joined
+/** \brief the reserved packet recieved by server and all previously connected
+ *         clients announcing that a new client has successfully joined
  *  
  *  This packet contains 22 bytes of data. First, the index of the newly joined
  *  client. Second, the 21 byte name of the newly joined client.
@@ -134,14 +135,12 @@ extern const uint8_t WIC_PACKET_CLIENT_LEFT_NORMALLY;
 extern const uint8_t WIC_PACKET_CLIENT_LEFT_KICKED;
 /** \brief banned client leave code */
 extern const uint8_t WIC_PACKET_CLIENT_LEFT_BANNED;
-
 /** \brief the reserved packet sent from a server to all joined clients
  *         indicating server shutdown
  *
  *  This packet contains no data.
  */
 extern const WicPacketType WIC_PACKET_SERVER_SHUTDOWN;
-
 /** \brief the size of the packet header */
 extern const size_t WIC_PACKET_HEADER_SIZE;
 /** \brief parses a packet from a given buffer 

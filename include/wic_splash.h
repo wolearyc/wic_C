@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -26,7 +26,7 @@
 #include "wic_error.h"
 #include "wic_color.h"
 #include "wic_game.h"
-#include "wic_quad.h"
+#include "wic_rect.h"
 extern const WicColor WIC_SPLASH_BACKGROUND_COLOR; /**< standard and preferred
                                                     *   splash screen background
                                                     *   color

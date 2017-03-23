@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * wic - a simple 2D game engine for Mac OSX written in C
- * Copyright (C) 2013-2014  Will O'Leary
+ * Copyright (C) 2013-2017  Willis O'Leary
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -52,7 +52,7 @@ bool wic_init_image(WicImage* target, WicPair location, WicTexture* texture)
     target->texture = texture;
     return true;
 }
-WicPair wic_image_get_geometric_center(WicImage* target)
+WicPair wic_image_get_geo_center(WicImage* target)
 {
     if(!target)
     {

@@ -12,15 +12,15 @@ Table of Contents
 
 Summary
 -------
-Wic is a simple 2D game engine for Mac OSX written in C and distributed as a standalone static library. It is currently under development by Will  O'Leary. You can download files, read documentation, and submit bug reports at wic's [github repository](https://github.com/wolearyc/wic). 
-
-Wic was built with the following design goals in mind:
+Wic is a 2D game engine for Mac OSX written in C and distributed as a standalone static library. I am building Wic with the following design goals in mind: 
 * simplicity
-* extendability
-* effective and robust error reporting
-* effective documentation
+* extensibility
+* robust and easy error reporting
+* detailed documentation
 * library-wide consistency
 * flexibility in memory management
+
+You can download files, read documentation, and submit bug reports at wic's [github repository](https://github.com/wolearyc/wic). 
 
 Enjoy!
 
